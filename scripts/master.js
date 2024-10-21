@@ -7,7 +7,7 @@ items.forEach((item, index) => {
   item.style.animationDelay = `${delay}ms`;
 });
 setTimeout(() => {
-    document.querySelector('.movies-cards').classList.add('grayed');
+    document.querySelector('.cards-container').classList.add('grayed');
 
     items.forEach((item) => {
         item.style.animationDelay = `0s`;
@@ -32,12 +32,12 @@ function toggleDescription() {
 
 function initializeDescription() {
     if (descriptionState == 0) {
-        document.querySelector('.movies-backgrounds').classList.remove('darken');
+        document.querySelector('.page-backgrounds').classList.remove('darken');
         document.querySelector('.show_description').classList.remove('reverse');
         document.querySelector('.movie-description').classList.add('hidden');
         document.querySelector('.movie-ratings').classList.remove('hidden');
     } else {
-        document.querySelector('.movies-backgrounds').classList.add('darken');
+        document.querySelector('.page-backgrounds').classList.add('darken');
         document.querySelector('.show_description').classList.add('reverse');
         document.querySelector('.movie-description').classList.remove('hidden');
         document.querySelector('.movie-ratings').classList.add('hidden');
@@ -54,11 +54,11 @@ function openCards() {
     document.querySelector('.stack_hint').classList.add('hidden');
 
     document.querySelector('body').classList.remove('black');
-    document.querySelector('.movies-backgrounds').classList.add('reverse');
+    document.querySelector('.page-backgrounds').classList.add('reverse');
 
-    document.querySelector('.movie-list').classList.remove('hidden');
-    document.querySelector('.movies-cards').classList.add('reappear');
-    document.querySelector('.movies-cards').classList.remove('grayed');
+    document.querySelector('.cards-stack').classList.remove('hidden');
+    document.querySelector('.cards-container').classList.add('reappear');
+    document.querySelector('.cards-container').classList.remove('grayed');
 
 
     items.forEach((item, index) => {
@@ -96,7 +96,7 @@ function openScreen(value) {
     document.querySelector(`.card.${value}`).classList.add('expand');
     document.querySelector('body').classList.add('black');
 
-    document.querySelector('.movie-list').classList.add('hidden');
+    document.querySelector('.cards-stack').classList.add('hidden');
 
     document.querySelector('.show_stack').classList.remove('hidden');
     pageState = 1;

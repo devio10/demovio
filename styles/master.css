@@ -87,12 +87,11 @@ header {
     opacity: 0;
 }
 .screen-titlescreen {
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    align-items: center;
+    display: flex;
+    align-items: flex-end;
     padding: 64px;
 }
-.movie-info {
+.server-info {
     display: flex;
     align-items: flex-end;
     align-self: flex-end;
@@ -100,7 +99,7 @@ header {
     max-width: calc(50% - 48px);
     max-height: calc(100vh - 64px);
 }
-.movie-name {
+.server-status {
     font-weight: 500;
     font-size: 48px;
     margin-bottom: -10px;
@@ -116,7 +115,7 @@ header {
 .movie-description.hidden {
     display: none;
 }
-.movie-name_date-block {
+.server-status_date-block {
     display: flex;
     align-items: flex-end;
 }
@@ -130,7 +129,7 @@ header {
     color: rgba(255,255,255,0.6);
     font-size: 14px;
 }
-.info-date_block .movie-year {
+.info-date_block .titlescreen-players_num {
     color: white;
     font-size: 26px;
 }
@@ -208,7 +207,7 @@ header {
 .show_stack svg {
     fill: black;
 }
-.movies-backgrounds {
+.page-backgrounds {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -221,13 +220,13 @@ header {
 
     transition: .6s ease-in filter;
 }
-.movies-backgrounds.darken {
+.page-backgrounds.darken {
     filter: brightness(0.4);
 }
-.movies-backgrounds.hidden {
+.page-backgrounds.hidden {
     opacity: 0;
 }
-.movies-backgrounds img {
+.page-backgrounds img {
     position: absolute;
     object-fit: cover;
     width: 100%;
@@ -238,11 +237,11 @@ header {
     animation-timing-function: ease-out;
     animation-fill-mode: both;
 }
-.movies-backgrounds img.hidden {
+.page-backgrounds img.hidden {
     animation-direction: reverse;
     display: none;
 }
-.movies-backgrounds.reverse div {
+.page-backgrounds.reverse div {
     animation-direction: reverse;
     animation-name: none;
     animation-name: bgAppearance;
@@ -308,23 +307,23 @@ header {
     margin: 0;
 }
 
-.movie-list {
+.cards-stack {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
     transition: .3s ease-out opacity, .3s ease-out scale;
 }
-.movie-list.hidden {
+.cards-stack.hidden {
     opacity: 0;
     pointer-events: none;
 }
-.movies-cards_row {
+.cards-container_row {
     overflow-x: auto;
     height: 100vh;
     width: 100%;
 }
-.movies-cards {
+.cards-container {
     display: flex;
     align-items: center;
     justify-content: center;
