@@ -17,44 +17,36 @@ setTimeout(() => {
 
 document.querySelector('.show_stack').addEventListener('mouseenter', function() {
     document.querySelector('.stack_hint').classList.remove('hidden');
+    document.querySelector('.menu_glowing').classList.remove('hidden');
 });
 document.querySelector('.show_stack').addEventListener('mouseleave', function() {
     document.querySelector('.stack_hint').classList.add('hidden');
+    document.querySelector('.menu_glowing').classList.add('hidden');
 });
-
-let descriptionState = 0;
 let pageState = 0;
 
-function toggleDescription() {
-    descriptionState = !descriptionState;
-    initializeDescription();
-}
+function resetBackground() {
+    let content = document.querySelector('.page-backgrounds').innerHTML;
 
-function initializeDescription() {
-    if (descriptionState == 0) {
-        document.querySelector('.page-backgrounds').classList.remove('darken');
-        document.querySelector('.show_description').classList.remove('reverse');
-        document.querySelector('.movie-description').classList.add('hidden');
-        document.querySelector('.movie-ratings').classList.remove('hidden');
-    } else {
-        document.querySelector('.page-backgrounds').classList.add('darken');
-        document.querySelector('.show_description').classList.add('reverse');
-        document.querySelector('.movie-description').classList.remove('hidden');
-        document.querySelector('.movie-ratings').classList.add('hidden');
-    }
+    document.querySelector('.page-backgrounds').innerHTML = '';
+    setTimeout(() => {
+        document.querySelector('.page-backgrounds').innerHTML = content;
+    }, 1);
 }
-
 
 function openCards() {
     screens.forEach((screenName) => {
         document.querySelector(`.screen-${screenName}`).classList.add('hidden');
+        document.querySelector(`#bg-${screenName}`).classList.add('hiding');
     });
 
     document.querySelector('.show_stack').classList.add('hidden');
     document.querySelector('.stack_hint').classList.add('hidden');
+    document.querySelector('.menu_glowing').classList.add('hidden');
+
 
     document.querySelector('body').classList.remove('black');
-    document.querySelector('.page-backgrounds').classList.add('reverse');
+    document.querySelector('.page-backgrounds').classList.add('hidden');
 
     document.querySelector('.cards-stack').classList.remove('hidden');
     document.querySelector('.cards-container').classList.add('reappear');
@@ -75,16 +67,24 @@ function openCards() {
             item.style.animationDelay = `0s`;
             item.disabled = null;
         });
-    }, 750);
+        screens.forEach((screenName) => {
+            document.querySelector(`#bg-${screenName}`).classList.remove('hiding');
+            document.querySelector(`#bg-${screenName}`).classList.add('hidden');
+            resetBackground();
+        });
+    }, 500);
 }
 document.querySelector('.show_stack').addEventListener('click', openCards);
 
 function openScreen(value) {
     screens.forEach((screenName) => {
         document.querySelector(`.screen-${screenName}`).classList.add('hidden');
+        document.querySelector(`#bg-${screenName}`).classList.add('hidden');
     });
 
-    document.querySelector(`.screen-${value}`).classList.remove('hidden');
+        document.querySelector(`#bg-${value}`).classList.remove('hidden');
+        document.querySelector(`#bg-${value}`).classList.remove('hiding');
+        document.querySelector(`.screen-${value}`).classList.remove('hidden');
 
     items.forEach((item) => {
         if (!item.classList.contains(value)) {
@@ -97,7 +97,7 @@ function openScreen(value) {
     document.querySelector('body').classList.add('black');
 
     document.querySelector('.cards-stack').classList.add('hidden');
-
+    document.querySelector('.page-backgrounds').classList.remove('hidden');
     document.querySelector('.show_stack').classList.remove('hidden');
     pageState = 1;
 }

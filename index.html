@@ -8,10 +8,10 @@
     <body>
         <header>
             <div class="header-side">
-                <button class="header-button" disabled>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256"><path d="M222,128a94,94,0,0,1-92.74,94H128a93.43,93.43,0,0,1-64.5-25.65,6,6,0,1,1,8.24-8.72A82,82,0,1,0,70,70l-.19.19L39.44,98H72a6,6,0,0,1,0,12H24a6,6,0,0,1-6-6V56a6,6,0,0,1,12,0V90.34L61.63,61.4A94,94,0,0,1,222,128Z"></path></svg>
+                <button class="header-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M118,216a6,6,0,0,1-6,6H48a6,6,0,0,1-6-6V40a6,6,0,0,1,6-6h64a6,6,0,0,1,0,12H54V210h58A6,6,0,0,1,118,216Zm110.24-92.24-40-40a6,6,0,0,0-8.48,8.48L209.51,122H112a6,6,0,0,0,0,12h97.51l-29.75,29.76a6,6,0,1,0,8.48,8.48l40-40A6,6,0,0,0,228.24,123.76Z"></path></svg>
                 </button>
-                <button class="header-button" disabled>
+                <button class="header-button">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256"><path d="M238,56v48a6,6,0,0,1-6,6H184a6,6,0,0,1,0-12h32.55l-30.38-27.8c-.06-.06-.12-.13-.19-.19a82,82,0,1,0-1.7,117.65,6,6,0,0,1,8.24,8.73A93.46,93.46,0,0,1,128,222h-1.28A94,94,0,1,1,194.37,61.4L226,90.35V56a6,6,0,1,1,12,0Z"></path></svg>
                 </button>
             </div>
@@ -22,39 +22,215 @@
             
             <div class="header-side">
                 <button class="header-button">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256"><path d="M208,32H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM96,120a32,32,0,1,1,32,32A32,32,0,0,1,96,120ZM68.67,208A64.36,64.36,0,0,1,87.8,182.2a64,64,0,0,1,80.4,0A64.36,64.36,0,0,1,187.33,208ZM208,208h-3.67a79.9,79.9,0,0,0-46.68-50.29,48,48,0,1,0-59.3,0A79.9,79.9,0,0,0,51.67,208H48V48H208V208Z"></path></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M208,32H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM96,120a32,32,0,1,1,32,32A32,32,0,0,1,96,120ZM68.67,208A64.36,64.36,0,0,1,87.8,182.2a64,64,0,0,1,80.4,0A64.36,64.36,0,0,1,187.33,208ZM208,208h-3.67a79.9,79.9,0,0,0-46.68-50.29,48,48,0,1,0-59.3,0A79.9,79.9,0,0,0,51.67,208H48V48H208V208Z"></path></svg>
                 </button>
             </div>
         </header>
 
-        <div class="page-backgrounds hidden">
+        <div class="page-backgrounds">
             <img src="posters/home.jpeg" id="bg-titlescreen" class="hidden">
-            <img src="posters/home.jpeg" id="bg-home" class="hidden">
+            <img src="posters/home.jpeg" id="bg-home">
             <img src="posters/players.jpeg" id="bg-players" class="hidden">
             <img src="posters/passport.jpeg" id="bg-passport" class="hidden">
             <img src="posters/stats.jpeg" id="bg-stats" class="hidden">
-            <img src="posters/help.jpeg" id="bg-help" class="hidden">
+            <img src="posters/help.jpeg" id="bg-download" class="hidden">
         </div>
 
-        <div class="screen screen-titlescreen hidden">
+        <div class="screen screen-titlescreen">
             <div class="server-info">
                 <h2 class="server-status">Сервер онлайн</h2>
                 <div class="info-date_block">
                     <span>игроков</span>
                     <span class="titlescreen-players_num">6</span>
                 </div>
+                <div class="welcome_player">
+                    <span>Добро пожаловать, devio10!</span>
+                </div>
             </div>
         </div>
+        <div class="screen screen-players hidden">
+            <div class="players_list-window">
+                <h2>Список Игроков</h2>
+                <ul class="players-list">
+                    <li>
+                        <img src="https://api.mcheads.org/head/devio10/42.png">
+                        <div>
+                            <span class="name">devio10</span>
+                            <span class="pronouns">он/его</span>
+                        </div>
+                        <span class="online_status">Онлайн</span>
+                        <div class="online_dot"></div>
+                    </li>
+                    <li>
+                        <img src="https://api.mcheads.org/head/VityaSchel/42.png">
+                        <div>
+                            <span class="name">VityaSchel</span>
+                            <span class="pronouns">он/его</span>
+                        </div>
+                        <span class="online_status">Онлайн</span>
+                        <div class="online_dot"></div>
+                    </li>
+                    <li>
+                        <img src="https://api.mcheads.org/head/bonnie/42.png">
+                        <div>
+                            <span class="name">anastasiz2009</span>
+                            <span class="pronouns">она/её</span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="https://api.mcheads.org/head/bonnie/42.png">
+                        <div>
+                            <span class="name">anastasiz2009</span>
+                            <span class="pronouns">она/её</span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="https://api.mcheads.org/head/bonnie/42.png">
+                        <div>
+                            <span class="name">anastasiz2009</span>
+                            <span class="pronouns">она/её</span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="https://api.mcheads.org/head/bonnie/42.png">
+                        <div>
+                            <span class="name">anastasiz2009</span>
+                            <span class="pronouns">она/её</span>
+                        </div>
+                    </li>
 
-        <div class="screen screen-players"></div>
-        <div class="screen screen-passport"></div>
-        <div class="screen screen-stats"></div>
-        <div class="screen screen-download"></div>
+                    <li>
+                        <img src="https://api.mcheads.org/head/bonnie/42.png">
+                        <div>
+                            <span class="name">anastasiz2009</span>
+                            <span class="pronouns">она/её</span>
+                        </div>
+                    </li>
 
-        <div class="cards-stack">
+                    <li>
+                        <img src="https://api.mcheads.org/head/bonnie/42.png">
+                        <div>
+                            <span class="name">anastasiz2009</span>
+                            <span class="pronouns">она/её</span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="https://api.mcheads.org/head/bonnie/42.png">
+                        <div>
+                            <span class="name">anastasiz2009</span>
+                            <span class="pronouns">она/её</span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="https://api.mcheads.org/head/bonnie/42.png">
+                        <div>
+                            <span class="name">anastasiz2009</span>
+                            <span class="pronouns">она/её</span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="https://api.mcheads.org/head/bonnie/42.png">
+                        <div>
+                            <span class="name">anastasiz2009</span>
+                            <span class="pronouns">она/её</span>
+                        </div>
+                    </li>
+                    
+                </ul>
+
+            </div>
+        </div>
+        <div class="screen screen-passport hidden">
+            <div class="user-passport">
+                <div class="passport-residentship">
+                    <div class="passport-actual_content">
+                        <div class="clip">
+                            <div class="passport-country_color">
+                            </div>
+                            <div class="grid">
+                                <div>
+                                    <section>
+                                        <span>Гражданство / Citizenship</span>
+                                        <p class="user-citizenship">Шанхай / Shanghai</p>
+                                    </section>
+                                    <section>
+                                        <span>Дата принятия / Date of acceptance</span>
+                                        <p class="user-citizenship">21.10.2024</p>
+                                    </section>
+                                    <section>
+                                        <span>Адрес проживания / Residential address</span>
+                                        <p class="user-citizenship">115 Batumi Dt. / 3</p>
+                                    </section>
+                                    <section>
+                                        <span>Протокол / Protocol</span>
+                                        <p class="user-citizenship">№30:0001</p>
+                                    </section>
+                                </div>
+                                <div class="logo">
+                                    <span>Sh</span>
+                                </div>
+                            </div>
+
+                            <div class="passport-stamp">
+                                <span>DE:</span>
+                                <div>
+                                    <span>SHANGHAI APPROVED</span>
+                                    <span>21 OCT 2024</span>
+                                </div>
+                            </div>
+
+                            <span class="passport-watermark_demovio first">DEMOVIO</span>
+                            <span class="passport-watermark_demovio second">DEMOVIO</span>
+
+                        </div>
+                    </div>
+                    <div class="passport-cover">
+                        <div class="passport-cover_content">
+                            <h2>PASSPORT</h2>
+                            <img src="img/de_passport.svg">
+                            <span>United States<br>of Demovio</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="passport-personal">
+                    <img class="passport-user_pic holo" src="https://api.mcheads.org/head/devio10/32.png">
+                    <img class="passport-user_pic" src="https://api.mcheads.org/head/devio10/96.png">
+                    <div class="passport-info_block">
+                        <section>
+                            <span>Игровой ник / Player name</span>
+                            <p class="user-name">devio10</p>
+                        </section>
+                        <section>
+                            <span>Связь / Contact</span>
+                            <p class="user-name">@devio101</p>
+                        </section>
+                        <section>
+                            <span>Дата выдачи / Date of issue</span>
+                            <p class="user-name">21.10.2024</p>
+                        </section>
+                        <section>
+                            <span>Местоимения / Pronouns</span>
+                            <p class="user-name">он/его</p>
+                        </section>
+                        <span class="passport-watermark_demovio third">DE:</span>
+
+                    </div>
+                    <div class="passport-bottom_info">
+                        <span>
+                            DE>SHANGHAI>>>1>>DEVIO10>>>>>>>>>>>>>>>>>><br>
+                            5234346546DEV3BRO524DE5435SHANG4455>>>>>51
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="screen screen-stats hidden"></div>
+        <div class="screen screen-download hidden"></div>
+
+        <div class="cards-stack hidden">
             <div class="cards-container_row">
                 <div class="cards-container">
-                    <button class="card titlescreen" onclick="openScreen('titlescreen')"> <div>
+                    <button class="card titlescreen expand" onclick="openScreen('titlescreen')"> <div>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M128,28A100,100,0,1,0,228,128,100.11,100.11,0,0,0,128,28Zm0,192a92,92,0,1,1,92-92A92.1,92.1,0,0,1,128,220ZM174.21,76.42l-64,32a4.08,4.08,0,0,0-1.79,1.79l-32,64A4,4,0,0,0,80,180a4.05,4.05,0,0,0,1.79-.42l64-32a4.08,4.08,0,0,0,1.79-1.79l32-64a4,4,0,0,0-5.37-5.37ZM141,141l-52.08,26L115,115l52.08-26Z"></path></svg>
                         <span>Главная</span>
                     </div> </button>
@@ -82,12 +258,25 @@
             </div>
         </div>
 
+        <div class="user-block">
+
+        </div>
+
         <button class="show_stack">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256"><path d="M208,90H48a14,14,0,0,0-14,14v96a14,14,0,0,0,14,14H208a14,14,0,0,0,14-14V104A14,14,0,0,0,208,90Zm2,110a2,2,0,0,1-2,2H48a2,2,0,0,1-2-2V104a2,2,0,0,1,2-2H208a2,2,0,0,1,2,2ZM50,64a6,6,0,0,1,6-6H200a6,6,0,0,1,0,12H56A6,6,0,0,1,50,64ZM66,32a6,6,0,0,1,6-6H184a6,6,0,0,1,0,12H72A6,6,0,0,1,66,32Z"></path></svg>
         </button>
 
         <div class="stack_hint hidden">
-            <span>Открыть карусель фильмов и категорий</span>
+            <span>Открыть меню</span>
+        </div>
+        
+        <div class="menu_glowing hidden">
+            <div class="purple"></div>
+            <div class="blue"></div>
+            <div class="green"></div>
+            <div class="yellow"></div>
+            <div class="orange"></div>
+            <div class="red"></div>
         </div>
 
         <script src="scripts/master.js"></script>
