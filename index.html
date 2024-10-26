@@ -8,10 +8,10 @@
     <body>
         <header>
             <div class="header-side">
-                <button class="header-button">
+                <button class="header-button" disabled>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M118,216a6,6,0,0,1-6,6H48a6,6,0,0,1-6-6V40a6,6,0,0,1,6-6h64a6,6,0,0,1,0,12H54V210h58A6,6,0,0,1,118,216Zm110.24-92.24-40-40a6,6,0,0,0-8.48,8.48L209.51,122H112a6,6,0,0,0,0,12h97.51l-29.75,29.76a6,6,0,1,0,8.48,8.48l40-40A6,6,0,0,0,228.24,123.76Z"></path></svg>
                 </button>
-                <button class="header-button">
+                <button class="header-button" disabled>
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256"><path d="M238,56v48a6,6,0,0,1-6,6H184a6,6,0,0,1,0-12h32.55l-30.38-27.8c-.06-.06-.12-.13-.19-.19a82,82,0,1,0-1.7,117.65,6,6,0,0,1,8.24,8.73A93.46,93.46,0,0,1,128,222h-1.28A94,94,0,1,1,194.37,61.4L226,90.35V56a6,6,0,1,1,12,0Z"></path></svg>
                 </button>
             </div>
@@ -21,7 +21,7 @@
             </div>
             
             <div class="header-side">
-                <button class="header-button">
+                <button class="header-button" onclick="document.querySelector('.user_block').classList.toggle('hidden')">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M208,32H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM96,120a32,32,0,1,1,32,32A32,32,0,0,1,96,120ZM68.67,208A64.36,64.36,0,0,1,87.8,182.2a64,64,0,0,1,80.4,0A64.36,64.36,0,0,1,187.33,208ZM208,208h-3.67a79.9,79.9,0,0,0-46.68-50.29,48,48,0,1,0-59.3,0A79.9,79.9,0,0,0,51.67,208H48V48H208V208Z"></path></svg>
                 </button>
             </div>
@@ -39,12 +39,9 @@
         <div class="screen screen-titlescreen">
             <div class="server-info">
                 <h2 class="server-status">Сервер онлайн</h2>
-                <div class="info-date_block">
-                    <span>игроков</span>
-                    <span class="titlescreen-players_num">6</span>
-                </div>
                 <div class="welcome_player">
                     <span>Добро пожаловать, devio10!</span>
+                    <img src="https://api.mcheads.org/head/devio10/42.png">
                 </div>
             </div>
         </div>
@@ -258,8 +255,12 @@
             </div>
         </div>
 
-        <div class="user-block">
-
+        <div class="user_block hidden">
+            <div class="user_block-header">
+                <img class="user_block-img" src="https://api.mcheads.org/head/devio10/36.png">
+                <span class="user_block-name">devio10</span>
+            </div>
+            <button class="user_block-button">Выйти</button>
         </div>
 
         <button class="show_stack">
