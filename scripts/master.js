@@ -1,6 +1,5 @@
 const items = document.querySelectorAll('button.card');
 const screens = ['titlescreen', 'players', 'passport', 'stats', 'download'];
-console.log(items)
 
 items.forEach((item, index) => {
   const delay = index * (1000 / items.length);
