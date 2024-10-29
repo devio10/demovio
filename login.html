@@ -5,6 +5,7 @@
         <meta charset="utf-8">
         <link rel="stylesheet" href="styles/master.css">
         <link rel="stylesheet" href="styles/auth.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
     </head>
     <body>
         <header>
@@ -33,9 +34,11 @@
             <div class="fields">
                 <input type="text" name="name" class="input-name" placeholder="Имя Игрока">
                 <input type="password" name="password" class="input-password" placeholder="Пароль">
-                <button class="submit">Войти в Аккаунт</button>
+                <button onclick="login()" class="submit">Войти в Аккаунт</button>
             </div>
             <a href="signup.html" class="alternate-option">Создать новый аккаунт</a>
         </div>
+
+        <script src="scripts/auth.js"></script>
     </body>
 </html>
