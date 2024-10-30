@@ -35,10 +35,10 @@ async function login() {
             console.log("wrong credentials");
             document.querySelector('.submit').disabled = "false";
         }
-      } catch (error) {
-        console.error('Error: ', error)
-        //showWarning(error);
-      }
+    } catch (error) {
+      console.error('Error: ', error)
+      //showWarning(error);
+    }
 }
 function logout() {
     let xhr = new XMLHttpRequest();
@@ -58,12 +58,14 @@ function logout() {
     xhr.send();
 }
 
+var currentScreen = 'credentials';
 function showScreen(name) {
   let screens = document.querySelectorAll('.screen');
   for(let i=0; i<screens.length; i++) {
     screens[i].classList.add('hidden');
   }
   document.querySelector(`.screen-${name}`).classList.remove('hidden');
+  currentScreen = name;
 }
 function showPopup(text) {
   let popup = document.querySelector('.popup');
@@ -78,14 +80,128 @@ function showPopup(text) {
 }
 
 async function checkForWhitelist() {
-  showScreen('password');
 
-  let player_name = document.querySelector('.input-name').value;
-  if (player_name == 'devio10') {
-    showPopup('Вы есть в белом списке! Ваш аккаунт будет активирован сразу после завершения регистрации.');
-  } else {
-    showPopup('Вас нет в белом списке. Вы сможете создать аккаунт, но его придётся подтвердить у администратора.');
+  try {
+    let name = document.querySelector(`.input-name`).value;
+    document.querySelector('.submit-name').disabled = true;
+    const response = await fetch('https://demovio.lol/whitelistCheck.php', {
+      method: 'POST',
+      body: JSON.stringify({
+        name: name
+      })
+    })
+    const result = await response.text();
+    console.log(result);
+
+    if (result == "1") {
+      showPopup('Вы есть в белом списке! Ваш аккаунт будет активирован сразу после завершения регистрации.');
+      showScreen('password');
+    } else if (result == "") {
+      showPopup('Вас нет в белом списке. Вы сможете создать аккаунт, но его придётся подтвердить у администратора.');
+      showScreen('password');
+    } else if (result == "account_already_created") {
+      showPopup('Этот игровой ник уже занят. Попробуйте войти в аккаунт.');
+      document.querySelector('.submit-name').disabled = null;
+    }
+    playerName = name;
+  } catch (error) {
+    console.error('Error: ', error);
   }
+}
+function passwordWarning(value) {
+  let warn = document.querySelector('.warn_password');
+  if (value == undefined) {
+    warn.classList.add('hidden');
+    return;
+  }
+  warn.classList.remove('hidden');
+  warn.innerText = value;
+}
+function checkPassword() {
+  let pass = document.querySelector('.input-password').value;
+  let repeat_pass = document.querySelector('.input-password_repeat').value;
+  if (pass != repeat_pass) {
+    passwordWarning('Пароли не совпадают. Введите во втором поле тот же пароль, что и в первом.');
+    return;
+  }
+  if (!(pass.length >= 8 && pass.length <= 32)) {
+    passwordWarning('Длина пароля должна быть минимум 8 символов и максимум 32 символа.');
+    return;
+  }
+
+  showScreen('license');
+}
+
+var isLicensed = false;
+var playerName = undefined;
+var currentPreview = "";
+let wrongSkins = [];
+function handleSkinPreview() {
+  let skin_preview = document.querySelector('.skin-preview');
+  let skin_name = 'Steve1';
+  if (isLicensed) {
+    skin_name = playerName;
+  }
+
+  let input_value = document.querySelector('.input-skin').value;
+  let trimmed_value = input_value.trim();
+  if (trimmed_value.length != 0 && !wrongSkins.includes(trimmed_value)) {
+    skin_name = input_value.trim();
+  }
+
+  currentPreview = skin_name;
+
+  skin_preview.src = `https://api.mcheads.org/iosbody/${skin_name}.png`;
+}
+let debounceTimeout;
+document.querySelector('.input-skin').addEventListener('input', () => {
+  clearTimeout(debounceTimeout)
+  debounceTimeout = setTimeout(() => {
+    handleSkinPreview()
+  }, 500);
+});
+document.querySelector('.skin-preview').addEventListener('error', (e) => {
+  wrongSkins[wrongSkins.length] = currentPreview;
+  handleSkinPreview();
+});
+
+function setLicenseAvailability(value) {
+  let text = document.querySelector('.screen-skin .text-description');
+  let skin_input = document.querySelector('.input-skin');
+  if (value == true) {
+    text.innerHTML = `Вам необязательно выбирать скин игрока, так как у вас есть лицензия игры. Если вы всё равно хотите его сменить, то подберите желаемый скин на сайте <a href="https://skinmc.net">skinmc.net</a>.`;
+  } else {
+    text.innerHTML = `Подберите скин на <a href="https://skinmc.net">skinmc.net</a>, чтобы придать уникальности вашему персонажу. 
+                Так другие игроки смогут различать вас.`;
+  }
+  isLicensed = value;
+  handleSkinPreview();
+
+  showScreen('skin');
+}
+
+var selectedSkin;
+function saveSkin(doSkip) {
+  let inputValue = document.querySelector('.input-skin').value;
+  if (wrongSkins.includes(inputValue.trim())) {
+    showPopup('Вы ввели несуществующий скин. Проверьте правильность введённого ника.');
+    return;
+  }
+  if (currentPreview.trim().length == 0 && !doSkip) {
+    showPopup('Введите ник скина, который вы хотите применить, либо пропустите данный этап.');
+    return;
+  }
+
+  if (doSkip) {
+    document.querySelector('.input-skin').value = "";
+    document.querySelector('.input-skin').disabled = "true";
+    handleSkinPreview();
+    selectedSkin = "";
+  } else {
+    selectedSkin = currentPreview.trim();
+  }
+
+  showScreen('citizenship');
 }
 
 let lastKnownScrollPosition = 0;
@@ -98,6 +214,7 @@ function inRange(value, from, to) {
 var selectedState = 0;
 var cardHeight = 248;
 const states = ['Нью Йорк', 'Калифорния', '', 'Шанхай', 'Огайо', 'Джорджия'];
+var selectedCitizenship;
 
 function handleScrollStatus(pos) {
   
@@ -131,3 +248,75 @@ document.querySelector('.state-picker .list').addEventListener('scroll', () => {
     ticking = true;
   }
 });
+
+function formatDate(date) {
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const year = date.getFullYear();
+
+  return `${day}.${month}.${year}`;
+}
+function randomNum(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+function saveCitizenship() {
+  showScreen('contact');
+  let code = "GE";
+  switch (selectedState) {
+    case 0:
+      code = 'NY';
+      break;
+    case 1:
+      code = 'CA';
+      break;
+    case 3:
+      code = 'SH';
+      break;
+    case 4:
+      code = 'OH';
+      break;
+  }
+
+  selectedCitizenship = {
+    code: code,
+    date: formatDate(new Date()),
+    protocol: `№0${selectedState}:${randomNum(1000,9999)}`,
+    address: '-'
+  };
+}
+
+async function requestSignup() {
+  showScreen('request');
+  try {
+      let password = document.querySelector(`.input-password`).value;
+
+      const response = await fetch('https://demovio.lol/signup.php', {
+        method: 'POST',
+        body: JSON.stringify({
+          name: playerName,
+          password: password,
+          skin: selectedSkin,
+          citizenship: JSON.stringify(selectedCitizenship),
+          pronouns: document.querySelector('.input-pronouns').value.trim(),
+          contact: document.querySelector('.input-contact').value.trim().replaceAll('@', '')
+        })
+      })
+      
+      const result = await response.text();
+      console.log(result);
+
+      if (result == 'created') {
+        showScreen('passport');
+      } else {
+        showScreen('error');
+        document.querySelector('.screen-error .text-description').innerHTML = `
+          Произошла ошибка при регистрации аккаунта. Код ошибки: ${result}. 
+          Обратитесь к <a href="https://t.me/devio101">администратору</a> за помощью.
+        `;
+      }
+
+  } catch (error) {
+    console.error('Error: ', error)
+  }
+}
