@@ -689,3 +689,81 @@ span.passport-watermark_demovio.third {
     aspect-ratio: 1 / 1;
     border: none;
 }
+
+.screen-download {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.instructions-block {
+    display: flex;
+    flex-direction: column;
+    width: 460px;
+    max-width: 100vw;
+    gap: 8px;
+}
+.download-buttons {
+    width: 100%;
+    display: grid;
+    gap: 4px;
+    grid-template-columns: 1fr 1fr;
+}
+button.download_package {
+    aspect-ratio: 1 / 1.1;
+    background-color: rgba(0,0,0,0.8);
+    backdrop-filter: blur(10px);
+    --radius: 16px;
+    border-radius: var(--radius) 0 0 var(--radius);
+    border: 1px solid rgba(255,255,255,0.15);
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+button.download_package:last-child {
+    border-radius: 0 var(--radius) var(--radius) 0;
+}
+button.download_package svg {
+    width: 40%;
+    aspect-ratio: 1 / 1;
+    fill: rgba(255,255,255,0.5);
+}
+button.download_package span {
+    font-size: 14px;
+    color: rgba(255,255,255,0.75);
+    position: absolute;
+    bottom: 24px;
+}
+button.download_package .hover_icon {
+    display: none;
+}
+button.download_package:hover .hover_icon {
+    display: block;
+}
+button.download_package:hover svg:not(.hover_icon) {
+    display: none;
+}
+.instructions-block section {
+    width: 100%;
+    background-color: rgba(0,0,0,0.8);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 16px;
+}
+.instructions-block section .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.instructions-block section .header h2 {
+    font-size: 20px;
+}
+.instructions-block section .open_section {
+    width: 24px;
+    aspect-ratio: 1/1;
+    fill: currentColor;
+}

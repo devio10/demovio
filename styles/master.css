@@ -155,3 +155,32 @@ header {
     pointer-events: none;
     opacity: 0;
 }
+
+.popup {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    background-color: rgba(0,0,0,0.5);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255,255,255,0.15);
+    padding: 16px;
+    border-radius: 16px;
+    max-width: 420px;
+
+    display: flex;
+    align-items: flex-start;
+    transition: .3s opacity;
+}
+.popup.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+.popup svg {
+    width: 24px;
+    aspect-ratio: 1/1;
+    flex-shrink: 0;
+}
+.popup span {
+    font-size: 14px;
+    margin-left: 8px;
+}
