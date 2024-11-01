@@ -335,9 +335,15 @@ button.card.hiding div {
 .passport-country_color {
     height: 16px;
     width: 100%;
-    background-color: #64a30d69;
+    background-color: var(--color);
+    opacity: 0.5;
     margin-bottom: 16px;
 }
+.passport-country_color.CA { --color: #64a30d; }
+.passport-country_color.SH { --color: #e11d48; }
+.passport-country_color.NY { --color: #1f6cf2; }
+.passport-country_color.OH { --color: #facc15; }
+.passport-country_color.GE { --color: #f97316; }
 .passport-residentship {
     transform-origin: bottom;
     background: linear-gradient(to bottom, #ffedd56b, #d6c0a00a), 
@@ -431,16 +437,41 @@ button.card.hiding div {
     justify-content: space-between;
     padding: 0 24px;
 }
-.passport-residentship .logo span {
-    font-size: 86px;
-    color: #1a2e05;
+.citizenship-logo svg {
+    width: 128px;
+    aspect-ratio: 1/1;
     padding: 0 16px;
     opacity: 0.9;
     font-weight: 965;
     flex-shrink: 0;
-    width: fit-content;
-    background-color: #36531409;
-    border: 1px solid #3653140e;
+    fill: var(--color);
+    background-color: var(--bg);
+    border: 2px solid var(--bg);
+    display: none;
+}
+.citizenship-logo svg.CA {
+    --color: #1a2e05;
+    --bg: #36531409;
+    fill: none;
+    stroke: var(--color);
+}
+.citizenship-logo svg.SH {
+    --color: #450a0a;
+    --bg: #450a0a09;
+    fill: none;
+    stroke: var(--color);
+}
+.citizenship-logo svg.NY {
+    --color: #172554;
+    --bg: #17255409;
+}
+.citizenship-logo svg.OH {
+    --color: #422006;
+    --bg: #42200609;
+}
+.citizenship-logo svg.GE {
+    --color: #431407;
+    --bg: #43140709;
 }
 .passport-personal {
     display: grid;
@@ -458,6 +489,9 @@ button.card.hiding div {
     padding: 24px 16px;
     border: 1px solid rgba(0,0,0,0.05);
     margin: 24px 0 0 16px;
+    width: 96px;
+    height: 96px;
+    box-sizing: content-box;
 }
 .passport-user_pic.holo {
     padding: 0;
@@ -467,6 +501,8 @@ button.card.hiding div {
     filter: sepia(1);
     opacity: 0.15;
     right: 24px;
+    width: 32px;
+    height: 32px;
 }
 .passport-info_block {
     padding: 24px 8px 0 16px;
@@ -489,7 +525,6 @@ button.card.hiding div {
     align-items: center;
     justify-content: center;
     border-radius: 0 0 var(--radius) var(--radius);
-
 }
 .passport-bottom_info span {
     color: rgb(0,0,0);
@@ -581,7 +616,7 @@ span.passport-watermark_demovio.third {
     pointer-events: none;
     user-select: none;
 }
-.passport-stamp > span {
+.passport-stamp.SH > span {
     background-color: var(--color);
     color: white;
     opacity: 1;
@@ -592,18 +627,18 @@ span.passport-watermark_demovio.third {
     font-size: 24px;
     font-weight: 500;
 }
-.passport-stamp div {
+.passport-stamp.SH div {
     display: flex;
     justify-content: center;
     flex-direction: column;
 }
-.passport-stamp div span {
+.passport-stamp.SH div span {
     color: var(--color);
     opacity: 1;
     font-weight: 700;
     padding: 0 12px;
 }
-.passport-stamp div span:nth-child(2) {
+.passport-stamp.SH div span:nth-child(2) {
     color: #db2777;
 }
 .screen-players {

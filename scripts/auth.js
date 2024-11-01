@@ -17,7 +17,7 @@ async function login() {
 
         document.querySelector('.submit').disabled = true;
 
-        const response = await fetch('https://demovio.lol/login.php', {
+        const response = await fetch('php/login.php', {
           method: 'POST',
           body: JSON.stringify({
             name: name,

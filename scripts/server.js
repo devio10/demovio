@@ -97,3 +97,86 @@ function playersList() {
 
     xhr.send();
 }
+
+var user;
+var userSkin;
+async function retrieveUserData() {
+    try {
+        const response = await fetch('php/userdata.php', {
+          method: 'GET'
+        })
+        
+        const result = await response.json();
+        console.log(result);
+        user = {
+            id: result[0],
+            name: result[1],
+            skin: result[2],
+            citizenship: result[3],
+            pronouns: result[4],
+            contact: result[5],
+            issueDate: result[6],
+            isActivated: result[7]
+        };
+
+        document.querySelector('.welcome_player span').innerText = `Добро пожаловать, ${user.name}!`;
+
+        userSkin = user.name;
+        if (user.skin.length > 0) {
+            userSkin = user.skin;
+        }
+
+        document.querySelector('.welcome_player img').src = `https://api.mcheads.org/head/${userSkin}/42.png`;
+        document.querySelector('.user_block-img').src = `https://api.mcheads.org/head/${userSkin}/36.png`;
+        document.querySelector('.user_block-name').innerText = user.name;
+        
+        /* PASSPORT 42 chars */
+        let citizenship = JSON.parse(user.citizenship);
+        let cit_name = 'Калифорния / California';
+        switch (citizenship.code) {
+            case "SH":
+                cit_name = 'Шанхай / Shanghai';
+                break;
+            case "NY":
+                cit_name = 'Нью Йорк / New York';
+                break;
+            case "OH":
+                cit_name = 'Огайо / Ohio';
+                break;
+            case "GE":
+                cit_name = 'Джорджия / Georgia';
+                break;
+        }
+        
+        document.querySelector('.user-citizenship').innerText = cit_name;
+        document.querySelector('.user-acceptance').innerText = citizenship.date;
+        document.querySelector('.user-address').innerText = citizenship.address;
+        document.querySelector('.user-protocol').innerText = citizenship.protocol;
+
+        document.querySelector(`.citizenship-logo .${citizenship.code}`).style.display = 'block';
+        document.querySelector(`.passport-country_color`).classList.add(citizenship.code);
+
+        document.querySelector('.user-name').innerText = user.name;
+
+        let user_contact = user.contact;
+        if (user_contact.trim().length == 0) {
+            user_contact = '-';
+        }
+
+        document.querySelector('.user-contact').innerText = '@'+user_contact;
+        document.querySelector('.user-issue').innerText = user.issueDate;
+
+        let user_pronouns = user.pronouns;
+        if (user_pronouns.trim().length == 0) {
+            user_pronouns = '-';
+        }
+        document.querySelector('.user-pronouns').innerText = user_pronouns;
+
+        document.querySelector('.passport-user_pic.holo').src = `https://api.mcheads.org/head/${userSkin}/32.png`;
+        document.querySelector('.passport-user_pic').src = `https://api.mcheads.org/head/${userSkin}/96.png`;
+
+    } catch (error) {
+      console.error('Error: ', error)
+    }
+}
+retrieveUserData();

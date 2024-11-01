@@ -16,8 +16,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   
 
   if ($user && password_verify($password, $user['password'])) {
-    $_SESSION['user_id'] = $user['id'];
-    $_SESSION['username'] = $user['username'];
+    $_SESSION['password'] = $password;
+    $_SESSION['name'] = $user['name'];
     setcookie('is_authorised', 'true', time() + (86400 * 180), '/');
 
     echo 'logged_in';
