@@ -55,16 +55,23 @@ function playersList() {
             }
 
             let card = document.createElement('li');
+            let contact = "";
+            if (data[i].contact != undefined) {
+                contact = `
+                    <a href="https://t.me/${data[i].contact}"> <img src="img/message.svg"> </a>
+                `;
+            }
             card.innerHTML = `
                 <img src="https://api.mcheads.org/head/${skin}/42.png">
                 <div>
                     <span class="name">${data[i].name}${online_status}</span>
                     <span class="pronouns">${data[i].pronouns}</span>
                 </div>
-                <a href="https://t.me/${data[i].contact}">
-                    <img src="img/message.svg">
-                </a>
+                ${contact}
             `;
+            card.querySelector('img').addEventListener('error', (e) => {
+                e.target.src = 'img/head_default.png';
+            });
             if (online_status == "") {
                 list.appendChild(card);
             } else {

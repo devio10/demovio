@@ -645,6 +645,7 @@ span.passport-watermark_demovio.third {
 .players-list img {
     border: 1px solid rgba(255,255,255,0.2);
     width: 42px;
+    aspect-ratio: 1/1;
 }
 .players-list span {
     display: block;
