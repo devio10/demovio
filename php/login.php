@@ -1,10 +1,12 @@
 <?php
 session_start();
+$requestBody = file_get_contents('php://input');
+$data = json_decode($requestBody, true);
 
 $db = new PDO('sqlite:demovio.db');
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $username = $_POST['name'];
-  $password = $_POST['password'];
+  $username = $data['name'];
+  $password = $data['password'];
 
   $stmt = $db->prepare('SELECT * FROM players WHERE name = :username LIMIT 1');
   $stmt->bindParam(':username', $username, PDO::PARAM_STR);

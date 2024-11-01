@@ -690,6 +690,10 @@ span.passport-watermark_demovio.third {
     aspect-ratio: 1 / 1;
     border: none;
 }
+.list_loading {
+    width: 48px;
+    margin: 32px auto 16px auto;
+}
 
 .screen-download {
     display: flex;

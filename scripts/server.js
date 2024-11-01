@@ -15,7 +15,6 @@ function checkStatus() {
         if (xhr.responseText != 0) {
             players_online = xhr.responseText.split(',');
         }
-        console.log(players_online);
 
         setTimeout(() => {
             checkStatus();
@@ -35,13 +34,17 @@ function checkStatus() {
 checkStatus();
 
 function playersList() {
+    let list = document.querySelector('.players-list');
+    list.innerHTML = `
+        <div class="list_loading">
+            <div class="spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+        </div>
+    `;
     let xhr = new XMLHttpRequest();
     xhr.onload = function() {
     if (xhr.status >= 200 && xhr.status < 300) {
         console.log(xhr.responseText);
         let data = JSON.parse(xhr.responseText);
-        
-        let list = document.querySelector('.players-list');
         list.innerHTML = '';
 
         for(let i=0; i<data.length; i++) {
@@ -61,11 +64,16 @@ function playersList() {
                     <a href="https://t.me/${data[i].contact}"> <img src="img/message.svg"> </a>
                 `;
             }
+
+            let pronouns = "";
+            if (data[i].pronouns != undefined) {
+                pronouns = `<span class="pronouns">${data[i].pronouns}</span>`;
+            }
             card.innerHTML = `
                 <img src="https://api.mcheads.org/head/${skin}/42.png">
                 <div>
                     <span class="name">${data[i].name}${online_status}</span>
-                    <span class="pronouns">${data[i].pronouns}</span>
+                    ${pronouns}
                 </div>
                 ${contact}
             `;
