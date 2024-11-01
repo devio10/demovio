@@ -98,6 +98,10 @@ function playersList() {
     xhr.send();
 }
 
+function nameCode(length, symbol, input) {
+    return input.length >= length ? input.slice(0, length) : input.padEnd(length, symbol)
+}
+
 var user;
 var userSkin;
 async function retrieveUserData() {
@@ -133,18 +137,25 @@ async function retrieveUserData() {
         /* PASSPORT 42 chars */
         let citizenship = JSON.parse(user.citizenship);
         let cit_name = 'Калифорния / California';
+        let alt_name = 'CALIFORN';
+        citizenship.code = 'SH';
+
         switch (citizenship.code) {
             case "SH":
                 cit_name = 'Шанхай / Shanghai';
+                alt_name = 'SHANGHAI';
                 break;
             case "NY":
                 cit_name = 'Нью Йорк / New York';
+                alt_name = '>NEWYORK';
                 break;
             case "OH":
                 cit_name = 'Огайо / Ohio';
+                alt_name = '>OHIO>>>';
                 break;
             case "GE":
                 cit_name = 'Джорджия / Georgia';
+                alt_name = 'GEORGIA>';
                 break;
         }
         
@@ -174,6 +185,27 @@ async function retrieveUserData() {
 
         document.querySelector('.passport-user_pic.holo').src = `https://api.mcheads.org/head/${userSkin}/32.png`;
         document.querySelector('.passport-user_pic').src = `https://api.mcheads.org/head/${userSkin}/96.png`;
+
+        const uuid = ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
+
+        try {
+            const mojResponse = await fetch('https://api.mojang.com/users/profiles/minecraft/'+user.name, {
+                method: 'GET'
+            })
+            
+            const mojResult = await response.text();
+    
+            uuid = mojResult.id;
+        } catch (e) {
+            console.error(e);
+        }
+
+        document.querySelector('.passport-bottom_info span').innerHTML = `
+            ${citizenship.code}>${alt_name}>>>${nameCode(7, '>', user.name.toUpperCase())}>>>>>>>>>>>>>>>>>>>>><br>
+            >>${uuid}>>>>${nameCode(3, '>', user.id.toString())}>
+            `;
+        //oo o oooooooo ooo ooooooo
+        //oo 32
 
     } catch (error) {
       console.error('Error: ', error)
