@@ -8,6 +8,7 @@ function getCookie(name) {
     }
     return null;
 }
+const clamp = (num, min, max) => Math.min(Math.max(num, min), max)
 
 
 async function login() {
@@ -31,9 +32,8 @@ async function login() {
         if (result == "logged_in") {
           window.open('index.html', '_self');
         } else if (result == "wrong_credentials") {
-            //showWarning(result_json.error);
-            console.log("wrong credentials");
-            document.querySelector('.submit').disabled = "false";
+            showPopup('Неверные имя либо пароль.');
+            document.querySelector('.submit').disabled = null;
         }
     } catch (error) {
       console.error('Error: ', error)
@@ -222,7 +222,8 @@ var selectedCitizenship;
 
 function handleScrollStatus(pos) {
   
-  let num = Math.max(0, Math.floor((pos + cardHeight / 2) / cardHeight));
+  let num = Math.floor((pos + cardHeight / 2) / cardHeight);
+  num = clamp(num, 0, states.length - 1);
 
   let dots = document.querySelector('.dots').children;
   

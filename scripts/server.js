@@ -142,7 +142,7 @@ async function retrieveUserData() {
 
         switch (citizenship.code) {
             case "SH":
-                cit_name = 'Шанхай / Shanghai';
+                cit_name = '上海 / Shanghai / Шанхай';
                 alt_name = 'SHANGHAI';
                 break;
             case "NY":
@@ -168,6 +168,8 @@ async function retrieveUserData() {
         document.querySelector(`.passport-country_color`).classList.add(citizenship.code);
 
         document.querySelector('.user-name').innerText = user.name;
+        document.querySelector(`.passport-stamp.${citizenship.code}`).classList.add('shown');
+
 
         let user_contact = user.contact;
         if (user_contact.trim().length == 0) {
@@ -206,6 +208,18 @@ async function retrieveUserData() {
             `;
         //oo o oooooooo ooo ooooooo
         //oo 32
+
+        if (citizenship.code == 'SH') {
+            document.querySelector('.user-citizenship-title').innerHTML = `国籍 / Citizenship`;
+            document.querySelector('.user-acceptance-title').innerHTML = `接受日期 / Date of acceptance`;
+            document.querySelector('.user-address-title').innerHTML = `居住地址 / Residential address`;
+            document.querySelector('.user-protocol-title').innerHTML = `协议 / Protocol`;
+
+            document.querySelector('.user-name-title').innerHTML = `玩家姓名 / Player name`;
+            document.querySelector('.user-contact-title').innerHTML = `联系方式 / Contact`;
+            document.querySelector('.user-issue-title').innerHTML = `签发日期 / Date of issue`;
+            document.querySelector('.user-pronouns-title').innerHTML = `代词 / Pronouns`;
+        }
 
     } catch (error) {
       console.error('Error: ', error)

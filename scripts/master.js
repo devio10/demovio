@@ -69,8 +69,8 @@ function openCards() {
         screens.forEach((screenName) => {
             document.querySelector(`#bg-${screenName}`).classList.remove('hiding');
             document.querySelector(`#bg-${screenName}`).classList.add('hidden');
-            resetBackground();
         });
+        resetBackground();
     }, 500);
 }
 document.querySelector('.show_stack').addEventListener('click', openCards);

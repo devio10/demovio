@@ -421,13 +421,16 @@ button.card.hiding div {
     color: rgba(0,0,0,0.9);
     padding: 6px 0;
 }
-.passport-residentship span, .passport-personal span {
+.passport-residentship section span, .passport-personal section span {
     color: inherit;
     font-size: 12px;
     opacity: 0.5;
     display: block;
 }
-.passport-residentship p, .passport-personal p {
+.passport-personal section {
+    color: black;
+}
+.passport-residentship section p, .passport-personal section p {
     color: black;
     font-size: 20px;
     font-weight: 500;
@@ -606,7 +609,7 @@ span.passport-watermark_demovio.third {
     position: absolute;
     bottom: 46px;
     right: 32px;
-    border: 4px solid var(--color);
+    border: 3px solid var(--color);
     border-radius: 4px;
     display: flex;
     height: 56px;
@@ -615,6 +618,47 @@ span.passport-watermark_demovio.third {
     scale: 0.9;
     pointer-events: none;
     user-select: none;
+
+    display: none;
+}
+.passport-stamp.shown {
+    display: flex;
+}
+.passport-stamp.NY.shown {
+    display: block;
+}
+.passport-stamp.NY {
+    --color: #1e3a8a;
+    height: 82px;
+    border-radius: 100%;
+    aspect-ratio: 2.5/1;
+    padding: 4px;
+    border-style: double;
+}
+.passport-stamp.NY div {
+    border: 2px dashed red;
+    border-radius: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.stamp_ny_cityname {
+    color: var(--color);
+    font-weight: 500;
+    font-size: 18px;
+    border: 1px solid var(--color);
+    border-left: none;
+    border-right: none;
+    padding: 0 8px;
+    font-family: 'Times New Roman', Times, serif;
+}
+.stamp_ny_text {
+    color: var(--color);
+    font-size: 10px;
+    font-weight: 500;
+    font-family: 'Times New Roman', Times, serif;
 }
 .passport-stamp.SH > span {
     background-color: var(--color);
@@ -636,6 +680,7 @@ span.passport-watermark_demovio.third {
     color: var(--color);
     opacity: 1;
     font-weight: 700;
+    font-size: 12px;
     padding: 0 12px;
 }
 .passport-stamp.SH div span:nth-child(2) {

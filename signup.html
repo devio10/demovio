@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Войти в DEmovio</title>
+        <title>Стать игроком Demovio</title>
         <meta charset="utf-8">
+
         <link rel="stylesheet" href="styles/master.css">
         <link rel="stylesheet" href="styles/auth.css">
+        <link rel="stylesheet" href="styles/master-phones.css">
+        <link rel="stylesheet" href="styles/auth-phones.css">
+
         <link rel="stylesheet" href="styles/spinner.css">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
     </head>
@@ -28,12 +32,12 @@
             <img src="posters/home.jpeg" id="bg-credentials">
         </div>
 
-        <div class="screen screen-credentials hidden">
+        <div class="screen screen-credentials">
             <h1>Создайте аккаунт</h1>
             <p class="text-description">Для начала давайте проверим, есть ли вы в белом списке игроков: введите свой игровой ник.</p>
             
             <div class="fields">
-                <input type="text" name="name" class="input-name full_border_radius" placeholder="Имя Игрока">
+                <input type="text" name="name" class="input-name full_border_radius" placeholder="Имя Игрока" autocorrect="off" autocapitalize="off">
                 <button onclick="checkForWhitelist()" class="submit submit-name">Проверить</button>
             </div>
             <a href="login.html" class="alternate-option">Войти в существующий аккаунт</a>
@@ -55,11 +59,11 @@
             <h1>Подберём вам внешность</h1>
             <p class="text-description">Вы играете с лицензионной версии Minecraft? Этот вопрос необходим для того, чтобы подобрать вам вид игрового персонажа.</p>
             
-            <div class="fields">
+            <div class="fields fields-phones_no_bg">
                 <div class="big-buttons">
                     <button class="big licence-minecraft" onclick="setLicenseAvailability(true)">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M180,93.11V84c0-22.43-36.9-40-84-40S12,61.57,12,84v40c0,19.14,26.86,34.72,64,38.89V172c0,22.43,36.9,40,84,40s84-17.57,84-40V132C244,113.12,217.87,97.37,180,93.11ZM236,132c0,15.45-30.54,32-76,32a165.71,165.71,0,0,1-28-2.34v-1.39c28.61-6.31,48-20,48-36.27V101.17C212.22,105,236,117.93,236,132ZM108.19,155.59Q102.3,156,96,156c-5.47,0-10.72-.25-15.73-.69l-.27,0h0c-4.16-.38-8.16-.9-12-1.56V121.8A174.87,174.87,0,0,0,96,124a174.87,174.87,0,0,0,28-2.2v31.92a155,155,0,0,1-15.52,1.85ZM172,101.32V124c0,10.88-15.16,22.3-40,28.11V120.27C149.63,116.38,163.75,109.69,172,101.32ZM96,52c45.46,0,76,16.55,76,32s-30.54,32-76,32S20,99.45,20,84,50.54,52,96,52ZM20,124V101.32c8.25,8.37,22.37,15.06,40,19v31.84C35.16,146.3,20,134.88,20,124Zm64,48v-8.4c3.91.26,7.92.4,12,.4s8.06-.14,12-.39a123.93,123.93,0,0,0,16,4.63v31.87C99.16,194.3,84,182.88,84,172Zm48,29.72V169.77A174.48,174.48,0,0,0,160,172a174.87,174.87,0,0,0,28-2.2v31.92a173.07,173.07,0,0,1-56,0ZM236,172c0,10.88-15.16,22.3-40,28.11V168.27c17.63-3.89,31.75-10.58,40-19Z"></path></svg>
-                        <span>Да, у меня есть лицензия</span>
+                        <span>У меня есть лицензия</span>
                     </button>
                     <button class="big nolicence-minecraft" onclick="setLicenseAvailability(false)">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M92,108a24,24,0,1,0,24,24A24,24,0,0,0,92,108Zm0,40a16,16,0,1,1,16-16A16,16,0,0,1,92,148Zm72-40a24,24,0,1,0,24,24A24,24,0,0,0,164,108Zm0,40a16,16,0,1,1,16-16A16,16,0,0,1,164,148ZM128,20C72.86,20,28,63.07,28,116c0,33.43,18.33,64.64,48,82v18a12,12,0,0,0,12,12h80a12,12,0,0,0,12-12V198c29.67-17.38,48-48.59,48-82C228,63.07,183.14,20,128,20Zm46.06,172.19a4,4,0,0,0-2.06,3.5V216a4,4,0,0,1-4,4H148V192a4,4,0,0,0-8,0v28H116V192a4,4,0,0,0-8,0v28H88a4,4,0,0,1-4-4V195.69a4,4,0,0,0-2.06-3.5C53.6,176.48,36,147.29,36,116c0-48.52,41.27-88,92-88s92,39.48,92,88C220,147.29,202.4,176.48,174.06,192.19Z"></path></svg>
@@ -78,7 +82,7 @@
             <div class="fields row">
                 <img class="skin-preview" src="https://api.mcheads.org/iosbody/devio10.png">
                 <div>
-                    <input type="text" name="skin" class="input-skin full_border_radius" placeholder="Название скина">
+                    <input type="text" name="skin" class="input-skin full_border_radius" placeholder="Название скина" autocorrect="off" autocapitalize="off">
                     <button onclick="saveSkin()" class="submit">Применить</button>
                     <button onclick="saveSkin(true)" class="submit no-background">Пропустить</button>
                 </div>
@@ -86,12 +90,12 @@
             </div>
         </div>
 
-        <div class="screen screen-citizenship">
+        <div class="screen screen-citizenship hidden">
             <h1>Выберите гражданство</h1>
             <p class="text-description">Гражданство позволяет насладиться всеми преимуществами проживания в штате, 
                 который вам по душе.
             </p>
-            <div class="fields">
+            <div class="fields fields-phones_no_bg">
                 <div class="state-picker">
                     <div class="list">
                         <div class="state newyork">
@@ -134,8 +138,8 @@
             <p class="text-description">Укажите ваш Telegram: мы добавим вас в общую беседу со всеми игроками. Также нам необходимо узнать, как к вам обращаться, укажите ваши местоимения.</p>
             
             <div class="fields">
-                <input type="text" name="contact" class="input-contact" placeholder="Telegram (н-р @devio101)">
-                <input type="text" name="pronouns" class="input-pronouns" placeholder="Местоимения (н-р он/его)">
+                <input type="text" name="contact" class="input-contact" placeholder="Telegram (н-р @devio101)" autocorrect="off" autocapitalize="off">
+                <input type="text" name="pronouns" class="input-pronouns" placeholder="Местоимения (н-р он/его)" autocorrect="off" autocapitalize="off">
                 <button onclick="requestSignup()" class="submit submit-contact">Создать аккаунт</button>
             </div>
         </div>
@@ -163,7 +167,7 @@
 
         <div class="screen screen-error hidden">
             <h1>Ошибка при регистрации</h1>
-            <p class="text-description"></p>
+            <p class="text-description error-code"></p>
         </div>
 
         <div class="popup hidden">
