@@ -201,7 +201,6 @@ button.card div {
     height: 50vh;
     flex-shrink: 0;
     background-color: #0ea4e983;
-    backdrop-filter: blur(10px);
     transition: .3s ease-in-out all;
     border: 1px solid rgba(255,255,255,0.3);
 
@@ -530,7 +529,7 @@ button.card.hiding div {
     border-radius: 0 0 var(--radius) var(--radius);
 }
 .passport-bottom_info span {
-    color: rgb(0,0,0);
+    color: rgba(0,0,0,0.5);
     margin: 0;
     font-family: monospace;
     font-size: 16px;
@@ -558,7 +557,7 @@ span.passport-watermark_demovio.third {
     opacity: 0.15;
     font-size: 64px;
 }
-.menu_glowing {
+.menu_glowing, .phones-menu_glowing {
     position: fixed;
     bottom: -10px;
     width: 100vw;
@@ -572,7 +571,7 @@ span.passport-watermark_demovio.third {
     opacity: 0;
     pointer-events: none;
 }
-.menu_glowing div {
+.menu_glowing div, .phones-menu_glowing div {
     --count: 0;
     width: 32px;
     height: 0;
@@ -592,17 +591,20 @@ span.passport-watermark_demovio.third {
     scale: 1;
 }
 
-.menu_glowing div.purple { --color: 139,92,246; --count: 2; }
-.menu_glowing div.blue { --color: 14,165,233;  --count: 3; }
-.menu_glowing div.green { --color: 163,230,53;  --count: 4; }
-.menu_glowing div.yellow { --color: 253,224,71;  --count: 5; }
-.menu_glowing div.orange { --color: 249,115,22;  --count: 6; }
-.menu_glowing div.red { --color: 220,38,38;  --count: 7; }
+.menu_glowing div.purple, .phones-menu_glowing div.purple { --color: 139,92,246; --count: 2; }
+.menu_glowing div.blue, .phones-menu_glowing div.blue { --color: 14,165,233;  --count: 3; }
+.menu_glowing div.green, .phones-menu_glowing div.green { --color: 163,230,53;  --count: 4; }
+.menu_glowing div.yellow, .phones-menu_glowing div.yellow { --color: 253,224,71;  --count: 5; }
+.menu_glowing div.orange, .phones-menu_glowing div.orange { --color: 249,115,22;  --count: 6; }
+.menu_glowing div.red, .phones-menu_glowing div.red { --color: 220,38,38;  --count: 7; }
 @keyframes glow_animation {
     to {
         scale: 1;
         width: 32px;
     }
+}
+.phones-menu_glowing {
+    display: none;
 }
 .passport-stamp {
     --color: #4c1d95;
@@ -851,4 +853,16 @@ button.download_package:hover svg:not(.hover_icon) {
     width: 24px;
     aspect-ratio: 1/1;
     fill: currentColor;
+}
+.no_passports {
+    display: none;
+    text-align: center;
+}
+.server-status_block {
+    display: flex;
+    flex-direction: column-reverse;
+}
+.server-players {
+    margin: 0 0 0 0;
+    color: rgba(255,255,255,0.7);
 }

@@ -5,6 +5,8 @@
         <meta charset="utf-8">
         <link rel="stylesheet" href="styles/master.css">
         <link rel="stylesheet" href="styles/index.css">
+        <link rel="stylesheet" href="styles/master-phones.css">
+        <link rel="stylesheet" href="styles/index-phones.css">
         <link rel="stylesheet" href="styles/spinner.css">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
     </head>
@@ -40,14 +42,18 @@
 
         <div class="screen screen-titlescreen hidden">
             <div class="server-info">
-                <h2 class="server-status">Загрузка...</h2>
+                <div class="server-status_block">
+                    <h2 class="server-status">Загрузка...</h2>
+                    <p class="server-players"></p>
+                </div>
+                
                 <div class="welcome_player">
                     <span>Добро пожаловать, devio10!</span>
                     <img src="https://api.mcheads.org/head/devio10/42.png">
                 </div>
             </div>
         </div>
-        <div class="screen screen-players hidden">
+        <div class="screen screen-players">
             <div class="players_list-window">
                 <h2>Список Игроков</h2>
                 <ul class="players-list">
@@ -87,7 +93,7 @@
 
             </div>
         </div>
-        <div class="screen screen-passport">
+        <div class="screen screen-passport hidden">
             <div class="user-passport">
                 <div class="passport-residentship">
                     <div class="passport-actual_content">
@@ -98,19 +104,19 @@
                                 <div>
                                     <section>
                                         <span class="user-citizenship-title">Гражданство / Citizenship</span>
-                                        <p class="user-citizenship">Шанхай / Shanghai</p>
+                                        <p class="user-citizenship">-</p>
                                     </section>
                                     <section>
                                         <span class="user-acceptance-title">Дата принятия / Date of acceptance</span>
-                                        <p class="user-acceptance">21.10.2024</p>
+                                        <p class="user-acceptance">-</p>
                                     </section>
                                     <section>
                                         <span class="user-address-title">Адрес проживания / Residential address</span>
-                                        <p class="user-address">115 Batumi Dt. / 3</p>
+                                        <p class="user-address">-</p>
                                     </section>
                                     <section>
                                         <span class="user-protocol-title">Протокол / Protocol</span>
-                                        <p class="user-protocol">№30:0001</p>
+                                        <p class="user-protocol">-</p>
                                     </section>
                                 </div>
                                 <div class="citizenship-logo">
@@ -158,19 +164,19 @@
                     <div class="passport-info_block">
                         <section>
                             <span class="user-name-title">Игровой ник / Player name</span>
-                            <p class="user-name">devio10</p>
+                            <p class="user-name">-</p>
                         </section>
                         <section>
                             <span class="user-contact-title">Связь / Contact</span>
-                            <p class="user-contact">@devio101</p>
+                            <p class="user-contact">-</p>
                         </section>
                         <section>
                             <span class="user-issue-title">Дата выдачи / Date of issue</span>
-                            <p class="user-issue">21.10.2024</p>
+                            <p class="user-issue">-</p>
                         </section>
                         <section>
                             <span class="user-pronouns-title">Местоимения / Pronouns</span>
-                            <p class="user-pronouns">он/его</p>
+                            <p class="user-pronouns">-</p>
                         </section>
                         <span class="passport-watermark_demovio third">DE:</span>
 
@@ -183,6 +189,7 @@
                     </div>
                 </div>
             </div>
+            <h1 class="no_passports">У вас нет доступных паспортов.</h1>
         </div>
         <div class="screen screen-stats hidden"></div>
 
@@ -256,6 +263,15 @@
                         <span>Инструкция</span>
                     </div> </button>
                 </div>
+            </div>
+
+            <div class="phones-menu_glowing">
+                <div class="purple"></div>
+                <div class="blue"></div>
+                <div class="green"></div>
+                <div class="yellow"></div>
+                <div class="orange"></div>
+                <div class="red"></div>
             </div>
         </div>
 

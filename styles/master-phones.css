@@ -12,8 +12,11 @@
     .screen {
         background-color: rgba(0,0,0,0.4);
         padding: 16px;
-        height: 100dvh;
+        height: 100vh;
         overflow-y: auto;
+    }
+    .page-backgrounds {
+        height: 100vh;
     }
     .popup {
         bottom: 16px;
@@ -21,7 +24,7 @@
         width: calc(100% - 32px);
     }
 }
-@media screen and (max-height: 670px) {
+@media screen and (max-height: 670px) and (max-width: 768px) {
     header {
         background-color: rgba(0,0,0,0.6);
         border-bottom: 1px solid rgba(255,255,255,0.1);

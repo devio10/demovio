@@ -6,7 +6,7 @@ try {
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $stmt = $pdo->query("SELECT name, skin, pronouns FROM players");
-    if ($_COOKIE['is_authorised'] == 'true') {
+    if (isset($_COOKIE['is_authorised']) && $_COOKIE['is_authorised'] == 'true') {
         $stmt = $pdo->query("SELECT name, skin, pronouns, contact FROM players");
     }
     $players = $stmt->fetchAll(PDO::FETCH_ASSOC);

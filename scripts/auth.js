@@ -221,7 +221,6 @@ const states = ['Нью Йорк', 'Калифорния', '', 'Шанхай', '
 var selectedCitizenship;
 
 function handleScrollStatus(pos) {
-  
   let num = Math.floor((pos + cardHeight / 2) / cardHeight);
   num = clamp(num, 0, states.length - 1);
 

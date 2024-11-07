@@ -1,0 +1,143 @@
+@media screen and (max-width: 768px) {
+    .screen-titlescreen {
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+    }
+    .screen-passport {
+        padding: 0;
+    }
+    .server-info {
+        flex-direction: column;
+        align-items: center;
+    }
+    .welcome_player {
+        display: none;
+    }
+    .server-status_block {
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+    }
+    .server-status {
+        font-size: 36px;
+        text-align: center;
+    }
+    .server-players {
+        text-align: center;
+    }
+    .show_stack {
+        --width: 72px;
+        height: 38px;
+        bottom: 32px;
+        border-radius: 10px;
+    }
+    .cards-container {
+        flex-direction: column;
+        animation-name: none;
+    }
+    button.card div {
+        width: 80vw;
+        max-height: 100px;
+        aspect-ratio: 10/3;
+        z-index: 1;
+    }
+    button.card:not(:last-child) div {
+        border-bottom: none;
+    }
+    button.card svg {
+        height: 75%;
+    }
+    button.card span {
+        display: none;
+    }
+    button.card:not(:disabled):hover div {
+        scale: 0.9;
+        width: 80vw;
+    }
+    button.card.expand div {
+        width: 80vw;
+        max-height: 30vh;
+    }
+
+    .user-passport {
+        max-width: 390px;
+    }
+    .user-passport .passport-residentship {
+        transform: rotateX(0) scaleY(1);
+    }
+    .user-passport:not(:hover) {
+        transform: translateY(0);
+    }
+    .citizenship-logo svg {
+        width: 102px;
+        padding: 4px;
+    }
+    .passport-residentship section p, .passport-personal section p {
+        font-size: 16px;
+    }
+    .passport-residentship section {
+        padding: 2px 0;
+    }
+    .passport-stamp {
+        scale: 0.8;
+        bottom: 24px;
+        right: 6px;
+    }
+    .passport-user_pic {
+        width: 72px;
+        height: 72px;
+        padding: 16px 12px;
+        margin: 16px 0 0 16px
+    }
+    .passport-info_block {
+        padding: 16px 8px 0 16px;
+        gap: 4px;
+    }
+    .passport-bottom_info span {
+        font-size: 14px;
+    }
+    span.passport-watermark_demovio {
+        font-size: 42px;
+    }
+    span.passport-watermark_demovio.third {
+        display: none;
+    }
+
+    .phones-menu_glowing {
+        display: flex;
+        position: absolute;
+        top: 0;
+        z-index: 0;
+        gap: -6px;
+    }
+    .phones-menu_glowing div {
+        width: auto;
+        flex-grow: 1;
+        box-shadow: 0px 0px 36px 16px rgba(var(--color),0.6);
+    }
+
+    .screen-players {
+        padding: 0;
+    }
+    .players_list-window {
+        width: 100vw;
+        max-height: none;
+        height: 100vh;
+        border: none;
+        border-radius: 0;
+        background-color: rgba(0,0,0,0.5);
+        padding-bottom: 96px;
+    }
+    .players_list-window h2 {
+        font-size: 32px;
+        margin-top: 48px;
+    }
+    .players-list li {
+        height: 64px;
+    }
+
+}
+@media screen and (max-height: 670px) and (max-width: 768px) {
+    
+}

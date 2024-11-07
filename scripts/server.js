@@ -16,6 +16,17 @@ function checkStatus() {
             players_online = xhr.responseText.split(',');
         }
 
+        let players_text = 'Сейчас никто не играет';
+        if (players_online.length == 1) {
+            players_text = `Сейчас играет ${players_online[0]}`;
+        } else if (players_online.length == 2) {
+            players_text = `Сейчас играют ${players_online[0]} и ${players_online[1]}`;
+        } else if (players_online.length > 2) {
+            players_text = `Сейчас играют ${players_online[0]} и ${players_online.length - 1} других игрока`;
+        }
+
+        document.querySelector('.server-players').innerText = players_text;
+
         setTimeout(() => {
             checkStatus();
         }, 10000);
@@ -222,7 +233,11 @@ async function retrieveUserData() {
         }
 
     } catch (error) {
-      console.error('Error: ', error)
+        console.error('Error: ', error);
+        document.querySelector(`.citizenship-logo .GE`).style.display = 'block';
+        document.querySelector(`.passport-country_color`).classList.add('GE');
+        document.querySelector('.user-passport').style.display = 'none';
+        document.querySelector('.no_passports').style.display = 'block';
     }
 }
 retrieveUserData();
