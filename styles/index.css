@@ -207,6 +207,7 @@ button.card div {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 
     animation-duration: .75s;
 }
@@ -248,19 +249,25 @@ button.card.players div {
 button.card.download div {
     background-color: #f8717178;
 }
-button.card.stats div {
-    background-color: #fb923c87;
-}
 button.card.passport div {
     background-color: #fddf477b;
 }
 button.card.stats div {
     background-color: #fb923c87;
 }
+button.card.elections div {
+    border: none;
+    background: linear-gradient(0deg, #f8717178 0%, #38bdf880 100%);
+}
+
 button.card svg {
     width: 75%;
     aspect-ratio: 1 / 1;
     fill: rgba(255,255,255,0.5);
+}
+button.card.elections svg {
+    fill: none;
+    stroke: rgba(255,255,255,0.5);
 }
 button.card.expand div {
     width: 50vh;

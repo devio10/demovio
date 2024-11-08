@@ -37,13 +37,16 @@
         animation-name: none;
     }
     button.card div {
-        width: 80vw;
+        width: calc(100vw - 32px);
         max-height: 100px;
         aspect-ratio: 10/3;
         z-index: 1;
     }
-    button.card:not(:last-child) div {
-        border-bottom: none;
+    button.card:not(:first-child) div {
+        border-top: none;
+    }
+    button.card.elections {
+        margin-top: 8px;
     }
     button.card svg {
         height: 75%;
@@ -53,7 +56,8 @@
     }
     button.card:not(:disabled):hover div {
         scale: 0.9;
-        width: 80vw;
+        width: calc(100vw - 32px);
+
     }
     button.card.expand div {
         width: 80vw;

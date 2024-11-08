@@ -1,5 +1,6 @@
 @media screen and (max-width: 768px) {
     html, body {
+        height: 100vh;
         overflow-y: none;
     }
     header {
