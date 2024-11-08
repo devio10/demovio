@@ -700,7 +700,7 @@ span.passport-watermark_demovio.third {
     justify-content: center;
     align-items: center;
 }
-.players_list-window {
+.window {
     width: 550px;
     max-width: 100vw;
     max-height: calc(100vh - 164px);
@@ -712,7 +712,7 @@ span.passport-watermark_demovio.third {
     height: fit-content;
     overflow-y: auto;
 }
-.players_list-window h2 {
+.window h2 {
     margin-top: 32px;
     font-size: 36px;
 }
@@ -791,13 +791,6 @@ span.passport-watermark_demovio.third {
     justify-content: center;
 }
 
-.instructions-block {
-    display: flex;
-    flex-direction: column;
-    width: 460px;
-    max-width: 100vw;
-    gap: 8px;
-}
 .download-buttons {
     width: 100%;
     display: grid;
@@ -805,7 +798,7 @@ span.passport-watermark_demovio.third {
     grid-template-columns: 1fr 1fr;
 }
 button.download_package {
-    aspect-ratio: 1 / 1.1;
+    aspect-ratio: 1 / 0.75;
     background-color: rgba(0,0,0,0.8);
     backdrop-filter: blur(10px);
     --radius: 16px;
@@ -822,7 +815,7 @@ button.download_package:last-child {
     border-radius: 0 var(--radius) var(--radius) 0;
 }
 button.download_package svg {
-    width: 40%;
+    width: 35%;
     aspect-ratio: 1 / 1;
     fill: rgba(255,255,255,0.5);
 }
@@ -841,26 +834,48 @@ button.download_package:hover .hover_icon {
 button.download_package:hover svg:not(.hover_icon) {
     display: none;
 }
-.instructions-block section {
+.help-section {
     width: 100%;
-    background-color: rgba(0,0,0,0.8);
-    backdrop-filter: blur(10px);
     border-radius: 16px;
-    padding: 16px;
+    margin: 24px 0;
 }
-.instructions-block section .header {
+.help-section .header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
 }
-.instructions-block section .header h2 {
-    font-size: 20px;
-}
-.instructions-block section .open_section {
-    width: 24px;
+.help-section .open_section {
+    width: 18px;
     aspect-ratio: 1/1;
     fill: currentColor;
+    margin-left: 16px;
 }
+.help-section-content {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.help-section-content p {
+    text-align: justify;
+    line-height: 1.4;
+    font-size: 14px;
+}
+.help-section-content p.warn {
+    background-color: #fcd34d94;
+    padding: 8px 16px;
+    border: 1px solid #fcd34d;
+    border-radius: 6px;
+    font-weight: 500;
+}
+.help-section-content img {
+    border-radius: 6px;
+    width: 100%;
+    object-fit: cover;
+}
+a.monospace {
+    font-family: monospace;
+}
+
 .no_passports {
     display: none;
     text-align: center;

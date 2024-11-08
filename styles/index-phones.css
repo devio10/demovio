@@ -124,7 +124,7 @@
     .screen-players {
         padding: 0;
     }
-    .players_list-window {
+    .window {
         width: 100vw;
         max-height: none;
         height: 100vh;
@@ -133,7 +133,7 @@
         background-color: rgba(0,0,0,0.5);
         padding-bottom: 96px;
     }
-    .players_list-window h2 {
+    .window h2 {
         font-size: 32px;
         margin-top: 48px;
     }
