@@ -149,20 +149,29 @@ async function retrieveUserData() {
         let citizenship = JSON.parse(user.citizenship);
         let cit_name = 'Калифорния / California';
         let alt_name = 'CALIFORN';
-        citizenship.code = 'SH';
 
+        let logoObj = document.querySelector('.citizenship-logo');
         switch (citizenship.code) {
             case "SH":
                 cit_name = '上海 / Shanghai / Шанхай';
                 alt_name = 'SHANGHAI';
+                logoObj.onclick = function() {
+                    window.open('https://youtu.be/tt9V570H6zc?si=XZzqAOzEToR8aOtH');
+                };
                 break;
             case "NY":
                 cit_name = 'Нью Йорк / New York';
                 alt_name = '>NEWYORK';
+                logoObj.onclick = function() {
+                    window.open('https://youtu.be/ddJqNY__9U8?si=15bOgth5isRzVJkf');
+                }
                 break;
             case "OH":
                 cit_name = 'Огайо / Ohio';
                 alt_name = '>OHIO>>>';
+                logoObj.onclick = function() {
+                    window.open('https://youtu.be/WSGjrluqwjc?si=7cqKUJkK_wE0p2_3');
+                }
                 break;
             case "GE":
                 cit_name = 'Джорджия / Georgia';
@@ -210,7 +219,7 @@ async function retrieveUserData() {
     
             uuid = mojResult.id;
         } catch (e) {
-            console.error(e);
+            console.log(`Failed to load UUID from Mojang API`);
         }
 
         document.querySelector('.passport-bottom_info span').innerHTML = `

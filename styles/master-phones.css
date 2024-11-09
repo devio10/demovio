@@ -1,6 +1,6 @@
 @media screen and (max-width: 768px) {
     html, body {
-        height: 100vh;
+        height: 100dvh;
         overflow-y: none;
     }
     header {
@@ -13,11 +13,11 @@
     .screen {
         background-color: rgba(0,0,0,0.4);
         padding: 16px;
-        height: 100vh;
+        height: 100dvh;
         overflow-y: auto;
     }
     .page-backgrounds {
-        height: 100vh;
+        height: 100dvh;
     }
     .popup {
         bottom: 16px;

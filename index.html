@@ -197,10 +197,12 @@
             <div class="window">
                 <h2>Помощь</h2>
                 <section class="help-section">
-                    <div class="header">
+                    <button class="header" onclick="openHelpSection(this)">
                         <h3>Скачать архивы с модами</h3>
-                        <svg class="open_section" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"></path></svg>
-                    </div>
+                        <div class="open_section">
+                            <img src="img/section-closed.svg">
+                        </div>
+                    </button>
                     <div class="help-section-content">
                         <div class="download-buttons">
                             <button class="download_package">
@@ -218,10 +220,12 @@
                 </section>
 
                 <section class="help-section">
-                    <div class="header">
+                    <button class="header" onclick="openHelpSection(this)">
                         <h3>Как установить игру</h3>
-                        <svg class="open_section" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"></path></svg>
-                    </div>
+                        <div class="open_section">
+                            <img src="img/section-closed.svg">
+                        </div>
+                    </button>
                     <div class="help-section-content">
                         <p>Этот раздел поможет вам установить необходимую версию игры Minecraft, чтобы вы могли зайти на сервер Demovio.</p>
                         <p class="warn"><b>Важно:</b> Убедитесь, что у вас уже установлена игра. На сервере принимаются игроки как с лицензионной, так и с пиратской версией.</p>
@@ -247,10 +251,12 @@
                     </div>
                 </section>
                 <section class="help-section">
-                    <div class="header">
+                    <button class="header" onclick="openHelpSection(this)">
                         <h3>Установка модов</h3>
-                        <svg class="open_section" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"></path></svg>
-                    </div>
+                        <div class="open_section">
+                            <img src="img/section-closed.svg">
+                        </div>
+                    </button>
                     <div class="help-section-content">
                         <p>Мы подготовили для вас два варианта: <b>Bare Bones</b> и <b>Optimized</b>.
                             Мы рекомендуем скачивать второй архив, Optimized, так как он дополнительно включает в себя моды, 
@@ -278,15 +284,36 @@
                     </div>
                 </section>
                 <section class="help-section">
-                    <div class="header">
+                    <button class="header" onclick="openHelpSection(this)">
                         <h3>Правила сервера Demovio</h3>
-                        <svg class="open_section" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"></path></svg>
+                        <div class="open_section">
+                            <img src="img/section-closed.svg">
+                        </div>
+                    </button>
+                    <div class="help-section-content">
+
                     </div>
                 </section>
                 <section class="help-section">
-                    <div class="header">
-                        <h3>Смена гражданства</h3>
-                        <svg class="open_section" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"></path></svg>
+                    <button class="header" onclick="openHelpSection(this)">
+                        <h3>Смена гражданства и прочих данных</h3>
+                        <div class="open_section">
+                            <img src="img/section-closed.svg">
+                        </div>    
+                    </button>
+                    <div class="help-section-content">
+                        
+                    </div>
+                </section>
+                <section class="help-section">
+                    <button class="header" onclick="openHelpSection(this)">
+                        <h3>Прочие вопросы</h3>
+                        <div class="open_section">
+                            <img src="img/section-closed.svg">
+                        </div>    
+                    </button>
+                    <div class="help-section-content">
+                        
                     </div>
                 </section>
             </div>

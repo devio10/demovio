@@ -100,3 +100,71 @@ function openScreen(value) {
     document.querySelector('.show_stack').classList.remove('hidden');
     pageState = 1;
 }
+function openHelpSection(element) {
+    let parent = element.parentElement;
+    let doClose = false;
+    if (parent.classList.contains('opened')) { doClose = true; }
+    if (document.querySelector('.help-section.opened')) {
+        document.querySelector('.help-section.opened').classList.remove('opened');
+    }
+    if (!doClose) { parent.classList.add('opened'); }
+}
+
+function getFullHeight(element) {
+    const originalStyle = element.style.cssText;
+    element.style.display = 'flex';
+  
+    const height = element.offsetHeight;
+    element.style.cssText = originalStyle;
+  
+    return height;
+}
+
+function setHelpSectionsHeight() {
+    for (let section of document.querySelectorAll('.help-section-content')) {
+        section.style.setProperty('--height', `${getFullHeight(section)}px`);
+        section.classList.add('handled');
+    }
+}
+
+const waitUntilImagesLoad = (element) => {
+    return new Promise((resolve) => {
+      const images = element.querySelectorAll('img');
+      let loadedImagesCount = 0
+  
+      if (images.length === 0) {
+        resolve(element.scrollHeight);
+        return
+      }
+  
+      images.forEach((img) => {
+        if (img.complete) {
+          loadedImagesCount++
+          if (loadedImagesCount === images.length) {
+            resolve(element.scrollHeight)
+          }
+        } else {
+          img.addEventListener('load', () => {
+            loadedImagesCount++
+        console.log(loadedImagesCount);
+
+            if (loadedImagesCount === images.length) {
+              resolve(element.scrollHeight)
+            }
+          })
+          
+          img.addEventListener('error', () => {
+            loadedImagesCount++
+            if (loadedImagesCount === images.length) {
+              resolve(element.scrollHeight)
+            }
+          })
+        }
+
+      })
+    })
+  }
+waitUntilImagesLoad(document.querySelector('.screen-download')).then(() => {
+    console.log('start');
+    setHelpSectionsHeight();
+})

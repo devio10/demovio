@@ -347,7 +347,7 @@ button.card.hiding div {
 }
 .passport-country_color.CA { --color: #64a30d; }
 .passport-country_color.SH { --color: #e11d48; }
-.passport-country_color.NY { --color: #1f6cf2; }
+.passport-country_color.NY { --color: #1f6cf2; opacity: 1; }
 .passport-country_color.OH { --color: #facc15; }
 .passport-country_color.GE { --color: #f97316; }
 .passport-residentship {
@@ -836,24 +836,52 @@ button.download_package:hover svg:not(.hover_icon) {
 }
 .help-section {
     width: 100%;
-    border-radius: 16px;
-    margin: 24px 0;
+    padding: 12px 0 0 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 .help-section .header {
     display: flex;
     align-items: center;
+    font-size: 16px;
 }
 .help-section .open_section {
-    width: 18px;
+    width: 32px;
+    border-radius: 100%;
     aspect-ratio: 1/1;
-    fill: currentColor;
-    margin-left: 16px;
+    margin-left: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .3s rotate ease-out;
+}
+.help-section .open_section:hover {
+    background-color: rgba(255,255,255,0.1);
+}
+.help-section .open_section img {
+    width: 20px;
+    aspect-ratio: 1/1;
 }
 .help-section-content {
-    margin-top: 16px;
+    --height: 0;
+    margin-top: 12px;
     display: flex;
     flex-direction: column;
     gap: 12px;
+    overflow: clip;
+}
+.help-section-content.handled {
+    height: 0;
+    transition: .5s height ease-in-out;
+}
+.help-section-content a {
+    cursor: pointer;
+}
+.help-section.opened .help-section-content {
+    display: flex;
+    height: var(--height);
+}
+.help-section.opened .open_section {
+    rotate: 90deg;
 }
 .help-section-content p {
     text-align: justify;
@@ -875,6 +903,9 @@ button.download_package:hover svg:not(.hover_icon) {
 a.monospace {
     font-family: monospace;
 }
+.help-section-content p:last-child {
+    margin-bottom: 12px;
+}
 
 .no_passports {
     display: none;
@@ -887,4 +918,7 @@ a.monospace {
 .server-players {
     margin: 0 0 0 0;
     color: rgba(255,255,255,0.7);
+}
+.screen-download h2 {
+    margin-bottom: 8px;
 }
