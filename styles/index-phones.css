@@ -131,9 +131,9 @@
         padding: 0;
     }
     .window {
-        width: 100vw;
+        width: 100vw !important;
         max-height: none;
-        height: 100vh;
+        height: 100dvh;
         border: none;
         border-radius: 0;
         background-color: rgba(0,0,0,0.5);
@@ -146,6 +146,10 @@
     }
     .players-list li {
         height: 64px;
+    }
+    button.download_package {
+        height: 100px;
+        aspect-ratio: initial;
     }
 
 }

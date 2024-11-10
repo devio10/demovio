@@ -81,9 +81,13 @@ function openScreen(value) {
         document.querySelector(`#bg-${screenName}`).classList.add('hidden');
     });
 
-        document.querySelector(`#bg-${value}`).classList.remove('hidden');
-        document.querySelector(`#bg-${value}`).classList.remove('hiding');
-        document.querySelector(`.screen-${value}`).classList.remove('hidden');
+    document.querySelector(`#bg-${value}`).classList.remove('hidden');
+    document.querySelector(`#bg-${value}`).classList.remove('hiding');
+    document.querySelector(`.screen-${value}`).classList.remove('hidden');
+    document.querySelector(`.screen-${value}`).scrollTop = 0;
+    if (document.querySelector(`.screen-${value} .window`)) {
+        document.querySelector(`.screen-${value} .window`).scrollTop = 0;
+    }
 
     items.forEach((item) => {
         if (!item.classList.contains(value)) {
@@ -107,7 +111,9 @@ function openHelpSection(element) {
     if (document.querySelector('.help-section.opened')) {
         document.querySelector('.help-section.opened').classList.remove('opened');
     }
-    if (!doClose) { parent.classList.add('opened'); }
+    if (!doClose) {
+        parent.classList.add('opened');
+    }
 }
 
 function getFullHeight(element) {

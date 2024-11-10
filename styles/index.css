@@ -793,12 +793,14 @@ span.passport-watermark_demovio.third {
 
 .download-buttons {
     width: 100%;
+    max-width: 550px;
+    margin: 0 auto;
     display: grid;
     gap: 4px;
     grid-template-columns: 1fr 1fr;
 }
 button.download_package {
-    aspect-ratio: 1 / 0.75;
+    aspect-ratio: 1 / 0.4;
     background-color: rgba(0,0,0,0.8);
     backdrop-filter: blur(10px);
     --radius: 16px;
@@ -809,21 +811,20 @@ button.download_package {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: relative;
+    gap: 14px;
 }
 button.download_package:last-child {
     border-radius: 0 var(--radius) var(--radius) 0;
 }
 button.download_package svg {
-    width: 35%;
+    height: 40%;
     aspect-ratio: 1 / 1;
     fill: rgba(255,255,255,0.5);
 }
 button.download_package span {
     font-size: 14px;
     color: rgba(255,255,255,0.75);
-    position: absolute;
-    bottom: 24px;
+    margin-bottom: -6px;
 }
 button.download_package .hover_icon {
     display: none;
@@ -843,12 +844,13 @@ button.download_package:hover svg:not(.hover_icon) {
     display: flex;
     align-items: center;
     font-size: 16px;
+    justify-content: space-between;
+    width: 100%;
 }
 .help-section .open_section {
     width: 32px;
     border-radius: 100%;
     aspect-ratio: 1/1;
-    margin-left: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -867,11 +869,14 @@ button.download_package:hover svg:not(.hover_icon) {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    overflow: clip;
+    overflow-y: clip;
 }
 .help-section-content.handled {
     height: 0;
-    transition: .5s height ease-in-out;
+    transition: 1s height ease-out;
+}
+.help-section.small .help-section-content.handled {
+    transition-duration: .4s;
 }
 .help-section-content a {
     cursor: pointer;
@@ -899,6 +904,7 @@ button.download_package:hover svg:not(.hover_icon) {
     border-radius: 6px;
     width: 100%;
     object-fit: cover;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
 }
 a.monospace {
     font-family: monospace;
@@ -921,4 +927,7 @@ a.monospace {
 }
 .screen-download h2 {
     margin-bottom: 8px;
+}
+.screen-download .window {
+    width: 650px;
 }
