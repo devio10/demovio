@@ -39,9 +39,17 @@ header {
 }
 .page_logo {
     font-weight: 800;
-    font-size: 18px;
+    font-size: 16px;
 
     justify-self: center;
+}
+.page_logo div {
+    background-color: white;
+    width: 6px;
+    aspect-ratio: 1/1;
+    display: inline-block;
+    margin-bottom: 8px;
+    margin-left: 0;
 }
 .header-button {
     color: white;
