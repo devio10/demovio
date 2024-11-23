@@ -25,7 +25,7 @@
             </div>
             
             <div class="header-side">
-                <button class="header-button" onclick="document.querySelector('.user_block').classList.toggle('hidden')">
+                <button class="header-button header-user_button" disabled onclick="document.querySelector('.user_block').classList.toggle('hidden')">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M208,32H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM96,120a32,32,0,1,1,32,32A32,32,0,0,1,96,120ZM68.67,208A64.36,64.36,0,0,1,87.8,182.2a64,64,0,0,1,80.4,0A64.36,64.36,0,0,1,187.33,208ZM208,208h-3.67a79.9,79.9,0,0,0-46.68-50.29,48,48,0,1,0-59.3,0A79.9,79.9,0,0,0,51.67,208H48V48H208V208Z"></path></svg>
                 </button>
             </div>
@@ -33,20 +33,21 @@
 
         <div class="page-backgrounds">
             <img src="posters/home.jpeg" id="bg-titlescreen" class="hidden">
-            <img src="posters/home.jpeg" id="bg-home" class="hidden">
+            <img src="posters/home.jpeg" id="bg-home">
             <img src="posters/players.jpeg" id="bg-players" class="hidden">
             <img src="posters/passport.jpeg" id="bg-passport" class="hidden">
             <img src="posters/stats.jpeg" id="bg-stats" class="hidden">
-            <img src="posters/help.jpeg" id="bg-download">
+            <img src="posters/help.jpeg" id="bg-download" class="hidden">
         </div>
 
-        <div class="screen screen-titlescreen hidden">
+        <div class="screen screen-titlescreen">
             <div class="server-info">
                 <div class="server-status_block">
                     <h2 class="server-status">Загрузка...</h2>
                     <p class="server-players"></p>
                 </div>
                 
+                <a class="login_button" href="login.html">Войти в аккаунт</a>
                 <div class="welcome_player">
                     <span>Добро пожаловать, devio10!</span>
                     <img src="https://api.mcheads.org/head/devio10/42.png">
@@ -193,7 +194,7 @@
         </div>
         <div class="screen screen-stats hidden"></div>
 
-        <div class="screen screen-download">
+        <div class="screen screen-download hidden">
             <div class="window">
                 <h2>Помощь</h2>
                 <section class="help-section small">
@@ -365,8 +366,8 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M128,68a28,28,0,1,0-28-28A28,28,0,0,0,128,68Zm0-48a20,20,0,1,1-20,20A20,20,0,0,1,128,20Zm87.42,116.78-45.25-51.3a28,28,0,0,0-21-9.48H106.83a28,28,0,0,0-21,9.48l-45.25,51.3a16,16,0,0,0,22.56,22.69L89,138.7l-19.7,74.88a16,16,0,0,0,29.08,13.35L128,176l29.58,51a16,16,0,0,0,29.08-13.35L167,138.7l25.9,20.77a16,16,0,0,0,22.56-22.69Zm-5.76,16.87a8,8,0,0,1-11.31,0,3.11,3.11,0,0,0-.33-.29l-35.51-28.48a4,4,0,0,0-6.38,4.13L179,215.94a4.12,4.12,0,0,0,.24.67,8,8,0,1,1-14.5,6.76c-.05-.11-.11-.21-.17-.32L131.46,166a4,4,0,0,0-6.92,0L91.42,223.05c-.06.11-.12.21-.17.32a8,8,0,1,1-14.5-6.76,4.12,4.12,0,0,0,.24-.67L99.87,129a4,4,0,0,0-6.38-4.13L58,153.36a3.11,3.11,0,0,0-.33.29,8,8,0,0,1-11.31-11.31l.17-.18L91.83,90.77a20,20,0,0,1,15-6.77h42.34a20,20,0,0,1,15,6.77l45.32,51.39.17.18A8,8,0,0,1,209.66,153.65Z"></path></svg>
                         <span>Ваш Паспорт</span>
                     </div> </button>
-                    <button class="card stats" onclick="openScreen('stats')"> <div>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M100,109.5v-72a4,4,0,0,0-5.33-3.77,100,100,0,0,0-65,112.5A4,4,0,0,0,35.6,149L98,113A4,4,0,0,0,100,109.5Zm-8-2.31L36.67,139.11A92,92,0,0,1,92,43.34ZM128,28a4,4,0,0,0-4,4v94.12L43.2,173.18a4,4,0,0,0-1.43,5.49A100,100,0,1,0,128,28Zm0,192a92.47,92.47,0,0,1-77.22-42L130,131.88a4,4,0,0,0,2-3.46V36.09A92,92,0,0,1,128,220Z"></path></svg>
+                    <button class="card stats" onclick="window.open('about.html', '_self')"> <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M221.76,69.66l-88-48.18a12,12,0,0,0-11.52,0l-88,48.18A12,12,0,0,0,28,80.18v95.64a12,12,0,0,0,6.24,10.52l88,48.18a11.95,11.95,0,0,0,11.52,0l88-48.18A12,12,0,0,0,228,175.82V80.18A12,12,0,0,0,221.76,69.66ZM126.08,28.5a3.94,3.94,0,0,1,3.84,0L216.67,76,128,124.52,39.33,76Zm-88,150.83A4,4,0,0,1,36,175.82V83.29l88,48.16v94.91Zm179.84,0-85.92,47V131.45l88-48.16v92.53A4,4,0,0,1,217.92,179.32Z"></path></svg>
                         <span>О Сервере</span>
                     </div> </button>
                     <button class="card download" onclick="openScreen('download')"> <div>

@@ -10,6 +10,12 @@
     .server-info {
         flex-direction: column;
         align-items: center;
+        position: relative;
+    }
+    .login_button {
+        margin-left: 0;
+        top: 96px;
+        position: absolute;
     }
     .welcome_player {
         display: none;

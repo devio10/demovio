@@ -8,11 +8,26 @@
     width: 100%;
     align-items: flex-end;
 }
-.welcome_player {
+.welcome_player, .login_button {
     margin-left: auto;
     display: flex;
     align-items: flex-end;
     gap: 16px;
+}
+.welcome_player {
+    display: none;
+}
+.login_button {
+    background: none;
+    border: 1px solid white;
+    padding: 10px 32px;
+    font-size: 14px;
+    border-radius: 6px;
+    text-decoration: none;
+}
+.login_button:hover {
+    background-color: white;
+    color: black;
 }
 .user_block {
     position: fixed;

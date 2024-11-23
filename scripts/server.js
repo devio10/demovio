@@ -134,7 +134,11 @@ async function retrieveUserData() {
             isActivated: result[7]
         };
 
+        document.querySelector('.welcome_player').style.display = 'flex';
+        document.querySelector('.login_button').style.display = 'none';
+        document.querySelector('.header-user_button').disabled = null;
         document.querySelector('.welcome_player span').innerText = `Добро пожаловать, ${user.name}!`;
+
 
         userSkin = user.name;
         if (user.skin.length > 0) {
