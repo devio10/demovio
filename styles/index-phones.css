@@ -13,6 +13,86 @@
         border: 1px solid rgba(255,255,255,0.2);
     }
 
+    section {
+        height: fit-content;
+    }
+
+    section .menu {
+        display: none;
+    }
+    section .whole-content {
+        max-width: none;
+        width: 100%;
+        padding: 0 16px;
+    }
+    section .whole-content.grid {
+        display: flex;
+        flex-direction: column;
+    }
+    .section-header {
+        margin-top: 48px;
+        font-size: 48px;
+    }
+    .section-paragraph {
+        font-size: 20px;
+    }
+    section ol li {
+        list-style-position: inside;
+    }
+    section.hero {
+        max-height: 900px;
+
+    }
+    section.hero h1 {
+        margin-top: 128px;
+        font-size: 38px;
+        letter-spacing: -2px;
+    }
+    .he-row {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+    }
+    .he-row > div {
+        margin-top: 24px;
+    }
+    .short_description {
+        font-size: 20px;
+        max-width: none;
+        margin-top: none;
+        text-align: center;
+    }
+    .he-row-signup {
+        display: none;
+    }
+    .hero_image {
+        width: 150%;
+        height: auto;
+        margin-top: -48px;
+        pointer-events: none;
+    }
+
+    section.grid .content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    a.mobile-signup {
+        display: block;
+        padding: 12px 24px;
+        border-radius: 100px;
+        border: 1px solid white;
+        font-size: 16px;
+        font-weight: 400;
+        width: fit-content;
+        margin: 32px auto 0 auto;
+        text-decoration: none;
+    }
+    a.mobile-signup:focus {
+        color: black;
+        background-color: white;
+    }
+
 }
 @media screen and (max-height: 670px) and (max-width: 768px) {
     
