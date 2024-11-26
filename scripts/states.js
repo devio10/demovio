@@ -10,7 +10,7 @@ const states = [
             Отличный выбор для тех, кто любит строить и быть рядом с другими!
         `,
         map: {
-            image: 'ca.jpeg',
+            image: 'ca.png',
             x: 0,
             z: 4000,
             link: 'https://map.demovio.lol/#overworld:18:14:4194:395:0:0:0:1:flat'
@@ -28,7 +28,7 @@ const states = [
             Забудьте о хлопотах с постройкой дома — приезжайте и бесплатно получите своё жильё!
         `,
         map: {
-            image: 'sh.jpg',
+            image: 'sh.png',
             x: -1000,
             z: 4000,
             link: 'https://map.demovio.lol/#overworld:-534:40:4120:224:0:0:0:1:flat'
@@ -76,7 +76,7 @@ const states = [
             и равными условиями для всех. Самый большой и свободный штат ждёт вас!
         `,
         map: {
-            image: 'ge.jpeg',
+            image: 'ge.png',
             x: 0,
             z: 0,
             link: 'https://map.demovio.lol/#overworld:1029:0:4230:610:0:0:0:1:flat'
