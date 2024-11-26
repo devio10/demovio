@@ -34,6 +34,7 @@ function resetBackground() {
 }
 
 function openCards() {
+    toggleMobilePassport(false);
     screens.forEach((screenName) => {
         document.querySelector(`.screen-${screenName}`).classList.add('hidden');
         document.querySelector(`#bg-${screenName}`).classList.add('hiding');
@@ -174,3 +175,10 @@ waitUntilImagesLoad(document.querySelector('.screen-download')).then(() => {
     console.log('start');
     setHelpSectionsHeight();
 })
+function toggleMobilePassport(state) {
+    if (state == true) {
+        document.querySelector('.user-passport').classList.add('mobile-opened');
+        return;
+    }
+    document.querySelector('.user-passport').classList.remove('mobile-opened');
+}

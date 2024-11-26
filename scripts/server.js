@@ -134,8 +134,7 @@ async function retrieveUserData() {
             isActivated: result[7]
         };
 
-        document.querySelector('.welcome_player').style.display = 'flex';
-        document.querySelector('.login_button').style.display = 'none';
+        document.querySelector('.welcome_player').classList.add('shown');
         document.querySelector('.header-user_button').disabled = null;
         document.querySelector('.welcome_player span').innerText = `Добро пожаловать, ${user.name}!`;
 
@@ -251,6 +250,7 @@ async function retrieveUserData() {
         document.querySelector(`.passport-country_color`).classList.add('GE');
         document.querySelector('.user-passport').style.display = 'none';
         document.querySelector('.no_passports').style.display = 'block';
+        document.querySelector('.login_button').classList.add('shown');
     }
 }
 retrieveUserData();

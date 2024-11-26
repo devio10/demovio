@@ -17,6 +17,9 @@
 .welcome_player {
     display: none;
 }
+.welcome_player.shown {
+    display: flex;
+}
 .login_button {
     background: none;
     border: 1px solid white;
@@ -24,10 +27,14 @@
     font-size: 14px;
     border-radius: 6px;
     text-decoration: none;
+    display: none;
 }
 .login_button:hover {
     background-color: white;
     color: black;
+}
+.login_button.shown {
+    display: block;
 }
 .user_block {
     position: fixed;
