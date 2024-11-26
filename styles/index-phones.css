@@ -31,17 +31,19 @@
     }
     .section-header {
         margin-top: 48px;
-        font-size: 48px;
+        font-size: 42px;
     }
     .section-paragraph {
         font-size: 20px;
     }
+    section ol {
+        margin-bottom: 32px;
     section ol li {
         list-style-position: inside;
+        margin-bottom: 8px;
     }
     section.hero {
         max-height: 900px;
-
     }
     section.hero h1 {
         margin-top: 128px;
@@ -76,6 +78,9 @@
         display: flex;
         flex-direction: column;
     }
+    section .content {
+        padding: 0 12px;
+    }
 
     a.mobile-signup {
         display: block;
@@ -92,7 +97,89 @@
         color: black;
         background-color: white;
     }
-
+    .usd_glow_map {
+        width: 100%;
+        left: 0;
+        scale: 2;
+        bottom: 0;
+    }
+    section.states .content {
+        display: grid;
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-columns: 1fr;
+    }
+    .state_preview-card {
+        height: 100%;
+        padding: 24px;
+    }
+    .description-card, .map-card {
+        border-radius: 28px;
+        padding: 24px;
+        border-right: 1px solid rgba(255,255,255,0.2);
+    }
+    .description-card {
+        height: 100%;
+    }
+    /* .map-card {
+        background: none;
+        border: none;
+        padding: 0 12px;
+        border-radius: 0;
+    }
+    .map-card span {
+        font-size: 22px;
+    }
+    .map-card img {
+        display: none;
+    } */
+    .map-card {
+        display: none;
+    }
+    .mobile_buttons-card {
+        display: flex;
+        justify-content: center;
+        background: none;
+        border: none;
+        border-radius: 0;
+        gap: 8px;
+        padding: 16px 0;
+    }
+    .mobile_buttons-card hr {
+        border: 0.5px solid rgba(255,255,255,0.3);
+    }
+    .mobile_buttons-card a {
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 16px;
+        padding: 8px 16px;
+    }
+    .state-preview_bottom {
+        z-index: 3;
+    }
+    .state-learn_more {
+        display: none;
+    }
+    .mobile_buttons-card svg {
+        width: 26px;
+        aspect-ratio: 1/1;
+        fill: white;
+        flex-shrink: 0;
+    }
+    .state-description {
+        font-size: 16px;
+    }
+    .state-emojis {
+        display: none !important;
+    }
+    .state-name {
+        font-size: 42px;
+        top: 48px;
+    }
+    .states-progress_list {
+        margin: 0 24px;
+    }
 }
 @media screen and (max-height: 670px) and (max-width: 768px) {
     

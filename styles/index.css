@@ -282,7 +282,7 @@ section.states .content {
     z-index: 1;
     position: absolute;
     animation-name: stateName-appear;
-    animation-duration: 1.5s;
+    animation-duration: 1s;
 }
 @keyframes stateName-appear {
     from {
@@ -375,6 +375,9 @@ section.states .content {
     animation-fill-mode: both;
     animation-iteration-count: 2;
 }
+.mobile_buttons-card {
+    display: none;
+}
 @keyframes mapButton {
     50% {
         transform: translate(6px, -6px);
@@ -454,6 +457,7 @@ section.states .content {
     backdrop-filter: blur(5px);
 
     display: flex;
+    z-index: 4;
 }
 .state-learn_more {
     aspect-ratio: 1/1;
@@ -465,7 +469,7 @@ section.states .content {
     border-radius: 100%;
     display: flex;
     align-items: center;
-    justify-content: center
+    justify-content: center;
 }
 .states-progress button:hover, .state-learn_more button:hover {
     background-color: rgba(255,255,255,0.2);
