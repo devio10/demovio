@@ -70,7 +70,7 @@ function playersList() {
 
             let card = document.createElement('li');
             let contact = "";
-            if (data[i].contact != undefined) {
+            if (data[i].contact != undefined && user.isActivated == 1) {
                 contact = `
                     <a href="https://t.me/${data[i].contact}"> <img src="img/message.svg"> </a>
                 `;
@@ -102,7 +102,7 @@ function playersList() {
     }
     };
 
-    let url = 'https://demovio.lol/players.php';
+    let url = '/php/players.php';
     xhr.open('GET', url);
     xhr.setRequestHeader('Content-Type', 'application/json');
 
@@ -148,7 +148,20 @@ async function retrieveUserData() {
         document.querySelector('.user_block-img').src = `https://api.mcheads.org/head/${userSkin}/36.png`;
         document.querySelector('.user_block-name').innerText = user.name;
         
-        /* PASSPORT 42 chars */
+        if (user.isActivated != 1) {
+            document.querySelector('.no_passports').style.display = 'block';
+            document.querySelector('.user-passport').style.display = 'none';
+            showAnnouncement(annoucementNotActivated);
+            localStorage.setItem('notActivated', 'true');
+            document.querySelector('.no_passports').innerText = 'Аккаунт не активирован';
+            return;
+        }
+
+        if (localStorage.getItem('notActivated') == 'true') {
+            
+            showAnnouncement(announcementActivated);
+        }
+        /* PASSPORT */
         let citizenship = JSON.parse(user.citizenship);
         let cit_name = 'Калифорния / California';
         let alt_name = 'CALIFORN';

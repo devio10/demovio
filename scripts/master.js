@@ -182,3 +182,75 @@ function toggleMobilePassport(state) {
     }
     document.querySelector('.user-passport').classList.remove('mobile-opened');
 }
+
+function showAnnouncement(announcement) {
+    document.querySelector('.announcement').classList.add('shown');
+    document.querySelector('.announcement h2').innerHTML = announcement.title;
+    document.querySelector('.announcement-content').innerHTML = announcement.content;
+
+    if (announcement.image) {
+        document.querySelector('.announcement img').src = announcement.image;
+        document.querySelector('.announcement img').style.display = 'block';
+    } else {
+        document.querySelector('.announcement img').style.display = 'none';
+    }
+
+    let buttons = announcement.buttons;
+    document.querySelector('.announcement .modal-buttons').innerHTML = '';
+    for (let i=0; i<buttons.length; i++) {
+        let button = document.createElement('button');
+        button.className = 'modal';
+        if (buttons[i].isAccent) {
+            button.className = 'modal accent';
+        }
+
+        button.innerHTML = buttons[i].content;
+        button.onclick = function () {
+            buttons[i].clickFunction();
+            hideAnnouncement();
+        }
+        document.querySelector('.announcement .modal-buttons').appendChild(button);
+    }
+}
+function hideAnnouncement() {
+    document.querySelector('.announcement').classList.remove('shown');
+}
+
+const announcementActivated = {
+    title: "Ваш аккаунт активирован",
+    image: 'img/de_bg.png',
+    content: `
+        <p>Поздравляем! Теперь вы можете присоединиться к игре на сервере Demovio! Также вам доступен паспорт Соединённых Штатов Демовио.</p>
+        <a class="window-wide_link" href="status.html?help">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M240,88.23a54.43,54.43,0,0,1-16,37L189.25,160a54.27,54.27,0,0,1-38.63,16h-.05A54.63,54.63,0,0,1,96,119.84a8,8,0,0,1,16,.45A38.62,38.62,0,0,0,150.58,160h0a38.39,38.39,0,0,0,27.31-11.31l34.75-34.75a38.63,38.63,0,0,0-54.63-54.63l-11,11A8,8,0,0,1,135.7,59l11-11A54.65,54.65,0,0,1,224,48,54.86,54.86,0,0,1,240,88.23ZM109,185.66l-11,11A38.41,38.41,0,0,1,70.6,208h0a38.63,38.63,0,0,1-27.29-65.94L78,107.31A38.63,38.63,0,0,1,144,135.71a8,8,0,0,0,16,.45A54.86,54.86,0,0,0,144,96a54.65,54.65,0,0,0-77.27,0L32,130.75A54.62,54.62,0,0,0,70.56,224h0a54.28,54.28,0,0,0,38.64-16l11-11A8,8,0,0,0,109,185.66Z"></path></svg>
+            Открыть инструкцию по установке
+        </a>
+    `,
+    buttons: [
+        {
+            content: "Продолжить",
+            clickFunction: function() {
+                localStorage.removeItem('notActivated');
+            }
+        },
+    ],
+};
+const annoucementNotActivated = {
+    title: "Ваш аккаунт в процессе активации",
+    image: 'img/de_bg.png',
+    content: `
+        <p>Мы ждём, когда вы сможете присоединиться к игре. А пока что один из администраторов проверяет ваши данные, чтобы принять вашу заявку на вступление.</p>
+        <a href="https://t.me/devio101" class="window-wide_link">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M240,88.23a54.43,54.43,0,0,1-16,37L189.25,160a54.27,54.27,0,0,1-38.63,16h-.05A54.63,54.63,0,0,1,96,119.84a8,8,0,0,1,16,.45A38.62,38.62,0,0,0,150.58,160h0a38.39,38.39,0,0,0,27.31-11.31l34.75-34.75a38.63,38.63,0,0,0-54.63-54.63l-11,11A8,8,0,0,1,135.7,59l11-11A54.65,54.65,0,0,1,224,48,54.86,54.86,0,0,1,240,88.23ZM109,185.66l-11,11A38.41,38.41,0,0,1,70.6,208h0a38.63,38.63,0,0,1-27.29-65.94L78,107.31A38.63,38.63,0,0,1,144,135.71a8,8,0,0,0,16,.45A54.86,54.86,0,0,0,144,96a54.65,54.65,0,0,0-77.27,0L32,130.75A54.62,54.62,0,0,0,70.56,224h0a54.28,54.28,0,0,0,38.64-16l11-11A8,8,0,0,0,109,185.66Z"></path></svg>
+            Связаться с администратором
+        </a>
+    `,
+    buttons: [
+        {
+            content: "Продолжить",
+            isAccent: true,
+            clickFunction: function() {
+            }
+        },
+    ],
+};

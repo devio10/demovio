@@ -178,6 +178,32 @@
         aspect-ratio: initial;
     }
 
+    .announcement {
+        background-color: rgba(0,0,0,0.5);
+        height: 100dvh;
+        transition-duration: .35s;
+    }
+    .announcement .window {
+        padding: 0;
+        height: fit-content;
+        margin-top: auto;
+        border-radius: 24px 24px 0 0;
+        background-color: black;
+        backdrop-filter: none;
+        scale: 1;
+        transform: translateY(60px);
+        transition: .35s transform ease-out;
+    }
+    .announcement.shown .window {
+        transform: translateY(0);
+    }
+    .announcement h2 {
+        margin-top: 16px;
+        font-size: 20px;
+    }
+    .image_title {
+        border-radius: 0;
+    }
 }
 @media screen and (max-height: 670px) and (max-width: 768px) {
     

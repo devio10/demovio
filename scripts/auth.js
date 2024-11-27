@@ -30,7 +30,7 @@ async function login() {
         console.log(result);
     
         if (result == "logged_in") {
-          window.open('index.html', '_self');
+          window.open('status.html', '_self');
         } else if (result == "wrong_credentials") {
             showPopup('Неверные имя либо пароль.');
             document.querySelector('.submit').disabled = null;
@@ -45,7 +45,7 @@ function logout() {
 
     xhr.onload = function() {
     if (xhr.status >= 200 && xhr.status < 300) {
-        window.open('about.html', '_self');
+        window.open('index.html', '_self');
     } else {
         console.error('Request failed with status ', xhr.status);
     }
