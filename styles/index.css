@@ -267,7 +267,7 @@ section.grid .content span, section.grid .content p {
     overflow: clip;
 }
 section.states .content {
-    grid-template-columns: 1fr 320px;
+    grid-template-columns: 10fr 5fr;
     grid-template-rows: 3fr 2fr;
     padding-right: 0;
 }
