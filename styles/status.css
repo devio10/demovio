@@ -759,6 +759,10 @@ span.passport-watermark_demovio.third {
     width: 42px;
     aspect-ratio: 1/1;
 }
+.players-list img.not_activated {
+    outline: 2px solid #dc2626;
+    outline-offset: 2px;
+}
 .players-list span {
     display: block;
     margin: 0 0 0 24px;

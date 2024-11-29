@@ -61,6 +61,12 @@ function playersList() {
         list.innerHTML = '';
 
         for(let i=0; i<data.length; i++) {
+            let debugMode = false;
+            let player_citizenship;
+            if (data[i].hasOwnProperty('isActivated')) {
+                debugMode = true;
+                player_citizenship = JSON.parse(data[i].citizenship);
+            }
             let skin = data[i].skin;
             if (skin == null) {
                 skin = data[i].name;
@@ -72,7 +78,8 @@ function playersList() {
 
             let card = document.createElement('li');
             let contact = "";
-            if (data[i].contact != undefined && user.isActivated == 1) {
+            
+            if (data[i].contact != undefined && user != undefined && user.isActivated == 1) {
                 contact = `
                     <a href="https://t.me/${data[i].contact}"> <img src="img/message.svg"> </a>
                 `;
@@ -82,10 +89,18 @@ function playersList() {
             if (data[i].pronouns != undefined) {
                 pronouns = `<span class="pronouns">${data[i].pronouns}</span>`;
             }
+            let player_name = data[i].name;
+            let activationClass = '';
+            if (debugMode) {
+                player_name = `${data[i].name} (${player_citizenship.code})`;
+                if (data[i].isActivated == 0) {
+                    activationClass = ` class="not_activated"`;
+                }
+            }
             card.innerHTML = `
-                <img src="https://api.mcheads.org/head/${skin}/42.png">
+                <img src="https://api.mcheads.org/head/${skin}/42.png"${activationClass}>
                 <div>
-                    <span class="name">${data[i].name}${online_status}</span>
+                    <span class="name">${player_name}${online_status}</span>
                     ${pronouns}
                 </div>
                 ${contact}

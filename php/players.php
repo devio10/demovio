@@ -2,6 +2,7 @@
 $dbFile = '/var/demovio-minecraft-server/server/demovio.db';
 
 try {
+    session_start();
     $pdo = new PDO("sqlite:" . $dbFile);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
