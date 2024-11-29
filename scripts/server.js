@@ -225,6 +225,9 @@ async function retrieveUserData() {
 
         document.querySelector('.user-name').innerText = user.name;
         document.querySelector(`.passport-stamp.${citizenship.code}`).classList.add('shown');
+        if (document.querySelector(`.passport-stamp.${citizenship.code} .date`)) {
+            document.querySelector(`.passport-stamp.${citizenship.code} .date`).innerText = citizenship.date;
+        }
 
 
         let user_contact = user.contact;
@@ -244,18 +247,21 @@ async function retrieveUserData() {
         document.querySelector('.passport-user_pic.holo').src = `https://api.mcheads.org/head/${userSkin}/32.png`;
         document.querySelector('.passport-user_pic').src = `https://api.mcheads.org/head/${userSkin}/96.png`;
 
-        const uuid = ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
+        let uuid = ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
 
         try {
-            const mojResponse = await fetch('https://api.mojang.com/users/profiles/minecraft/'+user.name, {
-                method: 'GET'
+            const mojResponse = await fetch(`${api_url}uuid.php?username=${user.name}`, {
+                method: 'GET',
             })
             
-            const mojResult = await response.text();
-    
+            const mojResult = await mojResponse.json();
+
+            if (mojResult.hasOwnProperty('errorMessage')) {
+                throw new Error('Player has no license');
+            }
             uuid = mojResult.id;
         } catch (e) {
-            console.log(`Failed to load UUID from Mojang API`);
+            console.log(`Failed to load UUID from Mojang API: ${e}`);
         }
 
         document.querySelector('.passport-bottom_info span').innerHTML = `

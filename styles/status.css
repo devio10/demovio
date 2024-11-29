@@ -692,7 +692,7 @@ span.passport-watermark_demovio.third {
     font-weight: 500;
     font-family: 'Times New Roman', Times, serif;
 }
-.passport-stamp.SH > span {
+.passport-stamp.generic > span {
     background-color: var(--color);
     color: white;
     opacity: 1;
@@ -703,19 +703,19 @@ span.passport-watermark_demovio.third {
     font-size: 24px;
     font-weight: 500;
 }
-.passport-stamp.SH div {
+.passport-stamp.generic div {
     display: flex;
     justify-content: center;
     flex-direction: column;
 }
-.passport-stamp.SH div span {
+.passport-stamp.generic div span {
     color: var(--color);
     opacity: 1;
     font-weight: 700;
     font-size: 12px;
     padding: 0 12px;
 }
-.passport-stamp.SH div span:nth-child(2) {
+.passport-stamp.generic div span:nth-child(2) {
     color: #db2777;
 }
 .screen-players {
