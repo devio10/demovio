@@ -1,5 +1,5 @@
 <?php
-$dbFile = 'demovio.db';
+$dbFile = '/var/demovio-minecraft-server/server/demovio.db';
 
 try {
     $pdo = new PDO("sqlite:" . $dbFile);
@@ -8,6 +8,9 @@ try {
     $stmt = $pdo->query("SELECT name, skin, pronouns FROM players WHERE isActivated = 1");
     if (isset($_COOKIE['is_authorised']) && $_COOKIE['is_authorised'] == 'true') {
         $stmt = $pdo->query("SELECT name, skin, pronouns, contact FROM players WHERE isActivated = 1");
+    }
+    if ($_SESSION['name'] == 'devio10') {
+        $stmt = $pdo->query("SELECT name, skin, pronouns, contact, isActivated, citizenship, issueDate FROM players");
     }
     $players = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

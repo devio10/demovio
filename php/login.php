@@ -3,7 +3,7 @@ session_start();
 $requestBody = file_get_contents('php://input');
 $data = json_decode($requestBody, true);
 
-$db = new PDO('sqlite:demovio.db');
+$db = new PDO('sqlite:/var/demovio-minecraft-server/server/demovio.db');
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $username = $data['name'];
   $password = $data['password'];

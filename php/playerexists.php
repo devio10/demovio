@@ -1,7 +1,7 @@
 <?php
 function doesPlayerExists($name) {
   try {
-    $db = new PDO('sqlite:demovio.db');
+    $db = new PDO('sqlite:/var/demovio-minecraft-server/server/demovio.db');
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   
       $stmt = $db->prepare('SELECT * FROM players WHERE name = :username LIMIT 1');

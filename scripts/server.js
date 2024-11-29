@@ -1,4 +1,6 @@
 var players_online = [];
+var api_url = 'request/';
+if (localStorage.getItem('debug') == 'true') { api_url = 'https://demovio.lol/request/'; }
 
 function checkStatus() {
     let status_obj = document.querySelector('.server-status');
@@ -36,7 +38,7 @@ function checkStatus() {
     }
     };
 
-    let url = 'https://demovio.lol/status.php';
+    let url = `${api_url}status.php`;
     xhr.open('GET', url);
     xhr.setRequestHeader('Content-Type', 'text/plain');
 
@@ -102,7 +104,7 @@ function playersList() {
     }
     };
 
-    let url = '/php/players.php';
+    let url = `${api_url}players.php`;
     xhr.open('GET', url);
     xhr.setRequestHeader('Content-Type', 'application/json');
 
@@ -117,11 +119,14 @@ var user;
 var userSkin;
 async function retrieveUserData() {
     try {
-        const response = await fetch('php/userdata.php', {
+        const response = await fetch(`${api_url}userdata.php`, {
           method: 'GET'
         })
         
         const result = await response.json();
+        if (result.error) {
+            throw new Error(result.error);
+        }
         console.log(result);
         user = {
             id: result[0],
@@ -267,3 +272,20 @@ async function retrieveUserData() {
     }
 }
 retrieveUserData();
+function logout() {
+    let xhr = new XMLHttpRequest();
+
+    xhr.onload = function() {
+    if (xhr.status >= 200 && xhr.status < 300) {
+        window.open('index.html', '_self');
+    } else {
+        console.error('Request failed with status ', xhr.status);
+    }
+    };
+
+    let url = `${api_url}logout.php`;
+    xhr.open('GET', url);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+
+    xhr.send();
+}

@@ -141,3 +141,8 @@ function loadStatesList() {
     document.querySelector('.states-list li').classList.add('selected');
 }
 loadStatesList();
+
+setTimeout(() => {
+    document.querySelector('.welcome_player').classList.add('shown');
+    
+}, 1000);

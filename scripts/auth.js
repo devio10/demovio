@@ -1,3 +1,5 @@
+var api_url = 'request/';
+if (localStorage.getItem('debug') == 'true') { api_url = 'https://demovio.lol/request/'; }
 function getCookie(name) {
     var cookies = document.cookie.split(';');
     for (var i = 0; i < cookies.length; i++) {
@@ -18,7 +20,7 @@ async function login() {
 
         document.querySelector('.submit').disabled = true;
 
-        const response = await fetch('php/login.php', {
+        const response = await fetch(`${api_url}login.php`, {
           method: 'POST',
           body: JSON.stringify({
             name: name,
@@ -39,23 +41,6 @@ async function login() {
       console.error('Error: ', error)
       //showWarning(error);
     }
-}
-function logout() {
-    let xhr = new XMLHttpRequest();
-
-    xhr.onload = function() {
-    if (xhr.status >= 200 && xhr.status < 300) {
-        window.open('index.html', '_self');
-    } else {
-        console.error('Request failed with status ', xhr.status);
-    }
-    };
-
-    let url = 'php/logout.php';
-    xhr.open('GET', url);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-
-    xhr.send();
 }
 
 var currentScreen = 'credentials';
@@ -84,7 +69,7 @@ async function checkForWhitelist() {
   try {
     let name = document.querySelector(`.input-name`).value;
     document.querySelector('.submit-name').disabled = true;
-    const response = await fetch('https://demovio.lol/whitelistCheck.php', {
+    const response = await fetch(`${api_url}whitelistCheck.php`, {
       method: 'POST',
       body: JSON.stringify({
         name: name
@@ -295,7 +280,7 @@ async function requestSignup() {
   try {
       let password = document.querySelector(`.input-password`).value;
 
-      const response = await fetch('https://demovio.lol/signup.php', {
+      const response = await fetch(`${api_url}signup.php`, {
         method: 'POST',
         body: JSON.stringify({
           name: playerName,

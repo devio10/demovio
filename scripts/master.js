@@ -1,5 +1,5 @@
 const items = document.querySelectorAll('button.card');
-const screens = ['titlescreen', 'players', 'passport', 'stats', 'download'];
+const screens = ['titlescreen', 'players', 'passport', 'download'];
 
 items.forEach((item, index) => {
   const delay = index * (1000 / items.length);
@@ -172,7 +172,6 @@ const waitUntilImagesLoad = (element) => {
     })
   }
 waitUntilImagesLoad(document.querySelector('.screen-download')).then(() => {
-    console.log('start');
     setHelpSectionsHeight();
 })
 function toggleMobilePassport(state) {
