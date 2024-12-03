@@ -17,6 +17,7 @@ const throttle = (callback, delay) => {
 }
 
 function handleScroll() {
+    console.log('handling');
     const scrollY = window.scrollY;
   
     if (scrollY >= stateSectionY && !spinningInterval) {
@@ -41,7 +42,7 @@ function handleScroll() {
         headerState = false;
     }
 }
-document.addEventListener('scroll', throttle(handleScroll, 100));
+document.addEventListener('scroll', throttle(handleScroll, 125));
 
 window.onresize = () => {
     nextSectionY = document.querySelector('.why-us').offsetHeight;
