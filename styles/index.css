@@ -586,10 +586,11 @@ section.states .content {
 }
 section ol {
     margin-top: 32px;
+    margin-bottom: 32px;
     max-width: 650px;
 }
 section ol li {
-    padding: 8px 0;
+    padding: 12px 0;
     font-size: 20px;
     font-weight: 500;
     line-height: 1.4;
