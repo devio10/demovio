@@ -916,7 +916,7 @@ button.download_package:hover svg:not(.hover_icon) {
 .help-section-content p {
     text-align: justify;
     line-height: 1.4;
-    font-size: 14px;
+    font-size: 15px;
 }
 .help-section-content p.warn {
     background-color: #fcd34d94;
