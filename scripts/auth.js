@@ -153,6 +153,7 @@ var isLicensed = false;
 var playerName = undefined;
 var currentPreview = "";
 let wrongSkins = [];
+let checkedCurrentSkin = false;
 function handleSkinPreview() {
   let skin_preview = document.querySelector('.skin-preview');
   let skin_name = 'Steve1';
@@ -173,6 +174,7 @@ function handleSkinPreview() {
 let debounceTimeout;
 document.querySelector('.input-skin').addEventListener('input', () => {
   clearTimeout(debounceTimeout)
+  checkedCurrentSkin = false;
   debounceTimeout = setTimeout(() => {
     handleSkinPreview()
   }, 500);
@@ -182,6 +184,9 @@ document.querySelector('.skin-preview').addEventListener('error', (e) => {
     wrongSkins[wrongSkins.length] = currentPreview;
   }
   handleSkinPreview();
+});
+document.querySelector('.skin-preview').addEventListener('load', (e) => {
+  checkedCurrentSkin = true;
 });
 
 function setLicenseAvailability(value) {
@@ -211,13 +216,15 @@ function saveSkin(doSkip) {
     return;
   }
   let inputValue = currentPreview.trim();
-  console.log(inputValue);
+  if (!checkedCurrentSkin) {
+    return;
+  }
   if (document.querySelector('.input-skin').value.trim().length == 0) {
-    showPopup('Введите ник скина, который вы хотите применить, либо пропустите данный этап.');
+    showPopup('Введите ник скина, который вы хотите применить, либо пропустите данный этап.', 'warn');
     return;
   }
   if (wrongSkins.includes(inputValue) || inputValue === 'Steve1') {
-    showPopup('Вы ввели несуществующий скин. Проверьте правильность введённого ника.');
+    showPopup('Вы ввели несуществующий скин. Проверьте правильность введённого ника.', 'warn');
     return;
   }
 
