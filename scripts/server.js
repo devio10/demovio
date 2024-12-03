@@ -10,6 +10,7 @@ function checkStatus() {
     if (xhr.status >= 200 && xhr.status < 300) {
         if (xhr.responseText == "offline") {
             status_obj.innerHTML = 'Сервер оффлайн';
+            document.querySelector('.server-players').style.display = 'none';
             return;
         }
         status_obj.innerHTML = 'Сервер онлайн';
@@ -17,6 +18,7 @@ function checkStatus() {
         if (xhr.responseText != 0) {
             players_online = xhr.responseText.split(',');
         }
+        document.querySelector('.server-players').style.display = 'block';
 
         let players_text = 'Сейчас никто не играет';
         if (players_online.length == 1) {
@@ -68,7 +70,7 @@ function playersList() {
                 player_citizenship = JSON.parse(data[i].citizenship);
             }
             let skin = data[i].skin;
-            if (skin == null) {
+            if (skin == "") {
                 skin = data[i].name;
             }
             let online_status = '';
@@ -81,7 +83,7 @@ function playersList() {
             
             if (data[i].contact != undefined && user != undefined && user.isActivated == 1) {
                 contact = `
-                    <a href="https://t.me/${data[i].contact}"> <img src="img/message.svg"> </a>
+                    <a href="https://t.me/${data[i].contact}"> <img src="images/message.svg"> </a>
                 `;
             }
 
@@ -106,7 +108,7 @@ function playersList() {
                 ${contact}
             `;
             card.querySelector('img').addEventListener('error', (e) => {
-                e.target.src = 'img/head_default.png';
+                e.target.src = 'images/head_default.png';
             });
             if (online_status == "") {
                 list.appendChild(card);
@@ -153,6 +155,8 @@ async function retrieveUserData() {
             issueDate: result[6],
             isActivated: result[7]
         };
+
+        localStorage.setItem('showStatusLink', 'true');
 
         document.querySelector('.welcome_player').classList.add('shown');
         document.querySelector('.header-user_button').disabled = null;

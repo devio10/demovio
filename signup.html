@@ -15,7 +15,7 @@
     <body>
         <header>
             <div class="header-side">
-                <button onclick="window.open('landing.html', '_self')" class="header-button">
+                <button onclick="window.open('index.html', '_self')" class="header-button">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M216.49,111.51l-80-80a12,12,0,0,0-17,0l-80,80A12,12,0,0,0,36,120v96a4,4,0,0,0,4,4h64a4,4,0,0,0,4-4V156h40v60a4,4,0,0,0,4,4h64a4,4,0,0,0,4-4V120A12,12,0,0,0,216.49,111.51ZM212,212H156V152a4,4,0,0,0-4-4H104a4,4,0,0,0-4,4v60H44V120a4,4,0,0,1,1.17-2.83l80-80a4,4,0,0,1,5.66,0l80,80A4,4,0,0,1,212,120Z"></path></svg>
                 </button>
             </div>
@@ -38,7 +38,10 @@
             
             <div class="fields">
                 <input type="text" name="name" class="input-name full_border_radius" placeholder="Имя Игрока" autocorrect="off" autocapitalize="off">
-                <button onclick="checkForWhitelist()" class="submit submit-name">Проверить</button>
+                <button onclick="checkForWhitelist()" class="submit submit-name">
+                    <span>Проверить</span>
+                    <div class="spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+                </button>
             </div>
             <a href="login.html" class="alternate-option">Войти в существующий аккаунт</a>
         </div>
@@ -130,17 +133,21 @@
                 <button onclick="saveCitizenship()" class="submit submit-state">Выбрать</button>
             </div>
 
-            <p class="alternate-option">Информацию об этом штате вы можете узнать <a href="california.html">здесь</a>.</p>
+            <p class="alternate-option">Информацию о штатах вы можете узнать <a href="index.html">здесь</a>.</p>
         </div>
 
         <div class="screen screen-contact hidden">
             <h1>Дополнительная информация</h1>
-            <p class="text-description">Укажите ваш Telegram: мы добавим вас в общую беседу со всеми игроками. Также нам необходимо узнать, как к вам обращаться, укажите ваши местоимения.</p>
+            <p class="text-description">Укажите ваш Telegram: мы добавим вас в общую беседу со всеми игроками.<br>
+                Ещё нам необходимо узнать, как к вам обращаться: укажите ваши местоимения.</p>
             
             <div class="fields">
                 <input type="text" name="contact" class="input-contact" placeholder="Telegram (н-р @devio101)" autocorrect="off" autocapitalize="off">
                 <input type="text" name="pronouns" class="input-pronouns" placeholder="Местоимения (н-р он/его)" autocorrect="off" autocapitalize="off">
-                <button onclick="requestSignup()" class="submit submit-contact">Создать аккаунт</button>
+                <button onclick="requestSignup()" class="submit submit-contact">
+                    <span>Создать аккаунт</span>
+                    <div class="spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+                </button>
             </div>
         </div>
 
@@ -158,7 +165,7 @@
 
             <div class="new-passport">
                 <h2>PASSPORT</h2>
-                <img src="img/de_passport.svg">
+                <img src="images/de_passport.svg">
                 <span>United States<br>of Demovio</span>
             </div>
 

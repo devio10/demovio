@@ -3,14 +3,14 @@ const states = [
         name: 'Калифорния',
         translation: 'California',
         codeName: 'ca',
-        poster: 'california.jpeg',
+        poster: 'california.jpeg?v=1',
         description: `
             Поделён на два города (названия уточняются) и включает в себя Мировой Суд,
             который решает споры и поддерживает порядок на сервере.
             Отличный выбор для тех, кто любит строить и быть рядом с другими!
         `,
         map: {
-            image: 'ca.png',
+            image: 'ca.png?v=1',
             x: 0,
             z: 4000,
             link: 'https://map.demovio.lol/#overworld:18:14:4194:395:0:0:0:1:flat'
@@ -20,15 +20,15 @@ const states = [
         name: 'Шанхай',
         translation: 'Shanghai',
         codeName: 'sh',
-        poster: 'shanghai.png',
-        posterTopLayer: 'shanghai_top.png',
+        poster: 'shanghai.jpeg?v=1',
+        posterTopLayer: 'shanghai_top.png?v=1',
         description: `
             Город с правами штата. Ваш новый дом и идеальное место для бизнеса! 
             Здесь всё готово для размещения малых и средних заводов Create.
             Забудьте о хлопотах с постройкой дома — приезжайте и бесплатно получите своё жильё!
         `,
         map: {
-            image: 'sh.png',
+            image: 'sh.png?v=1',
             x: -1000,
             z: 4000,
             link: 'https://map.demovio.lol/#overworld:-534:40:4120:224:0:0:0:1:flat'
@@ -38,13 +38,13 @@ const states = [
         name: 'Нью Йорк',
         translation: 'New York',
         codeName: 'ny',
-        poster: 'newyork.jpeg',
+        poster: 'newyork.jpeg?v=1',
         description: `
             На его территории находится одноимённый город Нью Йорк –
             столица инноваций. Самый высокий небоскреб – World Trade Center, располагается именно здесь!
         `,
         map: {
-            image: 'ny.jpeg',
+            image: 'ny.jpeg?v=1',
             x: 2000,
             z: 4000,
             link: 'https://map.demovio.lol/#overworld:1748:0:4049:514:0:0:0:1:flat'
@@ -54,12 +54,12 @@ const states = [
         name: 'Огайо',
         translation: 'Ohio',
         codeName: 'oh',
-        poster: 'ohio.png',
+        poster: 'ohio.jpeg',
         description: `
             Описание согласовывается с администрацией.
         `,
         map: {
-            image: 'oh.jpeg',
+            image: 'oh.jpeg?v=1',
             x: 0,
             z: 0,
             link: 'https://map.demovio.lol/#overworld:1895:61:3888:187:0:0:0:1:flat'
@@ -69,14 +69,14 @@ const states = [
         name: 'Джорджия',
         translation: 'Georgia',
         codeName: 'ge',
-        poster: 'georgia.jpeg',
+        poster: 'georgia.jpeg?v=1',
         description: `
             Для тех, кто ценит настоящую свободу.
             Здесь вы можете строить всё, что захотите, наслаждаясь простотой оформления гражданства
             и равными условиями для всех. Самый большой и свободный штат ждёт вас!
         `,
         map: {
-            image: 'ge.png',
+            image: 'ge.png?v=1',
             x: 0,
             z: 0,
             link: 'https://map.demovio.lol/#overworld:1029:0:4230:610:0:0:0:1:flat'

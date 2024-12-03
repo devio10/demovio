@@ -1,6 +1,7 @@
 <?php
 include "playerexists.php";
 include "whitelist.php";
+sleep(3);
 
 session_start();
 $requestBody = file_get_contents('php://input');
@@ -37,7 +38,8 @@ try {
 
       $_SESSION['username'] = $username;
       $_SESSION['password'] = $password;
-      setcookie('is_authorised', 'true', time() + (86400 * 180), '/');
+      ini_set('session.gc_maxlifetime', 86400 * 90);
+      setcookie('is_authorised', 'true', time() + (86400 * 90), '/');
   }
 } catch (PDOException $e) {
   echo 'Error: ' . $e->getMessage();

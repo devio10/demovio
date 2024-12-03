@@ -1,18 +1,52 @@
 import { states } from "./states.js";
 let nextSectionY = document.querySelector('.why-us').offsetHeight;
+let stateSectionY = document.querySelector('section.states').offsetHeight;
+let hiddenLink = false;
+const header = document.querySelector('header');
+let headerState = false;
+
+const throttle = (callback, delay) => {
+    let lastTime = 0
+    return (...args) => {
+        const now = Date.now()
+        if (now - lastTime >= delay) {
+            lastTime = now
+            callback(...args)
+        }
+    }
+}
+
+function handleScroll() {
+    const scrollY = window.scrollY;
+  
+    if (scrollY >= stateSectionY && !spinningInterval) {
+        statesSpinning(true)
+        document.querySelector('.states-progress_list').children[0].classList.add('active')
+    }
+  
+    // Скрытие ссылки
+    if (!hiddenLink && scrollY >= 400) {
+        hiddenLink = true;
+        document.querySelector('.welcome_player').classList.remove('shown');
+        setTimeout(() => {
+            document.querySelector('.welcome_player').classList.add('hidden');
+        }, 500);
+    }
+
+    if (!headerState && scrollY >= nextSectionY) {
+        header.classList.add('shrink');
+        headerState = true;
+    } else if (headerState && scrollY < nextSectionY) {
+        header.classList.remove('shrink');
+        headerState = false;
+    }
+}
+document.addEventListener('scroll', throttle(handleScroll, 100));
 
 window.onresize = () => {
     nextSectionY = document.querySelector('.why-us').offsetHeight;
+    stateSectionY = document.querySelector('section.states').offsetHeight;
 }
-
-const header = document.querySelector('header');
-document.addEventListener('scroll', () => {
-    if (window.scrollY >= nextSectionY) {
-        header.classList.add('shrink');
-    } else {
-        header.classList.remove('shrink');
-    }
-});
 
 let currentState = 0;
 let appearTimer;
@@ -60,10 +94,10 @@ function previewState(number, delay) {
 
         let topLayer = '';
         if (state.posterTopLayer) {
-            topLayer = `<img src='img/statePosters/${state.posterTopLayer}'>`;
+            topLayer = `<img src='images/statePosters/${state.posterTopLayer}'>`;
         }
         poster.innerHTML = `
-            <img src='img/statePosters/${state.poster}'>
+            <img src='images/statePosters/${state.poster}'>
         `;
         document.querySelector('.state-poster-top_layer').innerHTML = `
             ${topLayer}
@@ -71,7 +105,7 @@ function previewState(number, delay) {
 
         state_name.innerText = state.name;
         document.querySelector('.state-description').innerHTML = state.description;
-        map.src = `img/maps/${state.map.image}`;
+        map.src = `images/maps/${state.map.image}`;
         document.querySelector('.map-button').href = state.map.link;
 
         poster.classList.remove('disappear');
@@ -101,7 +135,6 @@ function statesSpinning(status) {
         previewState(currentState);
     }, 9000);
 }
-statesSpinning(true);
 
 function switchState(direction) {
     clearTimeout(appearTimer);
@@ -142,7 +175,9 @@ function loadStatesList() {
 }
 loadStatesList();
 
-setTimeout(() => {
-    document.querySelector('.welcome_player').classList.add('shown');
-    
-}, 1000);
+if (localStorage.getItem('showStatusLink') == 'true') {
+    document.querySelector('.welcome_player').classList.remove('hidden');
+    setTimeout(() => {
+        document.querySelector('.welcome_player').classList.add('shown');
+    }, 350);
+}

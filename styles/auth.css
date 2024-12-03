@@ -1,3 +1,7 @@
+html,
+body {
+    overscroll-behavior-y: none;
+}
 .screen {
     display: flex;
     align-items: center;
@@ -57,6 +61,12 @@ button.submit {
     margin-top: 24px;
     padding: 12px 24px;
 }
+button.submit .spinner {
+    display: none;
+    height: 32px;
+    width: 32px;
+    margin: -7px auto;
+}
 button.submit:hover {
     background-color: rgba(255,255,255,0.2);
 }
@@ -68,6 +78,12 @@ button.submit.no-background {
 button.submit:disabled {
     background: none;
     cursor: not-allowed;
+}
+button.submit:disabled .spinner {
+    display: block;
+}
+button.submit:disabled span {
+    display: none;
 }
 .alternate-option {
     margin-top: 24px;

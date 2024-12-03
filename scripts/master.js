@@ -1,19 +1,6 @@
 const items = document.querySelectorAll('button.card');
 const screens = ['titlescreen', 'players', 'passport', 'download'];
 
-items.forEach((item, index) => {
-  const delay = index * (1000 / items.length);
-  item.style.animationDelay = `${delay}ms`;
-});
-setTimeout(() => {
-    document.querySelector('.cards-container').classList.add('grayed');
-
-    items.forEach((item) => {
-        item.style.animationDelay = `0s`;
-        item.disabled = null;
-    });
-}, 1500);
-
 document.querySelector('.show_stack').addEventListener('mouseenter', function() {
     document.querySelector('.stack_hint').classList.remove('hidden');
     document.querySelector('.menu_glowing').classList.remove('hidden');
@@ -54,8 +41,6 @@ function openCards() {
 
 
     items.forEach((item, index) => {
-        const delay = index * (1000 / items.length);
-        item.style.animationDelay = `${delay}ms`;
         item.disabled = "true";
         item.classList.remove('hiding');
         item.classList.remove('expand');
@@ -64,7 +49,6 @@ function openCards() {
 
     setTimeout(() => {
         items.forEach((item) => {
-            item.style.animationDelay = `0s`;
             item.disabled = null;
         });
         screens.forEach((screenName) => {
@@ -217,7 +201,7 @@ function hideAnnouncement() {
 
 const announcementActivated = {
     title: "Ваш аккаунт активирован",
-    image: 'img/de_bg.png',
+    image: 'images/de_bg.png',
     content: `
         <p>Поздравляем! Теперь вы можете присоединиться к игре на сервере Demovio! Также вам доступен паспорт Соединённых Штатов Демовио.</p>
         <a class="window-wide_link" href="status.html?help">
@@ -236,7 +220,7 @@ const announcementActivated = {
 };
 const annoucementNotActivated = {
     title: "Ваш аккаунт в процессе активации",
-    image: 'img/de_bg.png',
+    image: 'images/de_bg.png',
     content: `
         <p>Мы ждём, когда вы сможете присоединиться к игре. А пока что один из администраторов проверяет ваши данные, чтобы принять вашу заявку на вступление.</p>
         <a href="https://t.me/devio101" class="window-wide_link">

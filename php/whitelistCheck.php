@@ -1,6 +1,7 @@
 <?php
 include 'whitelist.php';
 include 'playerexists.php';
+sleep(1);
 $requestBody = file_get_contents('php://input');
 $data = json_decode($requestBody, true);
 if (!isset($data['name'])) {
