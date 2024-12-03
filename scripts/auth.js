@@ -32,7 +32,7 @@ async function login() {
     
         if (result == "logged_in") {
           document.querySelector('.submit').disabled = null;
-          window.open('status.html', '_self');
+          window.open('status', '_self');
         } else if (result == "wrong_credentials") {
             showPopup('Неверные имя либо пароль.');
             document.querySelector('.submit').disabled = null;

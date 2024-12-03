@@ -465,7 +465,7 @@ section.states .content {
 .state-learn_more {
     aspect-ratio: 1/1;
 }
-.states-progress button, .state-learn_more button {
+.state-button {
     height: 100%;
     aspect-ratio: 1/1;
     border: 1px solid rgba(255,255,255,0.2);
@@ -474,10 +474,10 @@ section.states .content {
     align-items: center;
     justify-content: center;
 }
-.states-progress button:hover, .state-learn_more button:hover {
+.state-button:hover {
     background-color: rgba(255,255,255,0.2);
 }
-.states-progress button svg, .state-learn_more button svg {
+.state-button svg {
     fill: rgba(255,255,255,0.75);
     width: 75%;
     aspect-ratio: 1/1;

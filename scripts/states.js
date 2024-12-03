@@ -3,6 +3,7 @@ const states = [
         name: 'Калифорния',
         translation: 'California',
         codeName: 'ca',
+        link: 'california',
         poster: 'california.jpeg',
         description: `
             Поделён на два города (Аури и Киото) и включает в себя Мировой Суд,
@@ -20,6 +21,7 @@ const states = [
         name: 'Шанхай',
         translation: 'Shanghai',
         codeName: 'sh',
+        link: 'shanghai',
         poster: 'shanghai.jpeg',
         posterTopLayer: 'shanghai_top.png',
         description: `
@@ -37,6 +39,7 @@ const states = [
     {
         name: 'Нью Йорк',
         translation: 'New York',
+        link: 'newyork',
         codeName: 'ny',
         poster: 'newyork.jpeg',
         description: `
@@ -54,6 +57,7 @@ const states = [
         name: 'Огайо',
         translation: 'Ohio',
         codeName: 'oh',
+        link: 'ohio',
         poster: 'ohio.jpeg',
         description: `
             Описание согласовывается с администрацией.
@@ -69,6 +73,7 @@ const states = [
         name: 'Джорджия',
         translation: 'Georgia',
         codeName: 'ge',
+        link: 'georgia',
         poster: 'georgia.jpeg',
         description: `
             Для тех, кто ценит настоящую свободу.

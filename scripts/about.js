@@ -79,7 +79,6 @@ function previewState(number, delay) {
         document.querySelector('.states-progress_list div.preview').classList.remove('preview');
     }
 
-    console.log(currentState);
     document.querySelectorAll('.states-list li')[currentState].classList.add('selected');
     document.querySelectorAll('.states-progress_list div')[currentState].classList.add('preview');
 
@@ -108,6 +107,10 @@ function previewState(number, delay) {
         document.querySelector('.state-description').innerHTML = state.description;
         map.src = `images/maps/${state.map.image}`;
         document.querySelector('.map-button').href = state.map.link;
+        document.querySelector('.mobile-map_link').href = state.map.link;
+
+        document.querySelector('.state-learn_more a').href = state.link;
+        document.querySelector('.mobile-learn_more').href = state.link;
 
         poster.classList.remove('disappear');
         document.querySelector('.state-poster-top_layer').classList.remove('disappear');

@@ -302,7 +302,7 @@ function logout() {
 
     xhr.onload = function() {
     if (xhr.status >= 200 && xhr.status < 300) {
-        window.open('index.html', '_self');
+        window.open('/', '_self');
     } else {
         console.error('Request failed with status ', xhr.status);
     }
