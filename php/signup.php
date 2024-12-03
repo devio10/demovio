@@ -2,8 +2,6 @@
 include "playerexists.php";
 include "whitelist.php";
 sleep(3);
-
-session_start();
 $requestBody = file_get_contents('php://input');
 $data = json_decode($requestBody, true);
 
@@ -36,10 +34,8 @@ try {
 
       echo "created";
 
-      $_SESSION['username'] = $username;
-      $_SESSION['password'] = $password;
-      ini_set('session.gc_maxlifetime', 86400 * 90);
-      setcookie('is_authorised', 'true', time() + (86400 * 90), '/');
+      setcookie('username', $username, time() + (86400 * 90), '/');
+      setcookie('password', $hashedPassword, time() + (86400 * 90), '/');
   }
 } catch (PDOException $e) {
   echo 'Error: ' . $e->getMessage();

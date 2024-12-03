@@ -1,13 +1,17 @@
 <?php
 function checkLogin() {
-  session_start();
   $db = new PDO('sqlite:/var/demovio-minecraft-server/server/demovio.db');
 
-  if (!isset($_SESSION['name']) || !isset($_SESSION['name'])) {
+  if (!isset($_COOKIE['username']) || !isset($_COOKIE['password'])) {
     return false;
   }
-  $username = $_SESSION['name'];
-  $password = $_SESSION['password'];
+  
+  $username = $_COOKIE['username'];
+  $password = $_COOKIE['password'];
+
+  if ($username == "" || $password == "") {
+    return false;
+  }
 
   $stmt = $db->prepare('SELECT * FROM players WHERE name = :username LIMIT 1');
   $stmt->bindParam(':username', $username, PDO::PARAM_STR);
@@ -15,7 +19,7 @@ function checkLogin() {
 
   $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-  if ($user && password_verify($password, $user['password'])) {
+  if ($user && $password === $user['password']) {
     return true;
   } else {
     return false;

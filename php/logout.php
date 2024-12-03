@@ -1,5 +1,7 @@
 <?php
-session_start();
-$_SESSION = array();
-setcookie('is_authorised', 'false', time() + (86400 * 180), '/');
+setcookie('username', '', time() - 3600, '/');
+setcookie('password', '', time() - 3600, '/');
+
+unset($_COOKIE['username']);
+unset($_COOKIE['password']);
 ?>

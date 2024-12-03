@@ -1,6 +1,5 @@
 <?php
 sleep(2);
-session_start();
 $requestBody = file_get_contents('php://input');
 $data = json_decode($requestBody, true);
 
@@ -17,11 +16,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   
 
   if ($user && password_verify($password, $user['password'])) {
-    $_SESSION['password'] = $password;
-    $_SESSION['name'] = $user['name'];
-    ini_set('session.gc_maxlifetime', 86400 * 90);
-    setcookie('is_authorised', 'true', time() + (86400 * 90), '/');
-
+    setcookie('username', $user['name'], time() + (86400 * 90), '/');
+    setcookie('password', $user['password'], time() + (86400 * 90), '/');
     echo 'logged_in';
   } else {
     echo 'wrong_credentials';
