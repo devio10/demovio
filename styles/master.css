@@ -192,3 +192,41 @@ header {
     font-size: 14px;
     margin-left: 8px;
 }
+
+.footer-logo {
+    border-radius: 100px;
+    color: white;
+    font-weight: 700;
+    font-size: 16px;
+}
+.footer-logo div {
+    background-color: white;
+    width: 6px;
+    aspect-ratio: 1/1;
+    display: inline-block;
+    margin-bottom: 8px;
+    margin-left: -4px;
+}
+footer {
+    padding: 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+footer .links {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 48px;
+}
+footer a {
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    text-align: center;
+    text-wrap: nowrap;
+}
+.ip-address {
+    text-align: right;
+}
+.ip-address span {
+    font-family: monospace;
+    font-size: 18px;
+}

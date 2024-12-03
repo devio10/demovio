@@ -189,7 +189,7 @@ async function retrieveUserData() {
         let citizenship = JSON.parse(user.citizenship);
         let cit_name = 'Калифорния / California';
         let alt_name = 'CALIFORN';
-
+        
         let logoObj = document.querySelector('.citizenship-logo');
         switch (citizenship.code) {
             case "SH":

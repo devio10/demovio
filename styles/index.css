@@ -9,7 +9,7 @@ header {
 header.shrink {
     width: 25vw;
 }
-header span, .footer-logo {
+header span {
     --color: white;
     border-radius: 100px;
     color: var(--color);
@@ -22,7 +22,7 @@ header.shrink span {
     background-color: white;
     --color: rgba(0,0,0,0.9);
 }
-header span div, .footer-logo div {
+header span div {
     background-color: var(--color);
     width: 6px;
     aspect-ratio: 1/1;
@@ -690,32 +690,4 @@ section.achievements .content {
 }
 .welcome_player.shown a:active {
     transform: scale(0.95);
-}
-
-.footer-logo {
-    /* width: calc(25vw - 48px); */
-    padding: 0;
-}
-footer {
-    padding: 48px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-}
-footer .links {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 48px;
-}
-footer a {
-    color: rgba(255,255,255,0.5);
-    text-decoration: none;
-    text-align: center;
-    text-wrap: nowrap;
-}
-.ip-address {
-    text-align: right;
-}
-.ip-address span {
-    font-family: monospace;
-    font-size: 18px;
 }

@@ -368,10 +368,10 @@ button.card.hiding div {
     opacity: 0.5;
     margin-bottom: 16px;
 }
-.passport-country_color.CA { --color: #64a30d; }
+.passport-country_color.OH { --color: #64a30d; }
 .passport-country_color.SH { --color: #e11d48; }
 .passport-country_color.NY { --color: #1f6cf2; opacity: 1; }
-.passport-country_color.OH { --color: #facc15; }
+.passport-country_color.CA { --color: #facc15; }
 .passport-country_color.GE { --color: #f97316; }
 .passport-residentship {
     transform-origin: bottom;
@@ -481,11 +481,9 @@ button.card.hiding div {
     border: 2px solid var(--bg);
     display: none;
 }
-.citizenship-logo svg.CA {
+.citizenship-logo svg.OH {
     --color: #1a2e05;
     --bg: #36531409;
-    fill: none;
-    stroke: var(--color);
 }
 .citizenship-logo svg.SH {
     --color: #450a0a;
@@ -497,8 +495,8 @@ button.card.hiding div {
     --color: #172554;
     --bg: #17255409;
 }
-.citizenship-logo svg.OH {
-    --color: #422006;
+.citizenship-logo svg.CA {
+    --color: rgb(145,70,33);
     --bg: #42200609;
 }
 .citizenship-logo svg.GE {

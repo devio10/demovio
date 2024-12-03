@@ -196,18 +196,15 @@ button.big:hover span {
     width: 60%;
     aspect-ratio: 1/1;
 }
-.state.state.california svg {
-    stroke: var(--color);
-}
 .state-picker .state span {
     position: absolute;
     bottom: 32px;
     color: rgba(255,255,255,0.5);
 }
-.state.california { --color: #84cc16; }
+.state.ohio { --color: #84cc16; }
 .state.shanghai { --color: #e11d48; }
 .state.newyork { --color: #1f6cf2; }
-.state.ohio { --color: #facc15; }
+.state.california { --color: #facc15; }
 .state.georgia { --color: #f97316; }
 .state.initial { --color: rgba(255,255,255,0.5); }
 
