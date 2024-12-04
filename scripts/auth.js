@@ -327,6 +327,9 @@ async function requestSignup() {
     return;
   }
   showScreen('request');
+  window.removeEventListener('beforeunload', (event) => {
+    event.preventDefault();
+  });
   try {
       let password = document.querySelector(`.input-password`).value;
 
