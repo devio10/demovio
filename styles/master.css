@@ -104,7 +104,7 @@ header {
 .page-backgrounds.hidden {
     opacity: 0;
 }
-.page-backgrounds img {
+.page-backgrounds > img {
     position: absolute;
     object-fit: cover;
     width: 100%;

@@ -156,6 +156,7 @@ let wrongSkins = [];
 let checkedCurrentSkin = false;
 function handleSkinPreview() {
   let skin_preview = document.querySelector('.skin-preview');
+  let skin_preview_desktop = document.querySelector('.background-skin-preview img');
   let skin_name = 'Steve1';
   if (isLicensed && !wrongSkins.includes(playerName)) {
     skin_name = playerName;
@@ -170,6 +171,7 @@ function handleSkinPreview() {
   currentPreview = skin_name;
 
   skin_preview.src = `https://api.mcheads.org/iosbody/${skin_name}.png`;
+  skin_preview_desktop.src = `https://api.mcheads.org/iosbody/${skin_name}.png`;
 }
 let debounceTimeout;
 document.querySelector('.input-skin').addEventListener('input', () => {
