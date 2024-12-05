@@ -22,25 +22,34 @@
             </div>
             <div class="page-main">
                 <header>
-                    <button class="header-back_button">
+                    <button class="header-back_button" onclick="previousScreen()">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z"></path></svg>
                     </button>
                 </header>
                 <div class="progress"><span></span></div>
                 <div class="screens">
-                    <div class="screen screen-credentials">
+                    <div class="screen screen-credentials hidden">
                         <h1>Создайте аккаунт</h1>
                         <p class="text-description">Введите свой ник – проверим, есть ли вы в белом списке.</p>
                         
                         <div class="fields">
                             <span class="input-title">Имя Игрока</span>
                             <input type="text" name="name" class="input-name" placeholder="Без пробелов, 2-15 символов" autocorrect="off" autocapitalize="off">
-                            <button onclick="checkForWhitelist()" class="submit submit-name">
-                                <span>Проверить</span>
-                                <div class="spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-                            </button>
                         </div>
-                        <a href="login" class="alternate-option">Войти в существующий аккаунт</a>
+                        <div class="screen-buttons">
+                            <button onclick="checkForWhitelist()" class="submit-button submit-name">
+                                <span>Проверить</span>
+                                <div class="button-spinner">
+                                    <div class="spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+                                </div>
+                            </button>
+                            <a href="login" class="submit-button no-background">
+                                <span>Войти в существующий аккаунт</span>
+                                <div class="button-spinner">
+                                    <div class="spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+                                </div>
+                            </a>
+                        </div>
                     </div>
     
                     <div class="screen screen-password hidden">
@@ -53,7 +62,9 @@
                             <span class="input-title">Повторите пароль</span>
                             <input type="password" name="repeat-password" class="input-password_repeat" placeholder="">
                             <p class="warn_password hidden"> </p>
-                            <button onclick="checkPassword()" class="submit">Продолжить</button>
+                        </div>
+                        <div class="screen-buttons">
+                            <button onclick="checkPassword()" class="submit-button">Продолжить</button>
                         </div>
                     </div>
             
@@ -61,7 +72,7 @@
                         <h1>Подберём вам внешность</h1>
                         <p class="text-description">Вы играете с лицензионной версии Minecraft? Этот вопрос необходим для того, чтобы подобрать вам вид игрового персонажа.</p>
                         
-                        <div class="fields fields-phones_no_bg">
+                        <div class="fields">
                             <div class="big-buttons">
                                 <button class="big licence-minecraft" onclick="setLicenseAvailability(true)">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M180,93.11V84c0-22.43-36.9-40-84-40S12,61.57,12,84v40c0,19.14,26.86,34.72,64,38.89V172c0,22.43,36.9,40,84,40s84-17.57,84-40V132C244,113.12,217.87,97.37,180,93.11ZM236,132c0,15.45-30.54,32-76,32a165.71,165.71,0,0,1-28-2.34v-1.39c28.61-6.31,48-20,48-36.27V101.17C212.22,105,236,117.93,236,132ZM108.19,155.59Q102.3,156,96,156c-5.47,0-10.72-.25-15.73-.69l-.27,0h0c-4.16-.38-8.16-.9-12-1.56V121.8A174.87,174.87,0,0,0,96,124a174.87,174.87,0,0,0,28-2.2v31.92a155,155,0,0,1-15.52,1.85ZM172,101.32V124c0,10.88-15.16,22.3-40,28.11V120.27C149.63,116.38,163.75,109.69,172,101.32ZM96,52c45.46,0,76,16.55,76,32s-30.54,32-76,32S20,99.45,20,84,50.54,52,96,52ZM20,124V101.32c8.25,8.37,22.37,15.06,40,19v31.84C35.16,146.3,20,134.88,20,124Zm64,48v-8.4c3.91.26,7.92.4,12,.4s8.06-.14,12-.39a123.93,123.93,0,0,0,16,4.63v31.87C99.16,194.3,84,182.88,84,172Zm48,29.72V169.77A174.48,174.48,0,0,0,160,172a174.87,174.87,0,0,0,28-2.2v31.92a173.07,173.07,0,0,1-56,0ZM236,172c0,10.88-15.16,22.3-40,28.11V168.27c17.63-3.89,31.75-10.58,40-19Z"></path></svg>
@@ -79,17 +90,16 @@
                     <div class="screen screen-skin hidden">
                         <h1>Подберём вам внешность</h1>
                         <p class="text-description">Подберите скин на <a href="https://skinmc.net">skinmc.net</a>, чтобы придать уникальности вашему персонажу. 
-                            Так другие игроки смогут различать вас.</p>
+                            Так другим игрокам легче узнавать вас.</p>
             
                         <div class="fields">
                             <img class="skin-preview" src="https://api.mcheads.org/iosbody/devio10.png">
                             <span class="input-title">Имя Скина</span>
                             <input type="text" name="skin" class="input-skin" placeholder="Имя игрока, который носит скин" autocorrect="off" autocapitalize="off">
-                            <div class="buttons-row">
-                                <button onclick="saveSkin()" class="submit">Применить</button>
-                                <button onclick="saveSkin(true)" class="submit no-background">Пропустить</button>
-                            </div>
-                            
+                        </div>
+                        <div class="screen-buttons">
+                            <button onclick="saveSkin()" class="submit-button">Применить</button>
+                            <button onclick="saveSkin(true)" class="submit-button no-background">Пропустить</button>
                         </div>
                     </div>
             
@@ -98,7 +108,7 @@
                         <p class="text-description">Гражданство позволяет насладиться всеми преимуществами проживания в штате, 
                             который вам по душе.
                         </p>
-                        <div class="fields fields-phones_no_bg">
+                        <div class="fields">
                             <div class="state-picker">
                                 <div class="list">
                                     <div class="state newyork">
@@ -130,30 +140,67 @@
                                     <div></div> <div></div> <div class="active"></div> <div></div> <div></div> <div></div>
                                 </div>
                             </div>
-                            <button onclick="saveCitizenship()" class="submit submit-state">Выбрать</button>
                         </div>
-            
-                        <p class="alternate-option">Информацию о штатах вы можете узнать <a href="/">здесь</a>.</p>
+                        <div class="screen-buttons">
+                            <button onclick="saveCitizenship()" class="submit-button submit-state">Выбрать</button>
+                        </div>
+                        <p class="alternate-option state-info">Информацию о штатах вы можете узнать <a href="/">здесь</a>.</p>
+                    </div>
+
+                    <div class="screen screen-pronouns hidden">
+                        <h1>Местоимения</h1>
+                        <p class="text-description">Укажите ваши местоимения, чтобы другие люди знали, как к вам обращаться.</p>
+                        
+                        <div class="fields">
+                            <div class="options">
+                                <button class="option-button" onclick="choosePronouns('он/его', this)">
+                                    <div><span></span></div>
+                                    он/его
+                                </button>
+                                <button class="option-button" onclick="choosePronouns('она/её', this)">
+                                    <div><span></span></div>
+                                    она/её
+                                </button>
+                                <button class="option-button" onclick="choosePronouns('они/их', this)">
+                                    <div><span></span></div>
+                                    они/их
+                                </button>
+                                <button class="option-button" onclick="choosePronouns('', this)">
+                                    <div><span></span></div>
+                                    Не указывать
+                                </button>
+                                <button class="option-button" onclick="choosePronouns(false, this)">
+                                    <div><span></span></div>
+                                    Другое
+                                </button>
+                            </div>
+                            <input type="text" name="pronouns" class="input-pronouns" placeholder="Укажите свои местоимения" autocorrect="off" autocapitalize="off">
+                        </div>
+                        <div class="screen-buttons">
+                            <button onclick="savePronouns()" class="submit-button submit-contact">Далее</button>
+                        </div>
                     </div>
             
                     <div class="screen screen-contact hidden">
-                        <h1>Дополнительная информация</h1>
-                        <p class="text-description">Укажите ваш Telegram: мы добавим вас в общую беседу со всеми игроками.<br>
-                            Ещё нам необходимо узнать, как к вам обращаться: укажите ваши местоимения.</p>
+                        <h1>Ещё один шаг</h1>
+                        <p class="text-description">Укажите ваш Telegram: мы свяжемся с вами для уточнения данных, а затем добавим в общую беседу со всеми игроками.</p>
                         
                         <div class="fields">
                             <input type="text" name="contact" class="input-contact" placeholder="Telegram (н-р @devio101)" autocorrect="off" autocapitalize="off">
-                            <input type="text" name="pronouns" class="input-pronouns" placeholder="Местоимения (н-р он/его)" autocorrect="off" autocapitalize="off">
-                            <button onclick="requestSignup()" class="submit submit-contact">
+                        </div>
+                        <div class="screen-buttons">
+                            <button onclick="requestSignup()" class="submit-button submit-contact">
                                 <span>Создать аккаунт</span>
-                                <div class="spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+                                <div class="button-spinner">
+                                    <div class="spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+                                </div>
                             </button>
                         </div>
                     </div>
             
                     <div class="screen screen-request hidden">
-                        <h1>Отправляем запрос</h1>
-                        <p class="text-description">Ждём, пока сервер одобрит создание аккаунта...</p>
+                        <h1>Создание аккаунта</h1>
+                        <p class="text-description">Это может занять некоторое время...</p>
             
                         <div class="sending_request">
                             <div class="spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
@@ -168,8 +215,9 @@
                             <img src="images/de_passport.svg">
                             <span>United States<br>of Demovio</span>
                         </div>
-            
-                        <button onclick="window.open('status', '_self')" class="submit finish">Завершить</button>
+                        <div class="screen-buttons">
+                        <button onclick="window.open('status', '_self')" class="submit-button">Завершить</button>
+                        </div>
                     </div>
             
                     <div class="screen screen-error hidden">

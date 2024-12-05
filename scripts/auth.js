@@ -44,13 +44,50 @@ async function login() {
 }
 
 var currentScreen = 'credentials';
+
+function initializeScreens() {
+  let divs = document.querySelectorAll('.screen') // выбираем все элементы с классом "screen"
+  let screenNames = Array.from(divs).map(div => {
+    const classList = div.className.split(' ') // разбиваем строку классов на массив
+    const screenClass = classList.find(cls => cls.startsWith('screen-') && cls !== 'screen') // находим класс, начинающийся с "screen-"
+    return screenClass?.replace('screen-', '') // удаляем префикс "screen-" для получения названия экрана
+  }).filter(Boolean) // фильтруем null/undefined значения
+  return screenNames;
+}
+
+const screens = initializeScreens();
+
+function previousScreen() {
+  if (screens[0] === currentScreen) {
+    return;
+  }
+
+  let currentIndex = screens.indexOf(currentScreen);
+  showScreen(screens[currentIndex-1]);
+}
+
 function showScreen(name) {
-  let screens = document.querySelectorAll('.screen');
-  for(let i=0; i<screens.length; i++) {
-    screens[i].classList.add('hidden');
+  let screenElements = document.querySelectorAll('.screen');
+  for(let i=0; i<screenElements.length; i++) {
+    screenElements[i].classList.add('hidden');
   }
   document.querySelector(`.screen-${name}`).classList.remove('hidden');
   currentScreen = name;
+  let currentIndex = screens.indexOf(currentScreen);
+  let currentProgress = ((currentIndex + 1) / (screens.length - 1)) * 100;
+
+  switch (currentScreen) {
+    case "passport":
+      document.querySelector('.progress').classList.add('hidden');
+      break;
+    case "error":
+      document.querySelector('.progress').classList.add('hidden');
+      break;
+    case "request":
+      currentProgress = 95;
+      break;
+  }
+  document.querySelector('.progress').style.setProperty('--value', `${currentProgress}%`);
 }
 function showPopup(text, icon) {
   let popup = document.querySelector('.popup');
@@ -76,7 +113,7 @@ function showPopup(text, icon) {
   popup.classList.remove('hidden');
   setTimeout(() => {
     popup.classList.add('hidden');
-  }, 8000);
+  }, 5000);
 }
 function isValidMinecraftNickname (nickname) {
   const regex = /^[a-zA-Z_][a-zA-Z0-9_]{2,15}$/
@@ -86,7 +123,7 @@ function isValidTelegramUsername (username) {
   const regex = /^(?!_)(?!.*__)[a-zA-Z0-9_]{5,32}(?<!_)$/
   return regex.test(username)
 }
-
+var isWhitelisted;
 async function checkForWhitelist() {
   let name = document.querySelector(`.input-name`).value;
   if (!isValidMinecraftNickname(name)) {
@@ -107,9 +144,11 @@ async function checkForWhitelist() {
 
     if (result == "1") {
       showPopup('Вы есть в белом списке! Ваш аккаунт будет активирован сразу после завершения регистрации.', 'ok');
+      isWhitelisted = true;
       showScreen('password');
     } else if (result == "") {
       showPopup('Вас нет в белом списке. Вы сможете создать аккаунт, но его придётся подтвердить у администратора.', 'warn');
+      isWhitelisted = false;
       showScreen('password');
     } else if (result == "account_already_created") {
       showPopup('Этот игровой ник уже занят. Попробуйте войти в аккаунт.', 'error');
@@ -117,7 +156,7 @@ async function checkForWhitelist() {
       return;
     }
     playerName = name;
-
+    document.querySelector('.submit-name').disabled = null;
     window.addEventListener('beforeunload', (event) => {
       event.preventDefault();
     });
@@ -244,6 +283,7 @@ function inRange(value, from, to) {
 var selectedState = 0;
 var cardHeight = 248;
 const states = ['Нью Йорк', 'Калифорния', '', 'Шанхай', 'Огайо', 'Джорджия'];
+const state_links = ['newyork', 'california', '', 'shanghai', 'ohio', 'georgia'];
 var selectedCitizenship;
 
 function handleScrollStatus(pos) {
@@ -261,10 +301,12 @@ function handleScrollStatus(pos) {
   if (num == 2) {
     document.querySelector('.submit-state').innerText = `Выберите штат`;
     document.querySelector('.submit-state').disabled = `true`;
+    document.querySelector('.state-info').innerHTML = `Информацию о штатах вы можете узнать <a href="/">здесь</a>.`;
     return;
   }
   document.querySelector('.submit-state').disabled = null;
   document.querySelector('.submit-state').innerText = `Выбрать (${states[num]})`;
+  document.querySelector('.state-info').innerHTML = `Информацию об этом штате вы можете узнать <a href="${state_links[num]}">здесь</a>.`;
 }
 
 document.querySelector('.state-picker .list').scrollTop = cardHeight * 2;
@@ -291,7 +333,7 @@ function randomNum(min, max) {
 }
 
 function saveCitizenship() {
-  showScreen('contact');
+  showScreen('pronouns');
   let code = "GE";
   switch (selectedState) {
     case 0:
@@ -315,23 +357,49 @@ function saveCitizenship() {
     address: '-'
   };
 }
+var pronouns;
+function choosePronouns(value, element) {
+  pronouns = value;
+  if (pronouns === false) {
+    document.querySelector('.input-pronouns').classList.add('shown');
+  } else {
+    document.querySelector('.input-pronouns').classList.remove('shown');
+  }
+  if (document.querySelector('.screen-pronouns .option-button.selected')) {
+    document.querySelector('.screen-pronouns .option-button.selected').classList.remove('selected');
+  }
+  element.classList.add('selected');
+}
+
+function savePronouns() {
+  if (pronouns !== false && pronouns !== "" && !pronouns) {
+    return;
+  }
+  if (pronouns !== false) {
+    showScreen('contact');
+    return;
+  }
+  let customValue = document.querySelector('.input-pronouns').value.trim();
+  if (customValue.length < 4 || customValue.length > 16) {
+    showPopup('Ваши местоимения должны быть длиной от 4 до 16 симвлов', 'error');
+    return;
+  }
+
+  showScreen('contact');
+}
 
 async function requestSignup() {
   let contact = document.querySelector('.input-contact').value.trim().replaceAll('@', '');
-  let pronouns = document.querySelector('.input-pronouns').value.trim();
 
   if (!isValidTelegramUsername(contact)) {
     showPopup('Вы указали неправильный формат имени Telegram. Проверьте правильность его написания', 'error');
-    return;
-  }
-  if (pronouns.length > 24) {
-    showPopup('Вы указали слишком длинные местоимения (максимум 24 символа)', 'error');
     return;
   }
   showScreen('request');
   window.removeEventListener('beforeunload', (event) => {
     event.preventDefault();
   });
+  document.querySelector('.header-back_button').disabled = 'true';
   try {
       let password = document.querySelector(`.input-password`).value;
 
@@ -352,6 +420,11 @@ async function requestSignup() {
 
       if (result == 'created') {
         showScreen('passport');
+        if (!isWhitelisted) {
+          document.querySelector('.screen-passport h1').innerText = 'Регистрация завершена';
+          document.querySelector('.new-passport').style.display = 'none';
+          document.querySelector('.screen-passport button').innerText = 'Готово';
+        }
       } else {
         showScreen('error');
         document.querySelector('.screen-error .text-description').innerHTML = `
@@ -364,3 +437,5 @@ async function requestSignup() {
     console.error('Error: ', error)
   }
 }
+showScreen(screens[0]);
+// showScreen('passport');
