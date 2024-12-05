@@ -6,6 +6,15 @@ sleep(3);
 $requestBody = file_get_contents('php://input');
 $data = json_decode($requestBody, true);
 
+function isValidTelegramUsername($value) {
+  $regex = '/^(?!_)(?!.*__)[a-zA-Z0-9_]{5,32}(?<!_)$/';
+  return preg_match($regex, $value) === 1;
+}
+function isValidMinecraftNickname ($value) {
+  $regex = '/^[a-zA-Z_][a-zA-Z0-9_]{2,15}$/';
+  return preg_match($regex, $value) === 1;
+}
+
 try {
   $db = new PDO('sqlite:/var/demovio-minecraft-server/server/demovio.db');
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -13,7 +22,19 @@ try {
     $password = $data['password'];
     
     if (doesPlayerExists($username)) {
-      echo 'account_already_created';
+      echo 'Account already created';
+      exit;
+    }
+    if (!isValidMinecraftNickname($username)) {
+      echo 'Wrong Minecraft Nickname';
+      exit;
+    }
+    if (strlen($password) < 8 || strlen($password) > 32) {
+      echo 'Wrong password length';
+      exit;
+    }
+    if (!isValidTelegramUsername($data['contact'])) {
+      echo 'Wrong contact';
       exit;
     }
 
@@ -41,11 +62,10 @@ try {
     if ($isActivated) {
       $changedSkin = changeSkin($username, $skinToSet);
       if ($changedSkin == false) {
-        echo 'Error: Cannot set skin. Account created';
+        echo 'created_noskin';
       }
     }
     
-
     echo "created";
 
     setcookie('username', $username, time() + (86400 * 90), '/');

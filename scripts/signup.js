@@ -348,7 +348,7 @@ async function requestSignup() {
       const result = await response.text();
       console.log(result);
 
-      if (result == 'created') {
+      if (result === 'created' || result === 'created_noskin') {
         showScreen('passport');
         if (!isWhitelisted) {
           document.querySelector('.screen-passport h1').innerText = 'Регистрация завершена';
