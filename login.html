@@ -11,40 +11,32 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
     </head>
     <body>
-        <header>
-            <div class="header-side">
-                <button onclick="window.open('/', '_self')" class="header-button">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M216.49,111.51l-80-80a12,12,0,0,0-17,0l-80,80A12,12,0,0,0,36,120v96a4,4,0,0,0,4,4h64a4,4,0,0,0,4-4V156h40v60a4,4,0,0,0,4,4h64a4,4,0,0,0,4-4V120A12,12,0,0,0,216.49,111.51ZM212,212H156V152a4,4,0,0,0-4-4H104a4,4,0,0,0-4,4v60H44V120a4,4,0,0,1,1.17-2.83l80-80a4,4,0,0,1,5.66,0l80,80A4,4,0,0,1,212,120Z"></path></svg>
-                </button>
+        <div class="page-content">
+            <div class="page-backgrounds">
+                <img src="posters/home-christmas.jpeg" id="bg-credentials">
             </div>
-            <div>
-                <span class="page_logo">Demovio<div></div></span>
-            </div>
-            
-            <div class="header-side">
-
-            </div>
-        </header>
-
-        <div class="page-backgrounds">
-            <img src="posters/home-christmas.jpeg" id="bg-credentials">
-        </div>
-
-        <div class="screen screen-credentials">
-            <h1>Войдите в аккаунт</h1>
-            <p class="text-description">Вы получите доступ к услугам Demovio, вашему паспорту, карте целого мира и статистике сервера.</p>
-            
-            <div class="fields">
-                <input type="text" name="name" class="input-name" placeholder="Имя Игрока">
-                <input type="password" name="password" class="input-password" placeholder="Пароль">
-                <button onclick="login()" class="submit">
-                    <span>Войти в Аккаунт</span>
-                    <div class="button-spinner">
-                        <div class="spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+            <div class="page-main">
+                <div class="screen screen-credentials">
+                    <h1>Войдите в аккаунт</h1>
+                    <p class="text-description">Вы получите доступ к услугам Demovio, вашему паспорту, карте целого мира и статистике сервера.</p>
+                    
+                    <div class="fields">
+                        <span class="input-title">Имя Игрока</span>
+                        <input type="text" name="name" class="input-name">
+                        <span class="input-title">Пароль</span>
+                        <input type="password" name="password" class="input-password">
                     </div>
-                </button>
+                    <div class="screen-buttons">
+                        <button onclick="login()" class="submit-button">
+                            <span>Войти в аккаунт</span>
+                            <div class="button-spinner">
+                                <div class="spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+                            </div>
+                        </button>
+                        <a href="signup" class="submit-button no-background">Создать новый аккаунт</a>
+                    </div>
+                </div>
             </div>
-            <a href="signup" class="alternate-option">Создать новый аккаунт</a>
         </div>
 
         <div class="popup hidden">

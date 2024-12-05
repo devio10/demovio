@@ -18,7 +18,7 @@ async function login() {
         let name = document.querySelector(`.input-name`).value;
         let password = document.querySelector(`.input-password`).value;
 
-        document.querySelector('.submit').disabled = true;
+        document.querySelector('.submit-button').disabled = true;
 
         const response = await fetch(`${api_url}login.php`, {
           method: 'POST',
@@ -31,11 +31,11 @@ async function login() {
         const result = await response.text();
     
         if (result == "logged_in") {
-          document.querySelector('.submit').disabled = null;
+          document.querySelector('.submit-button').disabled = null;
           window.open('status', '_self');
         } else if (result == "wrong_credentials") {
-            showPopup('Неверные имя либо пароль.');
-            document.querySelector('.submit').disabled = null;
+          showPopup('Неверные имя либо пароль.', 'warn');
+          document.querySelector('.submit-button').disabled = null;
         }
     } catch (error) {
       console.error('Error: ', error)
