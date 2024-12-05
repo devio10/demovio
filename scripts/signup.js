@@ -31,6 +31,7 @@ function showScreen(name) {
   let currentIndex = screens.indexOf(currentScreen);
   let currentProgress = ((currentIndex + 1) / (screens.length - 1)) * 100;
 
+  document.querySelector('.background-skin-preview').classList.remove('shown');
   switch (currentScreen) {
     case "passport":
       document.querySelector('.progress').classList.add('hidden');
@@ -40,6 +41,9 @@ function showScreen(name) {
       break;
     case "request":
       currentProgress = 95;
+      break;
+    case "skin":
+      document.querySelector('.background-skin-preview').classList.add('shown');
       break;
   }
   document.querySelector('.progress').style.setProperty('--value', `${currentProgress}%`);
@@ -368,4 +372,4 @@ async function requestSignup() {
   }
 }
 showScreen(screens[0]);
-// showScreen('passport');
+// showScreen('pronouns');

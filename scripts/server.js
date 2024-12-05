@@ -65,7 +65,7 @@ function playersList() {
         for(let i=0; i<data.length; i++) {
             let debugMode = false;
             let player_citizenship;
-            if (data[i].hasOwnProperty('isActivated')) {
+            if (data[i].hasOwnProperty('isActivated') && localStorage.getItem('debug') == 'true') {
                 debugMode = true;
                 player_citizenship = JSON.parse(data[i].citizenship);
             }

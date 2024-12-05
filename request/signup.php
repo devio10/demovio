@@ -25,7 +25,7 @@ try {
       echo 'Account already created';
       exit;
     }
-    if (!isValidMinecraftNickname($username)) {
+    if (!isValidMinecraftNickname($username) || $username == null || $username == 'null') {
       echo 'Wrong Minecraft Nickname';
       exit;
     }

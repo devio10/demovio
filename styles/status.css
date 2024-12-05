@@ -732,6 +732,12 @@ span.passport-watermark_demovio.third {
     border-radius: 24px;
     height: fit-content;
     overflow-y: auto;
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.window::-webkit-scrollbar {
+    display: none;
 }
 .window h2 {
     margin-top: 32px;
