@@ -144,7 +144,6 @@ async function retrieveUserData() {
         if (result.error) {
             throw new Error(result.error);
         }
-        console.log(result);
         user = {
             id: result[0],
             name: result[1],

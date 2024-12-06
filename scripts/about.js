@@ -17,7 +17,6 @@ const throttle = (callback, delay) => {
 }
 
 function handleScroll() {
-    console.log('handling');
     const scrollY = window.scrollY;
   
     if (scrollY >= stateSectionY && !spinningInterval) {

@@ -74,8 +74,6 @@ async function checkForWhitelist() {
       })
     })
     const result = await response.text();
-    console.log(result);
-
     if (result == "1") {
       showPopup('Вы есть в белом списке! Ваш аккаунт будет активирован сразу после завершения регистрации.', 'ok');
       isWhitelisted = true;
@@ -350,7 +348,6 @@ async function requestSignup() {
       })
       
       const result = await response.text();
-      console.log(result);
 
       if (result === 'created' || result === 'created_noskin') {
         showScreen('passport');

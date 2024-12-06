@@ -1,18 +1,4 @@
 @media screen and (max-width: 768px) {
-    header {
-        position: fixed;
-        height: 72px;
-    }
-    header.shrink {
-        width: 100%;
-    }
-    header.shrink .header-menu_button {
-        background-color: rgba(255,255,255,0.075);
-        backdrop-filter: blur(5px);
-        width: 64px;
-        border: 1px solid rgba(255,255,255,0.2);
-    }
-
     section {
         height: fit-content;
     }

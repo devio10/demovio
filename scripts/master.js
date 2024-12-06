@@ -137,7 +137,6 @@ const waitUntilImagesLoad = (element) => {
         } else {
           img.addEventListener('load', () => {
             loadedImagesCount++
-        console.log(loadedImagesCount);
 
             if (loadedImagesCount === images.length) {
               resolve(element.scrollHeight)

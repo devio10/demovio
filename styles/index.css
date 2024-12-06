@@ -71,7 +71,7 @@ section .whole-content.grid {
     min-height: fit-content;
 }
 .states.grid {
-    min-height: 830px;
+    min-height: 700px;
 }
 section.hero {
     background-color: #4e46e5;
@@ -392,6 +392,9 @@ section.states .content {
     transition-property: opacity, transform;
     transition-duration: .5s;
     transition-timing-function: ease-out;
+    position: relative;
+    z-index: 2;
+    text-shadow: 0px 4px 4px white;
 }
 .description-card.disappear .state-description {
     opacity: 0;
@@ -691,4 +694,24 @@ section.achievements .content {
 }
 .welcome_player.shown a:active {
     transform: scale(0.95);
+}
+@media screen and (max-width: 1280px) {
+    section.states .content {
+        grid-template-columns: 8fr 5fr;
+        grid-template-rows: 3fr auto;
+    }
+
+    header {
+        position: fixed;
+        height: 72px;
+    }
+    header.shrink {
+        width: 100%;
+    }
+    header.shrink .header-menu_button {
+        background-color: rgba(255,255,255,0.075);
+        backdrop-filter: blur(5px);
+        width: 64px;
+        border: 1px solid rgba(255,255,255,0.2);
+    }
 }
