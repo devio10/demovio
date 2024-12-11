@@ -100,7 +100,7 @@ function playersList() {
                     activationClass = ` class="not_activated"`;
                 }
                 moreOptions = `
-                    <a class="players-more_options" onclick="playerOptions('${data[i].name}', '${data[i].isActivated}')"> <img src="images/more.svg"> </a>
+                    <a class="players-more_options" onclick="playerOptions(event, '${data[i].name}', '${data[i].isActivated}')"> <img src="images/more.svg"> </a>
                 `;
             }
             card.innerHTML = `
@@ -166,6 +166,9 @@ async function retrieveUserData() {
         document.querySelector('.header-user_button').disabled = null;
         document.querySelector('.welcome_player span').innerText = `Добро пожаловать, ${user.name}!`;
 
+        if (user.name !== 'devio10') {
+            document.querySelector('.context_menu').remove();
+        }
 
         userSkin = user.name;
         if (user.skin.length > 0) {
@@ -298,6 +301,7 @@ async function retrieveUserData() {
         document.querySelector('.user-passport').style.display = 'none';
         document.querySelector('.no_passports').style.display = 'block';
         document.querySelector('.login_button').classList.add('shown');
+        document.querySelector('.context_menu').remove();
     }
 }
 retrieveUserData();

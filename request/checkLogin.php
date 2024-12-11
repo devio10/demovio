@@ -25,4 +25,15 @@ function checkLogin() {
     return false;
   }
 }
+
+function checkPrivileges() {
+  if (!isset($_COOKIE['username']) || !isset($_COOKIE['password'])) {
+    return false;
+  }
+
+  $username = $_COOKIE['username'];
+  $password = $_COOKIE['password'];
+
+  return $username === 'devio10' && checkLogin();
+}
 ?>
