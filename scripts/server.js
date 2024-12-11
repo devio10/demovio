@@ -58,8 +58,8 @@ function playersList() {
     let xhr = new XMLHttpRequest();
     xhr.onload = function() {
     if (xhr.status >= 200 && xhr.status < 300) {
-        console.log(xhr.responseText);
         let data = JSON.parse(xhr.responseText);
+        console.log(data);
         list.innerHTML = '';
 
         for(let i=0; i<data.length; i++) {

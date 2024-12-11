@@ -1096,6 +1096,9 @@ button.modal.accent:hover {
     cursor: pointer;
     text-transform: capitalize;
 }
+.context_menu button.hidden {
+    display: none;
+}
 .context_menu button.red {
     color: #ef4d58;
     --color: #ef4d58;

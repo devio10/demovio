@@ -1,6 +1,6 @@
 var contextName;
 function playerOptions(event, name, isActivated) {
-    if (isActivated == '') {
+    if (isActivated === '1') {
         document.querySelector('#context_menu-activate').classList.remove('hidden');
         document.querySelector('#context_menu-skin').classList.add('hidden');
         document.querySelector('#context_menu-edit').classList.add('hidden');
@@ -15,9 +15,9 @@ function playerOptions(event, name, isActivated) {
     summonContextMenu(event);
 }
 
-async function changeSkin() {
+async function backstageAction(action) {
     try {
-        const response = await fetch(`${api_url}reloadskin.php`, {
+        const response = await fetch(`${api_url}${action}.php`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -31,10 +31,9 @@ async function changeSkin() {
 
         const data = await response.json();
         console.log('Success:', data);
-
-        return data;
+        playersList();
     } catch (error) {
         console.error('Error:', error.message);
         return { error: error.message };
     }
-}  
+} 
