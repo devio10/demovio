@@ -804,6 +804,9 @@ span.passport-watermark_demovio.third {
     justify-content: center;
     cursor: pointer;
 }
+.players-list li .players-more_options {
+    margin-left: 8px;
+}
 .players-list li a img {
     fill: currentColor;
     width: 32px;
@@ -1049,5 +1052,71 @@ button.modal.accent, button.modal:hover {
 }
 button.modal.accent:hover {
     background-color: rgba(255,255,255,0.15);
+}
 
+.context_menu {
+    --color: white;
+    position: fixed;
+
+    background-color: rgba(30,30,30,0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    border-radius: 10px;
+    padding: 5px;
+    top: 32px;
+    left: 32px;
+    min-width: 200px;
+    min-height: 40px;
+    z-index: 10;
+
+    box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.2);
+    border: 1px solid #393939;
+    opacity: 1;
+
+    transition: .05s opacity ease-in;
+}
+.context_menu.hidden {
+    pointer-events: none;
+    opacity: 0;
+    transition-duration: .1s;
+}
+.context_menu button:not(.tag) {
+    border-radius: 5px;
+    padding: 5px 12px;
+
+    font-size: 12px;
+    background: none;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    width: 100%;
+    cursor: pointer;
+    text-transform: capitalize;
+}
+.context_menu button.red {
+    color: #ef4d58;
+    --color: #ef4d58;
+    font-weight: bold;
+}
+.context_menu svg {
+    width: 14px;
+    height: 14px;
+    fill: var(--color);
+}
+.context_menu button:not(.tag):hover, #context_menu button:not(.tag):focus {
+    background-color: rgb(167, 166, 231);
+    color: white;
+    --color: white;
+}
+.context_menu hr {
+    border: 0.5px solid #393939;
+    margin: 6px 8px;
+}
+.context_menu button.red:not(.tag):hover, #context_menu button.red:not(.tag):focus {
+    background-color: #ef4d58;
+    color: white;
+    --color: white;
 }

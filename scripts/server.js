@@ -93,11 +93,15 @@ function playersList() {
             }
             let player_name = data[i].name;
             let activationClass = '';
+            let moreOptions = '';
             if (debugMode) {
                 player_name = `${data[i].name} (${player_citizenship.code})`;
                 if (data[i].isActivated == 0) {
                     activationClass = ` class="not_activated"`;
                 }
+                moreOptions = `
+                    <a class="players-more_options" onclick="playerOptions('${data[i].name}', '${data[i].isActivated}')"> <img src="images/more.svg"> </a>
+                `;
             }
             card.innerHTML = `
                 <img src="https://api.mcheads.org/head/${skin}/42.png"${activationClass}>
@@ -106,6 +110,7 @@ function playersList() {
                     ${pronouns}
                 </div>
                 ${contact}
+                ${moreOptions}
             `;
             card.querySelector('img').addEventListener('error', (e) => {
                 e.target.src = 'images/head_default.png';
