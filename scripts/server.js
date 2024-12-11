@@ -95,13 +95,18 @@ function playersList() {
             let activationClass = '';
             let moreOptions = '';
             if (debugMode) {
-                player_name = `${data[i].name} (${player_citizenship.code})`;
+                // player_name = `${data[i].name} (${player_citizenship.code})`;
                 if (data[i].isActivated == 0) {
                     activationClass = ` class="not_activated"`;
                 }
                 moreOptions = `
-                    <a class="players-more_options" onclick="playerOptions(event, '${data[i].name}', '${data[i].isActivated}')"> <img src="images/more.svg"> </a>
+                    <a class="players-more_options" onclick="playerOptions(event, '${data[i].name}', '${data[i].isActivated}', ${data[i].isBanned})"> <img src="images/more.svg"> </a>
                 `;
+
+                if (data[i].isBanned == 1) {
+                    card.classList.add('banned');
+                    activationClass = ` class="banned"`;
+                }
             }
             card.innerHTML = `
                 <img src="https://api.mcheads.org/head/${skin}/42.png"${activationClass}>
