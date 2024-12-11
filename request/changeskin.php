@@ -3,7 +3,6 @@ require_once('Rcon.php');
 use Thedudeguy\Rcon;
 
 function changeSkin($player, $skin) {
-
     $host = 'localhost';
     $port = 10511;
     $password = 'jadoiq20LAfkoaASg21';

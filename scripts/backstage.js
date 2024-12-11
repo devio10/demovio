@@ -1,15 +1,15 @@
 var contextName;
 function playerOptions(event, name, isActivated) {
     if (isActivated === '1') {
-        document.querySelector('#context_menu-activate').classList.remove('hidden');
-        document.querySelector('#context_menu-skin').classList.add('hidden');
-        document.querySelector('#context_menu-edit').classList.add('hidden');
-        document.querySelector('#context_menu-passport').classList.add('hidden');
-    } else {
         document.querySelector('#context_menu-activate').classList.add('hidden');
         document.querySelector('#context_menu-skin').classList.remove('hidden');
         document.querySelector('#context_menu-edit').classList.remove('hidden');
         document.querySelector('#context_menu-passport').classList.remove('hidden');
+    } else {
+        document.querySelector('#context_menu-activate').classList.remove('hidden');
+        document.querySelector('#context_menu-skin').classList.add('hidden');
+        document.querySelector('#context_menu-edit').classList.add('hidden');
+        document.querySelector('#context_menu-passport').classList.add('hidden');
     }
     contextName = name;
     summonContextMenu(event);

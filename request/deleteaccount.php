@@ -1,5 +1,7 @@
 <?php
 include "checkLogin.php";
+require_once('Rcon.php');
+use Thedudeguy\Rcon;
 session_start();
 
 if (!checkPrivileges()) {
@@ -19,6 +21,20 @@ if (!$username) {
   exit;
 }
 
+$host = 'localhost';
+$port = 10511;
+$password = 'jadoiq20LAfkoaASg21';
+$timeout = 3;
+
+$rcon = new Rcon($host, $port, $password, $timeout);
+
+if ($rcon->connect()) {
+  $rcon->sendCommand("easywhitelist remove $username");
+} else {
+  echo json_encode(['error' => 'Server RCON is not responding']);
+  exit;
+}
+
 $db = new PDO('sqlite:/var/demovio-minecraft-server/server/demovio.db');
 
 $stmt = $db->prepare('DELETE FROM players WHERE name = :username');
@@ -31,4 +47,5 @@ if (!$user) {
   exit;
 }
 echo json_encode(['success' => 'Account has been removed']);
+
 ?>
