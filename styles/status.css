@@ -1039,6 +1039,7 @@ a.monospace {
     justify-content: flex-end;
     align-items: center;
     margin: 16px;
+    gap: 16px;
 }
 button.modal {
     padding: 14px 20px;

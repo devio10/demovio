@@ -236,3 +236,24 @@ const annoucementNotActivated = {
         },
     ],
 };
+const announcementBan = {
+    title: "Подтвердите удаление аккаунта",
+    image: 'images/de_bg.png',
+    content: `
+        <p>Это необратимое действие. Игрок также будет удалён из белого списка и, если вы передумаете, ему придётся заново проходить процедуру регистрации.</p>
+    `,
+    buttons: [
+        {
+            content: "Отмена",
+            clickFunction: function() {
+            }
+        },
+        {
+            content: "Удалить",
+            isAccent: true,
+            clickFunction: function() {
+                backstageAction('deleteaccount');
+            }
+        },
+    ],
+};
