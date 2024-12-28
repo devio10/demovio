@@ -96,6 +96,8 @@ function playersList() {
             let moreOptions = '';
             if (debugMode) {
                 // player_name = `${data[i].name} (${player_citizenship.code})`;
+                pronouns = `<span class="pronouns">${data[i].pronouns} (${player_citizenship.code})</span>`;
+
                 if (data[i].isActivated == 0) {
                     activationClass = ` class="not_activated"`;
                 }
@@ -307,6 +309,19 @@ async function retrieveUserData() {
         document.querySelector('.no_passports').style.display = 'block';
         document.querySelector('.login_button').classList.add('shown');
         document.querySelector('.context_menu').remove();
+
+        // //debug:
+        // document.querySelector('.user-citizenship-title').innerHTML = `国籍 / Citizenship`;
+        // document.querySelector('.user-acceptance-title').innerHTML = `接受日期 / Date of acceptance`;
+        // document.querySelector('.user-address-title').innerHTML = `居住地址 / Residential address`;
+        // document.querySelector('.user-protocol-title').innerHTML = `协议 / Protocol`;
+
+        // document.querySelector('.user-name-title').innerHTML = `玩家姓名 / Player name`;
+        // document.querySelector('.user-contact-title').innerHTML = `联系方式 / Contact`;
+        // document.querySelector('.user-issue-title').innerHTML = `签发日期 / Date of issue`;
+        // document.querySelector('.user-pronouns-title').innerHTML = `代词 / Pronouns`;
+
+        // document.querySelector(`.passport-stamp.SH`).classList.add('shown');
     }
 }
 retrieveUserData();

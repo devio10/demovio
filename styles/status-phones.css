@@ -204,6 +204,13 @@
     .image_title {
         border-radius: 0;
     }
+    .context_menu {
+        min-width: 240px;
+    }
+    .context_menu button:not(.tag) {
+        padding: 7px 14px;
+        font-size: 13px;
+    }
 }
 @media screen and (max-height: 670px) and (max-width: 768px) {
     
