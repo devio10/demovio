@@ -5,8 +5,8 @@
         <meta charset="utf-8">
         <link rel="stylesheet" href="styles/master.css">
         <link rel="stylesheet" href="styles/status.css">
-        <link rel="stylesheet" href="styles/master-phones.css">
-        <link rel="stylesheet" href="styles/status-phones.css">
+        <link rel="stylesheet" href="styles/master-phones.css" media="screen and (max-width: 768px)">
+        <link rel="stylesheet" href="styles/status-phones.css" media="screen and (max-width: 768px)">
         <link rel="stylesheet" href="styles/spinner.css">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
     </head>
@@ -33,12 +33,12 @@
 
         <div class="page-backgrounds">
             <img src="posters/home-christmas.jpeg" id="bg-titlescreen">
-            <img src="posters/players-christmas.jpeg" id="bg-players" class="hidden">
-            <img src="posters/passport.jpeg" id="bg-passport" class="hidden">
-            <img src="posters/help-christmas.jpeg" id="bg-download" class="hidden">
+            <img src="posters/players-christmas.jpeg" id="bg-players" loading="lazy" class="hidden">
+            <img src="posters/passport.jpeg" id="bg-passport" loading="lazy" class="hidden">
+            <img src="posters/help-christmas.jpeg" id="bg-download" loading="lazy" class="hidden">
         </div>
 
-        <div class="screen screen-titlescreen hidden">
+        <div class="screen screen-titlescreen">
             <div class="server-info">
                 <div class="server-status_block">
                     <h2 class="server-status">Загрузка...</h2>
@@ -94,7 +94,7 @@
 
             </div>
         </div>
-        <div class="screen screen-passport">
+        <div class="screen screen-passport hidden">
             <div class="user-passport">
                 <div class="passport-residentship">
                     <div class="passport-actual_content">
@@ -129,7 +129,7 @@
                                 </div>
                             </div>
 
-                            <div class="passport-stamp SH">
+                            <div class="passport-stamp SH effect">
                                 <div class="stamp_sh_top">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M4 15.5V6q0-1.325.688-2.113t1.812-1.2t2.563-.55T12 2q1.65 0 3.113.138t2.55.55t1.712 1.2T20 6v9.5q0 1.475-1.012 2.488T16.5 19l.5.5q.425.425.2.963t-.825.537q-.175 0-.337-.062t-.288-.188L14 19h-4l-1.75 1.75q-.125.125-.288.188T7.626 21q-.575 0-.812-.537T7 19.5l.5-.5q-1.475 0-2.488-1.012T4 15.5M12 4q-2.65 0-3.875.313T6.45 5h11.2q-.375-.425-1.612-.712T12 4m-6 6h5V7H6zm10.5 2H6h12zM13 10h5V7h-5zm-4.5 6q.65 0 1.075-.425T10 14.5t-.425-1.075T8.5 13t-1.075.425T7 14.5t.425 1.075T8.5 16m7 0q.65 0 1.075-.425T17 14.5t-.425-1.075T15.5 13t-1.075.425T14 14.5t.425 1.075T15.5 16m-8 1h9q.65 0 1.075-.425T18 15.5V12H6v3.5q0 .65.425 1.075T7.5 17M12 5h5.65h-11.2z"/></svg>
                                     <span>IMMIGRATION 移民</span>
@@ -139,7 +139,7 @@
                                 </div>
                                 <span class="stamp_sh_bottom">APPROVED / 已批准</span>
                             </div>
-                            <div class="passport-stamp NY">
+                            <div class="passport-stamp NY effect">
                                 <div>
                                     <span class="stamp_ny_text">APPROVED CITIZEN OF</span>
                                     <span class="stamp_ny_cityname">NEW YORK</span>
@@ -147,26 +147,25 @@
 
                                 </div>
                             </div>
-                            <div class="passport-stamp CA generic">
-                                <span>DE:</span>
+                            <div class="passport-stamp CA effect">
                                 <div>
-                                    <span>APPROVED / ОДОБРЕНО</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 14v-3.09c-.72-.33-1.39-.73-2-1.2V14zm-2 4H3v-2H1v-2h2V7h2v1.43C6.8 10 9.27 11 12 11s5.2-1 7-2.57V7h2v7h2v2h-2v2h-2v-2H5zm12-7.09V14h2V9.71c-.61.47-1.28.87-2 1.2M16 14v-2.68c-.64.23-1.31.4-2 .52V14zm-3 0v-2.04L12 12l-1-.04V14zm-3 0v-2.16c-.69-.12-1.36-.29-2-.52V14z"/></svg>
                                     <span class="date">21 OCT 2024</span>
+                                    <span>State Of</span>
+                                    <span class="stamp_ca_name">California</span>
                                 </div>
                             </div>
-                            <div class="passport-stamp OH generic">
-                                <span>DE:</span>
-                                <div>
-                                    <span>APPROVED / ОДОБРЕНО</span>
-                                    <span class="date">21 OCT 2024</span>
+                            <div class="passport-stamp OH effect">
+                                <div class="stamp_oh_top">
+                                    <span>OHIO | ОГАЙО</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" stroke="currentColor" viewBox="0 0 48 48"><g fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M16.327 21.295s.623 1.903-1.673 3.497c0 0 .814 1.195.342 2.64c0 0 2.623 2.658-.688 5.566m0 0s-1.808-5.127-3.48-5.668c0 0-.135-3.744-1.204-6.24m0 0s.107-3.825 2.704-7.018c-.209.205-1.11.952-2.831.358m6.908-5.764l3.399 3.136m-1.704.128s2.982-.807 4.917 2.249m0 0s.918 3.071 2.528 9.354c0 0-.186.97.57 1.406c0 0 .52 1.103 1.473 1.513c0 0 2.57-.417 2.387 1.151m-6.715-3.028l1.488 2.226s1.495.461 2.462 1.992c0 0 2.678-.474 2.952 1.14m-9.022-3.52l2.008 2.827s2.365.562 3.197 1.747c0 0 2.522-1.033 2.926 1.237m-10.756-4.457l2.05 2.978s1.813.467 2.845 1.585c0 0 2.815-.627 3.834.825m-11.026-2.461s1.695 4.037 9.324 3.937"/><path d="M17.204 32.082s-1.91 2.168 1.509 1.704c0 0-1.003 3.245 3.022 1.04c0 0-2.986 3.132 5.04 1.21c0 0 2.876-.541 4.957-3.306m-.455-12.385c-.077.797-.428 3.917 2.33 5.987c0 0-1.6.955-.714 2.636"/><path d="M32.893 28.968s-2.95 2.872.288 5.397m0 0s1.561-3.564 3.449-4.976c0 0 .751-3.62 1.915-5.698c0 0 1.05-3.749-2.258-9.06m4.131-1.038l-3.18 2.424m-5.515-6.936L28.95 12.43m-4.67 5.65s.55-6.054 6.253-5.551"/><ellipse cx="24" cy="24" rx="21.5" ry="16.738"/><path d="m9.497 14.43l-2.276-.678"/></g></svg>
                                 </div>
+                                <span class="date">21 OCT 2024</span>
                             </div>
-                            <div class="passport-stamp GE generic">
-                                <span>DE:</span>
-                                <div>
-                                    <span>APPROVED / ОДОБРЕНО</span>
-                                    <span class="date">21 OCT 2024</span>
-                                </div>
+                            <div class="passport-stamp GE effect">
+                                <span>Citizen of</span>
+                                <span class="stamp_ge_name">Georgia</span>
+                                <span class="date">21 OCT 2024</span>
                             </div>
 
 
@@ -218,8 +217,8 @@
         </div>
         <div class="screen screen-stats hidden"></div>
 
-        <div class="screen screen-download hidden">
-            <div class="window">
+        <div class="screen screen-download dark-screen hidden">
+            <div class="window no-background">
                 <h2>Помощь</h2>
                 <section class="help-section small">
                     <button class="header" onclick="openHelpSection(this)">
@@ -230,15 +229,20 @@
                     </button>
                     <div class="help-section-content">
                         <div class="download-buttons">
-                            <button onclick="window.open('downloads/demovio_BareBones.zip')" class="download_package">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M228.6,63.46A31.83,31.83,0,0,0,204.1,52H204a32,32,0,1,0-59.17,17,4,4,0,0,1-.51,5L74,144.36a4,4,0,0,1-5,.51A32,32,0,1,0,51.9,204H52a32,32,0,1,0,59.16-17,4,4,0,0,1,.51-5L182,111.64a4,4,0,0,1,5-.51A32,32,0,0,0,228.6,63.46ZM222.1,99.8a24,24,0,0,1-30.8,4.55A12,12,0,0,0,176.37,106L106,176.37a12,12,0,0,0-1.63,14.93,24,24,0,1,1-44.09,9,4,4,0,0,0-1.12-3.45,4,4,0,0,0-2.83-1.17,4.32,4.32,0,0,0-.62.05,24,24,0,1,1,9-44.09A12,12,0,0,0,79.63,150L150,79.63a12,12,0,0,0,1.63-14.93,24,24,0,1,1,44.09-9,4,4,0,0,0,4.57,4.57A24,24,0,0,1,222.1,99.8Z"></path></svg>
-                                <svg class="hover_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M220,144v64a4,4,0,0,1-4,4H40a4,4,0,0,1-4-4V144a4,4,0,0,1,8,0v60H212V144a4,4,0,0,1,8,0Zm-94.83,2.83a4,4,0,0,0,5.66,0l40-40a4,4,0,1,0-5.66-5.66L132,134.34V32a4,4,0,0,0-8,0V134.34L90.83,101.17a4,4,0,0,0-5.66,5.66Z"></path></svg>
-                                <span>BareBones.zip</span>
-                            </button>
-                            <button onclick="window.open('downloads/demovio_Optimization.zip')" class="download_package">
+                            <button onclick="window.open('downloads/demovio-2.5-optimized.zip')" class="download_package">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M211.89,119.09a4,4,0,0,0-2.49-2.84l-60.81-22.8,15.33-76.67a4,4,0,0,0-6.84-3.51l-112,120a4,4,0,0,0-1,3.64,4,4,0,0,0,2.49,2.84l60.81,22.8L92.08,239.22a4,4,0,0,0,6.84,3.51l112-120A4,4,0,0,0,211.89,119.09ZM102.68,227l13.24-66.2a4,4,0,0,0-2.52-4.53L55,134.36,153.32,29l-13.24,66.2a4,4,0,0,0,2.52,4.53L201,121.64Z"></path></svg>
                                 <svg class="hover_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M220,144v64a4,4,0,0,1-4,4H40a4,4,0,0,1-4-4V144a4,4,0,0,1,8,0v60H212V144a4,4,0,0,1,8,0Zm-94.83,2.83a4,4,0,0,0,5.66,0l40-40a4,4,0,1,0-5.66-5.66L132,134.34V32a4,4,0,0,0-8,0V134.34L90.83,101.17a4,4,0,0,0-5.66,5.66Z"></path></svg>
-                                <span>Optimized.zip</span>
+                                <span>Demovio 2.5 Optimized.zip (Рекомендуется)</span>
+                            </button>
+                            <button onclick="window.open('downloads/demovio-2.5-optimized-extras.zip')" class="download_package">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M196.2,132.81l-53.36-19.65L123.19,59.8a11.93,11.93,0,0,0-22.38,0L81.16,113.16,27.8,132.81a11.93,11.93,0,0,0,0,22.38l53.36,19.65,19.65,53.36a11.93,11.93,0,0,0,22.38,0l19.65-53.36,53.36-19.65a11.93,11.93,0,0,0,0-22.38Zm-2.77,14.87L138.35,168a4,4,0,0,0-2.37,2.37l-20.3,55.08a3.92,3.92,0,0,1-7.36,0L88,170.35A4,4,0,0,0,85.65,168l-55.08-20.3a3.92,3.92,0,0,1,0-7.36L85.65,120A4,4,0,0,0,88,117.65l20.3-55.08a3.92,3.92,0,0,1,7.36,0L136,117.65a4,4,0,0,0,2.37,2.37l55.08,20.3a3.92,3.92,0,0,1,0,7.36ZM148,40a4,4,0,0,1,4-4h20V16a4,4,0,0,1,8,0V36h20a4,4,0,0,1,0,8H180V64a4,4,0,0,1-8,0V44H152A4,4,0,0,1,148,40Zm96,48a4,4,0,0,1-4,4H228v12a4,4,0,0,1-8,0V92H208a4,4,0,0,1,0-8h12V72a4,4,0,0,1,8,0V84h12A4,4,0,0,1,244,88Z"></path></svg>
+                                <svg class="hover_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M220,144v64a4,4,0,0,1-4,4H40a4,4,0,0,1-4-4V144a4,4,0,0,1,8,0v60H212V144a4,4,0,0,1,8,0Zm-94.83,2.83a4,4,0,0,0,5.66,0l40-40a4,4,0,1,0-5.66-5.66L132,134.34V32a4,4,0,0,0-8,0V134.34L90.83,101.17a4,4,0,0,0-5.66,5.66Z"></path></svg>
+                                <span>Demovio 2.5 Optimized+Extras.zip</span>
+                            </button>
+                            <button onclick="window.open('downloads/demovio-2.5-barebones.zip')" class="download_package">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M228.6,63.46A31.83,31.83,0,0,0,204.1,52H204a32,32,0,1,0-59.17,17,4,4,0,0,1-.51,5L74,144.36a4,4,0,0,1-5,.51A32,32,0,1,0,51.9,204H52a32,32,0,1,0,59.16-17,4,4,0,0,1,.51-5L182,111.64a4,4,0,0,1,5-.51A32,32,0,0,0,228.6,63.46ZM222.1,99.8a24,24,0,0,1-30.8,4.55A12,12,0,0,0,176.37,106L106,176.37a12,12,0,0,0-1.63,14.93,24,24,0,1,1-44.09,9,4,4,0,0,0-1.12-3.45,4,4,0,0,0-2.83-1.17,4.32,4.32,0,0,0-.62.05,24,24,0,1,1,9-44.09A12,12,0,0,0,79.63,150L150,79.63a12,12,0,0,0,1.63-14.93,24,24,0,1,1,44.09-9,4,4,0,0,0,4.57,4.57A24,24,0,0,1,222.1,99.8Z"></path></svg>
+                                <svg class="hover_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M220,144v64a4,4,0,0,1-4,4H40a4,4,0,0,1-4-4V144a4,4,0,0,1,8,0v60H212V144a4,4,0,0,1,8,0Zm-94.83,2.83a4,4,0,0,0,5.66,0l40-40a4,4,0,1,0-5.66-5.66L132,134.34V32a4,4,0,0,0-8,0V134.34L90.83,101.17a4,4,0,0,0-5.66,5.66Z"></path></svg>
+                                <span>Demovio 2.5 BareBones.zip</span>
                             </button>
                         </div>
                         <p>Если вы не знаете, какой архив вам необходим, обратитесь к разделу <b>Установка модов</b>.</p>
@@ -247,14 +251,14 @@
 
                 <section class="help-section">
                     <button class="header" onclick="openHelpSection(this)">
-                        <h3>Как установить игру</h3>
+                        <h3>Как установить игру (Официальный лаунчер)</h3>
                         <div class="open_section">
                             <img src="images/section-closed.svg">
                         </div>
                     </button>
                     <div class="help-section-content">
                         <p>Этот раздел поможет вам установить необходимую версию игры Minecraft, чтобы вы могли зайти на сервер Demovio.</p>
-                        <p class="warn"><b>Важно:</b> Убедитесь, что у вас уже установлена игра. На сервере принимаются игроки как с лицензионной, так и с пиратской версией.</p>
+                        <p class="warn"><b>Важно:</b> Этот раздел для официального лаунчера Minecraft. Если вы используете иные решения, такие как Modrinth Launcher, Legacy Launcher или TLauncher, обратитесь к следующему разделу.</p>
                         <p>
                             Для начала вам будет необходимо скачать и установить Fabric – загрузчик, позволяющий модифицировать игру с помощью модов. Скачать его можно по этой ссылке:
                             <a href="https://fabricmc.net/use/installer/">https://fabricmc.net/use/installer/</a>.
@@ -278,27 +282,53 @@
                 </section>
                 <section class="help-section">
                     <button class="header" onclick="openHelpSection(this)">
+                        <h3>Как установить игру (Сторонний лаунчер)</h3>
+                        <div class="open_section">
+                            <img src="images/section-closed.svg">
+                        </div>
+                    </button>
+                    <div class="help-section-content">
+                        <p>Этот раздел поможет вам установить необходимую версию игры Minecraft, чтобы вы могли зайти на сервер Demovio.</p>
+                        <p>
+                            Сторонние лаунчеры, такие как Modrinth Launcher, Legacy Launcher и TLauncher обычно предлагают упрощённую установку Fabric – загрузчика, позволяющего модифицировать игру с помощью модов.
+                            Найдите Fabric 1.20.1 в списке доступных версий для установки.
+                        </p>
+                        <img src="images/tutorials/download/legacy.png">
+                        <p class="warn">Если вы не можете найти Fabric 1.20.1 в списке версий, попробуйте включить отображение модифицированных версий игры в настройках лаунчера. В крайнем случае воспользуйтесь инструкцией по установке игры для официального лаунчера.</p>
+                        <p>Запустите найденную версию. Это займёт некоторое время, так как лаунчеру необходимо скачать необходимые для запуска файлы.</p>
+                        <img src="images/tutorials/download/game.png">
+                        <p>Поздравляю! Вы запустили игру! Но на этом ещё не всё: вам необходимо установить моды. Для этого перейдите к следующей секции.</p>
+                    </div>
+                </section>
+                <section class="help-section">
+                    <button class="header" onclick="openHelpSection(this)">
                         <h3>Установка модов</h3>
                         <div class="open_section">
                             <img src="images/section-closed.svg">
                         </div>
                     </button>
                     <div class="help-section-content">
-                        <p>Мы подготовили для вас два варианта: <b>BareBones.zip</b> и <b>Optimized.zip</b>.
-                            Мы рекомендуем скачивать второй архив, Optimized, так как он дополнительно включает в себя моды, 
-                            повыщающие производительность в 2-3 раза. Если вы хотите сделать собственную сборку, то воспользуйтесь архивом BareBones,
-                            в котором находятся только самые важные моды.</p>
+                        <p>Мы подготовили для вас 3 варианта сборки: <b>Optimized</b>, <b>Optimized+Extras</b> и <b>BareBones</b>.
+                            Мы рекомендуем скачивать сборку Optimized, так как она включает моды, повышающие частоту кадров (FPS).
+                            Сборка Optimized+Extras дополнительно содержит моды, улучшающие визуальную и звуковую составляющую игры.
+                            Если вы хотите создать собственную сборку, выберите архив BareBones –
+                            он содержит только самые необходимые моды.</p>
                         <p>Скачайте необходимый вам архив, воспользовавшись кнопками ниже:</p>
                         <div class="download-buttons">
-                            <button class="download_package" onclick="window.open('downloads/demovio_BareBones.zip')">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M228.6,63.46A31.83,31.83,0,0,0,204.1,52H204a32,32,0,1,0-59.17,17,4,4,0,0,1-.51,5L74,144.36a4,4,0,0,1-5,.51A32,32,0,1,0,51.9,204H52a32,32,0,1,0,59.16-17,4,4,0,0,1,.51-5L182,111.64a4,4,0,0,1,5-.51A32,32,0,0,0,228.6,63.46ZM222.1,99.8a24,24,0,0,1-30.8,4.55A12,12,0,0,0,176.37,106L106,176.37a12,12,0,0,0-1.63,14.93,24,24,0,1,1-44.09,9,4,4,0,0,0-1.12-3.45,4,4,0,0,0-2.83-1.17,4.32,4.32,0,0,0-.62.05,24,24,0,1,1,9-44.09A12,12,0,0,0,79.63,150L150,79.63a12,12,0,0,0,1.63-14.93,24,24,0,1,1,44.09-9,4,4,0,0,0,4.57,4.57A24,24,0,0,1,222.1,99.8Z"></path></svg>
-                                <svg class="hover_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M220,144v64a4,4,0,0,1-4,4H40a4,4,0,0,1-4-4V144a4,4,0,0,1,8,0v60H212V144a4,4,0,0,1,8,0Zm-94.83,2.83a4,4,0,0,0,5.66,0l40-40a4,4,0,1,0-5.66-5.66L132,134.34V32a4,4,0,0,0-8,0V134.34L90.83,101.17a4,4,0,0,0-5.66,5.66Z"></path></svg>
-                                <span>BareBones.zip</span>
-                            </button>
-                            <button class="download_package" onclick="window.open('downloads/demovio_Optimization.zip')">
+                            <button onclick="window.open('downloads/demovio-2.5-optimized.zip')" class="download_package">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M211.89,119.09a4,4,0,0,0-2.49-2.84l-60.81-22.8,15.33-76.67a4,4,0,0,0-6.84-3.51l-112,120a4,4,0,0,0-1,3.64,4,4,0,0,0,2.49,2.84l60.81,22.8L92.08,239.22a4,4,0,0,0,6.84,3.51l112-120A4,4,0,0,0,211.89,119.09ZM102.68,227l13.24-66.2a4,4,0,0,0-2.52-4.53L55,134.36,153.32,29l-13.24,66.2a4,4,0,0,0,2.52,4.53L201,121.64Z"></path></svg>
                                 <svg class="hover_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M220,144v64a4,4,0,0,1-4,4H40a4,4,0,0,1-4-4V144a4,4,0,0,1,8,0v60H212V144a4,4,0,0,1,8,0Zm-94.83,2.83a4,4,0,0,0,5.66,0l40-40a4,4,0,1,0-5.66-5.66L132,134.34V32a4,4,0,0,0-8,0V134.34L90.83,101.17a4,4,0,0,0-5.66,5.66Z"></path></svg>
-                                <span>Optimized.zip</span>
+                                <span>Demovio 2.5 Optimized.zip (Рекомендуется)</span>
+                            </button>
+                            <button onclick="window.open('downloads/demovio-2.5-optimized-extras.zip')" class="download_package">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M196.2,132.81l-53.36-19.65L123.19,59.8a11.93,11.93,0,0,0-22.38,0L81.16,113.16,27.8,132.81a11.93,11.93,0,0,0,0,22.38l53.36,19.65,19.65,53.36a11.93,11.93,0,0,0,22.38,0l19.65-53.36,53.36-19.65a11.93,11.93,0,0,0,0-22.38Zm-2.77,14.87L138.35,168a4,4,0,0,0-2.37,2.37l-20.3,55.08a3.92,3.92,0,0,1-7.36,0L88,170.35A4,4,0,0,0,85.65,168l-55.08-20.3a3.92,3.92,0,0,1,0-7.36L85.65,120A4,4,0,0,0,88,117.65l20.3-55.08a3.92,3.92,0,0,1,7.36,0L136,117.65a4,4,0,0,0,2.37,2.37l55.08,20.3a3.92,3.92,0,0,1,0,7.36ZM148,40a4,4,0,0,1,4-4h20V16a4,4,0,0,1,8,0V36h20a4,4,0,0,1,0,8H180V64a4,4,0,0,1-8,0V44H152A4,4,0,0,1,148,40Zm96,48a4,4,0,0,1-4,4H228v12a4,4,0,0,1-8,0V92H208a4,4,0,0,1,0-8h12V72a4,4,0,0,1,8,0V84h12A4,4,0,0,1,244,88Z"></path></svg>
+                                <svg class="hover_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M220,144v64a4,4,0,0,1-4,4H40a4,4,0,0,1-4-4V144a4,4,0,0,1,8,0v60H212V144a4,4,0,0,1,8,0Zm-94.83,2.83a4,4,0,0,0,5.66,0l40-40a4,4,0,1,0-5.66-5.66L132,134.34V32a4,4,0,0,0-8,0V134.34L90.83,101.17a4,4,0,0,0-5.66,5.66Z"></path></svg>
+                                <span>Demovio 2.5 Optimized+Extras.zip</span>
+                            </button>
+                            <button onclick="window.open('downloads/demovio-2.5-barebones.zip')" class="download_package">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M228.6,63.46A31.83,31.83,0,0,0,204.1,52H204a32,32,0,1,0-59.17,17,4,4,0,0,1-.51,5L74,144.36a4,4,0,0,1-5,.51A32,32,0,1,0,51.9,204H52a32,32,0,1,0,59.16-17,4,4,0,0,1,.51-5L182,111.64a4,4,0,0,1,5-.51A32,32,0,0,0,228.6,63.46ZM222.1,99.8a24,24,0,0,1-30.8,4.55A12,12,0,0,0,176.37,106L106,176.37a12,12,0,0,0-1.63,14.93,24,24,0,1,1-44.09,9,4,4,0,0,0-1.12-3.45,4,4,0,0,0-2.83-1.17,4.32,4.32,0,0,0-.62.05,24,24,0,1,1,9-44.09A12,12,0,0,0,79.63,150L150,79.63a12,12,0,0,0,1.63-14.93,24,24,0,1,1,44.09-9,4,4,0,0,0,4.57,4.57A24,24,0,0,1,222.1,99.8Z"></path></svg>
+                                <svg class="hover_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M220,144v64a4,4,0,0,1-4,4H40a4,4,0,0,1-4-4V144a4,4,0,0,1,8,0v60H212V144a4,4,0,0,1,8,0Zm-94.83,2.83a4,4,0,0,0,5.66,0l40-40a4,4,0,1,0-5.66-5.66L132,134.34V32a4,4,0,0,0-8,0V134.34L90.83,101.17a4,4,0,0,0-5.66,5.66Z"></path></svg>
+                                <span>Demovio 2.5 BareBones.zip</span>
                             </button>
                         </div>
                         <p>После того, как вы скачали архив с модами, в главном меню игры откройте раздел <b>Моды / Mods</b> -> <b>Открыть папку с модами / Open mods folder</b>.
@@ -319,7 +349,7 @@
                         </div>
                     </button>
                     <div class="help-section-content">
-                        <p>На текущий момент мы используем Minecraft версии 1.20.1. Версия текущей сборки модов: 2.0.1. Если мы обновим сервер, то обязательно сообщим об этом в Telegram и на сайте.</p>
+                        <p>На текущий момент мы используем Minecraft версии 1.20.1. Версия текущей сборки модов: Demovio 2.5. Если мы обновим сервер, то обязательно сообщим об этом в Telegram и на сайте.</p>
                         <p>Подключиться к серверу Demovio вы можете по IP адресу <a class="monospace">demovio.lol</a></p>    
                         <p>Ввести этот адрес необходимо в Сетевая игра – Добавить – IP адрес.</p>    
                     </div>
@@ -334,8 +364,8 @@
                     <div class="help-section-content">
                         <p>На сервере действуют общие правила, чтобы обеспечить порядок в мире и комфорт для всех игроков.
                             Ознакомиться с ними можно по этой ссылке: <a href="https://telegra.ph/Obshchaya-Svodka-Pravil-Demovio-03-09">https://telegra.ph/Obshchaya-Svodka-Pravil-Demovio-03-09</a></p>
-                        <p>Штаты могут задавать свои собственные правила, помимо общих, которые действуют тольао на их территории и/или для их граждан. Ознакомиться с ними можно здесь:</p>
-                        <p>
+                        <p>Штаты могут задавать свои собственные правила, помимо общих, которые действуют только на их территории и/или для их граждан.</p>
+                        <p style="display: none;">
                             <a href="">Законы штата Калифорния</a><br>
                             <a href="">Законы штата Шанхай</a><br>
                             <a href="">Законы штата Нью Йорк</a><br>
@@ -343,8 +373,8 @@
                             <a href="">Законы штата Джорджия</a><br>
                         </p>
                         <p>Просим с уважением относиться к правилам сервера Demovio, чтобы сохранять уютную атмосферу игры.</p>
+                        <p style="display: none;">Если вы стали свидетелем нарушения законов какого-либо штата, то пожалуйста, свяжитесь с руководством этого штата или <a href="https://t.me/devio101">@devio101</a>.</p>
                         <p>Если вы заметили нарушение правил сервера, то пожалуйста, свяжитесь с <a href="https://t.me/devio101">@devio101</a>.</p>
-                        <p>Если вы стали свидетелем нарушения законов какого-либо штата, то пожалуйста, свяжитесь с руководством этого штата или <a href="https://t.me/devio101">@devio101</a>.</p>
                     </div>
                 </section>
                 <section class="help-section small">
@@ -356,10 +386,10 @@
                     </button>
                     <div class="help-section-content">
                         <p class="warn">Смена гражданства и прочих данных временно производится в ручном режиме. Обратитесь к <a href="https://t.me/devio101">@devio101</a> за подробностями.</p>
-                        <p>Вы можете менять ваш игровой скин не чаще 1 раза каждые 14 дней, воспользовашись страницей <a href="https://demovio.lol/change-skin">demovio.lol/change-skin</a>.
+                        <p>Вы можете менять ваш игровой скин не чаще 1 раза каждые 14 дней, воспользовавшись страницей <a href="https://demovio.lol/change-skin">demovio.lol/change-skin</a>.
                         Если вам необходимо изменить другие данные, такие как контактная информация или местоимения, обратитесь к <a href="https://t.me/devio101">@devio101</a>.</p>
                         <p>Вы можете менять гражданство не чаще 1 раза в месяц по личным причинам или из-за переезда.
-                            Некоторые штаты поддерживают автоматическое одобрение заявки на получение гражданства, такие как Калифорния. Джорджия и Огайо.
+                            Некоторые штаты поддерживают автоматическое одобрение заявки на получение гражданства, такие как Калифорния, Джорджия и Огайо.
                             Чтобы податься на них, используйте следующую форму: <a href="https://demovio.lol/change-citizenship">demovio.lol/change-citizenship</a>.
                         </p>
                         <p>Для остальных штатов действия отличаются:</p>
@@ -510,6 +540,6 @@
         <script src="scripts/master.js"></script>
         <script src="scripts/server.js"></script>
         <script src="scripts/backstage.js"></script>
-        
+        <link rel="stylesheet" href="styles/stamps.css">
     </body>
 </html>

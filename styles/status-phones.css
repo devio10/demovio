@@ -115,11 +115,6 @@
     .passport-residentship section {
         padding: 2px 0;
     }
-    .passport-stamp {
-        scale: 0.8;
-        bottom: 24px;
-        right: 6px;
-    }
     .passport-user_pic {
         width: 72px;
         height: 72px;
@@ -165,6 +160,9 @@
         background-color: rgba(0,0,0,0.7);
         padding: 16px;
         padding-bottom: 96px;
+    }
+    .window.no-background {
+        padding: 16px 16px 96px 16px;
     }
     .window h2 {
         font-size: 32px;

@@ -1,0 +1,228 @@
+.passport-stamp {
+    --color: #4c1d95;
+    position: absolute;
+    bottom: 46px;
+    right: 32px;
+    border: 3px solid var(--color);
+    border-radius: 4px;
+    display: flex;
+    height: 56px;
+    opacity: 0.5;
+    rotate: -15deg;
+    scale: 0.9;
+    pointer-events: none;
+    user-select: none;
+
+    display: none;
+}
+.passport-stamp.shown {
+    display: flex;
+}
+.passport-stamp.NY.shown {
+    display: block;
+}
+.passport-stamp.NY {
+    --color: #1e3a8a;
+    height: 82px;
+    border-radius: 100%;
+    aspect-ratio: 2.5/1;
+    padding: 4px;
+    border-style: double;
+}
+.passport-stamp.NY div {
+    border: 2px dashed red;
+    border-radius: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.stamp_ny_cityname {
+    color: var(--color);
+    font-weight: 500;
+    font-size: 18px;
+    border: 1px solid var(--color);
+    border-left: none;
+    border-right: none;
+    padding: 0 8px;
+    font-family: 'Times New Roman', Times, serif;
+}
+.stamp_ny_text {
+    color: var(--color);
+    font-size: 10px;
+    font-weight: 500;
+    font-family: 'Times New Roman', Times, serif;
+}
+.passport-stamp.SH {
+    --color: #e11d48;
+    border-radius: 0;
+    border-width: 2px;
+    outline: 2px dashed var(--color);
+    outline-offset: 2px;
+    flex-direction: column;
+    height: auto;
+    opacity: 0.6;
+}
+.passport-stamp.SH span {
+    color: var(--color);
+}
+.stamp_sh_top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px;
+    padding: 4px;
+}
+.stamp_sh_top svg {
+    fill: var(--color);
+}
+.stamp_sh_top span {
+    font-size: 12px;
+    border: 1px solid var(--color);
+    border-left: none;
+    border-right: none;
+}
+.passport-stamp.SH .stamp_sh_name {
+    width: 100%;
+    background-color: var(--color);
+    font-weight: 800;
+    padding: 2px 0;
+    font-size: 18px;
+    text-align: center;
+}
+.passport-stamp.SH .stamp_sh_name span {
+    color: black;
+}
+.stamp_sh_bottom {
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 6px;
+    font-size: 12px;
+}
+.passport-stamp.generic > span {
+    background-color: var(--color);
+    color: white;
+    opacity: 1;
+    padding: 0 6px;
+    display: flex;
+    align-items: center;
+
+    font-size: 24px;
+    font-weight: 500;
+}
+.passport-stamp.generic div {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.passport-stamp.generic div span {
+    color: var(--color);
+    opacity: 1;
+    font-weight: 700;
+    font-size: 12px;
+    padding: 0 12px;
+}
+.passport-stamp.generic div span:nth-child(2) {
+    color: #db2777;
+}
+.passport-stamp.OH {
+    --color: #1d4ed8;
+    border-width: 1.5px;
+    border-radius: 14px;
+    flex-direction: column;
+    padding: 6px;
+    opacity: 0.75;
+    height: auto;
+}
+.stamp_oh_top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+.passport-stamp.OH span {
+    color: var(--color);
+    font-weight: 500;
+}
+.passport-stamp.OH svg {
+    stroke: var(--color);
+}
+.passport-stamp.OH .date {
+    text-align: center;
+}
+.passport-stamp.GE {
+    height: auto;
+    flex-direction: column;
+    justify-content: center;
+    aspect-ratio: 1/1;
+    border-radius: 100%;
+    padding: 12px;
+}
+.passport-stamp.GE span {
+    color: var(--color);
+    text-align: center;
+}
+.passport-stamp.GE .stamp_ge_name {
+    font-weight: 600;
+    font-size: 20px;
+}
+.passport-stamp.CA {
+    border-width: 4px;
+    border-radius: 8px;
+    padding: 2px;
+    height: auto;
+    --color: #b45309;
+}
+.passport-stamp.CA > div {
+    border: 1.5px dashed var(--color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 4px 4px 4px;
+    border-radius: 2px;
+}
+.passport-stamp.CA svg {
+    height: 56px;
+    width: 56px;
+    fill: var(--color);
+}
+.passport-stamp.CA span {
+    color: var(--color);
+    font-size: 16px;
+    font-weight: 500;
+    padding: 0 4px;
+    text-transform: uppercase;
+    line-height: 1;
+    margin: 0;
+}
+.passport-stamp.CA .date {
+    border: 1px solid var(--color);
+    border-left: none;
+    border-right: none;
+    margin-bottom: 4px;
+    line-height: 1.2;
+}
+.passport-stamp.CA .stamp_ca_name {
+    font-size: 22px;
+    letter-spacing: -2px;
+    line-height: 1;
+}
+
+@media screen and (max-width: 768px) {
+    .passport-stamp {
+        scale: 0.8;
+        bottom: 24px;
+        right: 6px;
+    }
+}
+
+.passport-stamp.effect {
+    mask-image: url('/images/grunge.png');
+    mask-size: 600px 600px;
+    -webkit-mask-image: url('/images/grunge.png');
+    -webkit-mask-size: 400px 400px;
+    mix-blend-mode: multiply;
+}
