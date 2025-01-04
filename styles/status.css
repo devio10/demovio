@@ -21,6 +21,18 @@
 .welcome_player {
     display: none;
 }
+.welcome_player img, .welcome_player .custom_skin {
+    width: 42px;
+    aspect-ratio: 1/1;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+.welcome_player .custom_skin {
+    background-image: url(https://demovio.lol/skins/Dimanius100.png);
+    background-position: -42px -42px;
+    background-repeat: no-repeat;
+    background-size: 336px 336px;
+}
 .welcome_player.shown {
     display: flex;
 }
@@ -518,25 +530,43 @@ button.card.hiding div {
     border-top: 2px solid rgba(0,0,0,0.1);
     box-shadow: 0px 0 30px 0px rgba(0,0,0,0.6);
 }
-.passport-user_pic {
+.passport-user_pic_container {
     background-color: rgba(0,0,0,0.1);
     padding: 24px 16px;
     border: 1px solid rgba(0,0,0,0.05);
     margin: 24px 0 0 16px;
+    height: min-content;
+}
+.passport-pictures {
+    display: contents;
+}
+.passport-user_pic {
     width: 96px;
     height: 96px;
     box-sizing: content-box;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+.passport-user_pic.custom_skin {
+    background-image: url(https://demovio.lol/skins/Dimanius100.png);
+    background-repeat: no-repeat;
+    background-position: -96px -96px;
+    background-size: 768px 768px;
 }
 .passport-user_pic.holo {
     padding: 0;
-    background-color: none;
     border: none;
     position: absolute;
     filter: sepia(1);
     opacity: 0.15;
     right: 24px;
+    margin-top: 24px;
     width: 32px;
     height: 32px;
+}
+.passport-user_pic.holo.custom_skin {
+    background-position: -32px -32px;
+    background-size: 256px 256px;
 }
 .passport-info_block {
     padding: 24px 8px 0 16px;
@@ -692,10 +722,18 @@ span.passport-watermark_demovio.third {
 .players-list li:first-child {
     border-top: 1px solid rgba(255,255,255,0.2);
 }
-.players-list img {
+.players-list img, .players-list .custom_skin {
     border: 1px solid rgba(255,255,255,0.2);
     width: 42px;
     aspect-ratio: 1/1;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+.players-list .custom_skin {
+    background-image: url(https://demovio.lol/skins/Dimanius100.png);
+    background-position: -42px -42px;
+    background-repeat: no-repeat;
+    background-size: 336px 336px;
 }
 .players-list img.banned {
     outline: 2px solid #dc2626;
@@ -1012,6 +1050,9 @@ button.modal.accent:hover {
     pointer-events: none;
     opacity: 0;
     transition-duration: .1s;
+}
+.context_menu > div.hidden {
+    display: none;
 }
 .context_menu button:not(.tag) {
     border-radius: 5px;

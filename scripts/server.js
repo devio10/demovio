@@ -1,16 +1,21 @@
 var players_online = [];
 var api_url = 'request/';
 if (localStorage.getItem('debug') == 'true') { api_url = 'https://demovio.lol/request/'; }
+let statusTimer;
 
 function checkStatus() {
     let status_obj = document.querySelector('.server-status');
 
     let xhr = new XMLHttpRequest();
+    
     xhr.onload = function() {
     if (xhr.status >= 200 && xhr.status < 300) {
         if (xhr.responseText == "offline") {
             status_obj.innerHTML = 'Сервер оффлайн';
             document.querySelector('.server-players').style.display = 'none';
+            statusTimer = setTimeout(() => {
+                checkStatus();
+            }, 30000);
             return;
         }
         status_obj.innerHTML = 'Сервер онлайн';
@@ -31,12 +36,16 @@ function checkStatus() {
 
         document.querySelector('.server-players').innerText = players_text;
 
-        setTimeout(() => {
+        statusTimer = setTimeout(() => {
             checkStatus();
         }, 10000);
     } else {
+        statusTimer = setTimeout(() => {
+            checkStatus();
+        }, 30000);
         status_obj.innerHTML = 'Сервер оффлайн';
         console.error('Request failed with status ', xhr.status);
+        
     }
     };
 
@@ -47,6 +56,25 @@ function checkStatus() {
     xhr.send();
 }
 checkStatus();
+
+function forceRefresh() {
+    clearTimeout(statusTimer);
+    document.querySelector('.server-status').innerHTML = 'Обновление...';
+    checkStatus();
+    playersList();
+}
+
+function getPlayerSkinURL(value, className) {
+    let path = `https://api.mcheads.org/head/${value}/42.png`;
+    if (className === undefined) {
+        className = '';
+    }
+    if (value.includes('skins/')) {
+        path = `https://demovio.lol/${value}`;
+        return `<div class="custom_skin ${className}" style="background-image: url(${path})"></div>`;
+    }
+    return `<img src="${path}" class="${className}">`;
+}
 
 function playersList() {
     let list = document.querySelector('.players-list');
@@ -99,7 +127,7 @@ function playersList() {
                 pronouns = `<span class="pronouns">${data[i].pronouns} (${player_citizenship.code})</span>`;
 
                 if (data[i].isActivated == 0) {
-                    activationClass = ` class="not_activated"`;
+                    activationClass = `not_activated`;
                 }
                 moreOptions = `
                     <a class="players-more_options" onclick="playerOptions(event, '${data[i].name}', '${data[i].isActivated}', ${data[i].isBanned})"> <img src="images/more.svg"> </a>
@@ -107,11 +135,11 @@ function playersList() {
 
                 if (data[i].isBanned == 1) {
                     card.classList.add('banned');
-                    activationClass = ` class="banned"`;
+                    activationClass = `banned`;
                 }
             }
             card.innerHTML = `
-                <img src="https://api.mcheads.org/head/${skin}/42.png"${activationClass}>
+                ${getPlayerSkinURL(skin, activationClass)}
                 <div>
                     <span class="name">${player_name}${online_status}</span>
                     ${pronouns}
@@ -119,9 +147,12 @@ function playersList() {
                 ${contact}
                 ${moreOptions}
             `;
-            card.querySelector('img').addEventListener('error', (e) => {
-                e.target.src = 'images/head_default.png';
-            });
+            if (card.querySelector('img')) {
+                card.querySelector('img').addEventListener('error', (e) => {
+                    e.target.src = 'images/head_default.png';
+                });
+            }
+            
             if (online_status == "") {
                 list.appendChild(card);
             } else {
@@ -171,10 +202,9 @@ async function retrieveUserData() {
 
         document.querySelector('.welcome_player').classList.add('shown');
         document.querySelector('.header-user_button').disabled = null;
-        document.querySelector('.welcome_player span').innerText = `Добро пожаловать, ${user.name}!`;
 
         if (user.name !== 'devio10') {
-            document.querySelector('.context_menu').remove();
+            document.querySelector('.context-backstage').remove();
         }
 
         userSkin = user.name;
@@ -182,9 +212,10 @@ async function retrieveUserData() {
             userSkin = user.skin;
         }
 
-        document.querySelector('.welcome_player img').src = `https://api.mcheads.org/head/${userSkin}/42.png`;
-        document.querySelector('.user_block-img').src = `https://api.mcheads.org/head/${userSkin}/36.png`;
-        document.querySelector('.user_block-name').innerText = user.name;
+        document.querySelector('.welcome_player').innerHTML = `
+            <span>Добро пожаловать, ${user.name}!</span>    
+            ${getPlayerSkinURL(userSkin)}
+        `;
         
         if (user.isActivated != 1) {
             document.querySelector('.no_passports').style.display = 'block';
@@ -262,8 +293,12 @@ async function retrieveUserData() {
         }
         document.querySelector('.user-pronouns').innerText = user_pronouns;
 
-        document.querySelector('.passport-user_pic.holo').src = `https://api.mcheads.org/head/${userSkin}/32.png`;
-        document.querySelector('.passport-user_pic').src = `https://api.mcheads.org/head/${userSkin}/96.png`;
+        document.querySelector('.passport-pictures').innerHTML = `
+            <div class="passport-user_pic_container">
+                ${getPlayerSkinURL(userSkin, 'passport-user_pic')}
+            </div>
+            ${getPlayerSkinURL(userSkin, 'passport-user_pic holo')}
+        `;
 
         let uuid = ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
 
@@ -308,7 +343,7 @@ async function retrieveUserData() {
         document.querySelector('.user-passport').style.display = 'none';
         document.querySelector('.no_passports').style.display = 'block';
         document.querySelector('.login_button').classList.add('shown');
-        document.querySelector('.context_menu').remove();
+        document.querySelector('.context-backstage').remove();
     }
 }
 retrieveUserData();

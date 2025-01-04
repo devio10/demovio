@@ -159,6 +159,43 @@ header {
     transition: .3s ease-in-out opacity;
     opacity: 1;
 }
+.archive-screen {
+    padding: 96px 16px 16px 16px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+.archive-maps img {
+    max-width: 100%;
+}
+.archive-maps {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+    margin-top: 32px;
+}
+.selection-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: fit-content;
+    background-color: rgba(255,255,255,0.1);
+    height: 48px;
+    padding: 4px;
+    border-radius: 100px;
+    overflow: clip;
+    margin-top: 16px;
+}
+.selection-buttons button {
+    height: 100%;
+    border-radius: 100px;
+    font-size: 14px;
+    padding: 0 16px;
+    width: 100%;
+    text-align: center;
+}
+.selection-buttons button.active {
+    background-color: rgba(255,255,255,0.1);
+}
 .screen.hidden {
     pointer-events: none;
     opacity: 0;

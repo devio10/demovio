@@ -12,7 +12,7 @@ function playerOptions(event, name, isActivated) {
         document.querySelector('#context_menu-passport').classList.add('hidden');
     }
     contextName = name;
-    summonContextMenu(event);
+    summonContextMenu(event, 'backstage');
 }
 
 async function backstageAction(action) {

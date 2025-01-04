@@ -1,11 +1,16 @@
 
-function summonContextMenu(event) {
+function summonContextMenu(event, page) {
     let context_menu = document.querySelector(".context_menu");
     if (!context_menu.classList.contains('hidden')) {
         context_menu.classList.add("hidden");
         return;
     }
     contextmenuClick(event);
+    let pages = document.querySelectorAll('.context_menu > div');
+    for (let i=0; i<pages.length;i++) {
+        pages[i].classList.add('hidden');
+    }
+    document.querySelector(`.context-${page}`).classList.remove('hidden');
     setTimeout(() => {
         document.addEventListener('click', () => {
             context_menu.classList.add("hidden");
