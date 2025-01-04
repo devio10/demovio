@@ -17,7 +17,7 @@
             <div class="page-backgrounds">
                 <img src="posters/home-christmas.jpeg" id="bg-credentials">
                 <div class="background-skin-preview">
-                    <img src="https://api.mcheads.org/iosbody/devio10.png">
+                    <img src="https://api.mcheads.org/iosbody/Steve1.png">
                 </div>
             </div>
             <div class="page-main">
@@ -84,17 +84,47 @@
             
                     <div class="screen screen-skin hidden">
                         <h1>Подберём вам внешность</h1>
-                        <p class="text-description">Подберите скин на <a href="https://skinmc.net">skinmc.net</a>, чтобы придать уникальности вашему персонажу. 
-                            Так другим игрокам легче узнавать вас.</p>
-            
-                        <div class="fields">
-                            <img class="skin-preview" src="https://api.mcheads.org/iosbody/devio10.png">
-                            <span class="input-title">Имя Скина</span>
-                            <input type="text" name="skin" class="input-skin" placeholder="Имя игрока, который носит скин" autocorrect="off" autocapitalize="off">
+
+                        <span class="input-title skin_options-title">Источник Скина</span>
+                        <div class="options skin-options">
+                            <button class="option-button selected" onclick="handleOptions(this); selectSkinProvider('license')">
+                                <div><span></span></div>
+                                SkinMC.net
+                            </button>
+                            <button class="option-button" onclick="handleOptions(this); selectSkinProvider('customskin')">
+                                <div><span></span></div>
+                                Свой файл
+                            </button>
                         </div>
-                        <div class="screen-buttons">
-                            <button onclick="saveSkin()" class="submit-button">Применить</button>
-                            <button onclick="saveSkin(true)" class="submit-button no-background">Пропустить</button>
+
+                        <div class="skin-provider license-provider shown">
+                            <p class="text-description">Подберите скин на <a href="https://skinmc.net">skinmc.net</a>, чтобы придать уникальности вашему персонажу. 
+                                Так другим игрокам легче узнавать вас.</p>
+                
+                            <div class="fields">
+                                <img class="skin-preview" src="https://api.mcheads.org/iosbody/devio10.png">
+                                <span class="input-title">Имя Скина</span>
+                                <input type="text" name="skin" class="input-skin" placeholder="Имя игрока, который носит скин" autocorrect="off" autocapitalize="off">
+                            </div>
+                            <div class="screen-buttons">
+                                <button onclick="saveSkin()" class="submit-button">Применить</button>
+                                <button onclick="saveSkin(true)" class="submit-button no-background">Пропустить</button>
+                            </div>
+                        </div>
+                        <div class="skin-provider customskin-provider">
+                            <p class="text-description">Загрузите собственный .PNG файл скина. Он должен соответствовать требованиям к формату.</p>
+                
+                            <div class="image_picker-container">
+                                <label class="picture" for="picture__input" tabIndex="0">
+                                    <span class="picture__image">Выберите файл...</span>
+                                </label>
+                                <input type="file" name="picture__input" id="picture__input">
+                            </div>
+
+                            <div class="screen-buttons">
+                                <button onclick="saveSkin()" class="submit-button">Применить</button>
+                                <button onclick="saveSkin(true)" class="submit-button no-background">Пропустить</button>
+                            </div>
                         </div>
                     </div>
             
@@ -147,24 +177,24 @@
                         <p class="text-description">Укажите ваши местоимения, чтобы другие люди знали, как к вам обращаться.</p>
                         
                         <div class="fields">
-                            <div class="options">
-                                <button class="option-button" onclick="choosePronouns('он/его', this)">
+                            <div class="options pronouns-options">
+                                <button class="option-button" onclick="handleOptions(this); choosePronouns('он/его')">
                                     <div><span></span></div>
                                     он/его
                                 </button>
-                                <button class="option-button" onclick="choosePronouns('она/её', this)">
+                                <button class="option-button" onclick="handleOptions(this); choosePronouns('она/её')">
                                     <div><span></span></div>
                                     она/её
                                 </button>
-                                <button class="option-button" onclick="choosePronouns('они/их', this)">
+                                <button class="option-button" onclick="handleOptions(this); choosePronouns('они/их')">
                                     <div><span></span></div>
                                     они/их
                                 </button>
-                                <button class="option-button" onclick="choosePronouns('', this)">
+                                <button class="option-button" onclick="handleOptions(this); choosePronouns('')">
                                     <div><span></span></div>
                                     Не указывать
                                 </button>
-                                <button class="option-button" onclick="choosePronouns(false, this)">
+                                <button class="option-button" onclick="handleOptions(this); choosePronouns(false)">
                                     <div><span></span></div>
                                     Другое
                                 </button>
@@ -228,6 +258,7 @@
             <span>Вы есть в белом списке! Ваш аккаунт будет активирован сразу после завершения регистрации.</span>
         </div>
 
+        <script src="scripts/images.js"></script>
         <script src="scripts/auth.js"></script>
         <script src="scripts/signup.js"></script>
     </body>

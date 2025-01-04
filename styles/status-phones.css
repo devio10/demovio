@@ -115,11 +115,18 @@
     .passport-residentship section {
         padding: 2px 0;
     }
+    .passport-user_pic_container {
+        padding: 16px 12px;
+    }
     .passport-user_pic {
         width: 72px;
         height: 72px;
-        padding: 16px 12px;
-        margin: 16px 0 0 16px
+    }
+    .passport-user_pic.custom_skin {
+        background-image: url(https://demovio.lol/skins/Dimanius100.png);
+        background-repeat: no-repeat;
+        background-position: -72px -72px;
+        background-size: 576px 576px;
     }
     .passport-info_block {
         padding: 16px 8px 0 16px;

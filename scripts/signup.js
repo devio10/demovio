@@ -289,18 +289,29 @@ function saveCitizenship() {
     address: '-'
   };
 }
+
+function selectSkinProvider(provider) {
+  if (document.querySelector('.skin-provider.shown')) {
+    document.querySelector('.skin-provider.shown').classList.remove('shown');
+  }
+  document.querySelector(`.${provider}-provider`).classList.add('shown');
+}
+
+function handleOptions(element) {
+  if (element.parentElement.querySelector('.option-button.selected')) {
+    element.parentElement.querySelector('.option-button.selected').classList.remove('selected');
+  }
+  element.classList.add('selected');
+}
 var pronouns;
-function choosePronouns(value, element) {
+function choosePronouns(value) {
   pronouns = value;
   if (pronouns === false) {
     document.querySelector('.input-pronouns').classList.add('shown');
   } else {
     document.querySelector('.input-pronouns').classList.remove('shown');
   }
-  if (document.querySelector('.screen-pronouns .option-button.selected')) {
-    document.querySelector('.screen-pronouns .option-button.selected').classList.remove('selected');
-  }
-  element.classList.add('selected');
+  
 }
 
 function savePronouns() {
@@ -368,5 +379,5 @@ async function requestSignup() {
     console.error('Error: ', error)
   }
 }
-showScreen(screens[0]);
-// showScreen('pronouns');
+// showScreen(screens[0]);
+showScreen('skin');
