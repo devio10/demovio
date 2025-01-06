@@ -143,14 +143,19 @@ function handleSkinPreview() {
 
   skin_preview.src = `https://api.mcheads.org/iosbody/${skin_name}.png`;
   skin_preview_desktop.src = `https://api.mcheads.org/iosbody/${skin_name}.png`;
+
+  if (currentPreview === 'Steve1' || currentPreview === playerName) {
+    document.querySelector('.licenseskin-submit').disabled = true;
+  }
 }
 let debounceTimeout;
 document.querySelector('.input-skin').addEventListener('input', () => {
-  clearTimeout(debounceTimeout)
+  clearTimeout(debounceTimeout);
+  document.querySelector('.licenseskin-submit').disabled = true;
   checkedCurrentSkin = false;
   debounceTimeout = setTimeout(() => {
-    handleSkinPreview()
-  }, 500);
+    handleSkinPreview();
+  }, 350);
 });
 document.querySelector('.skin-preview').addEventListener('error', (e) => {
   if (currentPreview != 'Steve1') {
@@ -160,6 +165,11 @@ document.querySelector('.skin-preview').addEventListener('error', (e) => {
 });
 document.querySelector('.skin-preview').addEventListener('load', (e) => {
   checkedCurrentSkin = true;
+  if (currentPreview === 'Steve1' || currentPreview === playerName) {
+    document.querySelector('.licenseskin-submit').disabled = true;
+  } else {
+    document.querySelector('.licenseskin-submit').disabled = undefined;
+  }
 });
 
 function setLicenseAvailability(value) {
@@ -289,12 +299,20 @@ function saveCitizenship() {
     address: '-'
   };
 }
-
+let currentSkinProvider = 'license';
 function selectSkinProvider(provider) {
   if (document.querySelector('.skin-provider.shown')) {
     document.querySelector('.skin-provider.shown').classList.remove('shown');
   }
   document.querySelector(`.${provider}-provider`).classList.add('shown');
+
+  currentSkinProvider = provider;
+
+  if (currentSkinProvider === 'license') {
+    document.querySelector('.background-skin-preview').classList.add('shown');
+  } else {
+    document.querySelector('.background-skin-preview').classList.remove('shown');
+  }
 }
 
 function handleOptions(element) {

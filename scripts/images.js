@@ -6,36 +6,44 @@ var loadedImage = 0;
 var imagePaths = {}
 
 inputFile.addEventListener("change", function (e) {
+  detectUpload(e);
+});
+
+async function detectUpload(e) {
   const inputTarget = e.target;
   const file = inputTarget.files[0];
 
   if (file) {
 
-    if (!validateFile(file)) {
-      return;
+    const validation = await validateFile(file);
+
+    if (validation) {
+      document.querySelector('.custom_skin-submit').disabled = undefined;
+      const reader = new FileReader();
+
+      reader.addEventListener("load", function (e) {
+        const readerTarget = e.target;
+
+        loadedImage = readerTarget.result;
+        
+
+        const img = document.createElement("img");
+        img.src = readerTarget.result;
+        img.classList.add("picture__img");
+
+        pictureImage.innerHTML = "";
+        pictureImage.appendChild(img);
+      });
+
+      reader.readAsDataURL(file);
+    } else {
+      document.querySelector('.custom_skin-submit').disabled = true;
     }
-
-    const reader = new FileReader();
-
-    reader.addEventListener("load", function (e) {
-      const readerTarget = e.target;
-
-      loadedImage = readerTarget.result;
-      
-
-      const img = document.createElement("img");
-      img.src = readerTarget.result;
-      img.classList.add("picture__img");
-
-      pictureImage.innerHTML = "";
-      pictureImage.appendChild(img);
-    });
-
-    reader.readAsDataURL(file);
   } else {
+    document.querySelector('custom_skin-submit').disabled = true;
     pictureImage.innerHTML = pictureImageTxt;
   }
-});
+}
 
 async function uploadImage() {
 

@@ -110,6 +110,7 @@ input {
     position: relative;
     text-decoration: none;
 }
+
 .submit-button .spinner {
     height: 32px;
     width: 32px;
