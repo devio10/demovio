@@ -735,11 +735,11 @@ span.passport-watermark_demovio.third {
     background-repeat: no-repeat;
     background-size: 336px 336px;
 }
-.players-list img.banned {
+.players-list .banned {
     outline: 2px solid #dc2626;
     outline-offset: 2px;
 }
-.players-list img.not_activated {
+.players-list .not_activated {
     outline: 2px solid #fcd34d;
     outline-offset: 2px;
 }

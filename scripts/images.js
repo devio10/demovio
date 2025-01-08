@@ -145,12 +145,12 @@ async function validateFile(file) {
 
   const fileExtension = file.name.split('.').pop().toLowerCase();
   if (!allowedExtensions.includes(fileExtension)) {
-    showPopup('Изображение должно иметь расширение .PNG: убедитесь что вы загружаете правильный файл.', 'error');
+    showPopup('Изображение должно иметь расширение .PNG: убедитесь, что вы загружаете правильный файл.', 'error');
     return false;
   }
 
   if (file.size > maxFileSize) {
-    showPopup('Изображение слишком тяжёлое: убедитесь что вы загружаете правильный файл.', 'error');
+    showPopup('Изображение слишком тяжёлое: убедитесь, что вы загружаете правильный файл.', 'error');
     return false;
   }
 
@@ -165,7 +165,7 @@ async function validateFile(file) {
 
   console.log(width, height);
   if (!isValidSize) {
-    showPopup('Некорректные размеры изображения: убедитесь что вы загружаете правильный файл.', 'error');
+    showPopup('Некорректные размеры изображения: убедитесь, что вы загружаете правильный файл.', 'error');
     return false
   }
 
