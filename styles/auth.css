@@ -322,6 +322,7 @@ button.big:hover span {
 .new-passport h2, .new-passport span {
     background: linear-gradient(to bottom, #cfc09f 27%, #ffecb3 40%, #e5d092b0 78%); 
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     font-family: 'Times New Roman', Times, serif;
     font-size: 32px;
