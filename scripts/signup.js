@@ -391,6 +391,7 @@ async function requestSignup() {
 
         if (result === 'created' || result === 'created_noskin') {
             showScreen('passport');
+            localStorage.setItem('redirect', 'true');
             if (!isWhitelisted) {
                 document.querySelector('.screen-passport h1').innerText = 'Регистрация завершена';
                 document.querySelector('.new-passport').style.display = 'none';

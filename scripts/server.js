@@ -200,6 +200,10 @@ async function retrieveUserData() {
 
         localStorage.setItem('showStatusLink', 'true');
 
+        if (localStorage.getItem('redirect') === null) {
+            localStorage.setItem('redirect', 'true');
+        }
+
         document.querySelector('.welcome_player').classList.add('shown');
         document.querySelector('.header-user_button').disabled = null;
 
@@ -352,6 +356,7 @@ function logout() {
 
     xhr.onload = function() {
     if (xhr.status >= 200 && xhr.status < 300) {
+        localStorage.clear();
         window.open('/', '_self');
     } else {
         console.error('Request failed with status ', xhr.status);

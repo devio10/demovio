@@ -257,3 +257,11 @@ const announcementBan = {
         },
     ],
 };
+
+function toggleRedirect() {
+    if (localStorage.getItem('redirect') === 'true') {
+        localStorage.setItem('redirect', 'false');
+    } else {
+        localStorage.setItem('redirect', 'true');
+    }
+}

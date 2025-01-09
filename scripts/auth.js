@@ -21,50 +21,51 @@ async function login() {
         document.querySelector('.submit-button').disabled = true;
 
         const response = await fetch(`${api_url}login.php`, {
-          method: 'POST',
-          body: JSON.stringify({
-            name: name,
-            password: password,
-          })
+            method: 'POST',
+            body: JSON.stringify({
+                name: name,
+                password: password,
+            })
         })
-        
+
         const result = await response.text();
-    
+
         if (result == "logged_in") {
-          document.querySelector('.submit-button').disabled = null;
-          window.open('status', '_self');
+            document.querySelector('.submit-button').disabled = null;
+            localStorage.setItem('redirect','true');
+            window.location.href = '/status';
         } else if (result == "wrong_credentials") {
-          showPopup('Неверные имя либо пароль.', 'warn');
-          document.querySelector('.submit-button').disabled = null;
+            showPopup('Неверные имя либо пароль.', 'warn');
+            document.querySelector('.submit-button').disabled = null;
         }
     } catch (error) {
-      console.error('Error: ', error)
-      //showWarning(error);
+        console.error('Error: ', error)
+        //showWarning(error);
     }
 }
 function showPopup(text, icon) {
-  let popup = document.querySelector('.popup');
+    let popup = document.querySelector('.popup');
 
-  let icon_svg;
-  switch (icon) {
-    case "ok":
-      icon_svg = `<svg xmlns="http://www.w3.org/2000/svg" fill="#4ade80" viewBox="0 0 256 256"><path d="M246.15,65.46l-.07-.08L222.15,41.85a20,20,0,0,0-28.23-.05l-90,88.83L70.06,97.78a20,20,0,0,0-28.21.08l-24,24a20,20,0,0,0,0,28.26l71.62,72a20,20,0,0,0,28.29,0L246.15,93.74A20,20,0,0,0,246.15,65.46ZM103.61,202.33,37.64,136,56,117.61,95.65,156a12,12,0,0,0,16.78-.08L208,61.61l18.32,18Z"></path></svg>`;
-      break;
-    case "error":
-      icon_svg = `<svg xmlns="http://www.w3.org/2000/svg" fill="#dc2626" viewBox="0 0 256 256"><path d="M200,128a71.69,71.69,0,0,1-15.78,44.91L83.09,71.78A71.95,71.95,0,0,1,200,128ZM56,128a71.95,71.95,0,0,0,116.91,56.22L71.78,83.09A71.69,71.69,0,0,0,56,128Zm180,0A108,108,0,1,1,128,20,108.12,108.12,0,0,1,236,128Zm-20,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"></path></svg>`;
-      break;
-    case "warn":
-      icon_svg = `<svg xmlns="http://www.w3.org/2000/svg" fill="#fbbf24" viewBox="0 0 256 256"><path d="M240.26,186.1,152.81,34.23h0a28.74,28.74,0,0,0-49.62,0L15.74,186.1a27.45,27.45,0,0,0,0,27.71A28.31,28.31,0,0,0,40.55,228h174.9a28.31,28.31,0,0,0,24.79-14.19A27.45,27.45,0,0,0,240.26,186.1Zm-20.8,15.7a4.46,4.46,0,0,1-4,2.2H40.55a4.46,4.46,0,0,1-4-2.2,3.56,3.56,0,0,1,0-3.73L124,46.2a4.77,4.77,0,0,1,8,0l87.44,151.87A3.56,3.56,0,0,1,219.46,201.8ZM116,136V104a12,12,0,0,1,24,0v32a12,12,0,0,1-24,0Zm28,40a16,16,0,1,1-16-16A16,16,0,0,1,144,176Z"></path></svg>`;
-      break;
-    default:
-      icon_svg = `<svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 256 256"><path d="M108,84a16,16,0,1,1,16,16A16,16,0,0,1,108,84Zm128,44A108,108,0,1,1,128,20,108.12,108.12,0,0,1,236,128Zm-24,0a84,84,0,1,0-84,84A84.09,84.09,0,0,0,212,128Zm-72,36.68V132a20,20,0,0,0-20-20,12,12,0,0,0-4,23.32V168a20,20,0,0,0,20,20,12,12,0,0,0,4-23.32Z"></path></svg>`;
+    let icon_svg;
+    switch (icon) {
+        case "ok":
+            icon_svg = `<svg xmlns="http://www.w3.org/2000/svg" fill="#4ade80" viewBox="0 0 256 256"><path d="M246.15,65.46l-.07-.08L222.15,41.85a20,20,0,0,0-28.23-.05l-90,88.83L70.06,97.78a20,20,0,0,0-28.21.08l-24,24a20,20,0,0,0,0,28.26l71.62,72a20,20,0,0,0,28.29,0L246.15,93.74A20,20,0,0,0,246.15,65.46ZM103.61,202.33,37.64,136,56,117.61,95.65,156a12,12,0,0,0,16.78-.08L208,61.61l18.32,18Z"></path></svg>`;
+            break;
+        case "error":
+            icon_svg = `<svg xmlns="http://www.w3.org/2000/svg" fill="#dc2626" viewBox="0 0 256 256"><path d="M200,128a71.69,71.69,0,0,1-15.78,44.91L83.09,71.78A71.95,71.95,0,0,1,200,128ZM56,128a71.95,71.95,0,0,0,116.91,56.22L71.78,83.09A71.69,71.69,0,0,0,56,128Zm180,0A108,108,0,1,1,128,20,108.12,108.12,0,0,1,236,128Zm-20,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"></path></svg>`;
+            break;
+        case "warn":
+            icon_svg = `<svg xmlns="http://www.w3.org/2000/svg" fill="#fbbf24" viewBox="0 0 256 256"><path d="M240.26,186.1,152.81,34.23h0a28.74,28.74,0,0,0-49.62,0L15.74,186.1a27.45,27.45,0,0,0,0,27.71A28.31,28.31,0,0,0,40.55,228h174.9a28.31,28.31,0,0,0,24.79-14.19A27.45,27.45,0,0,0,240.26,186.1Zm-20.8,15.7a4.46,4.46,0,0,1-4,2.2H40.55a4.46,4.46,0,0,1-4-2.2,3.56,3.56,0,0,1,0-3.73L124,46.2a4.77,4.77,0,0,1,8,0l87.44,151.87A3.56,3.56,0,0,1,219.46,201.8ZM116,136V104a12,12,0,0,1,24,0v32a12,12,0,0,1-24,0Zm28,40a16,16,0,1,1-16-16A16,16,0,0,1,144,176Z"></path></svg>`;
+            break;
+        default:
+            icon_svg = `<svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 256 256"><path d="M108,84a16,16,0,1,1,16,16A16,16,0,0,1,108,84Zm128,44A108,108,0,1,1,128,20,108.12,108.12,0,0,1,236,128Zm-24,0a84,84,0,1,0-84,84A84.09,84.09,0,0,0,212,128Zm-72,36.68V132a20,20,0,0,0-20-20,12,12,0,0,0-4,23.32V168a20,20,0,0,0,20,20,12,12,0,0,0,4-23.32Z"></path></svg>`;
     }
-  popup.innerHTML = `
+    popup.innerHTML = `
     ${icon_svg}
     <span>${text}</span>
   `;
-  popup.classList.remove('hidden');
-  setTimeout(() => {
-    popup.classList.add('hidden');
-  }, 5000);
+    popup.classList.remove('hidden');
+    setTimeout(() => {
+        popup.classList.add('hidden');
+    }, 5000);
 }
