@@ -448,6 +448,7 @@ button.card.hiding div {
     transform-origin: center;
     /* color: #fddf47c2; */
     background: linear-gradient(to bottom, #cfc09f 27%, #ffecb3 40%, #e5d092b0 78%); 
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-family: 'Times New Roman', Times, serif;
