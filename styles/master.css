@@ -104,7 +104,7 @@ header {
 .page-backgrounds.hidden {
     opacity: 0;
 }
-.page-backgrounds > img {
+.page-backgrounds img {
     position: absolute;
     object-fit: cover;
     width: 100%;
@@ -115,10 +115,10 @@ header {
     animation-fill-mode: both;
     filter: brightness(0.6);
 }
-.page-backgrounds img.hidden {
+.page-backgrounds .hidden {
     display: none;
 }
-.page-backgrounds img.hiding {
+.page-backgrounds .hiding {
     animation-name: bgHiding;
     animation-direction: reverse;
 }
@@ -158,6 +158,9 @@ header {
     position: absolute;
     transition: .3s ease-in-out opacity;
     opacity: 1;
+}
+.screen.no-transition {
+    transition: none;
 }
 .archive-screen {
     padding: 96px 16px 16px 16px;

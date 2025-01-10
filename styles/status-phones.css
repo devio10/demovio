@@ -43,7 +43,6 @@
     }
     .cards-stack {
         height: 100dvh;
-        
     }
     .cards-container_row {
         display: flex;
@@ -165,6 +164,7 @@
 
     .screen-players, .screen-download {
         padding: 0;
+        background-color: #181419;
     }
     .window {
         width: 100vw !important;
@@ -172,11 +172,12 @@
         height: 100dvh;
         border: none;
         border-radius: 0;
-        background-color: rgba(0,0,0,0.7);
+        background-color: #181419;
         padding: 16px;
         padding-bottom: 96px;
     }
     .window.no-background {
+        background-color: #181419;
         padding: 16px 16px 96px 16px;
     }
     .window h2 {
@@ -223,6 +224,10 @@
     .context_menu button:not(.tag) {
         padding: 7px 14px;
         font-size: 13px;
+    }
+    .help-section .header {
+        flex-direction: row;
+        justify-content: space-between;
     }
 }
 @media screen and (max-height: 670px) and (max-width: 768px) {

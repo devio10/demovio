@@ -32,11 +32,21 @@
         </header>
 
         <div class="page-backgrounds">
-            <img src="posters/home-christmas.jpeg" id="bg-titlescreen">
-            <img src="posters/players-christmas.jpeg" id="bg-players" loading="lazy" class="hidden">
-            <img src="posters/passport.jpeg" id="bg-passport" loading="lazy" class="hidden">
-            <img src="posters/help-christmas.jpeg" id="bg-download" loading="lazy" class="hidden">
+            <img src="posters/home-christmas.jpeg" id="bg-titlescreen" alt="Home Christmas">
+        
+            <picture>
+                <source media="(max-width: 768px)" srcset="posters/home-christmas.jpeg">
+                <img src="posters/players-christmas.jpeg" id="bg-players" loading="lazy" class="hidden" alt="Players Christmas">
+            </picture>
+        
+            <img src="posters/passport.jpeg" id="bg-passport" loading="lazy" class="hidden" alt="Passport">
+        
+            <picture>
+                <source media="(max-width: 768px)" srcset="posters/home-christmas.jpeg">
+                <img src="posters/help-christmas.jpeg" id="bg-download" loading="lazy" class="hidden" alt="Help Christmas">
+            </picture>
         </div>
+        
 
         <div class="screen screen-titlescreen">
             <div class="server-info">
@@ -52,7 +62,7 @@
                 </div>
             </div>
         </div>
-        <div class="screen screen-players hidden">
+        <div class="screen screen-players no-transition hidden">
             <div class="window">
                 <h2>Список Игроков</h2>
                 <ul class="players-list">
@@ -221,7 +231,7 @@
         </div>
         <div class="screen screen-stats hidden"></div>
 
-        <div class="screen screen-download dark-screen hidden">
+        <div class="screen screen-download no-transition hidden">
             <div class="window no-background">
                 <h2>Помощь</h2>
                 <section class="help-section small">
