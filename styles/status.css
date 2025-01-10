@@ -690,7 +690,6 @@ span.passport-watermark_demovio.third {
     /* background-color: rgba(0,0,0,0.85); */
     background-color: #181419;
     border: 1px solid rgba(255,255,255,0.15);
-    backdrop-filter: blur(10px);
     border-radius: 32px;
     height: fit-content;
     overflow-y: auto;
@@ -808,8 +807,7 @@ span.passport-watermark_demovio.third {
     display: flex;
     flex-direction: column;
     align-items: center;
-    backdrop-filter: blur(10px);
-    background-color: rgba(0,0,0,0.8);
+    background-color: #181419;
 }
 
 .download-buttons {
@@ -819,7 +817,7 @@ span.passport-watermark_demovio.third {
     gap: 8px;
 }
 button.download_package {
-    background-color: rgba(0,0,0,0.8);
+    background-color: rgba(255,255,255,0.035);
     --radius: 12px;
     border-radius: var(--radius);
     border: 1px solid rgba(255,255,255,0.2);

@@ -21,7 +21,7 @@ body {
     transition: .3s ease-in background-color;
 }
 body.black {
-    background-color: black;
+    /* background-color: black; */
 }
 header {
     height: 72px;
@@ -149,14 +149,14 @@ header {
     to {
         transform: translate(0 0);
         scale: 1;
-        filter: brightness(1);
+        filter: brightness(0.6);
     } 
 }
 .screen {
     width: 100vw;
     height: 100vh;
     position: absolute;
-    transition: .3s ease-in-out opacity;
+    transition: .5s ease-in-out opacity;
     z-index: 1;
     opacity: 1;
 }
@@ -202,7 +202,6 @@ header {
 }
 .screen.hidden {
     pointer-events: none;
-    transition: none;
     opacity: 0;
 }
 
