@@ -824,11 +824,14 @@ button.download_package {
     border-radius: var(--radius);
     border: 1px solid rgba(255,255,255,0.2);
     height: 64px;
+    width: 450px;
+    max-width: 100%;
     
     display: flex;
     align-items: center;
     gap: 14px;
-    padding: 0 24px;
+    overflow: clip;
+    padding: 0 0 0 24px;
 }
 button.download_package svg {
     height: 50%;
@@ -839,14 +842,17 @@ button.download_package span {
     font-size: 14px;
     color: rgba(255,255,255,0.85);
 }
-button.download_package .hover_icon {
-    display: none;
+button.download_package .download_icon {
+    margin-left: auto;
+    height: 100%;
+    aspect-ratio: 1.1/1;
+    background-color: rgba(255,255,255,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-button.download_package:hover .hover_icon {
-    display: block;
-}
-button.download_package:hover svg:not(.hover_icon) {
-    display: none;
+button.download_package:hover .download_icon {
+    background-color: rgba(255,255,255,0.15);
 }
 .help-section {
     width: 100%;
