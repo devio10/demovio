@@ -1,0 +1,47 @@
+.state-logo {
+    width: 95%;
+}
+section.hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+.screenshots-row {
+    padding: 32px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    width: 100%;
+    overflow-y: auto;
+}
+.screenshots-row img {
+    width: 100%;
+    border-radius: 8px;
+}
+section.advantages {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+section.advantages h2 {
+    font-size: 48px;
+    margin: 16px 0;
+}
+.advantage {
+    margin-bottom: 16px;
+}
+.advantage-header {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 16px;
+}
+.advantage-header svg {
+    fill: inherit;
+    width: 48px;
+    aspect-ratio: 1/1;
+}
+.advantage-header h3 {
+    font-weight: 400;
+    font-size: 26px;
+}

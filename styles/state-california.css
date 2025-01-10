@@ -30,15 +30,3 @@ footer a {
 .california-icon.bottom {
     margin-top: auto;
 }
-.screenshots-row {
-    padding: 32px;
-    display: flex;
-    gap: 8px;
-    width: 100%;
-    overflow-y: auto;
-}
-.screenshots-row img {
-    width: 80%;
-    max-width: 800px;
-    border-radius: 8px;
-}
