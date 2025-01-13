@@ -69,3 +69,53 @@ function showPopup(text, icon) {
         popup.classList.add('hidden');
     }, 5000);
 }
+
+var currentScreen = 'credentials';
+
+function initializeScreens() {
+    let divs = document.querySelectorAll('.screen') // выбираем все элементы с классом "screen"
+    let screenNames = Array.from(divs).map(div => {
+        const classList = div.className.split(' ') // разбиваем строку классов на массив
+        const screenClass = classList.find(cls => cls.startsWith('screen-') && cls !== 'screen') // находим класс, начинающийся с "screen-"
+        return screenClass?.replace('screen-', '') // удаляем префикс "screen-" для получения названия экрана
+    }).filter(Boolean) // фильтруем null/undefined значения
+    return screenNames;
+}
+const screens = initializeScreens();
+
+function previousScreen() {
+    if (screens[0] === currentScreen) {
+        return;
+    }
+
+    let currentIndex = screens.indexOf(currentScreen);
+    showScreen(screens[currentIndex - 1]);
+}
+
+function showScreen(name) {
+    let screenElements = document.querySelectorAll('.screen');
+    for (let i = 0; i < screenElements.length; i++) {
+        screenElements[i].classList.add('hidden');
+    }
+    document.querySelector(`.screen-${name}`).classList.remove('hidden');
+    currentScreen = name;
+    let currentIndex = screens.indexOf(currentScreen);
+    let currentProgress = ((currentIndex + 1) / (screens.length - 1)) * 100;
+
+    document.querySelector('.background-skin-preview').classList.remove('shown');
+    switch (currentScreen) {
+        case "passport":
+            document.querySelector('.progress').classList.add('hidden');
+            break;
+        case "error":
+            document.querySelector('.progress').classList.add('hidden');
+            break;
+        case "request":
+            currentProgress = 95;
+            break;
+        case "skin":
+            document.querySelector('.background-skin-preview').classList.add('shown');
+            break;
+    }
+    document.querySelector('.progress').style.setProperty('--value', `${currentProgress}%`);
+}

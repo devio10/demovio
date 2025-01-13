@@ -1,54 +1,3 @@
-var currentScreen = 'credentials';
-
-function initializeScreens() {
-    let divs = document.querySelectorAll('.screen') // выбираем все элементы с классом "screen"
-    let screenNames = Array.from(divs).map(div => {
-        const classList = div.className.split(' ') // разбиваем строку классов на массив
-        const screenClass = classList.find(cls => cls.startsWith('screen-') && cls !== 'screen') // находим класс, начинающийся с "screen-"
-        return screenClass?.replace('screen-', '') // удаляем префикс "screen-" для получения названия экрана
-    }).filter(Boolean) // фильтруем null/undefined значения
-    return screenNames;
-}
-
-const screens = initializeScreens();
-
-function previousScreen() {
-    if (screens[0] === currentScreen) {
-        return;
-    }
-
-    let currentIndex = screens.indexOf(currentScreen);
-    showScreen(screens[currentIndex - 1]);
-}
-
-function showScreen(name) {
-    let screenElements = document.querySelectorAll('.screen');
-    for (let i = 0; i < screenElements.length; i++) {
-        screenElements[i].classList.add('hidden');
-    }
-    document.querySelector(`.screen-${name}`).classList.remove('hidden');
-    currentScreen = name;
-    let currentIndex = screens.indexOf(currentScreen);
-    let currentProgress = ((currentIndex + 1) / (screens.length - 1)) * 100;
-
-    document.querySelector('.background-skin-preview').classList.remove('shown');
-    switch (currentScreen) {
-        case "passport":
-            document.querySelector('.progress').classList.add('hidden');
-            break;
-        case "error":
-            document.querySelector('.progress').classList.add('hidden');
-            break;
-        case "request":
-            currentProgress = 95;
-            break;
-        case "skin":
-            document.querySelector('.background-skin-preview').classList.add('shown');
-            break;
-    }
-    document.querySelector('.progress').style.setProperty('--value', `${currentProgress}%`);
-}
-
 function isValidMinecraftNickname(nickname) {
     const regex = /^[a-zA-Z_][a-zA-Z0-9_]{2,15}$/
     return regex.test(nickname)
@@ -120,57 +69,7 @@ function checkPassword() {
     showScreen('license');
 }
 
-var isLicensed = false;
-var playerName = undefined;
-var currentPreview = "";
-let wrongSkins = [];
-let checkedCurrentSkin = false;
-function handleSkinPreview() {
-    let skin_preview = document.querySelector('.skin-preview');
-    let skin_preview_desktop = document.querySelector('.background-skin-preview img');
-    let skin_name = 'Steve1';
-    if (isLicensed && !wrongSkins.includes(playerName)) {
-        skin_name = playerName;
-    }
 
-    let input_value = document.querySelector('.input-skin').value;
-    let trimmed_value = input_value.trim();
-    if (trimmed_value.length != 0 && !wrongSkins.includes(trimmed_value)) {
-        skin_name = input_value.trim();
-    }
-
-    currentPreview = skin_name;
-
-    skin_preview.src = `https://api.mcheads.org/iosbody/${skin_name}.png`;
-    skin_preview_desktop.src = `https://api.mcheads.org/iosbody/${skin_name}.png`;
-
-    if (currentPreview === 'Steve1' || currentPreview === playerName) {
-        document.querySelector('.licenseskin-submit').disabled = true;
-    }
-}
-let debounceTimeout;
-document.querySelector('.input-skin').addEventListener('input', () => {
-    clearTimeout(debounceTimeout);
-    document.querySelector('.licenseskin-submit').disabled = true;
-    checkedCurrentSkin = false;
-    debounceTimeout = setTimeout(() => {
-        handleSkinPreview();
-    }, 350);
-});
-document.querySelector('.skin-preview').addEventListener('error', (e) => {
-    if (currentPreview != 'Steve1') {
-        wrongSkins[wrongSkins.length] = currentPreview;
-    }
-    handleSkinPreview();
-});
-document.querySelector('.skin-preview').addEventListener('load', (e) => {
-    checkedCurrentSkin = true;
-    if (currentPreview === 'Steve1' || currentPreview === playerName) {
-        document.querySelector('.licenseskin-submit').disabled = true;
-    } else {
-        document.querySelector('.licenseskin-submit').disabled = undefined;
-    }
-});
 
 function setLicenseAvailability(value) {
     let text = document.querySelector('.screen-skin .text-description');
@@ -187,39 +86,6 @@ function setLicenseAvailability(value) {
     showScreen('skin');
 }
 
-var selectedSkin;
-function saveSkin(doSkip) {
-    if (doSkip) {
-        document.querySelector('.input-skin').value = "";
-        document.querySelector('.input-skin').disabled = "true";
-        handleSkinPreview();
-        selectedSkin = "";
-        showScreen('citizenship');
-        loadedImage = 0;
-        return;
-    }
-
-    if (currentSkinProvider === 'customskin'){
-        showScreen('citizenship');
-        return;
-    }
-
-    let inputValue = currentPreview.trim();
-    if (!checkedCurrentSkin) {
-        return;
-    }
-    if (document.querySelector('.input-skin').value.trim().length === 0) {
-        showPopup('Введите ник скина, который вы хотите применить, либо пропустите данный этап.', 'warn');
-        return;
-    }
-    if (wrongSkins.includes(inputValue) || inputValue === 'Steve1') {
-        showPopup('Вы ввели несуществующий скин. Проверьте правильность введённого ника.', 'warn');
-        return;
-    }
-
-    selectedSkin = currentPreview.trim();
-    showScreen('citizenship');
-}
 
 let lastKnownScrollPosition = 0;
 let ticking = false;
@@ -305,21 +171,7 @@ function saveCitizenship() {
         address: '-'
     };
 }
-let currentSkinProvider = 'license';
-function selectSkinProvider(provider) {
-    if (document.querySelector('.skin-provider.shown')) {
-        document.querySelector('.skin-provider.shown').classList.remove('shown');
-    }
-    document.querySelector(`.${provider}-provider`).classList.add('shown');
 
-    currentSkinProvider = provider;
-
-    if (currentSkinProvider === 'license') {
-        document.querySelector('.background-skin-preview').classList.add('shown');
-    } else {
-        document.querySelector('.background-skin-preview').classList.remove('shown');
-    }
-}
 
 function handleOptions(element) {
     if (element.parentElement.querySelector('.option-button.selected')) {
@@ -335,7 +187,6 @@ function choosePronouns(value) {
     } else {
         document.querySelector('.input-pronouns').classList.remove('shown');
     }
-
 }
 
 function savePronouns() {

@@ -220,6 +220,10 @@ button.big:hover span {
 }
 .background-skin-preview img {
     margin-bottom: 10vh;
+    width: auto;
+    height: auto;
+    animation: none;
+    filter: none;
 }
 .background-skin-preview.shown {
     opacity: 1;

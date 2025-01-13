@@ -80,9 +80,6 @@
         aspect-ratio: 1/1;
         z-index: 1;
     }
-    button.card:not(:first-child) div {
-        border-top: none;
-    }
     button.card.elections {
         margin-top: 8px;
     }
