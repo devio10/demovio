@@ -32,10 +32,8 @@
     section.hero {
         max-height: 900px;
     }
-    section.hero h1 {
-        margin-top: 128px;
-        font-size: 38px;
-        letter-spacing: -2px;
+    .hero_title {
+        margin-top: 116px;
     }
     .he-row {
         display: flex;
