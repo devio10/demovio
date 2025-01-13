@@ -14,6 +14,61 @@ function selectSkinProvider(provider) {
     }
 }
 
+async function uploadNewSkin() {
+    if (currentSkinProvider === 'license'){
+        let inputValue = currentPreview.trim();
+        if (!checkedCurrentSkin) {
+            return;
+        }
+        if (document.querySelector('.input-skin').value.trim().length === 0) {
+            showPopup('Введите ник скина, который вы хотите применить, либо пропустите данный этап.', 'warn');
+            return;
+        }
+        if (wrongSkins.includes(inputValue) || inputValue === 'Steve1') {
+            showPopup('Вы ввели несуществующий скин. Проверьте правильность введённого ника.', 'warn');
+            return;
+        }
+
+        selectedSkin = currentPreview.trim();
+    }
+
+    showScreen('request');
+    let imageFile = 0;
+    if (loadedImage !== 0) {
+        imageFile = loadedImage.split(',')[1];
+    }
+
+    try {
+        const response = await fetch(`${api_url}updateskin.php`, {
+            method: 'POST',
+            body: JSON.stringify({
+                skin: selectedSkin,
+                file: imageFile
+            })
+        })
+
+        const result = await response.text();
+
+        if (result === 'success' || result === 'success_noskin') {
+            showScreen('passport');
+            localStorage.setItem('redirect', 'true');
+            if (!isWhitelisted) {
+                document.querySelector('.screen-passport h1').innerText = 'Регистрация завершена';
+                document.querySelector('.new-passport').style.display = 'none';
+                document.querySelector('.screen-passport button').innerText = 'Готово';
+            }
+        } else {
+            showScreen('error');
+            document.querySelector('.screen-error .text-description').innerHTML = `
+          Произошла ошибка при регистрации аккаунта. Код ошибки: ${result}. 
+          Обратитесь к <a href="https://t.me/devio101">администратору</a> за помощью.
+        `;
+        }
+
+    } catch (error) {
+        console.error('Error: ', error)
+    }
+}
 
 var selectedSkin;
 function saveSkin(doSkip) {

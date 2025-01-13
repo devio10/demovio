@@ -1,6 +1,6 @@
 <?php
 include "checkLogin.php";
-include "changeskin.php";
+include "setskin.php";
 session_start();
 
 if (!checkPrivileges()) {
@@ -35,7 +35,7 @@ $skin = $user['skin'];
 if (trim($user['skin']) === '') {
   $skin = $username;
 }
-if (changeSkin($username, $skin)) {
+if (setPlayerSkin($username, $skin)) {
   echo json_encode(['success' => 'Changed the skin']);
 } else {
   echo json_encode(['error' => 'Cannot change the skin']);

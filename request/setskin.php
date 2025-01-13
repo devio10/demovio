@@ -2,16 +2,20 @@
 require_once('Rcon.php');
 use Thedudeguy\Rcon;
 
-function changeSkin($player, $skin) {
+function setPlayerSkin($player, $skin, $skinType) {
     $host = 'localhost';
     $port = 10511;
     $password = 'jadoiq20LAfkoaASg21';
     $timeout = 3;
 
+    if ($skinType === NULL) {
+        $skinType = 'player';
+    }
+
     $rcon = new Rcon($host, $port, $password, $timeout);
 
     if ($rcon->connect()) {
-        $rcon->sendCommand("execute as $player run skin set player $skin");
+        $rcon->sendCommand("execute as $player run skin set $skinType $skin");
         return true;
     } else {
         return false;

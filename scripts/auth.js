@@ -11,8 +11,15 @@ function getCookie(name) {
     return null;
 }
 const clamp = (num, min, max) => Math.min(Math.max(num, min), max)
-
-
+function inRange(value, from, to) {
+    return value >= from && value <= to;
+}
+function handleOptions(element) {
+    if (element.parentElement.querySelector('.option-button.selected')) {
+        element.parentElement.querySelector('.option-button.selected').classList.remove('selected');
+    }
+    element.classList.add('selected');
+}
 async function login() {
     try {
         let name = document.querySelector(`.input-name`).value;

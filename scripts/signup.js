@@ -38,9 +38,7 @@ async function checkForWhitelist() {
         }
         playerName = name;
         document.querySelector('.submit-name').disabled = null;
-        window.addEventListener('beforeunload', (event) => {
-            event.preventDefault();
-        });
+        window.addEventListener('beforeunload', beforeUnloadHandler);
     } catch (error) {
         console.error('Error: ', error);
     }
@@ -89,10 +87,6 @@ function setLicenseAvailability(value) {
 
 let lastKnownScrollPosition = 0;
 let ticking = false;
-
-function inRange(value, from, to) {
-    return value >= from && value <= to;
-}
 
 var selectedState = 0;
 var cardHeight = 248;
@@ -171,14 +165,6 @@ function saveCitizenship() {
         address: '-'
     };
 }
-
-
-function handleOptions(element) {
-    if (element.parentElement.querySelector('.option-button.selected')) {
-        element.parentElement.querySelector('.option-button.selected').classList.remove('selected');
-    }
-    element.classList.add('selected');
-}
 var pronouns;
 function choosePronouns(value) {
     pronouns = value;
@@ -206,6 +192,10 @@ function savePronouns() {
     showScreen('contact');
 }
 
+function beforeUnloadHandler(event) {
+    event.preventDefault();
+}
+
 async function requestSignup() {
     let contact = document.querySelector('.input-contact').value.trim().replaceAll('@', '');
     let imageFile = 0;
@@ -218,9 +208,7 @@ async function requestSignup() {
         return;
     }
     showScreen('request');
-    window.removeEventListener('beforeunload', (event) => {
-        event.preventDefault();
-    });
+    window.removeEventListener('beforeunload', beforeUnloadHandler);
     document.querySelector('.header-back_button').disabled = 'true';
     try {
         let password = document.querySelector(`.input-password`).value;

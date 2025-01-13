@@ -1,11 +1,11 @@
 <?php
 include "playerexists.php";
 include "whitelist.php";
-include "changeskin.php";
+// include "setskin.php";
 ini_set('upload_max_filesize', '50K');
 ini_set('post_max_size', '50K');
 
-$allowedDomain = 'https://demovio.lol'; // Ваш домен
+$allowedDomain = 'https://demovio.lol';
 
 if (isset($_SERVER['HTTP_ORIGIN'])) {
   if ($_SERVER['HTTP_ORIGIN'] !== $allowedDomain) {
@@ -83,7 +83,6 @@ try {
 				exit;
 			}
 
-			// Сохранение изображения на сервере
 			if (file_put_contents($filepath, $imageData)) {
 				$skin = 'skins/'.$filename;
 			}
@@ -115,7 +114,7 @@ try {
 		// }
 
 		// if ($isActivated) {
-		// 	$changedSkin = changeSkin($username, $skinToSet);
+		// 	$changedSkin = setPlayerSkin($username, $skinToSet);
 		// 	if ($changedSkin == false) {
 		// 		echo 'created_noskin';
 		// 	}
