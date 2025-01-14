@@ -198,8 +198,6 @@
         height: fit-content;
         margin-top: auto;
         border-radius: 24px 24px 0 0;
-        background-color: black;
-        backdrop-filter: none;
         scale: 1;
         transform: translateY(60px);
         transition: .35s transform ease-out;
@@ -213,6 +211,12 @@
     }
     .image_title {
         border-radius: 0;
+    }
+    .modal-buttons {
+        margin-bottom: 24px;
+    }
+    button.modal {
+        padding: 12px 20px;
     }
     .context_menu {
         min-width: 240px;

@@ -186,7 +186,7 @@ function savePronouns() {
     }
     let customValue = document.querySelector('.input-pronouns').value.trim();
     if (customValue.length < 4 || customValue.length > 16) {
-        showPopup('Ваши местоимения должны быть длиной от 4 до 16 симвлов', 'error');
+        showPopup('Ваши местоимения должны быть длиной от 4 до 16 символов', 'error');
         return;
     }
 
@@ -250,5 +250,5 @@ async function requestSignup() {
         console.error('Error: ', error)
     }
 }
-// showScreen(screens[0]);
-showScreen('skin');
+showScreen(screens[0]);
+// showScreen('skin');

@@ -976,13 +976,14 @@ a.monospace {
     padding: 12px;
     scale: 1.1;
     transition: .25s scale ease-out;
+    max-width: 550px;
 }
 .announcement.shown .window {
     scale: 1;
 }
 .image_title {
     width: 100%;
-    border-radius: 12px;
+    border-radius: 20px;
     aspect-ratio: 2.5/1;
     object-fit: cover;
 }
@@ -1019,17 +1020,17 @@ a.monospace {
 }
 .window hr {
     border: 1px solid rgba(255,255,255,0.15);
-    margin: 16px;
+    margin: 16px 12px;
 }
 .modal-buttons {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    margin: 16px;
+    margin: 16px 12px 12px 12px;
     gap: 16px;
 }
 button.modal {
-    padding: 14px 20px;
+    padding: 10px 20px;
     color: white;
     font-size: 14px;
     border-radius: 6px;
