@@ -98,14 +98,19 @@
                         </div>
 
                         <div class="skin-provider license-provider shown">
-                            <p class="text-description">Подберите скин на <a href="https://skinmc.net">skinmc.net</a>, чтобы придать уникальности вашему персонажу. 
-                                Так другим игрокам легче узнавать вас.</p>
-                
-                            <div class="fields">
+                            <div class="skin_text-row">
                                 <img class="skin-preview" src="https://api.mcheads.org/iosbody/devio10.png">
-                                <span class="input-title">Имя Скина</span>
-                                <input type="text" name="skin" class="input-skin" placeholder="Имя игрока, который носит скин" autocorrect="off" autocapitalize="off">
+                                <div>
+                                    <p class="text-description">Подберите скин на <a href="https://skinmc.net">skinmc.net</a>, чтобы придать уникальности вашему персонажу. 
+                                        Так другим игрокам легче узнавать вас.</p>
+                                    <div class="fields">
+                                        <span class="input-title">Имя Скина</span>
+                                        <input type="text" name="skin" class="input-skin" autocorrect="off" autocapitalize="off">
+                                    </div>
+                                </div>
                             </div>
+                            
+                            
                             <div class="screen-buttons">
                                 <button onclick="saveSkin()" class="submit-button licenseskin-submit" disabled>Применить</button>
                                 <button onclick="saveSkin(true)" class="submit-button no-background">Пропустить</button>

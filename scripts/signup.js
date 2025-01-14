@@ -95,6 +95,7 @@ const state_links = ['newyork', 'california', '', 'shanghai', 'ohio', 'georgia']
 var selectedCitizenship;
 
 function handleScrollStatus(pos) {
+    cardHeight = document.querySelector('.state-picker .state').offsetHeight;
     let num = Math.floor((pos + cardHeight / 2) / cardHeight);
     num = clamp(num, 0, states.length - 1);
 
@@ -249,5 +250,5 @@ async function requestSignup() {
         console.error('Error: ', error)
     }
 }
-showScreen(screens[0]);
-// showScreen('skin');
+// showScreen(screens[0]);
+showScreen('skin');

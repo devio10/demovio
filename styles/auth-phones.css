@@ -4,6 +4,7 @@
         padding: 0;
         background-color: rgba(0,0,0,0);
         border: none;
+        height: 56px;
         backdrop-filter: none;
     }
     h1 {
@@ -61,17 +62,20 @@
         width: 100%;
     }
     .skin-preview {
-        height: 170px;
-        width: auto;
+        height: 150px;
+        width: 63px;
         object-fit: contain;
-        margin: 0;
+        margin: 16px 16px 0 0;
         display: block;
     }
     .state-picker {
-        margin-top: 16px;
+        margin-top: 8px;
     }
     .state-picker .list {
-        width: 250px;
+        width: 220px;
+    }
+    .state-picker .state span {
+        font-size: 14px;
     }
     .new-passport {
         height: 400px;
@@ -92,6 +96,9 @@
     .submit-button:disabled, .submit-button.no-background {
         border-color: rgba(0,0,0,0);
     }
+    .submit-button:disabled {
+        background-color: #8a5cf658;
+    }
     .progress {
         width: 100%;
         position: static;
@@ -100,11 +107,17 @@
         padding: 20px 14px;
         gap: 10px;
     }
+    .skin_text-row {
+        display: flex;
+    }
+    .skin_text-row .fields {
+        margin-top: 8px;
+    }
+    .skin_options-title {
+        margin: 24px 0 12px 0;
+    }
 }
 @media screen and (max-height: 670px) {
-    .skin-preview {
-        height: 150px;
-    }
     .new-passport {
         margin-bottom: 0;
         height: 380px;

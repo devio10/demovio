@@ -64,7 +64,7 @@ header {
     filter: brightness(1);
 }
 .fields {
-    margin-top: 48px;
+    margin-top: 24px;
 
     display: flex;
     flex-direction: column;
@@ -146,7 +146,7 @@ input {
     opacity: 0;
 }
 .alternate-option {
-    margin-top: 48px;
+    margin-top: 24px;
     padding: 0;
 }
 a.alternate-option {

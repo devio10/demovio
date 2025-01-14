@@ -20,9 +20,6 @@ body {
     background-color: #181419;
     transition: .3s ease-in background-color;
 }
-body.black {
-    /* background-color: black; */
-}
 header {
     height: 72px;
 
