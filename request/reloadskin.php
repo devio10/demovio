@@ -22,7 +22,7 @@ if (!$username) {
 
 $db = new PDO('sqlite:/var/demovio-minecraft-server/server/demovio.db');
 
-$stmt = $db->prepare('SELECT skin FROM players WHERE name = :username LIMIT 1');
+$stmt = $db->prepare('SELECT skin, skinModel FROM players WHERE name = :username LIMIT 1');
 $stmt->bindParam(':username', $username, PDO::PARAM_STR);
 $stmt->execute();
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -35,7 +35,12 @@ $skin = $user['skin'];
 if (trim($user['skin']) === '') {
   $skin = $username;
 }
-if (setPlayerSkin($username, $skin)) {
+$skinType = 'player';
+if (str_contains($skin, 'skins/')) {
+  $skinType = 'URL '.$user['skinModel'];
+  $skin = 'https://demovio.lol/'.$skin;
+}
+if (setPlayerSkin($username, $skin, $skinType)) {
   echo json_encode(['success' => 'Changed the skin']);
 } else {
   echo json_encode(['error' => 'Cannot change the skin']);

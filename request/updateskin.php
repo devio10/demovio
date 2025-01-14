@@ -70,11 +70,12 @@ try {
 			$filename = '';
 		}
 
-		$stmt = $db->prepare("UPDATE players SET skin = :skin WHERE name = :username LIMIT 1");
+		$stmt = $db->prepare("UPDATE players SET skin = :skin, skinModel = :type WHERE name = :username LIMIT 1");
 
 		$stmt->execute([
 			':username' => $username,
 			':skin' => $skin,
+			':type' => $data['skinType']
 		]);
 
 		if ($isActivated) {

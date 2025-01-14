@@ -11,7 +11,7 @@ try {
         $stmt = $pdo->query("SELECT name, skin, pronouns, contact FROM players WHERE isActivated = 1 AND isBanned != 1");
     }
     if ($_COOKIE['username'] == 'devio10') {
-        $stmt = $pdo->query("SELECT name, skin, pronouns, contact, isActivated, isBanned, citizenship, issueDate FROM players");
+        $stmt = $pdo->query("SELECT name, skin, skinModel, pronouns, contact, isActivated, isBanned, citizenship, issueDate FROM players");
     }
     $players = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

@@ -92,13 +92,14 @@ try {
 
 		$isActivated = checkForWhitelist($username);
 
-		$stmt = $db->prepare("INSERT INTO players (name, password, skin, citizenship, pronouns, contact, issueDate, isActivated) VALUES (:name, :password, :skin, :citizenship, :pronouns, :contact, :issueDate, :isActivated)");
+		$stmt = $db->prepare("INSERT INTO players (name, password, skin, skinModel, citizenship, pronouns, contact, issueDate, isActivated) VALUES (:name, :password, :skin, :skinModel, :citizenship, :pronouns, :contact, :issueDate, :isActivated)");
 		$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
 		$stmt->execute([
 			':name' => $username,
 			':password' => $hashedPassword,
 			':skin' => $skin,
+			':skinModel' => $data['skinType'],
 			':citizenship' => $data['citizenship'],
 			':pronouns' => $data['pronouns'],
 			':contact' => $data['contact'],

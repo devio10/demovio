@@ -14,6 +14,8 @@ function selectSkinProvider(provider) {
     }
 }
 
+var skinType = 'slim';
+
 async function uploadNewSkin() {
     if (currentSkinProvider === 'license'){
         let inputValue = currentPreview.trim();
@@ -43,6 +45,7 @@ async function uploadNewSkin() {
             method: 'POST',
             body: JSON.stringify({
                 skin: selectedSkin,
+                skinType: skinType,
                 file: imageFile
             })
         })
@@ -52,15 +55,10 @@ async function uploadNewSkin() {
         if (result === 'success' || result === 'success_noskin') {
             showScreen('passport');
             localStorage.setItem('redirect', 'true');
-            if (!isWhitelisted) {
-                document.querySelector('.screen-passport h1').innerText = 'Регистрация завершена';
-                document.querySelector('.new-passport').style.display = 'none';
-                document.querySelector('.screen-passport button').innerText = 'Готово';
-            }
         } else {
             showScreen('error');
             document.querySelector('.screen-error .text-description').innerHTML = `
-          Произошла ошибка при регистрации аккаунта. Код ошибки: ${result}. 
+          Произошла ошибка при смене скина. Код ошибки: ${result}. 
           Обратитесь к <a href="https://t.me/devio101">администратору</a> за помощью.
         `;
         }

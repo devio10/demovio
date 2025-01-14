@@ -219,6 +219,7 @@ async function requestSignup() {
                 name: playerName,
                 password: password,
                 skin: selectedSkin,
+                skinType: skinType,
                 file: imageFile,
                 citizenship: JSON.stringify(selectedCitizenship),
                 pronouns: pronouns,

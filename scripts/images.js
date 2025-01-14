@@ -112,14 +112,13 @@ function detectSkinFormat(file) {
         canvas.height = img.height
         ctx.drawImage(img, 0, 0)
 
-        // Проверяем ширину задней части левой руки
         const classicWidthPixels = countNonTransparentPixels(ctx, 44, 52, 4, 12)
         const slimWidthPixels = countNonTransparentPixels(ctx, 44, 52, 3, 12)
 
         if (classicWidthPixels > slimWidthPixels) {
-          resolve('Classic (Steve)')
+          resolve('classic')
         } else {
-          resolve('Slim (Alex)')
+          resolve('slim')
         }
       }
 
@@ -131,7 +130,6 @@ function detectSkinFormat(file) {
     reader.readAsDataURL(file)
   })
 }
-
 
 
 async function validateFile(file) {
@@ -169,8 +167,8 @@ async function validateFile(file) {
     return false
   }
 
-  const skinformat = await detectSkinFormat(file);
-  console.log(skinformat);
+  skinType = await detectSkinFormat(file);
+  console.log(skinType);
 
   return true;
 }
