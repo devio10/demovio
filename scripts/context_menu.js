@@ -5,7 +5,11 @@ function summonContextMenu(event, page) {
         context_menu.classList.add("hidden");
         return;
     }
-    contextmenuClick(event);
+    let yy = undefined;
+    if (page == 'user') {
+        yy = 64;
+    }
+    contextmenuClick(event, undefined, yy);
     let pages = document.querySelectorAll('.context_menu > div');
     for (let i=0; i<pages.length;i++) {
         pages[i].classList.add('hidden');
@@ -32,8 +36,8 @@ function contextmenuClick(event, xx, yy) {
         y = event.clientY;
     }
 
-    if (xx != undefined) { x = xx; }
-    if (yy != undefined) { y = yy; }
+    if (xx !== undefined) { x = xx; }
+    if (yy !== undefined) { y = yy; }
 
     context_menu.style.top = `${y}px`;
     context_menu.style.left = `${x}px`;

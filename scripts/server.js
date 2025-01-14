@@ -1,6 +1,6 @@
 var players_online = [];
 var api_url = 'request/';
-if (localStorage.getItem('debug') == 'true') { api_url = 'https://demovio.lol/request/'; }
+if (localStorage.getItem('develop') == 'true') { api_url = 'https://demovio.lol/request/'; }
 let statusTimer;
 
 function checkStatus() {
