@@ -37,8 +37,8 @@ if (trim($user['skin']) === '') {
 }
 $skinType = 'player';
 if (str_contains($skin, 'skins/')) {
-  $skinType = 'URL '.$user['skinModel'];
-  $skin = 'https://demovio.lol/'.$skin;
+  $skinType = 'upload '.$user['skinModel'];
+  $skin = '/var/www/demovio.lol/'.$skin;
 }
 if (setPlayerSkin($username, $skin, $skinType)) {
   echo json_encode(['success' => 'Changed the skin']);

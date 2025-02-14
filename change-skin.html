@@ -21,11 +21,6 @@
                 </div>
             </div>
             <div class="page-main">
-                <header>
-                    <button class="header-back_button" disabled>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M165.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L91.31,128Z"></path></svg>
-                    </button>
-                </header>
                 <div class="progress" style="display: none"><span></span></div>
                 <div class="screens">
                     <div class="screen screen-skin">
@@ -44,13 +39,16 @@
                         </div>
 
                         <div class="skin-provider license-provider shown">
-                            <p class="text-description">Подберите скин на <a href="https://skinmc.net">skinmc.net</a>, чтобы придать уникальности вашему персонажу. 
-                                Так другим игрокам легче узнавать вас.</p>
-                
-                            <div class="fields">
-                                <img class="skin-preview" src="https://api.mcheads.org/iosbody/Steve1.png">
-                                <span class="input-title">Имя Скина</span>
-                                <input type="text" name="skin" class="input-skin" placeholder="Имя игрока, который носит скин" autocorrect="off" autocapitalize="off">
+                            <div class="skin_text-row">
+                                <img class="skin-preview" src="https://api.mcheads.org/iosbody/devio10.png">
+                                <div>
+                                    <p class="text-description">Подберите скин на <a href="https://skinmc.net">skinmc.net</a>, чтобы придать уникальности вашему персонажу. 
+                                        Так другим игрокам легче узнавать вас.</p>
+                                    <div class="fields">
+                                        <span class="input-title">Имя Скина</span>
+                                        <input type="text" name="skin" class="input-skin" autocorrect="off" autocapitalize="off">
+                                    </div>
+                                </div>
                             </div>
                             <div class="screen-buttons">
                                 <button onclick="uploadNewSkin()" class="submit-button licenseskin-submit" disabled>Применить</button>

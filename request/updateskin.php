@@ -63,8 +63,8 @@ try {
 
 			if (file_put_contents($filepath, $imageData)) {
 				$skin = 'skins/'.$filename;
-				$skinToSet = 'demovio.lol/'.$skin;
-				$skinType = 'URL';
+				$skinToSet = '/var/www/demovio.lol/'.$skin;
+				$skinType = 'upload';
 			}
 		} else {
 			$filename = '';

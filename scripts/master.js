@@ -258,10 +258,38 @@ const announcementBan = {
     ],
 };
 
+const announcementMinigames = {
+    title: 'Ограниченная акция: сервер с мини-играми!',
+    image: 'images/de_bg.png',
+    content: `
+        <p>Мы запустили новый сервер Demovio с увлекательными мини-играми! Торопитесь присоединиться, ведь он будет работать только до 17 февраля.</p>
+        <p>На сервере вас ждут:<br>
+        - BedWars<br>
+        - TNT Run<br>
+        - Block Party<br>
+        - Murder Mystery.</p>
+        <p>Играя, вы сможете зарабатывать очки, которые потом можно обменять на Фаски (внутриигровую валюту).</p>
+        <p>Версия игры: 1.21.4; IP адрес для подключения: 192.168.1.1</p>
+    `,
+    buttons: [
+        {
+            content: "Продолжить",
+            isAccent: true,
+            clickFunction: function() {
+                localStorage.setItem('minigames', 'true');
+            }
+        }
+    ]
+};
+
 function toggleRedirect() {
     if (localStorage.getItem('redirect') === 'true') {
         localStorage.setItem('redirect', 'false');
     } else {
         localStorage.setItem('redirect', 'true');
     }
+}
+
+if (localStorage.getItem('minigames') !== 'true') {
+    showAnnouncement(announcementMinigames);
 }
