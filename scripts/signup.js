@@ -251,4 +251,4 @@ async function requestSignup() {
     }
 }
 showScreen(screens[0]);
-// showScreen('skin');
+// showScreen('citizenship');
