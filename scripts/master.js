@@ -11,6 +11,13 @@ document.querySelector('.show_stack').addEventListener('mouseleave', function() 
 });
 let pageState = 0;
 
+function handleOptions(element) {
+    if (element.parentElement.querySelector('.option-button.selected')) {
+        element.parentElement.querySelector('.option-button.selected').classList.remove('selected');
+    }
+    element.classList.add('selected');
+}
+
 function resetBackground() {
     let content = document.querySelector('.page-backgrounds').innerHTML;
 
@@ -197,13 +204,160 @@ function showAnnouncement(announcement) {
 function hideAnnouncement() {
     document.querySelector('.announcement').classList.remove('shown');
 }
+const backgrounds = [
+    {
+        name: 'Калифорния',
+        code: 'CA',
+        pictures: [
+            'california-1',
+            'california-2',
+            'california-3',
+            'california-4',
+        ]
+    },
+    {
+        name: 'Шанхай',
+        code: 'SH',
+        pictures: [
+            'shanghai-1',
+            'shanghai-2',
+        ]
+    },
+    {
+        name: 'Нью Йорк',
+        code: 'NY',
+        pictures: [
+            'newyork-1'
+        ]
+    },
+    {
+        name: 'Огайо',
+        code: 'OH',
+        pictures: [
+            'ohio-1'
+        ]
+    },
+    {
+        name: 'Джорджия',
+        code: 'GE',
+        pictures: [
+            'georgia-1',
+            'georgia-2'
+        ]
+    },
+];
+
+function loadBackgroundsList() {
+    let list = document.querySelector('.backgrounds_list');
+    list.innerHTML = '';
+    let currentPoster = localStorage.getItem('background');
+
+    for (let i=0; i < backgrounds.length; i++) {
+        let title = document.createElement('span');
+        title.className = 'bg_list-title';
+        title.innerText = backgrounds[i].name;
+        list.appendChild(title);
+        
+        let img_list = document.createElement('div');
+        img_list.className = `bg_list ${backgrounds[i].code}`;
+        list.appendChild(img_list);
+
+        let category_pics = backgrounds[i].pictures;
+
+        for (let k=0; k<category_pics.length; k++) {
+            let item = document.createElement('button');
+            item.innerHTML = `<img src='${getBackgroundURL(category_pics[k], '-preview')}'>`;
+            if (currentPoster === category_pics[k]) {
+                item.className = 'selected';
+            }
+            item.addEventListener('click', function() {
+                if (document.querySelector('.backgrounds_list button.selected')) {
+                    document.querySelector('.backgrounds_list button.selected').classList.remove('selected');
+                }
+                this.classList.add('selected');
+                changeBackground(category_pics[k]);
+            });
+
+            img_list.appendChild(item);
+        }
+    }
+
+    switch (localStorage.getItem('poster-quality')) {
+        case "hires":
+            document.querySelectorAll('.quality-options button')[1].classList.add('selected');
+            break;
+        default:
+            document.querySelectorAll('.quality-options button')[0].classList.add('selected');
+    }
+
+    switch (localStorage.getItem('theme')) {
+        case "light":
+            document.querySelectorAll('.theme-options button')[1].classList.add('selected');
+            break;
+        case "dark":
+            document.querySelectorAll('.theme-options button')[2].classList.add('selected');
+            break;
+        default:
+            document.querySelectorAll('.theme-options button')[0].classList.add('selected');
+    }
+}
+
+function changeBackground(name) {
+    localStorage.setItem('background', name);
+    document.querySelector('#bg-titlescreen').src = getBackgroundURL(name);
+}
+
+function getBackgroundURL(name, quality, theme) {
+    let preferredQuality = ''; 
+
+    if (localStorage.getItem('poster-quality') === 'hires') { preferredQuality = '-hires'; }
+    if (!quality) { quality = preferredQuality; }
+    if (!theme) { theme = getTheme(); }
+
+    return `posters/home-${name}-${theme}${quality}.webp`;
+}
+
+function getTheme() {
+    let theme = localStorage.getItem('theme');
+    if (theme === 'auto' || theme === null) {
+        const userPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        return userPrefersDark ? 'dark' : 'light';
+    }
+    return theme;
+}
+
+function updateOtherBackgrounds() {
+    let quality = '';
+    if (localStorage.getItem('poster-quality') === 'hires') {
+        quality = '-hires';
+    }
+    let theme = `-${getTheme()}`;
+
+    document.querySelector('#bg-players').src = `posters/players${quality}.webp`;
+    document.querySelector('#bg-passport').src = `posters/passport${theme}${quality}.webp`;
+}
+
+function loadBackgroundFromMemory() {
+    loadBackgroundsList();
+    let current = localStorage.getItem('background');
+    let value = (current === null || current === 'null') ? 'california-4' : current;
+
+    changeBackground(value);
+    updateOtherBackgrounds();
+}
+loadBackgroundFromMemory();
+
+//DEBUG ONLY: REMOVE AFTER RELEASING THIS FEATURE
+if (localStorage.getItem('debug') !== 'true') {
+    document.querySelector('.widget-shanghai_times').classList.add('hidden');
+}
 
 const announcementActivated = {
     title: "Ваш аккаунт активирован",
     image: 'images/de_bg.png',
     content: `
-        <p>Поздравляем! Теперь вы можете присоединиться к игре на сервере Demovio! Также вам доступен паспорт Соединённых Штатов Демовио.</p>
-        <a class="window-wide_link" href="status?help">
+        <p>Поздравляем! Теперь вы можете присоединиться к игре на сервере Demovio! Также вам доступен паспорт Соединённых Штатов Демовио. Чтобы начать играть, воспользуйтесь инструкцией ниже:</p>
+        <a class="window-wide_link" href="https://demovio.lol/help">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M240,88.23a54.43,54.43,0,0,1-16,37L189.25,160a54.27,54.27,0,0,1-38.63,16h-.05A54.63,54.63,0,0,1,96,119.84a8,8,0,0,1,16,.45A38.62,38.62,0,0,0,150.58,160h0a38.39,38.39,0,0,0,27.31-11.31l34.75-34.75a38.63,38.63,0,0,0-54.63-54.63l-11,11A8,8,0,0,1,135.7,59l11-11A54.65,54.65,0,0,1,224,48,54.86,54.86,0,0,1,240,88.23ZM109,185.66l-11,11A38.41,38.41,0,0,1,70.6,208h0a38.63,38.63,0,0,1-27.29-65.94L78,107.31A38.63,38.63,0,0,1,144,135.71a8,8,0,0,0,16,.45A54.86,54.86,0,0,0,144,96a54.65,54.65,0,0,0-77.27,0L32,130.75A54.62,54.62,0,0,0,70.56,224h0a54.28,54.28,0,0,0,38.64-16l11-11A8,8,0,0,0,109,185.66Z"></path></svg>
             Открыть инструкцию по установке
         </a>
@@ -258,30 +412,6 @@ const announcementBan = {
     ],
 };
 
-const announcementMinigames = {
-    title: 'Ограниченная акция: сервер с мини-играми!',
-    image: 'images/de_bg.png',
-    content: `
-        <p>Мы запустили новый сервер Demovio с увлекательными мини-играми! Торопитесь присоединиться, ведь он будет работать только до 17 февраля.</p>
-        <p>На сервере вас ждут:<br>
-        - BedWars<br>
-        - TNT Run<br>
-        - Block Party<br>
-        - Murder Mystery.</p>
-        <p>Играя, вы сможете зарабатывать очки, которые потом можно обменять на Фаски (внутриигровую валюту).</p>
-        <p>Версия игры: 1.21.4; IP адрес для подключения: 192.168.1.1</p>
-    `,
-    buttons: [
-        {
-            content: "Продолжить",
-            isAccent: true,
-            clickFunction: function() {
-                localStorage.setItem('minigames', 'true');
-            }
-        }
-    ]
-};
-
 function toggleRedirect() {
     if (localStorage.getItem('redirect') === 'true') {
         localStorage.setItem('redirect', 'false');
@@ -290,6 +420,27 @@ function toggleRedirect() {
     }
 }
 
-if (localStorage.getItem('minigames') !== 'true') {
-    showAnnouncement(announcementMinigames);
+function getPlayerCountText(players_online) {
+    let players_text = 'Сейчас никто не играет';
+
+    if (players_online.length === 1) {
+        players_text = `Сейчас играет ${players_online[0]}`;
+    } else if (players_online.length === 2) {
+        players_text = `Сейчас играют ${players_online[0]} и ${players_online[1]}`;
+    } else if (players_online.length > 2) {
+        const otherPlayersCount = players_online.length - 1;
+
+        let playerWord;
+        if (otherPlayersCount % 10 === 1 && otherPlayersCount % 100 !== 11) {
+            playerWord = 'другой игрок';
+        } else if ([2, 3, 4].includes(otherPlayersCount % 10) && ![12, 13, 14].includes(otherPlayersCount % 100)) {
+            playerWord = 'других игрока';
+        } else {
+            playerWord = 'других игроков';
+        }
+
+        players_text = `Сейчас играют ${players_online[0]} и ${otherPlayersCount} ${playerWord}`;
+    }
+
+    return players_text;
 }

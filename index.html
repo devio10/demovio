@@ -6,7 +6,6 @@
         <script>
             if (localStorage.getItem('redirect') === 'true' && window.location.search !== '?no-redirect') {
                 window.location.href = '/status';
-                console.log('bibi');
             }
         </script>
         <link rel="stylesheet" href="styles/master.css">
@@ -16,6 +15,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
     </head>
     <body>
+
+        <div class="top_announcement">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white" viewBox="0 0 256 256"><path d="M236.8,188.09,149.35,36.22h0a24.76,24.76,0,0,0-42.7,0L19.2,188.09a23.51,23.51,0,0,0,0,23.72A24.35,24.35,0,0,0,40.55,224h174.9a24.35,24.35,0,0,0,21.33-12.19A23.51,23.51,0,0,0,236.8,188.09ZM222.93,203.8a8.5,8.5,0,0,1-7.48,4.2H40.55a8.5,8.5,0,0,1-7.48-4.2,7.59,7.59,0,0,1,0-7.72L120.52,44.21a8.75,8.75,0,0,1,15,0l87.45,151.87A7.59,7.59,0,0,1,222.93,203.8ZM120,144V104a8,8,0,0,1,16,0v40a8,8,0,0,1-16,0Zm20,36a12,12,0,1,1-12-12A12,12,0,0,1,140,180Z"></path></svg>
+            Временное событие: сервер с мини-играми! Подробнее: <a href="https://games.demovio.lol/">games.demovio.lol</a>
+        </div>
         <header>
             <span>Demovio <div></div> </span>
             <a class="header-menu_button" href="status">
@@ -113,12 +117,13 @@
                 <div class="content">
                     <div class="content-card state_preview-card">
                         <div class="state-poster">
-                            <img src="images/statePosters/california.jpeg">
+                            <img src="images/statePosters/california.jpg">
                         </div>
                         
                         <span class="state-name">Калифорния</span>
 
                         <div class="state-poster-top_layer">
+                            <img src="images/statePosters/california_top.webp">
                         </div>
 
                         <div class="state-preview_bottom">
@@ -146,8 +151,9 @@
                     </div>
                     <div class="content-card description-card">
                         <p class="state-description">
-                            Поделён на два города (названия уточняются) и включает в себя Мировой Суд, который решает споры и поддерживает порядок на сервере.
-                            Отличный выбор для тех, кто любит строить и быть рядом с другими!    
+                            Два уютных города с красивой архитектурой!
+                            Тут находится Мировой Суд, который решает споры и поддерживает порядок на сервере.
+                            Отличный выбор для тех, кто любит строить и быть рядом с другими!
                         </p>
                         <div class="state-emojis ca shown">
                             <img class="apartments" src="images/emojis/ca/apartments.png">

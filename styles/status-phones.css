@@ -4,8 +4,14 @@
         justify-content: center;
         padding: 16px;
     }
+    .background_settings {
+        max-width: none;
+    }
     .screen-passport {
         padding: 0;
+    }
+    .widget-shanghai_times {
+        display: none;
     }
     .server-info {
         flex-direction: column;

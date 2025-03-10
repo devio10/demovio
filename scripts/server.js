@@ -25,16 +25,7 @@ function checkStatus() {
         }
         document.querySelector('.server-players').style.display = 'block';
 
-        let players_text = 'Сейчас никто не играет';
-        if (players_online.length == 1) {
-            players_text = `Сейчас играет ${players_online[0]}`;
-        } else if (players_online.length == 2) {
-            players_text = `Сейчас играют ${players_online[0]} и ${players_online[1]}`;
-        } else if (players_online.length > 2) {
-            players_text = `Сейчас играют ${players_online[0]} и ${players_online.length - 1} других игрока`;
-        }
-
-        document.querySelector('.server-players').innerText = players_text;
+        document.querySelector('.server-players').innerText = getPlayerCountText(players_online);
 
         statusTimer = setTimeout(() => {
             checkStatus();
@@ -238,12 +229,14 @@ async function retrieveUserData() {
         let citizenship = JSON.parse(user.citizenship);
         let cit_name = 'Калифорния / California';
         let alt_name = 'CALIFORN';
+        let default_poster = 'california-4';
         
         let logoObj = document.querySelector('.citizenship-logo');
         switch (citizenship.code) {
             case "SH":
                 cit_name = '上海 / Shanghai / Шанхай';
                 alt_name = 'SHANGHAI';
+                default_poster = 'shanghai-1';
                 logoObj.onclick = function() {
                     window.open('https://youtu.be/tt9V570H6zc?si=XZzqAOzEToR8aOtH');
                 };
@@ -251,6 +244,7 @@ async function retrieveUserData() {
             case "NY":
                 cit_name = 'Нью Йорк / New York';
                 alt_name = '>NEWYORK';
+                default_poster = 'newyork-1';
                 logoObj.onclick = function() {
                     window.open('https://youtu.be/ddJqNY__9U8?si=15bOgth5isRzVJkf');
                 }
@@ -258,16 +252,23 @@ async function retrieveUserData() {
             case "OH":
                 cit_name = 'Огайо / Ohio';
                 alt_name = '>OHIO>>>';
+                default_poster = 'ohio-1';
                 logoObj.onclick = function() {
                     window.open('https://youtu.be/WSGjrluqwjc?si=7cqKUJkK_wE0p2_3');
                 }
                 break;
             case "GE":
                 cit_name = 'Джорджия / Georgia';
+                default_poster = 'georgia-1';
                 alt_name = 'GEORGIA>';
                 break;
         }
-        
+
+        if (!localStorage.getItem('background')) {
+            localStorage.setItem('background', default_poster);
+        }
+        document.documentElement.style.setProperty('--accent', `var(--accent-${citizenship.code})`);
+
         document.querySelector('.user-citizenship').innerText = cit_name;
         document.querySelector('.user-acceptance').innerText = citizenship.date;
         document.querySelector('.user-address').innerText = citizenship.address;
@@ -303,6 +304,11 @@ async function retrieveUserData() {
             </div>
             ${getPlayerSkinURL(userSkin, 'passport-user_pic holo')}
         `;
+
+        document.querySelector('.passport-pictures img').addEventListener('error', (e) => {
+            e.target.src = 'images/head_default.png';
+            document.querySelectorAll('.passport-pictures img')[1].src = 'images/head_default.png';
+        });
 
         let uuid = ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
 

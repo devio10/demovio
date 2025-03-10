@@ -4,7 +4,8 @@ const states = [
         translation: 'California',
         codeName: 'ca',
         link: 'california',
-        poster: 'california.jpeg',
+        poster: 'california.jpg',
+        posterTopLayer: 'california_top.webp',
         description: `
             Два уютных города с красивой архитектурой!
             Тут находится Мировой Суд, который решает споры и поддерживает порядок на сервере.
@@ -22,8 +23,8 @@ const states = [
         translation: 'Shanghai',
         codeName: 'sh',
         link: 'shanghai',
-        poster: 'shanghai.jpeg',
-        posterTopLayer: 'shanghai_top.png',
+        poster: 'shanghai.webp',
+        posterTopLayer: 'shanghai_top.webp',
         description: `
             Этот город-штат — идеальное место для бизнеса!
             Здесь легко разместить свой завод с механизмами Create.
@@ -41,7 +42,8 @@ const states = [
         translation: 'New York',
         link: 'newyork',
         codeName: 'ny',
-        poster: 'newyork.jpeg',
+        poster: 'newyork.webp',
+        posterTopLayer: 'newyork_top.webp',
         description: `
             На его территории находится одноимённый город Нью Йорк –
             столица инноваций. Самый высокий небоскреб – World Trade Center, располагается именно здесь!
@@ -58,7 +60,7 @@ const states = [
         translation: 'Ohio',
         codeName: 'oh',
         link: 'ohio',
-        poster: 'ohio.jpeg',
+        poster: 'ohio.webp',
         description: `
             Огайо 💀. Полная творческая свобода! Один из штатов, где проходят выборы –
             возможно, именно вы станете мэром!
@@ -75,7 +77,7 @@ const states = [
         translation: 'Georgia',
         codeName: 'ge',
         link: 'georgia',
-        poster: 'georgia.jpeg',
+        poster: 'georgia.webp',
         description: `
             Для тех, кто ценит настоящую свободу.
             Здесь вы можете строить всё, что захотите, наслаждаясь простотой оформления гражданства
