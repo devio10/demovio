@@ -258,5 +258,5 @@ async function requestSignup() {
         console.error('Error: ', error)
     }
 }
-// showScreen(screens[0]);
-showScreen('citizenship');
+showScreen(screens[0]);
+// showScreen('citizenship');
