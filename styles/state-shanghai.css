@@ -1,0 +1,36 @@
+body {
+    background-color: rgb(244, 241, 253);
+    transition: none;
+}
+* {
+    color: black;
+}
+.footer-logo {
+    color: inherit;
+}
+.state-logo {
+    width: 20%;
+    margin: auto 0;
+}
+.footer-logo div {
+    background-color: rgb(145,70,33);
+}
+footer, section.advantages h2 {
+    color: rgb(145,70,33);
+}
+.ip-address, .ip-address span {
+    color: rgb(145,70,33);
+}
+footer a {
+    color: rgba(145,70,33, 0.5);
+}
+.icons-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 32px;
+}
+.icons-row img {
+    width: 96px;
+    aspect-ratio: 1/1;
+    opacity: 0.15;
+}

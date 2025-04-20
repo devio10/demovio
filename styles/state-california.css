@@ -11,7 +11,7 @@ body {
 .footer-logo div {
     background-color: rgb(145,70,33);
 }
-footer {
+footer, section.advantages h2 {
     color: rgb(145,70,33);
 }
 .ip-address, .ip-address span {

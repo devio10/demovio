@@ -107,10 +107,18 @@ function handleScrollStatus(pos) {
     document.querySelector('.dots').children[num].className = 'active';
     selectedState = num;
 
-    if (num == 2) {
+    if (num === 2) {
         document.querySelector('.submit-state').innerText = `Выберите штат`;
         document.querySelector('.submit-state').disabled = `true`;
         document.querySelector('.state-info').innerHTML = `Информацию о штатах вы можете узнать <a href="/">здесь</a>.`;
+        return;
+    }
+
+    if (num === 3) {
+        //Временное приостановление набора в Шанхай
+        document.querySelector('.submit-state').innerText = `Недоступно`;
+        document.querySelector('.submit-state').disabled = `true`;
+        document.querySelector('.state-info').innerHTML = `Этот штат временно перестал набирать новых граждан.`;
         return;
     }
     document.querySelector('.submit-state').disabled = null;
@@ -250,5 +258,5 @@ async function requestSignup() {
         console.error('Error: ', error)
     }
 }
-showScreen(screens[0]);
-// showScreen('citizenship');
+// showScreen(screens[0]);
+showScreen('citizenship');

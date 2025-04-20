@@ -12,7 +12,7 @@ header {
     padding: 48px;
     width: 100%;
     position: fixed;
-    margin-top: 16px;
+    /* margin-top: 16px; */
     top: 0;
     transition: .3s width ease-out;
 }

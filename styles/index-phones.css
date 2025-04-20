@@ -2,9 +2,6 @@
     section {
         height: fit-content;
     }
-    header {
-        margin-top: 24px;
-    }
 
     section .menu {
         display: none;
