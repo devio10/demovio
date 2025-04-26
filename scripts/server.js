@@ -305,10 +305,13 @@ async function retrieveUserData() {
             ${getPlayerSkinURL(userSkin, 'passport-user_pic holo')}
         `;
 
-        document.querySelector('.passport-pictures img').addEventListener('error', (e) => {
-            e.target.src = 'images/head_default.png';
-            document.querySelectorAll('.passport-pictures img')[1].src = 'images/head_default.png';
-        });
+        if (document.querySelector('.passport-pictures img')) {
+            document.querySelector('.passport-pictures img').addEventListener('error', (e) => {
+                e.target.src = 'images/head_default.png';
+                document.querySelectorAll('.passport-pictures img')[1].src = 'images/head_default.png';
+            });
+        }
+        
 
         let uuid = ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
 

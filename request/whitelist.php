@@ -14,7 +14,6 @@ function checkForWhitelist($checkName) {
         if (isset($entry['name']) && $entry['name'] === $playerName) {
             $playerFound = true;
             return true;
-            break;
         }
         }
         if (!$playerFound) {
