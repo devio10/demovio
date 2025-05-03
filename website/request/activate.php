@@ -43,5 +43,4 @@ if ($rcon->connect()) {
   echo json_encode(['error' => 'Server RCON is not responding']);
   exit;
 }
-echo json_encode(['error' => 'Unknown Error']);
 ?>

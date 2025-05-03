@@ -110,7 +110,7 @@ header {
     animation-duration: 1.5s;
     animation-timing-function: ease-out;
     animation-fill-mode: both;
-    filter: brightness(0.75);
+    /* filter: brightness(0.75); */
 }
 .page-backgrounds .hidden {
     display: none;

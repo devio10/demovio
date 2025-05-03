@@ -17,6 +17,7 @@
     flex-direction: column;
     justify-content: space-between;
     padding: 0;
+    background: linear-gradient(180deg,rgba(0, 0, 0, 0.6) 0%, rgba(255, 255, 255, 0) 20%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0) 80%, rgba(0, 0, 0, 0.6) 100%);
 }
 .widget-shanghai_times {
     margin: 0 0 0 auto;
@@ -137,6 +138,7 @@
     font-weight: 500;
     font-size: 48px;
     margin-bottom: -10px;
+    text-shadow: 0 0 30px rgba(0,0,0,0.75);
 }
 .server-status_date-block {
     display: flex;
@@ -173,6 +175,7 @@
     align-items: center;
     justify-content: center;
     transition: .35s ease-in opacity, .35s ease-out transform;
+    border: 0.5px solid rgba(0,0,0,1);
 }
 .show_stack:hover {
     transform: scale(1.05);
@@ -1010,6 +1013,7 @@ a.monospace {
 .server-players {
     margin: 0 0 0 0;
     color: rgba(255,255,255,0.85);
+    text-shadow: 0 0 30px rgba(0,0,0,0.75);
 }
 .screen-download h2 {
     margin-bottom: 8px;

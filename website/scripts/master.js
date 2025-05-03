@@ -347,10 +347,10 @@ function loadBackgroundFromMemory() {
 }
 loadBackgroundFromMemory();
 
-//DEBUG ONLY: REMOVE AFTER RELEASING THIS FEATURE
-if (localStorage.getItem('debug') !== 'true') {
-    document.querySelector('.widget-shanghai_times').classList.add('hidden');
-}
+// //DEBUG ONLY: REMOVE AFTER RELEASING THIS FEATURE
+// if (localStorage.getItem('debug') !== 'true') {
+//     document.querySelector('.widget-shanghai_times').classList.add('hidden');
+// }
 
 const announcementActivated = {
     title: "Ваш аккаунт активирован",
