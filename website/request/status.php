@@ -7,7 +7,7 @@
 	$Query = new MinecraftQuery();
 	try
 	{
-		$Query->Connect( 'demovio.lol', 25565 );
+		$Query->Connect( 'demovio.love', 25565 );
 		$players = $Query->GetPlayers();
 		if(gettype($players) == "boolean") {
 			$playersList = "0";

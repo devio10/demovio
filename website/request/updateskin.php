@@ -4,7 +4,7 @@ include "setskin.php";
 ini_set('upload_max_filesize', '40K');
 ini_set('post_max_size', '40K');
 
-$allowedDomain = 'https://demovio.lol';
+$allowedDomain = 'https://demovio.love';
 
 if (isset($_SERVER['HTTP_ORIGIN'])) {
   if ($_SERVER['HTTP_ORIGIN'] !== $allowedDomain) {
@@ -63,7 +63,7 @@ try {
 
 			if (file_put_contents($filepath, $imageData)) {
 				$skin = 'skins/'.$filename;
-				$skinToSet = '/var/www/demovio.lol/'.$skin;
+				$skinToSet = '/var/www/demovio.love/'.$skin;
 				$skinType = 'upload';
 			}
 		} else {

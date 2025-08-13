@@ -11,7 +11,7 @@ if (hash_equals($secretToken, $providedToken)) {
     // Выполняем git pull
     $output = [];
     $resultCode = 0;
-    exec('cd /var/www/demovio.lol/ && git pull 2>&1', $output, $resultCode);
+    exec('cd /var/www/demovio.love/ && git pull 2>&1', $output, $resultCode);
     echo "ok";
 } else {
     // Неверный токен

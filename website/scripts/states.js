@@ -15,7 +15,7 @@ const states = [
             image: 'ca.png',
             x: 0,
             z: 4000,
-            link: 'https://map.demovio.lol/#overworld:18:14:4194:395:0:0:0:1:flat'
+            link: 'https://map.demovio.love/#overworld:18:14:4194:395:0:0:0:1:flat'
         }
     },
     {
@@ -34,7 +34,7 @@ const states = [
             image: 'sh.png',
             x: -1000,
             z: 4000,
-            link: 'https://map.demovio.lol/#overworld:-534:40:4120:224:0:0:0:1:flat'
+            link: 'https://map.demovio.love/#overworld:-534:40:4120:224:0:0:0:1:flat'
         }
     },
     {
@@ -52,7 +52,7 @@ const states = [
             image: 'ny.png',
             x: 2000,
             z: 4000,
-            link: 'https://map.demovio.lol/#overworld:1748:0:4049:514:0:0:0:1:flat'
+            link: 'https://map.demovio.love/#overworld:1748:0:4049:514:0:0:0:1:flat'
         }
     },
     {
@@ -69,7 +69,7 @@ const states = [
             image: 'oh.png',
             x: 0,
             z: 0,
-            link: 'https://map.demovio.lol/#overworld:1895:61:3888:187:0:0:0:1:flat'
+            link: 'https://map.demovio.love/#overworld:1895:61:3888:187:0:0:0:1:flat'
         }
     },
     {
@@ -87,7 +87,7 @@ const states = [
             image: 'ge.png',
             x: 0,
             z: 0,
-            link: 'https://map.demovio.lol/#overworld:1029:0:4230:610:0:0:0:1:flat'
+            link: 'https://map.demovio.love/#overworld:1029:0:4230:610:0:0:0:1:flat'
         }
     },
 ];

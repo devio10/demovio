@@ -1,5 +1,5 @@
 var api_url = 'request/';
-if (localStorage.getItem('develop') == 'true') { api_url = 'https://demovio.lol/request/'; }
+if (localStorage.getItem('develop') == 'true') { api_url = 'https://demovio.love/request/'; }
 function getCookie(name) {
     var cookies = document.cookie.split(';');
     for (var i = 0; i < cookies.length; i++) {

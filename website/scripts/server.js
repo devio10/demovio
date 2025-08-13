@@ -1,6 +1,6 @@
 var players_online = [];
 var api_url = 'request/';
-if (localStorage.getItem('develop') == 'true') { api_url = 'https://demovio.lol/request/'; }
+if (localStorage.getItem('develop') == 'true') { api_url = 'https://demovio.love/request/'; }
 let statusTimer;
 
 function checkStatus() {
@@ -61,7 +61,7 @@ function getPlayerSkinURL(value, className) {
         className = '';
     }
     if (value.includes('skins/')) {
-        path = `https://demovio.lol/${value}`;
+        path = `https://demovio.love/${value}`;
         return `<div class="custom_skin ${className}" style="background-image: url(${path})"></div>`;
     }
     return `<img src="${path}" class="${className}">`;

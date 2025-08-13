@@ -5,7 +5,7 @@ include "whitelist.php";
 ini_set('upload_max_filesize', '50K');
 ini_set('post_max_size', '50K');
 
-$allowedDomain = 'https://demovio.lol';
+$allowedDomain = 'https://demovio.love';
 
 if (isset($_SERVER['HTTP_ORIGIN'])) {
   if ($_SERVER['HTTP_ORIGIN'] !== $allowedDomain) {
