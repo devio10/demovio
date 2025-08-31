@@ -77,7 +77,7 @@ function setLicenseAvailability(value) {
     let text = document.querySelector('.screen-skin .text-description');
     let skin_input = document.querySelector('.input-skin');
     if (value == true) {
-        text.innerHTML = `Вам необязательно выбирать скин игрока, так как у вас есть лицензия игры. Если вы всё равно хотите его сменить, то подберите желаемый скин на сайте <a href="https://skinmc.net">skinmc.net</a>.`;
+        text.innerHTML = `Вам необязательно выбирать скин игрока, так как у вас лицензионная игра. Если вы всё равно хотите его сменить, то подберите желаемый скин на сайте <a href="https://skinmc.net">skinmc.net</a>.`;
     } else {
         text.innerHTML = `Подберите скин на <a href="https://skinmc.net">skinmc.net</a>, чтобы придать уникальности вашему персонажу. 
                 Так другие игроки смогут различать вас.`;

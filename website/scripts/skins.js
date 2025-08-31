@@ -26,7 +26,7 @@ async function uploadNewSkin() {
             showPopup('Введите ник скина, который вы хотите применить, либо пропустите данный этап.', 'warn');
             return;
         }
-        if (wrongSkins.includes(inputValue) || inputValue === 'Steve1') {
+        if (wrongSkins.includes(inputValue) || inputValue === 'MHF_Steve') {
             showPopup('Вы ввели несуществующий скин. Проверьте правильность введённого ника.', 'warn');
             return;
         }
@@ -93,7 +93,7 @@ function saveSkin(doSkip) {
         showPopup('Введите ник скина, который вы хотите применить, либо пропустите данный этап.', 'warn');
         return;
     }
-    if (wrongSkins.includes(inputValue) || inputValue === 'Steve1') {
+    if (wrongSkins.includes(inputValue) || inputValue === 'MHF_Steve') {
         showPopup('Вы ввели несуществующий скин. Проверьте правильность введённого ника.', 'warn');
         return;
     }
@@ -104,7 +104,7 @@ function saveSkin(doSkip) {
 
 document.querySelector('.skin-preview').addEventListener('load', (e) => {
     checkedCurrentSkin = true;
-    if (currentPreview === 'Steve1' || currentPreview === playerName) {
+    if (currentPreview === 'MHF_Steve' || currentPreview === playerName) {
         document.querySelector('.licenseskin-submit').disabled = true;
     } else {
         document.querySelector('.licenseskin-submit').disabled = undefined;
@@ -121,7 +121,7 @@ document.querySelector('.input-skin').addEventListener('input', () => {
     }, 350);
 });
 document.querySelector('.skin-preview').addEventListener('error', (e) => {
-    if (currentPreview != 'Steve1') {
+    if (currentPreview != 'MHF_Steve') {
         wrongSkins[wrongSkins.length] = currentPreview;
     }
     handleSkinPreview();
@@ -136,7 +136,7 @@ let checkedCurrentSkin = false;
 function handleSkinPreview() {
     let skin_preview = document.querySelector('.skin-preview');
     let skin_preview_desktop = document.querySelector('.background-skin-preview img');
-    let skin_name = 'Steve1';
+    let skin_name = 'MHF_Steve';
     if (isLicensed && !wrongSkins.includes(playerName)) {
         skin_name = playerName;
     }
@@ -149,10 +149,10 @@ function handleSkinPreview() {
 
     currentPreview = skin_name;
 
-    skin_preview.src = `https://api.mcheads.org/iosbody/${skin_name}.png`;
-    skin_preview_desktop.src = `https://api.mcheads.org/iosbody/${skin_name}.png`;
+    skin_preview.src = `https://mc-heads.net/body/${skin_name}/right.png`;
+    skin_preview_desktop.src = `https://mc-heads.net/body/${skin_name}/right.png`;
 
-    if (currentPreview === 'Steve1' || currentPreview === playerName) {
+    if (currentPreview === 'MHF_Steve' || currentPreview === playerName) {
         document.querySelector('.licenseskin-submit').disabled = true;
     }
 }
