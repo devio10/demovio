@@ -56,7 +56,7 @@ function forceRefresh() {
 }
 
 function getPlayerSkinURL(value, className) {
-    let path = `https://api.mcheads.org/head/${value}/42.png`;
+    let path = `https://mc-heads.net/avatar/${value}/42.png`;
     if (className === undefined) {
         className = '';
     }
