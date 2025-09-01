@@ -319,6 +319,6 @@ function initializeStatesList() {
     }
     document.querySelector(".state-picker .dots div").classList.add("active");
 }
-// showScreen(screens[0]);
-showScreen('citizenship');
+showScreen(screens[0]);
+// showScreen('citizenship');
 initializeStatesList();
