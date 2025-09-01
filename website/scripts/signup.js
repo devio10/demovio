@@ -103,32 +103,38 @@ const states = [
     {
         name: "Конкорд",
         icon: "concord.svg",
-        code: "concord"
+        code: "concord",
+        shortCode: "CD"
     },
     {
         name: "Нью Йорк",
         icon: "newyork.svg",
-        code: "newyork"
+        code: "newyork",
+        shortCode: "NY"
     },
     {
         name: "Огайо",
         icon: "ohio.svg",
-        code: "ohio"
+        code: "ohio",
+        shortCode: "OH"
     },
     {
         name: "Калифорния",
         icon: "california.svg",
-        code: "california"
+        code: "california",
+        shortCode: "CA"
     },
     {
         name: "Джорджия",
         icon: "georgia.svg",
-        code: "georgia"
+        code: "georgia",
+        shortCode: "GE"
     },
     {
         name: "Шанхай",
         icon: "shanghai.svg",
-        code: "shanghai"
+        code: "shanghai",
+        shortCode: "SH"
     },
 ];
 var selectedCitizenship;
@@ -196,21 +202,7 @@ function randomNum(min, max) {
 
 function saveCitizenship() {
     showScreen('pronouns');
-    let code = "GE";
-    switch (selectedState) {
-        case 0:
-            code = 'NY';
-            break;
-        case 1:
-            code = 'CA';
-            break;
-        case 3:
-            code = 'SH';
-            break;
-        case 4:
-            code = 'OH';
-            break;
-    }
+    let code = states[selectedState].shortCode;
 
     selectedCitizenship = {
         code: code,
@@ -307,7 +299,7 @@ function initializeStatesList() {
     let list = document.querySelector(".state-picker .list");
     list.innerHTML = `
         <div class="state initial">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M220,128a4,4,0,0,1-4,4H40a4,4,0,0,1,0-8H216A4,4,0,0,1,220,128ZM98.83,50.83,124,25.66V96a4,4,0,0,0,8,0V25.66l25.17,25.17a4,4,0,1,0,5.66-5.66l-32-32a4,4,0,0,0-5.66,0l-32,32a4,4,0,0,0,5.66,5.66Zm58.34,154.34L132,230.34V160a4,4,0,0,0-8,0v70.34L98.83,205.17a4,4,0,0,0-5.66,5.66l32,32a4,4,0,0,0,5.66,0l32-32a4,4,0,0,0-5.66-5.66Z"></path></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M144,20H112A60.07,60.07,0,0,0,52,80v96a60.07,60.07,0,0,0,60,60h32a60.07,60.07,0,0,0,60-60V80A60.07,60.07,0,0,0,144,20Zm52,156a52.06,52.06,0,0,1-52,52H112a52.06,52.06,0,0,1-52-52V80a52.06,52.06,0,0,1,52-52h32a52.06,52.06,0,0,1,52,52ZM132,73.66V182.34l17.17-17.17a4,4,0,0,1,5.66,5.66l-24,24a4,4,0,0,1-5.66,0l-24-24a4,4,0,0,1,5.66-5.66L124,182.34V73.66L106.83,90.83a4,4,0,0,1-5.66-5.66l24-24a4,4,0,0,1,5.66,0l24,24a4,4,0,0,1-5.66,5.66Z"></path></svg>
             <span>Листайте вниз</span>
         </div>
     `;
@@ -327,6 +319,6 @@ function initializeStatesList() {
     }
     document.querySelector(".state-picker .dots div").classList.add("active");
 }
-showScreen(screens[0]);
-// showScreen('citizenship');
+// showScreen(screens[0]);
+showScreen('citizenship');
 initializeStatesList();

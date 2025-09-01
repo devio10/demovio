@@ -169,6 +169,19 @@
     font-weight: 600;
     font-size: 20px;
 }
+.passport-stamp.CD {
+    height: auto;
+    flex-direction: column;
+    justify-content: center;
+    aspect-ratio: 1/1;
+    border-radius: 100%;
+    padding: 12px;
+    border-color: #8c1ff2;
+    scale: 1;
+}
+.passport-stamp.CD svg {
+    fill: #b56d09;
+}
 .passport-stamp.CA {
     border-width: 4px;
     border-radius: 8px;

@@ -278,6 +278,11 @@ async function retrieveUserData() {
                 default_poster = 'georgia-1';
                 alt_name = 'GEORGIA>';
                 break;
+            case "CD":
+                cit_name = 'Конкорд / Concord';
+                default_poster = 'california-4';
+                alt_name = '>CONCORD';
+                break;
         }
 
         if (!localStorage.getItem('background')) {
@@ -290,7 +295,7 @@ async function retrieveUserData() {
         document.querySelector('.user-address').innerText = citizenship.address;
         document.querySelector('.user-protocol').innerText = citizenship.protocol;
 
-        document.querySelector(`.citizenship-logo .${citizenship.code}`).style.display = 'block';
+        document.querySelector(`.citizenship-logo`).innerHTML = `<img class="${citizenship.code}" src="images/stateIcons/passport-${citizenship.code}.svg">`;
         document.querySelector(`.passport-country_color`).classList.add(citizenship.code);
 
         document.querySelector('.user-name').innerText = user.name;
@@ -367,9 +372,12 @@ async function retrieveUserData() {
 
     } catch (error) {
         console.error('Error: ', error);
-        document.querySelector(`.citizenship-logo .GE`).style.display = 'block';
-        document.querySelector(`.passport-country_color`).classList.add('GE');
+        // document.querySelector(`.citizenship-logo`).innerHTML = `<img class="CD" src="images/stateIcons/passport-CD.svg">`;
+        // document.querySelector(`.passport-country_color`).classList.add('CD');
+
         document.querySelector('.user-passport').style.display = 'none';
+        // document.querySelector(`.passport-stamp.CD`).classList.add('shown');
+
         document.querySelector('.no_passports').style.display = 'block';
         document.querySelector('.login_button').classList.add('shown');
         document.querySelector('.context-backstage').remove();
