@@ -94,8 +94,43 @@ let ticking = false;
 
 var selectedState = 0;
 var cardHeight = 248;
-const states = ['Нью Йорк', 'Калифорния', '', 'Шанхай', 'Огайо', 'Джорджия'];
-const state_links = ['newyork', 'california', '', 'shanghai', 'ohio', 'georgia'];
+// const states = ['Нью Йорк', 'Калифорния', '', 'Шанхай', 'Огайо', 'Джорджия'];
+// const state_links = ['newyork', 'california', '', 'shanghai', 'ohio', 'georgia'];
+const states = [
+    {
+        name: "empty"
+    },
+    {
+        name: "Конкорд",
+        icon: "concord.svg",
+        code: "concord"
+    },
+    {
+        name: "Нью Йорк",
+        icon: "newyork.svg",
+        code: "newyork"
+    },
+    {
+        name: "Огайо",
+        icon: "ohio.svg",
+        code: "ohio"
+    },
+    {
+        name: "Калифорния",
+        icon: "california.svg",
+        code: "california"
+    },
+    {
+        name: "Джорджия",
+        icon: "georgia.svg",
+        code: "georgia"
+    },
+    {
+        name: "Шанхай",
+        icon: "shanghai.svg",
+        code: "shanghai"
+    },
+];
 var selectedCitizenship;
 
 function handleScrollStatus(pos) {
@@ -111,26 +146,32 @@ function handleScrollStatus(pos) {
     document.querySelector('.dots').children[num].className = 'active';
     selectedState = num;
 
-    if (num === 2) {
+    if (states[num].name == "empty") {
         document.querySelector('.submit-state').innerText = `Выберите штат`;
         document.querySelector('.submit-state').disabled = `true`;
-        document.querySelector('.state-info').innerHTML = `Информацию о штатах вы можете узнать <a href="/">здесь</a>.`;
+        document.querySelector('.state-info').innerHTML = `<br>Информацию о штатах вы можете узнать <a href="/">здесь</a>.`;
         return;
     }
 
-    if (num === 3) {
+    if (states[num].code == "shanghai") {
         //Временное приостановление набора в Шанхай
         document.querySelector('.submit-state').innerText = `Недоступно`;
         document.querySelector('.submit-state').disabled = `true`;
-        document.querySelector('.state-info').innerHTML = `Этот штат временно перестал набирать новых граждан.`;
+        document.querySelector('.state-info').innerHTML = `<br>Этот штат временно перестал набирать новых граждан.`;
         return;
     }
     document.querySelector('.submit-state').disabled = null;
-    document.querySelector('.submit-state').innerText = `Выбрать (${states[num]})`;
-    document.querySelector('.state-info').innerHTML = `Информацию об этом штате вы можете узнать <a href="${state_links[num]}">здесь</a>.`;
+    document.querySelector('.submit-state').innerText = `Выбрать (${states[num].name})`;
+
+    if (states[num].code == "concord") {
+        document.querySelector('.state-info').innerHTML = `Рекомендовано для новых игроков.<br>
+        Информацию об этом штате вы можете узнать <a href="${states[num].code}">здесь</a>.`;
+        return;
+    }
+    document.querySelector('.state-info').innerHTML = `<br>Информацию об этом штате вы можете узнать <a href="${states[num].code}">здесь</a>.`;
 }
 
-document.querySelector('.state-picker .list').scrollTop = cardHeight * 2;
+// document.querySelector('.state-picker .list').scrollTop = cardHeight * 2;
 document.querySelector('.state-picker .list').addEventListener('scroll', () => {
     lastKnownScrollPosition = document.querySelector('.state-picker .list').scrollTop;
     if (!ticking) {
@@ -262,5 +303,30 @@ async function requestSignup() {
         console.error('Error: ', error)
     }
 }
+function initializeStatesList() {
+    let list = document.querySelector(".state-picker .list");
+    list.innerHTML = `
+        <div class="state initial">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M220,128a4,4,0,0,1-4,4H40a4,4,0,0,1,0-8H216A4,4,0,0,1,220,128ZM98.83,50.83,124,25.66V96a4,4,0,0,0,8,0V25.66l25.17,25.17a4,4,0,1,0,5.66-5.66l-32-32a4,4,0,0,0-5.66,0l-32,32a4,4,0,0,0,5.66,5.66Zm58.34,154.34L132,230.34V160a4,4,0,0,0-8,0v70.34L98.83,205.17a4,4,0,0,0-5.66,5.66l32,32a4,4,0,0,0,5.66,0l32-32a4,4,0,0,0-5.66-5.66Z"></path></svg>
+            <span>Листайте вниз</span>
+        </div>
+    `;
+    document.querySelector(".state-picker .dots").innerHTML = "<div></div>";
+
+    for (let i=1; i<states.length; i++) {
+        let state = document.createElement("div");
+        state.className = `state ${states[i].code}`;
+        state.innerHTML = `
+            <img src="images/stateIcons/${states[i].icon}">
+            <span>${states[i].name}</span>
+        `;
+        list.appendChild(state);
+
+        let dot = document.createElement("div");
+        document.querySelector(".state-picker .dots").appendChild(dot);
+    }
+    document.querySelector(".state-picker .dots div").classList.add("active");
+}
 showScreen(screens[0]);
 // showScreen('citizenship');
+initializeStatesList();

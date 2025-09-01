@@ -283,7 +283,7 @@ button.big:hover span {
     align-items: center;
     position: relative;
 }
-.state-picker .state svg {
+.state-picker .state svg, .state-picker .state img {
     fill: var(--color);
     /* stroke: var(--color); */
     width: 60%;
@@ -297,6 +297,7 @@ button.big:hover span {
 .state.ohio { --color: #84cc16; }
 .state.shanghai { --color: #e11d48; }
 .state.newyork { --color: #1f6cf2; }
+.state.concord { --color: #8c1ff2; }
 .state.california { --color: #facc15; }
 .state.georgia { --color: #f97316; }
 .state.initial { --color: rgba(255,255,255,0.5); }
