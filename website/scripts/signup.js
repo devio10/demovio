@@ -234,7 +234,8 @@ function savePronouns() {
         showPopup('Ваши местоимения должны быть длиной от 4 до 16 символов', 'error');
         return;
     }
-
+    pronouns = customValue;
+    
     showScreen('contact');
 }
 
