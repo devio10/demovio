@@ -1182,7 +1182,7 @@ button.modal.accent:hover {
     height: 14px;
     fill: var(--color);
 }
-.context_menu button:not(.tag):hover, #context_menu button:not(.tag):focus {
+.context_menu button:not(.tag, :disabled):hover, #context_menu button:not(.tag, :disabled):focus {
     background-color: var(--accent);
     color: white;
     --color: white;
@@ -1191,10 +1191,15 @@ button.modal.accent:hover {
     border: 0.5px solid rgba(255,255,255,0.2);
     margin: 6px 8px;
 }
-.context_menu button.red:not(.tag):hover, #context_menu button.red:not(.tag):focus {
+.context_menu button.red:not(.tag, :disabled):hover, #context_menu button.red:not(.tag, :disabled):focus {
     background-color: #ef4d58;
     color: white;
     --color: white;
+}
+.context_menu button:disabled {
+    cursor: default;
+    color: rgba(255,255,255,0.5);
+    --color: rgba(255,255,255,0.5)
 }
 .background_settings {
     height: 100vh;

@@ -15,6 +15,11 @@ function playerOptions(event, name, isActivated) {
     summonContextMenu(event, 'backstage');
 }
 
+function contextPlayersList(event, name, isPinned) {
+    contextName = name;
+    summonContextMenu(event, 'playerslist');
+}
+
 async function backstageAction(action) {
     try {
         const response = await fetch(`${api_url}${action}.php`, {

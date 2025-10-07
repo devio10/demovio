@@ -76,13 +76,14 @@ function playersList() {
     `;
 
     let xhr = new XMLHttpRequest();
+    let isDeveloping = localStorage.getItem("develop") == "true";
     xhr.onload = function() {
     if (xhr.status >= 200 && xhr.status < 300) {
         let data = JSON.parse(xhr.responseText);
         console.log(data);
         list.innerHTML = '';
 
-        if (data.error) {
+        if (data.error && !isDeveloping) {
 
             let warn = `Не удалось загрузить список`;
             if (data.error === 'Not Authorised') {
@@ -97,74 +98,61 @@ function playersList() {
             throw new Error(data.error);
         }
 
+        if (isDeveloping) {
+            data = [
+            {
+                "citizenship": {
+                    "code": "SH",
+                    "date": "31.10.2024",
+                    "protocol": "№03:4451",
+                    "address": "11 Бамбуковый Вершитель"
+                },
+                "contact": "devio101",
+                "isActivated": 1,
+                "isBanned": 0,
+                "issueDate": "30.10.2024",
+                "name": "devio10",
+                "pronouns": "он/его",
+                "skin": "devio10",
+                "skinModel": "slim"
+            },
+            {
+                "citizenship": {
+                    "code": "OH",
+                    "date": "29.11.2024",
+                    "protocol": "№04:3952",
+                    "address": "Ущелье"
+                },
+                "contact": "cosy4xy",
+                "isActivated": 1,
+                "isBanned": 0,
+                "issueDate": "28.11.2024",
+                "name": "cosy4xy",
+                "pronouns": "он/его",
+                "skin": "cosy4xy",
+                "skinModel": "slim"
+            },
+            {
+                "citizenship": {
+                    "code": "CA",
+                    "date": "29.11.2024",
+                    "protocol": "№01:3184",
+                    "address": "Pink House 2"
+                },
+                "contact": "nastyatershukova",
+                "isActivated": 1,
+                "isBanned": 0,
+                "issueDate": "28.11.2024",
+                "name": "anastasiz2009",
+                "pronouns": "она/её",
+                "skin": "skins/anastasiz2009.png",
+                "skinModel": "slim"
+            }
+            ]
+        }
+
         for(let i=0; i<data.length; i++) {
-            let debugMode = false;
-            let player_citizenship;
-            if (data[i].hasOwnProperty('isActivated') && localStorage.getItem('debug') == 'true') {
-                debugMode = true;
-                player_citizenship = JSON.parse(data[i].citizenship);
-            }
-            let skin = data[i].skin;
-            if (skin == "") {
-                skin = data[i].name;
-            }
-            let online_status = '';
-            if (players_online.includes(data[i].name)) {
-                online_status = `<div class="online_dot"></div>`;
-            }
-
-            let card = document.createElement('li');
-            let contact = "";
-            
-            if (data[i].contact != undefined && user != undefined && user.isActivated == 1) {
-                contact = `
-                    <a href="https://t.me/${data[i].contact}"> <img src="images/message.svg"> </a>
-                `;
-            }
-
-            let pronouns = "";
-            if (data[i].pronouns != undefined) {
-                pronouns = `<span class="pronouns">${data[i].pronouns}</span>`;
-            }
-            let player_name = data[i].name;
-            let activationClass = '';
-            let moreOptions = '';
-            if (debugMode) {
-                // player_name = `${data[i].name} (${player_citizenship.code})`;
-                pronouns = `<span class="pronouns">${data[i].pronouns} (${player_citizenship.code})</span>`;
-
-                if (data[i].isActivated == 0) {
-                    activationClass = `not_activated`;
-                }
-                moreOptions = `
-                    <a class="players-more_options" onclick="playerOptions(event, '${data[i].name}', '${data[i].isActivated}', ${data[i].isBanned})"> <img src="images/more.svg"> </a>
-                `;
-
-                if (data[i].isBanned == 1) {
-                    card.classList.add('banned');
-                    activationClass = `banned`;
-                }
-            }
-            card.innerHTML = `
-                ${getPlayerSkinURL(skin, activationClass)}
-                <div>
-                    <span class="name">${player_name}${online_status}</span>
-                    ${pronouns}
-                </div>
-                ${contact}
-                ${moreOptions}
-            `;
-            if (card.querySelector('img')) {
-                card.querySelector('img').addEventListener('error', (e) => {
-                    e.target.src = 'images/head_default.png';
-                });
-            }
-            
-            if (online_status == "") {
-                list.appendChild(card);
-            } else {
-                list.prepend(card);
-            }
+            playerListItem(list, data[i]);
         }
     } else {
         console.error('Request failed with status ', xhr.status);
@@ -176,6 +164,66 @@ function playersList() {
     xhr.setRequestHeader('Content-Type', 'application/json');
 
     xhr.send();
+}
+
+function playerListItem(list, data) {
+    let debugMode = false;
+    let player_citizenship;
+    if (data.hasOwnProperty('isActivated') && localStorage.getItem('debug') == 'true') {
+        debugMode = true;
+        player_citizenship = typeof data.citizenship == "string" ? JSON.parse(data.citizenship) : data.citizenship;
+    }
+    let skin = data.skin;
+    if (skin == "") { skin = data.name; }
+    let online_status = '';
+    if (players_online.includes(data.name)) {
+        online_status = `<div class="online_dot"></div>`;
+    }
+
+    let card = document.createElement('li');
+    let contact = "";
+    if ((data.contact != undefined && user != undefined && user.isActivated == 1) || localStorage.getItem("develop") == "true") {
+        contact = `
+            <a href="https://t.me/${data.contact}"> <img src="images/message.svg"> </a>
+        `;
+    }
+
+    let pronouns = data.pronouns ? `<span class="pronouns">${data.pronouns}</span>` : "";
+    let player_name = data.name;
+    let activationClass = '';
+    let moreOptions = `
+        <a class="players-more_options" onclick="contextPlayersList(event, '${data.name}', '${data.isActivated}', ${data.isBanned})"> <img src="images/more.svg"> </a>
+    `;
+    if (debugMode) {
+        pronouns = `<span class="pronouns">${data.pronouns} (${player_citizenship.code})</span>`;
+        if (data.isActivated == 0) {
+            activationClass = `not_activated`;
+        }
+        if (data.isBanned == 1) {
+            card.classList.add('banned');
+            activationClass = `banned`;
+        }
+    }
+    card.innerHTML = `
+        ${getPlayerSkinURL(skin, activationClass)}
+        <div>
+            <span class="name">${player_name}${online_status}</span>
+            ${pronouns}
+        </div>
+        ${contact}
+        ${moreOptions}
+    `;
+    if (card.querySelector('img')) {
+        card.querySelector('img').addEventListener('error', (e) => {
+            e.target.src = 'images/head_default.png';
+        });
+    }
+    
+    if (online_status == "") {
+        list.appendChild(card);
+    } else {
+        list.prepend(card);
+    }
 }
 
 function nameCode(length, symbol, input) {
@@ -215,7 +263,7 @@ async function retrieveUserData() {
         document.querySelector('.header-user_button').disabled = null;
 
         if (user.name !== 'devio10') {
-            document.querySelector('.context-backstage').remove();
+            // document.querySelector('.context-backstage').remove();
         }
 
         userSkin = user.name;
@@ -380,7 +428,7 @@ async function retrieveUserData() {
 
         document.querySelector('.no_passports').style.display = 'block';
         document.querySelector('.login_button').classList.add('shown');
-        document.querySelector('.context-backstage').remove();
+        // document.querySelector('.context-backstage').remove();
     }
 }
 retrieveUserData();
@@ -402,3 +450,4 @@ function logout() {
 
     xhr.send();
 }
+playersList(); openScreen('players');
