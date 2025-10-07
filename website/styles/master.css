@@ -268,3 +268,6 @@ footer a {
     font-family: monospace;
     font-size: 18px;
 }
+.web-trainmap {
+    max-width: 100%;
+}
