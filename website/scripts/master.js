@@ -206,6 +206,14 @@ function hideAnnouncement() {
 }
 const backgrounds = [
     {
+        name: 'Коллекции',
+        code: 'COS',
+        pictures: [
+            'collections-1',
+            'collections-2'
+        ]
+    },
+    {
         name: 'Калифорния',
         code: 'CA',
         pictures: [
@@ -219,8 +227,10 @@ const backgrounds = [
         name: 'Шанхай',
         code: 'SH',
         pictures: [
-            'shanghai-1',
-            'shanghai-2',
+            'shanghainew-1',
+            'shanghainew-2',
+            'shanghainew-3',
+            'shanghainew-4',
         ]
     },
     {

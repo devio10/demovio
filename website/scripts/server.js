@@ -252,7 +252,7 @@ async function retrieveUserData() {
             case "SH":
                 cit_name = '上海 / Shanghai / Шанхай';
                 alt_name = 'SHANGHAI';
-                default_poster = 'shanghai-1';
+                default_poster = 'shanghainew-1';
                 logoObj.onclick = function() {
                     window.open('https://youtu.be/tt9V570H6zc?si=XZzqAOzEToR8aOtH');
                 };
