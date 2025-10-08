@@ -1,0 +1,65 @@
+{
+  "fill" : {
+    "automatic-gradient" : "display-p3:0.53008,0.35659,0.84945,1.00000"
+  },
+  "groups" : [
+    {
+      "blur-material" : null,
+      "layers" : [
+        {
+          "image-name" : "Demovio Liquid Icon.svg",
+          "name" : "Demovio Liquid Icon",
+          "position" : {
+            "scale" : 4.5,
+            "translation-in-points" : [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "lighting" : "individual",
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.5
+      },
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.33
+      }
+    },
+    {
+      "hidden" : true,
+      "layers" : [
+        {
+          "fill" : {
+            "automatic-gradient" : "display-p3:0.96259,1.00000,0.59530,1.00000"
+          },
+          "image-name" : "HeroiconsCube20Solid.svg",
+          "name" : "HeroiconsCube20Solid",
+          "position" : {
+            "scale" : 22,
+            "translation-in-points" : [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.5
+      },
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.5
+      }
+    }
+  ],
+  "supported-platforms" : {
+    "circles" : [
+      "watchOS"
+    ],
+    "squares" : "shared"
+  }
+}

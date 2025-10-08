@@ -1,0 +1,42 @@
+{
+  "fill" : {
+    "automatic-gradient" : "display-p3:0.96863,0.59418,0.20032,1.00000"
+  },
+  "groups" : [
+    {
+      "blend-mode" : "normal",
+      "layers" : [
+        {
+          "fill" : {
+            "automatic-gradient" : "display-p3:0.94465,0.92624,0.95879,1.00000"
+          },
+          "image-name" : "GameIconsPassport.svg",
+          "name" : "GameIconsPassport",
+          "position" : {
+            "scale" : 22,
+            "translation-in-points" : [
+              0,
+              0
+            ]
+          }
+        }
+      ],
+      "lighting" : "individual",
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.5
+      },
+      "specular" : true,
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.25
+      }
+    }
+  ],
+  "supported-platforms" : {
+    "circles" : [
+      "watchOS"
+    ],
+    "squares" : "shared"
+  }
+}

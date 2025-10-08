@@ -1,0 +1,136 @@
+{
+  "fill" : {
+    "automatic-gradient" : "display-p3:0.89940,0.33152,0.30027,1.00000"
+  },
+  "groups" : [
+    {
+      "blur-material" : null,
+      "hidden" : false,
+      "layers" : [
+        {
+          "fill" : {
+            "solid" : "srgb:1.00000,1.00000,1.00000,1.00000"
+          },
+          "image-name" : "Rectangle 2.svg",
+          "name" : "Rectangle 2",
+          "opacity" : 0.5,
+          "position" : {
+            "scale" : 20,
+            "translation-in-points" : [
+              441.584625717193,
+              -335.14070772556533
+            ]
+          }
+        },
+        {
+          "fill" : {
+            "solid" : "srgb:1.00000,1.00000,1.00000,1.00000"
+          },
+          "image-name" : "Rectangle 2.svg",
+          "name" : "Rectangle 2",
+          "opacity" : 0.75,
+          "position" : {
+            "scale" : 20,
+            "translation-in-points" : [
+              441.6000495476206,
+              -17.505250652539857
+            ]
+          }
+        },
+        {
+          "fill" : {
+            "solid" : "display-p3:1.00000,1.00000,1.00000,1.00000"
+          },
+          "image-name" : "Rectangle 2.svg",
+          "name" : "Rectangle 2",
+          "opacity" : 0.5,
+          "position" : {
+            "scale" : 20,
+            "translation-in-points" : [
+              441.6228549930079,
+              301.85077761243986
+            ]
+          }
+        }
+      ],
+      "position" : {
+        "scale" : 1.2,
+        "translation-in-points" : [
+          -41.85359822137774,
+          21.717033448007705
+        ]
+      },
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.5
+      },
+      "specular" : true,
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.5
+      }
+    },
+    {
+      "blend-mode" : "normal",
+      "blur-material" : null,
+      "layers" : [
+        {
+          "blend-mode" : "normal",
+          "fill" : {
+            "automatic-gradient" : "display-p3:1.00000,1.00000,1.00000,1.00000"
+          },
+          "glass" : true,
+          "image-name" : "IonPeopleCircleOutline 1.png",
+          "name" : "IonPeopleCircleOutline 1",
+          "position" : {
+            "scale" : 1,
+            "translation-in-points" : [
+              -140.46397159322174,
+              -18.48758189413871
+            ]
+          }
+        },
+        {
+          "blend-mode" : "normal",
+          "fill" : {
+            "automatic-gradient" : "display-p3:1.00000,1.00000,1.00000,1.00000"
+          },
+          "glass" : true,
+          "hidden" : true,
+          "image-name" : "IonPeopleCircleOutline 2.png",
+          "name" : "IonPeopleCircleOutline 2",
+          "opacity" : 0.5,
+          "position" : {
+            "scale" : 1,
+            "translation-in-points" : [
+              -142.2106181384529,
+              0
+            ]
+          }
+        }
+      ],
+      "position" : {
+        "scale" : 1.5,
+        "translation-in-points" : [
+          210,
+          -24
+        ]
+      },
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.5
+      },
+      "specular" : true,
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.5
+      }
+    }
+  ],
+  "supported-platforms" : {
+    "circles" : [
+      "watchOS"
+    ],
+    "squares" : "shared"
+  }
+}
