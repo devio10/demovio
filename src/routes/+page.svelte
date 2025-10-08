@@ -1,8 +1,65 @@
 <script>
 	import AppIcon from "$lib/AppIcon.svelte";
+	import { api_url } from "$lib/const";
+	import { onMount } from "svelte";
+	let status = $state();
+	let players = $state([]);
+	function getPlayerCountText(players_online) {
+		let players_text = "Сейчас никто не играет";
+		if (players_online.length === 1) {
+			players_text = `Сейчас играет ${players_online[0]}`;
+		} else if (players_online.length === 2) {
+			players_text = `Сейчас играют ${players_online[0]} и ${players_online[1]}`;
+		} else if (players_online.length > 2) {
+			const otherPlayersCount = players_online.length - 1;
+
+			let playerWord;
+			if (otherPlayersCount % 10 === 1 && otherPlayersCount % 100 !== 11) {
+				playerWord = "другой игрок";
+			} else if (
+				[2, 3, 4].includes(otherPlayersCount % 10) &&
+				![12, 13, 14].includes(otherPlayersCount % 100)
+			) {
+				playerWord = "других игрока";
+			} else {
+				playerWord = "других игроков";
+			}
+
+			players_text = `Сейчас играют ${players_online[0]} и ${otherPlayersCount} ${playerWord}`;
+		}
+
+		return players_text;
+	}
+	function checkStatus() {
+		fetch(`${api_url}status.php`).then((req) => {
+			if (req.status >= 200 && req.status < 300) {
+				req.text().then((text) => {
+					if (text == "offline") {
+						status = "Сервер оффлайн";
+						players = "";
+						return;
+					}
+					status = "Сервер онлайн";
+					players = text.split(",");
+				});
+			} else {
+				status = "Сервер оффлайн";
+				console.error("Request failed with status ", req.status);
+			}
+		});
+	}
+
+	onMount(() => {
+		checkStatus();
+		let timer = setInterval(checkStatus, 3000);
+		return () => {
+			clearInterval(timer);
+		};
+	});
 </script>
 
-<h2>Сервер онлайн</h2>
+<h2>{status}</h2>
+<span class="welcome">Добро пожаловать, devio10</span>
 <nav>
 	<AppIcon icon="Players" href="players">Игроки</AppIcon>
 	<AppIcon icon="Passport" href="players">Паспорт</AppIcon>
@@ -13,6 +70,7 @@
 	<AppIcon icon="Downloads" href="players">Загрузки</AppIcon>
 	<AppIcon icon="About" href="players">О Сервере</AppIcon>
 </nav>
+<span class="players-number">{getPlayerCountText(players)}</span>
 
 <style lang="scss">
 	h2 {
@@ -23,11 +81,20 @@
 		text-align: center;
 		font-weight: bold;
 	}
+	.welcome {
+		margin: 16px 0 0 0;
+		color: rgba(255, 255, 255, 0.75);
+	}
 	nav {
-		margin-top: 48px;
+		margin-top: 36px;
 		text-align: center;
 		justify-items: center;
 		align-items: center;
 		white-space: wrap;
+	}
+	.players-number {
+		margin-top: 48px;
+		font-weight: 600;
+		text-shadow: 0 0 30px rgba(0, 0, 0, 0.75);
 	}
 </style>
