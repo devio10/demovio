@@ -1,7 +1,9 @@
 <script>
-	import favicon from '$lib/assets/favicon.svg';
-	import '../app.scss';
-	import '@fontsource-variable/montserrat';
+	import favicon from "$lib/assets/favicon.svg";
+	import HeaderLogo from "$lib/HeaderLogo.svelte";
+	import SideNavigation from "$lib/SideNavigation.svelte";
+	import "../app.scss";
+	import "@fontsource-variable/montserrat";
 	let { children } = $props();
 </script>
 
@@ -9,8 +11,9 @@
 	<link rel="icon" href={favicon} />
 </svelte:head>
 <header>
-	<div>
-		<span class="page_logo">Demovio<div></div></span>
-	</div>
+	<HeaderLogo />
 </header>
-{@render children?.()}
+<SideNavigation />
+<main>
+	{@render children?.()}
+</main>
