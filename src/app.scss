@@ -1,0 +1,32 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Montserrat Variable', sans-serif;
+    background-color: #181419;
+    color: white;
+}
+header {
+    height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    z-index: 3;
+    padding: 0 64px;
+    position: fixed;
+    left: 0;
+}
+.page_logo {
+    font-weight: 800;
+    font-size: 16px;
+
+    div {
+        background-color: white;
+        width: 6px;
+        aspect-ratio: 1/1;
+        display: inline-block;
+        margin-bottom: 8px;
+        margin-left: 0;
+    }
+}
