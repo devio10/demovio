@@ -1,22 +1,36 @@
 * {
-    box-sizing: border-box;
+	box-sizing: border-box;
+}
+html,
+body {
+	margin: 0;
+	padding: 0;
 }
 body {
-    font-family: 'Montserrat Variable', sans-serif;
-    background-color: #181419;
-    color: white;
+	font-family: "Montserrat Variable", sans-serif;
+	background-color: #181419;
+	color: white;
+	min-height: 100vh;
 }
 header {
-    height: 58px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    z-index: 3;
-    padding: 0 64px;
-    position: fixed;
-    left: 0;
+	height: 72px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	z-index: 3;
+	padding: 0 64px;
+	position: fixed;
+	left: 0;
 }
 main {
-    margin: auto;
+	margin: auto;
+	position: relative;
+	z-index: 2;
+	min-height: 100vh;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
