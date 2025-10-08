@@ -30,23 +30,21 @@
 
 		return players_text;
 	}
-	function checkStatus() {
-		fetch(`${api_url}status.php`).then((req) => {
-			if (req.status >= 200 && req.status < 300) {
-				req.text().then((text) => {
-					if (text == "offline") {
-						status = "Сервер оффлайн";
-						players = "";
-						return;
-					}
-					status = "Сервер онлайн";
-					players = text.split(",");
-				});
-			} else {
+	async function checkStatus() {
+		const req = await fetch(`${api_url}status.php`);
+		if (req.status >= 200 && req.status < 300) {
+			const text = await req.text();
+			if (text == "offline") {
 				status = "Сервер оффлайн";
-				console.error("Request failed with status ", req.status);
+				players = "";
+				return;
 			}
-		});
+			status = "Сервер онлайн";
+			players = text.split(",");
+		} else {
+			status = "Сервер оффлайн";
+			console.error("Request failed with status ", req.status);
+		}
 	}
 
 	onMount(() => {
@@ -70,7 +68,9 @@
 	<AppIcon icon="Downloads" href="players">Загрузки</AppIcon>
 	<AppIcon icon="About" href="players">О Сервере</AppIcon>
 </nav>
-<span class="players-number">{getPlayerCountText(players)}</span>
+<span class="players-number">
+	{getPlayerCountText(players)}
+</span>
 
 <style lang="scss">
 	h2 {
