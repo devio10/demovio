@@ -1,13 +1,18 @@
+<script>
+	import { page } from "$app/state";
+	import SideNavigationButton from "./SideNavigationButton.svelte";
+</script>
+
 <div>
-	<button class="active" aria-label="Главная">
+	<SideNavigationButton alt="Главная" href="/">
 		<svg viewBox="0 0 29 26" xmlns="http://www.w3.org/2000/svg">
 			<path
 				fill="currentColor"
 				d="M11.7461 22.5703H17.793V16.3477C17.793 16.082 17.7109 15.8711 17.5469 15.7148C17.3906 15.5586 17.1836 15.4805 16.9258 15.4805H12.625C12.3594 15.4805 12.1445 15.5586 11.9805 15.7148C11.8242 15.8711 11.7461 16.082 11.7461 16.3477V22.5703ZM4.58594 22.4766V14.4375L14.0664 6.49219C14.5352 6.08594 15.0039 6.08594 15.4727 6.49219L24.9414 14.4375V22.4766C24.9414 23.3047 24.6875 23.9609 24.1797 24.4453C23.6719 24.9297 22.9805 25.1719 22.1055 25.1719H7.42188C6.55469 25.1719 5.86328 24.9297 5.34766 24.4453C4.83984 23.9609 4.58594 23.3047 4.58594 22.4766ZM2.20703 13.6172C1.78516 13.6172 1.44922 13.4922 1.19922 13.2422C0.949219 12.9922 0.824219 12.6875 0.824219 12.3281C0.824219 11.8984 1.00781 11.5352 1.375 11.2383L12.918 1.53516C13.4805 1.05859 14.0977 0.820312 14.7695 0.820312C15.4336 0.820312 16.0508 1.05859 16.6211 1.53516L28.1758 11.2383C28.5352 11.5352 28.7148 11.8984 28.7148 12.3281C28.7148 12.6875 28.5898 12.9922 28.3398 13.2422C28.0898 13.4922 27.7578 13.6172 27.3438 13.6172C27.1406 13.6172 26.9453 13.5742 26.7578 13.4883C26.5781 13.4023 26.4062 13.2891 26.2422 13.1484L15.3438 4.01953C15.1641 3.85547 14.9727 3.77344 14.7695 3.77344C14.5742 3.77344 14.3828 3.85547 14.1953 4.01953L3.29688 13.1484C3.14062 13.2891 2.96875 13.4023 2.78125 13.4883C2.59375 13.5742 2.40234 13.6172 2.20703 13.6172ZM21.5547 6.44531V3.98438C21.5547 3.72656 21.6328 3.52344 21.7891 3.375C21.9453 3.21875 22.1523 3.14062 22.4102 3.14062H24.332C24.5898 3.14062 24.793 3.21875 24.9414 3.375C25.0977 3.52344 25.1758 3.72656 25.1758 3.98438V9.46875L21.5547 6.44531Z"
 			/>
 		</svg>
-	</button>
-	<button aria-label="Профиль">
+	</SideNavigationButton>
+	<SideNavigationButton alt="Профиль" href="profile">
 		<svg
 			style="padding: 4px;"
 			version="1.1"
@@ -20,8 +25,8 @@
 				fill="currentColor"
 			/>
 		</svg>
-	</button>
-	<button aria-label="Обои">
+	</SideNavigationButton>
+	<SideNavigationButton alt="Окружение" href="environment">
 		<svg viewBox="0 0 33 32" xmlns="http://www.w3.org/2000/svg">
 			<path
 				fill="currentColor"
@@ -36,7 +41,21 @@
 				d="M12.8541 4.99963L13.5729 8.33082L16.9041 9.04963L13.5729 9.76844L12.8541 13.0996L12.1353 9.76844L8.80411 9.04963L12.1353 8.33082L12.8541 4.99963Z"
 			/>
 		</svg>
-	</button>
+	</SideNavigationButton>
+	<SideNavigationButton alt="Уведомления" href="notifications">
+		<svg
+			style="padding: 4px;"
+			version="1.1"
+			xmlns="http://www.w3.org/2000/svg"
+			xmlns:xlink="http://www.w3.org/1999/xlink"
+			viewBox="0 0 18.7891 20.5566"
+		>
+			<path
+				d="M1.47461 16.6406L16.9531 16.6406C17.8711 16.6406 18.4277 16.1719 18.4277 15.459C18.4277 14.4824 17.4316 13.6035 16.5918 12.7344C15.9473 12.0605 15.7715 10.6738 15.6934 9.55078C15.625 5.80078 14.6289 3.22266 12.0312 2.28516C11.6602 1.00586 10.6543 0 9.20898 0C7.77344 0 6.75781 1.00586 6.39648 2.28516C3.79883 3.22266 2.80273 5.80078 2.73438 9.55078C2.65625 10.6738 2.48047 12.0605 1.83594 12.7344C0.986328 13.6035 0 14.4824 0 15.459C0 16.1719 0.546875 16.6406 1.47461 16.6406ZM9.20898 20.5566C10.8691 20.5566 12.0801 19.3457 12.207 17.9785L6.2207 17.9785C6.34766 19.3457 7.55859 20.5566 9.20898 20.5566Z"
+				fill="currentColor"
+			/>
+		</svg>
+	</SideNavigationButton>
 </div>
 
 <style lang="scss">
@@ -55,29 +74,15 @@
 		transform: translateY(-50%);
 		backdrop-filter: blur(24px);
 		border: 0.5px solid rgba(255, 255, 255, 0.4);
+		transition-property: transform, border-color, background-color;
+		transition-duration: 300ms;
+		transition-timing-function: ease-out;
 
-		button {
-			aspect-ratio: 1/1;
-			width: 56px;
-			height: 56px;
-			border: none;
-			border-radius: 100%;
-			background-color: rgba(255, 255, 255, 0);
-			cursor: pointer;
-			padding: 12px;
-			color: white;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-
-			&.active {
-				background-color: rgba(255, 255, 255, 0.4);
-			}
-
-			svg {
-				width: 100%;
-				height: 100%;
-			}
+		&:hover {
+			transform: translateY(-50%) scale(1.05);
+			transition-duration: 150ms;
+			border-color: rgba(255, 255, 255, 0.5);
+			background-color: rgba(230, 230, 230, 0.21);
 		}
 	}
 </style>

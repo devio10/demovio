@@ -2,6 +2,7 @@
 	import AppIcon from "$lib/AppIcon.svelte";
 	import { api_url } from "$lib/const";
 	import { onMount } from "svelte";
+	let { data } = $props();
 	let status = $state();
 	let players = $state([]);
 	function getPlayerCountText(players_online) {
@@ -59,14 +60,14 @@
 <h2>{status}</h2>
 <span class="welcome">Добро пожаловать, devio10</span>
 <nav>
-	<AppIcon icon="Players" href="players">Игроки</AppIcon>
-	<AppIcon icon="Passport" href="players">Паспорт</AppIcon>
+	<AppIcon icon="Players" href="players" badge="2">Игроки</AppIcon>
+	<AppIcon icon="Passport" href="players" badge="99+">Паспорт</AppIcon>
 	<AppIcon icon="Help" href="players">Помощь</AppIcon>
 	<br />
-	<AppIcon icon="Wiki" href="players">Википедия</AppIcon>
-	<AppIcon icon="Maps" href="players">Карта</AppIcon>
+	<AppIcon icon="Wiki" href="https://wiki.demovio.love/">Википедия</AppIcon>
+	<AppIcon icon="Maps" href="https://map.demovio.love/">Карта</AppIcon>
 	<AppIcon icon="Downloads" href="players">Загрузки</AppIcon>
-	<AppIcon icon="About" href="players">О Сервере</AppIcon>
+	<AppIcon icon="About" href="https://demovio.love/?no-redirect">О Сервере</AppIcon>
 </nav>
 <span class="players-number">
 	{getPlayerCountText(players)}

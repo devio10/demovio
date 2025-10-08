@@ -6,21 +6,47 @@
     {
       "layers" : [
         {
-          "blend-mode" : "plus-darker",
-          "fill" : "none",
-          "glass" : false,
-          "hidden" : false,
-          "image-name" : "MaterialSymbolsLightbulb 2.png",
-          "name" : "MaterialSymbolsLightbulb 2",
-          "opacity" : 0.85
-        },
-        {
           "fill" : {
-            "automatic-gradient" : "display-p3:0.78480,1.00000,0.73272,1.00000"
+            "automatic-gradient" : "display-p3:0.05340,0.03855,0.14977,1.00000"
           },
           "glass" : true,
-          "image-name" : "MaterialSymbolsLightbulb 1.png",
-          "name" : "MaterialSymbolsLightbulb 1"
+          "image-name" : "Ellipse 4.png",
+          "name" : "Ellipse 4"
+        },
+        {
+          "blend-mode" : "normal",
+          "fill" : {
+            "automatic-gradient" : "display-p3:0.62796,0.96783,0.61414,1.00000"
+          },
+          "glass" : true,
+          "hidden" : false,
+          "image-name" : "BiGlobeAmericas 2.svg",
+          "name" : "BiGlobeAmericas 2",
+          "opacity" : 0.75,
+          "position" : {
+            "scale" : 20,
+            "translation-in-points" : [
+              0,
+              0
+            ]
+          }
+        },
+        {
+          "blend-mode" : "normal",
+          "fill" : {
+            "automatic-gradient" : "display-p3:0.24637,0.24658,0.96783,1.00000"
+          },
+          "glass" : true,
+          "hidden" : false,
+          "image-name" : "Ellipse 5.svg",
+          "name" : "Ellipse 5",
+          "position" : {
+            "scale" : 20,
+            "translation-in-points" : [
+              0,
+              0
+            ]
+          }
         }
       ],
       "shadow" : {
