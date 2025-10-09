@@ -1,32 +1,38 @@
 {
-	"name": "demovio",
-	"private": true,
-	"version": "0.0.1",
-	"type": "module",
-	"scripts": {
-		"dev": "vite dev",
-		"build": "vite build",
-		"preview": "vite preview",
-		"prepare": "svelte-kit sync || echo ''"
-	},
-	"devDependencies": {
-		"@eslint/compat": "^1.4.0",
-		"@eslint/js": "^9.37.0",
-		"@sveltejs/adapter-auto": "^6.1.0",
-		"@sveltejs/enhanced-img": "^0.8.4",
-		"@sveltejs/kit": "^2.43.2",
-		"@sveltejs/vite-plugin-svelte": "^6.2.0",
-		"eslint": "^9.37.0",
-		"eslint-config-prettier": "^10.1.8",
-		"eslint-plugin-svelte": "^3.12.4",
-		"globals": "^16.4.0",
-		"prettier": "^3.6.2",
-		"prettier-plugin-svelte": "^3.4.0",
-		"sass-embedded": "^1.93.2",
-		"svelte": "^5.39.5",
-		"vite": "^7.1.7"
-	},
-	"dependencies": {
-		"@fontsource-variable/montserrat": "^5.2.8"
-	}
+  "name": "demovio",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "prepare": "svelte-kit sync || echo ''"
+  },
+  "devDependencies": {
+    "@eslint/compat": "^1.4.0",
+    "@eslint/js": "^9.37.0",
+    "@sveltejs/adapter-auto": "^6.1.0",
+    "@sveltejs/enhanced-img": "^0.8.4",
+    "@sveltejs/kit": "^2.43.2",
+    "@sveltejs/vite-plugin-svelte": "^6.2.0",
+    "eslint": "^9.37.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-svelte": "^3.12.4",
+    "globals": "^16.4.0",
+    "less": "^4.4.2",
+    "prettier": "^3.6.2",
+    "prettier-plugin-svelte": "^3.4.0",
+    "sass-embedded": "^1.93.2",
+    "svelte": "^5.39.5",
+    "svelte-preprocess": "^6.0.3",
+    "vite": "^7.1.7"
+  },
+  "dependencies": {
+    "@fontsource-variable/montserrat": "^5.2.8"
+  },
+  "trustedDependencies": [
+    "@parcel/watcher",
+    "svelte-preprocess"
+  ]
 }

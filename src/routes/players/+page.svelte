@@ -1,4 +1,5 @@
 <script>
+	// import SkinViewer3D from "$lib/MinecraftSkinViewer/SkinViewer3D.svelte";
 	import Window from "$lib/Window/Window.svelte";
 	import WindowNavigation from "$lib/Window/WindowNavigation.svelte";
 	import WindowNavigationPlayer from "$lib/Window/WindowNavigationPlayer.svelte";
@@ -46,4 +47,5 @@
 			</ul>
 		</WindowNavigation>
 	{/snippet}
+	<!-- <SkinViewer3D --url="url(https://demovio.love/skins/anastasiz2009.png)" /> -->
 </Window>
