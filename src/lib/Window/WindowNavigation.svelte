@@ -43,6 +43,8 @@
 				padding-inline-start: 0;
 				padding: 0 24px;
 				overflow-y: auto;
+				scrollbar-width: thin;
+				scrollbar-base-color: rgba(0, 0, 0, 0);
 				margin: 0;
 				padding-top: 136px;
 				padding-bottom: 24px;

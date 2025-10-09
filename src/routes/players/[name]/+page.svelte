@@ -3,10 +3,13 @@
 	import { onMount } from "svelte";
 	import { SkinViewer } from "skinview3d";
 	const name = $derived(page.params.name);
-	let canvasObject = $state();
-	$effect(() => {
+</script>
+
+<p>{name}</p>
+<canvas
+	{@attach (canvas) => {
 		let skinViewer = new SkinViewer({
-			canvas: canvasObject,
+			canvas: canvas,
 			width: 120,
 			height: 200,
 			skin: `https://demovio.love/skins/${name}.png?t=${Date.now()}`,
@@ -17,11 +20,8 @@
 		return () => {
 			skinViewer.dispose();
 		};
-	});
-</script>
-
-<p>{name}</p>
-<canvas bind:this={canvasObject}></canvas>
+	}}
+></canvas>
 
 <style lang="less">
 	canvas {
