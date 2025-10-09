@@ -1,5 +1,8 @@
-import { redirect, type ServerLoad } from "@sveltejs/kit";
+import { fail, redirect, type ServerLoad } from "@sveltejs/kit";
 import type { Actions } from "./$types";
+import { db } from "$lib/server/db";
+import { and, eq } from "drizzle-orm";
+import { playersTable } from "$lib/server/db/schema";
 
 export const load: ServerLoad = ({ locals }) => {
 	if (locals.loggedIn) {
@@ -9,10 +12,24 @@ export const load: ServerLoad = ({ locals }) => {
 };
 
 export const actions: Actions = {
-	default: ({ locals, cookies }) => {
+	default: async ({ locals, cookies, request }) => {
+		await new Promise((resolve) => setTimeout(resolve, 1000));
 		if (locals.loggedIn) {
 			return redirect(303, "/");
 		}
+		const body = await request.formData();
+		const login = body.get("login");
+		const password = body.get("password");
+		if (typeof login !== "string" || typeof password !== "string") {
+			return fail(400);
+		}
+		const player = await db.query.playersTable.findFirst({
+			where: and(eq(playersTable.name, login), eq(playersTable.password, password)),
+		});
+		if (!player) {
+			return fail(403, { error: "No player found" });
+		}
 		cookies.set("session", "piss", { httpOnly: true, path: "/" });
+		return redirect(303, "/profile");
 	},
 };

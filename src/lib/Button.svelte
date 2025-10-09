@@ -21,17 +21,23 @@
 		transition-property: scale, background-color, color;
 		transition-duration: 250ms;
 		transition-timing-function: ease-out;
-		&:hover {
-			scale: 1.05;
-			transition-duration: 125ms;
-			color: white;
-			background-color: rgba(130, 130, 130, 0.55);
+		&:not(:disabled) {
+			&:hover {
+				scale: 1.05;
+				transition-duration: 125ms;
+				color: white;
+				background-color: rgba(130, 130, 130, 0.55);
+			}
+			&:active {
+				scale: 1.02;
+				transition-duration: 125ms;
+				color: #dddbd6;
+				background-color: rgba(130, 130, 130, 0.45);
+			}
 		}
-		&:active {
-			scale: 1.02;
-			transition-duration: 125ms;
-			color: #dddbd6;
-			background-color: rgba(130, 130, 130, 0.45);
+		&:disabled {
+			cursor: not-allowed;
+			background-color: rgba(130, 130, 130, 0.3);
 		}
 	}
 </style>

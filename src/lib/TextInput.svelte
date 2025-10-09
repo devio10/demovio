@@ -1,10 +1,18 @@
-<script>
-	let { children, placeholder, type = "text", value = $bindable(), ...props } = $props();
+<script lang="ts">
+	import type { HTMLInputAttributes } from "svelte/elements";
+
+	let {
+		children,
+		style,
+		class: className,
+		value = $bindable(),
+		...props
+	}: HTMLInputAttributes = $props();
 </script>
 
-<div {...props}>
+<div class={className} {style}>
 	{@render children?.()}
-	<input {type} {placeholder} bind:value />
+	<input {...props} bind:value />
 </div>
 
 <style lang="scss">

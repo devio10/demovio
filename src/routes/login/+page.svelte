@@ -3,7 +3,9 @@
 	import Button from "$lib/Button.svelte";
 	import TextInput from "$lib/TextInput.svelte";
 	import Window from "$lib/Window/Window.svelte";
-	let { data } = $props();
+	let { data, form } = $props();
+	let formError = $derived(form?.error);
+	let submitting = $state(false);
 </script>
 
 <Window>
@@ -22,8 +24,24 @@
 				/>
 				<rect x="138" y="14" width="24" height="24" fill="currentColor" />
 			</svg>
-			<form method="POST" use:enhance>
-				<TextInput style="margin-bottom: 16px" placeholder="Имя игрока">
+			<form
+				method="POST"
+				use:enhance={() => {
+					formError = undefined;
+					submitting = true;
+					return ({ update }) => {
+						submitting = false;
+						update();
+					};
+				}}
+			>
+				<TextInput
+					oninput={() => (formError = undefined)}
+					style="margin-bottom: 16px"
+					placeholder="Имя игрока"
+					name="login"
+					disabled={submitting}
+				>
 					<svg
 						style="padding: 4px;"
 						version="1.1"
@@ -37,7 +55,13 @@
 						/>
 					</svg>
 				</TextInput>
-				<TextInput placeholder="Пароль" type="password">
+				<TextInput
+					oninput={() => (formError = undefined)}
+					placeholder="Пароль"
+					type="password"
+					name="password"
+					disabled={submitting}
+				>
 					<svg
 						version="1.1"
 						xmlns="http://www.w3.org/2000/svg"
@@ -51,7 +75,12 @@
 					</svg>
 				</TextInput>
 
-				<Button type="submit" style="margin: 32px 0 64px 0">Войти в аккаунт</Button>
+				<Button type="submit" disabled={submitting} style="margin: 32px 0 24px 0"
+					>Войти в аккаунт</Button
+				>
+				{#if formError}
+					<span>{formError}</span>
+				{/if}
 			</form>
 		{:else}
 			<p>Эммм а ниче тот факт что ты вашел уже норм да?</p>
