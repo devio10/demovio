@@ -1,4 +1,5 @@
 <script>
+	import { enhance } from "$app/forms";
 	import Button from "$lib/Button.svelte";
 	import TextInput from "$lib/TextInput.svelte";
 	import Window from "$lib/Window/Window.svelte";
@@ -21,7 +22,7 @@
 				/>
 				<rect x="138" y="14" width="24" height="24" fill="currentColor" />
 			</svg>
-			<form>
+			<form method="POST" use:enhance>
 				<TextInput style="margin-bottom: 16px" placeholder="Имя игрока">
 					<svg
 						style="padding: 4px;"
