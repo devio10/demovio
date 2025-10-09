@@ -1,6 +1,6 @@
 <script>
 	import Window from "$lib/Window/Window.svelte";
-	import WindowNavigation from "$lib/Window/WindowNavigation.svelte";
+	import WindowNavigation from "$lib/Window/Navigation/WindowNavigation.svelte";
 </script>
 
 <Window>

@@ -3,11 +3,11 @@
 
 	// import SkinViewer3D from "$lib/MinecraftSkinViewer/SkinViewer3D.svelte";
 	import Window from "$lib/Window/Window.svelte";
-	import WindowNavigation from "$lib/Window/WindowNavigation.svelte";
-	import WindowNavigationPlaceholder from "$lib/Window/WindowNavigationPlaceholder.svelte";
-	import WindowNavigationPlayer from "$lib/Window/WindowNavigationPlayer.svelte";
-	import WindowNavigationSearch from "$lib/Window/WindowNavigationSearch.svelte";
-	import WindowNavigationWarning from "$lib/Window/WindowNavigationWarning.svelte";
+	import WindowNavigation from "$lib/Window/Navigation/WindowNavigation.svelte";
+	import WindowNavigationPlaceholder from "$lib/Window/Navigation/WindowNavigationPlaceholder.svelte";
+	import WindowNavigationPlayer from "$lib/Window/Navigation/WindowNavigationPlayer.svelte";
+	import WindowNavigationSearch from "$lib/Window/Navigation/WindowNavigationSearch.svelte";
+	import WindowNavigationWarning from "$lib/Window/Navigation/WindowNavigationWarning.svelte";
 	import { api_url } from "$lib/const";
 	import { onMount } from "svelte";
 

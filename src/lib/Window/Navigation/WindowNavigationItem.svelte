@@ -1,0 +1,89 @@
+<script>
+	import { page } from "$app/state";
+	import { flip } from "svelte/animate";
+	import { expoOut } from "svelte/easing";
+	import { fly, scale } from "svelte/transition";
+
+	const hide = (node, { delay, duration, easing }) => {
+		return {
+			delay,
+			duration,
+			easing,
+			css: (t, u) => {
+				return `height: ${56 * t}px; opacity: ${t}`;
+			},
+		};
+	};
+	let { href, i, children } = $props();
+</script>
+
+<a
+	{href}
+	class={{ active: page.url.pathname === href }}
+	in:fly|global={{ duration: 150, delay: 10 * i, y: 10 }}
+	out:hide={{ duration: 250, easing: expoOut }}
+>
+	<div class="inner-height">
+		{@render children?.()}
+	</div>
+</a>
+
+<style lang="scss">
+	a {
+		width: 100%;
+		font-size: 14px;
+		font-weight: 600;
+		border-radius: 16px;
+		border: none;
+		margin: 0;
+		cursor: pointer;
+		flex-shrink: 0;
+		background: none;
+		transition: 300ms background-color ease-out;
+		text-decoration: none;
+		color: #dddbd6;
+		overflow: clip;
+
+		.inner-height {
+			display: flex;
+			align-items: center;
+			height: 56px;
+			min-height: 56px;
+			padding: 0 24px;
+		}
+
+		&.active {
+			background-color: rgba(179, 179, 179, 0.3);
+			&:hover {
+				background-color: rgba(179, 179, 179, 0.5);
+			}
+		}
+		&:hover {
+			transition-duration: 75ms;
+			background-color: rgba(179, 179, 179, 0.2);
+		}
+		img {
+			width: 48px;
+			height: 48px;
+			border-radius: 4px;
+			border: 0.5px solid rgba(255, 255, 255, 0.15);
+			object-fit: cover;
+			margin-right: 16px;
+		}
+		.name {
+			font-size: 16px;
+			font-weight: 600;
+			color: white;
+			display: block;
+			text-align: left;
+			margin-bottom: 4px;
+		}
+		.pronouns {
+			font-size: 16px;
+			display: block;
+			text-align: left;
+			color: rgba(190, 190, 190, 0.75);
+			line-height: 1.2;
+		}
+	}
+</style>
