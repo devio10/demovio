@@ -2,7 +2,8 @@ import { fail, redirect, type ServerLoad } from "@sveltejs/kit";
 import type { Actions } from "./$types";
 import { db } from "$lib/server/db";
 import { and, eq } from "drizzle-orm";
-import { playersTable } from "$lib/server/db/schema";
+import { playersTable, sessionsTable } from "$lib/server/db/schema";
+import { nanoid } from "nanoid";
 
 export const load: ServerLoad = ({ locals }) => {
 	if (locals.loggedIn) {
@@ -29,7 +30,12 @@ export const actions: Actions = {
 		if (!player) {
 			return fail(403, { error: "No player found" });
 		}
-		cookies.set("session", "piss", { httpOnly: true, path: "/" });
+		const sessionId = nanoid();
+		await db.insert(sessionsTable).values({
+			id: sessionId,
+			name: login,
+		});
+		cookies.set("session", sessionId, { httpOnly: true, path: "/" });
 		return redirect(303, "/profile");
 	},
 };

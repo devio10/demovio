@@ -39,6 +39,7 @@
     "@libsql/client": "^0.15.15",
     "dotenv": "^17.2.3",
     "drizzle-orm": "^0.44.6",
+    "nanoid": "^5.1.6",
     "skinview3d": "^3.4.1"
   },
   "trustedDependencies": [

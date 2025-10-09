@@ -27,3 +27,5 @@ export const sessionsTable = sqliteTable("sessions", {
 export const sessionRelations = relations(sessionsTable, ({ one }) => ({
 	player: one(playersTable, { fields: [sessionsTable.name], references: [playersTable.name] }),
 }));
+
+export type PlayerData = typeof playersTable.$inferSelect;
