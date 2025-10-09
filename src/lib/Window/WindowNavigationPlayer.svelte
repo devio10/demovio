@@ -1,34 +1,58 @@
 <script>
-	let { name, skin, pronouns, active = $bindable() } = $props();
+	import { page } from "$app/state";
+	import { flip } from "svelte/animate";
+	import { expoOut } from "svelte/easing";
+	import { fly, scale } from "svelte/transition";
+
+	const hide = (node, { delay, duration, easing }) => {
+		return {
+			delay,
+			duration,
+			easing,
+			css: (t, u) => {
+				return `height: ${72 * t}px; opacity: ${t}`;
+			},
+		};
+	};
+	let { name, skin, pronouns, i } = $props();
 </script>
 
-<button
-	onclick={() => {
-		active = name;
-	}}
-	class={{ active: active === name }}
+<a
+	href="/players/{name}"
+	class={{ active: page.params.name === name }}
+	in:fly|global={{ duration: 150, delay: 10 * i, y: 10 }}
+	out:hide|global={{ duration: 250, easing: expoOut }}
 >
-	<img src={skin} alt={name} />
-	<div>
-		<span class="name">{name}</span>
-		<span class="pronouns">{pronouns}</span>
+	<div class="inner-height">
+		<img src={skin} alt={name} />
+		<div>
+			<span class="name">{name}</span>
+			<span class="pronouns">{pronouns}</span>
+		</div>
 	</div>
-</button>
+</a>
 
 <style lang="scss">
-	button {
-		display: flex;
+	a {
 		width: 100%;
-		height: 72px;
 		border-radius: 16px;
 		border: none;
 		margin: 0;
 		cursor: pointer;
-		align-items: center;
 		flex-shrink: 0;
-		padding: 0 24px;
 		background: none;
 		transition: 300ms background-color ease-out;
+		text-decoration: none;
+		color: white;
+		overflow: clip;
+
+		.inner-height {
+			display: flex;
+			align-items: center;
+			height: 72px;
+			min-height: 72px;
+			padding: 0 24px;
+		}
 
 		&.active {
 			background-color: rgba(179, 179, 179, 0.3);
@@ -61,6 +85,7 @@
 			display: block;
 			text-align: left;
 			color: rgba(190, 190, 190, 0.75);
+			line-height: 1.2;
 		}
 	}
 </style>

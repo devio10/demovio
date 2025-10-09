@@ -29,7 +29,8 @@
     "vite": "^7.1.7"
   },
   "dependencies": {
-    "@fontsource-variable/montserrat": "^5.2.8"
+    "@fontsource-variable/montserrat": "^5.2.8",
+    "skinview3d": "^3.4.1"
   },
   "trustedDependencies": [
     "@parcel/watcher",

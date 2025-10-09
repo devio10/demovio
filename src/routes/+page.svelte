@@ -3,11 +3,11 @@
 	import { api_url } from "$lib/const";
 	import { onMount } from "svelte";
 	let { data } = $props();
-	let status = $state();
+	let status = $state("Загрузка...");
 	let players = $state([]);
 	function getPlayerCountText(players_online) {
 		let players_text = "Сейчас никто не играет";
-		if (players_online.length === 1) {
+		if (players_online.length === 1 && players_online[0] !== "0") {
 			players_text = `Сейчас играет ${players_online[0]}`;
 		} else if (players_online.length === 2) {
 			players_text = `Сейчас играют ${players_online[0]} и ${players_online[1]}`;
@@ -41,6 +41,7 @@
 				return;
 			}
 			status = "Сервер онлайн";
+			console.log(text);
 			players = text.split(",");
 		} else {
 			status = "Сервер оффлайн";

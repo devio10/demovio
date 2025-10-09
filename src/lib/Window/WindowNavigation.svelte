@@ -51,6 +51,7 @@
 					linear-gradient(to right, transparent 0%, transparent 95%, black 95.1%);
 				mask-size: cover;
 				mask-repeat: no-repeat;
+				list-style: none;
 			}
 		}
 	}
