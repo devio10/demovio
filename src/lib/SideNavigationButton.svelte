@@ -1,8 +1,10 @@
 <script>
+	import { page } from "$app/state";
+
 	let { children, alt, href, name } = $props();
 </script>
 
-<a class="" aria-label={alt} {href}>{@render children?.()}</a>
+<a class={{ active: page.url.pathname === href }} aria-label={alt} {href}>{@render children?.()}</a>
 
 <style lang="scss">
 	a {

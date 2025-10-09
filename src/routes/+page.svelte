@@ -62,8 +62,8 @@
 <span class="welcome">Добро пожаловать, devio10</span>
 <nav>
 	<AppIcon icon="Players" href="players" badge="2">Игроки</AppIcon>
-	<AppIcon icon="Passport" href="players" badge="99+">Паспорт</AppIcon>
-	<AppIcon icon="Help" href="players">Помощь</AppIcon>
+	<AppIcon icon="Passport" href="profile" badge="99+">Паспорт</AppIcon>
+	<AppIcon icon="Help" href="help">Помощь</AppIcon>
 	<br />
 	<AppIcon icon="Wiki" href="https://wiki.demovio.love/">Википедия</AppIcon>
 	<AppIcon icon="Maps" href="https://map.demovio.love/">Карта</AppIcon>

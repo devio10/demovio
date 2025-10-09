@@ -1,10 +1,13 @@
 <script>
+	import LoadingWheel from "$lib/LoadingWheel.svelte";
+
 	// import SkinViewer3D from "$lib/MinecraftSkinViewer/SkinViewer3D.svelte";
 	import Window from "$lib/Window/Window.svelte";
 	import WindowNavigation from "$lib/Window/WindowNavigation.svelte";
 	import WindowNavigationPlaceholder from "$lib/Window/WindowNavigationPlaceholder.svelte";
 	import WindowNavigationPlayer from "$lib/Window/WindowNavigationPlayer.svelte";
 	import WindowNavigationSearch from "$lib/Window/WindowNavigationSearch.svelte";
+	import WindowNavigationWarning from "$lib/Window/WindowNavigationWarning.svelte";
 	import { api_url } from "$lib/const";
 	import { onMount } from "svelte";
 
@@ -59,21 +62,27 @@
 						{/each}
 					</ul>
 				{:else}
-					<p>письк нет</p>
+					<WindowNavigationPlaceholder>
+						<WindowNavigationWarning>Нет игроков по вашему запросу</WindowNavigationWarning>
+					</WindowNavigationPlaceholder>
 				{/if}
 			{:else if playersError}
 				{#if playersError.name === "TimeoutError"}
 					<WindowNavigationPlaceholder>
-						<span>Сервер не отвечает</span>
+						<WindowNavigationWarning>Превышено время ожидания</WindowNavigationWarning>
 					</WindowNavigationPlaceholder>
 				{:else if playersError.name === "AbortError"}
-					<p>Серверная ошибка лоль</p>
+					<WindowNavigationPlaceholder>
+						<WindowNavigationWarning>Неправильный ответ от сервера</WindowNavigationWarning>
+					</WindowNavigationPlaceholder>
 				{:else}
-					<p>Ошибька</p>
+					<WindowNavigationPlaceholder>
+						<WindowNavigationWarning>Ошибка соединения с сервером</WindowNavigationWarning>
+					</WindowNavigationPlaceholder>
 				{/if}
 			{:else}
 				<WindowNavigationPlaceholder>
-					<span>писььь</span>
+					<LoadingWheel --wheel-size="128px" --wheel-color="rgba(255,255,255,0.75)" />
 				</WindowNavigationPlaceholder>
 			{/if}
 		</WindowNavigation>

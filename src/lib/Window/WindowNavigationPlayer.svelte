@@ -21,7 +21,7 @@
 	href="/players/{name}"
 	class={{ active: page.params.name === name }}
 	in:fly|global={{ duration: 150, delay: 10 * i, y: 10 }}
-	out:hide|global={{ duration: 250, easing: expoOut }}
+	out:hide={{ duration: 250, easing: expoOut }}
 >
 	<div class="inner-height">
 		<img src={skin} alt={name} />

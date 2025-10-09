@@ -12,7 +12,7 @@
 			/>
 		</svg>
 	</SideNavigationButton>
-	<SideNavigationButton alt="Профиль" href="profile">
+	<SideNavigationButton alt="Профиль" href="/profile">
 		<svg
 			style="padding: 4px;"
 			version="1.1"
@@ -26,7 +26,7 @@
 			/>
 		</svg>
 	</SideNavigationButton>
-	<SideNavigationButton alt="Окружение" href="environment">
+	<SideNavigationButton alt="Окружение" href="/environment">
 		<svg viewBox="0 0 33 32" xmlns="http://www.w3.org/2000/svg">
 			<path
 				fill="currentColor"
@@ -42,7 +42,7 @@
 			/>
 		</svg>
 	</SideNavigationButton>
-	<SideNavigationButton alt="Уведомления" href="notifications">
+	<SideNavigationButton alt="Уведомления" href="/notifications">
 		<svg
 			style="padding: 4px;"
 			version="1.1"
