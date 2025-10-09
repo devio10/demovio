@@ -1,7 +1,16 @@
-<script>
+<script lang="ts">
+	import type { Snippet } from "svelte";
 	import { page } from "$app/state";
 
-	let { children, alt, href, name } = $props();
+	let {
+		children,
+		alt,
+		href,
+	}: {
+		children: Snippet;
+		alt: string;
+		href: string;
+	} = $props();
 </script>
 
 <a class={{ active: page.url.pathname === href }} aria-label={alt} {href}>{@render children?.()}</a>

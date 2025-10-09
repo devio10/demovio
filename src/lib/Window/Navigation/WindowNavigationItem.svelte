@@ -1,8 +1,11 @@
-<script>
+<script lang="ts">
 	import { page } from "$app/state";
+	import type { Snippet } from "svelte";
 	import { flip } from "svelte/animate";
 	import { expoOut } from "svelte/easing";
 	import { fly, scale } from "svelte/transition";
+
+	let { href, i, children }: { href: string; i: number; children?: Snippet } = $props();
 
 	const hide = (node, { delay, duration, easing }) => {
 		return {
@@ -14,7 +17,6 @@
 			},
 		};
 	};
-	let { href, i, children } = $props();
 </script>
 
 <a

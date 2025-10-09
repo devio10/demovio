@@ -1,5 +1,17 @@
-<script>
-	let { children, icon, href, badge } = $props();
+<script lang="ts">
+	import type { Snippet } from "svelte";
+
+	let {
+		children,
+		icon,
+		href,
+		badge,
+	}: {
+		children?: Snippet;
+		icon: string;
+		href: string;
+		badge: string;
+	} = $props();
 </script>
 
 <div>

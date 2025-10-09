@@ -1,5 +1,4 @@
 <script>
-	import { page } from "$app/state";
 	import SideNavigationButton from "./SideNavigationButton.svelte";
 </script>
 

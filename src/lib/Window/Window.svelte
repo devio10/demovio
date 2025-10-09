@@ -1,10 +1,17 @@
-<script>
+<script lang="ts">
+	import type { Snippet } from "svelte";
 	import { scale, slide } from "svelte/transition";
 
-	let { children, navigation, icon, href, badge } = $props();
+	let {
+		children,
+		navigation,
+	}: {
+		children?: Snippet;
+		navigation?: Snippet;
+	} = $props();
 </script>
 
-<div class="window" transition:scale|global={{ duration: 500, y: 10, start: 0.5 }}>
+<div class="window" transition:scale|global={{ duration: 500, start: 0.5 }}>
 	{@render navigation?.()}
 	<div class="content">
 		{@render children?.()}

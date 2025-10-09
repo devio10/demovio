@@ -1,10 +1,21 @@
-<script>
+<script lang="ts">
 	import { page } from "$app/state";
+	import type { Snippet } from "svelte";
 	import { flip } from "svelte/animate";
 	import { expoOut } from "svelte/easing";
-	import { fly, scale } from "svelte/transition";
+	import { fly, scale, type EasingFunction, type TransitionConfig } from "svelte/transition";
 
-	const hide = (node, { delay, duration, easing }) => {
+	let {
+		name,
+		skin,
+		pronouns,
+		i,
+	}: { name: string; skin: string; pronouns: string; i: number; children?: Snippet } = $props();
+
+	const hide = (
+		node: HTMLElement,
+		{ delay, duration, easing }: { delay?: number; duration?: number; easing?: EasingFunction },
+	): TransitionConfig => {
 		return {
 			delay,
 			duration,
@@ -14,7 +25,6 @@
 			},
 		};
 	};
-	let { name, skin, pronouns, i } = $props();
 </script>
 
 <a

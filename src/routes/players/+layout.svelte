@@ -1,7 +1,5 @@
-<script>
+<script lang="ts">
 	import LoadingWheel from "$lib/LoadingWheel.svelte";
-
-	// import SkinViewer3D from "$lib/MinecraftSkinViewer/SkinViewer3D.svelte";
 	import Window from "$lib/Window/Window.svelte";
 	import WindowNavigation from "$lib/Window/Navigation/WindowNavigation.svelte";
 	import WindowNavigationPlaceholder from "$lib/Window/Navigation/WindowNavigationPlaceholder.svelte";
@@ -14,8 +12,8 @@
 	let { children } = $props();
 
 	let searchQuery = $state("");
-	let players = $state();
-	let playersError = $state(false);
+	let players: { name: string; skin: string; pronouns: string }[] | undefined = $state();
+	let playersError: false | Error = $state(false);
 	async function playersList() {
 		try {
 			const req = await fetch(`${api_url}players.php`, {
@@ -31,7 +29,9 @@
 			players = data;
 		} catch (e) {
 			console.error(e);
-			playersError = e;
+			if (e instanceof Error) {
+				playersError = e;
+			}
 		}
 	}
 	onMount(() => {

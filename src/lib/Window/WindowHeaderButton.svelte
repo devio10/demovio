@@ -1,5 +1,13 @@
-<script>
-	let { children, name } = $props();
+<script lang="ts">
+	import type { Snippet } from "svelte";
+
+	let {
+		children,
+		name,
+	}: {
+		children: Snippet;
+		name: string;
+	} = $props();
 </script>
 
 <button aria-label={name}>

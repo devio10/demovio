@@ -33,6 +33,8 @@
 			href: "/kiss",
 		},
 	];
+
+	const section = $derived(sections.find((v) => `/help${v.href}` === page.url.pathname));
 </script>
 
 <Window>
@@ -43,14 +45,17 @@
 				<WindowNavigationSearch bind:value={searchQuery} placeholder="Поиск" />
 			</div>
 			<ul>
-				{#each sections as section}
-					<WindowNavigationItem href="/help{section.href}">{section.title}</WindowNavigationItem>
+				{#each sections as section, i}
+					<WindowNavigationItem href="/help{section.href}" {i}>
+						{section.title}
+					</WindowNavigationItem>
 				{/each}
 			</ul>
 		</WindowNavigation>
 	{/snippet}
-	<WindowHeader title={sections.find((v) => `/help${v.href}` === page.url.pathname).title}
-	></WindowHeader>
+	{#if section}
+		<WindowHeader title={section.title}></WindowHeader>
+	{/if}
 	<article>
 		{@render children?.()}
 	</article>
