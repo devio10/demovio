@@ -3,8 +3,36 @@
 	import WindowNavigation from "$lib/Window/Navigation/WindowNavigation.svelte";
 	import WindowNavigationSearch from "$lib/Window/Navigation/WindowNavigationSearch.svelte";
 	import WindowNavigationItem from "$lib/Window/Navigation/WindowNavigationItem.svelte";
+	import WindowHeader from "$lib/Window/WindowHeader.svelte";
+	import { page } from "$app/state";
 	let searchQuery = $state("");
 	let { children } = $props();
+	const sections = [
+		{
+			title: "Главная",
+			href: "",
+		},
+		{
+			title: "Установка игры",
+			href: "/install-game",
+		},
+		{
+			title: "Установка модов",
+			href: "/install-mods",
+		},
+		{
+			title: "Версия игры и сервера",
+			href: "/kiss",
+		},
+		{
+			title: "Изменение персональных данных",
+			href: "/kiss",
+		},
+		{
+			title: "Прочие материалы",
+			href: "/kiss",
+		},
+	];
 </script>
 
 <Window>
@@ -15,12 +43,21 @@
 				<WindowNavigationSearch bind:value={searchQuery} placeholder="Поиск" />
 			</div>
 			<ul>
-				<WindowNavigationItem href="/help">Главная</WindowNavigationItem>
-				<WindowNavigationItem href="/help/install-game">Установка игры</WindowNavigationItem>
-				<WindowNavigationItem href="/help/install-mods">Установка модов</WindowNavigationItem>
+				{#each sections as section}
+					<WindowNavigationItem href="/help{section.href}">{section.title}</WindowNavigationItem>
+				{/each}
 			</ul>
 		</WindowNavigation>
 	{/snippet}
-
-	{@render children?.()}
+	<WindowHeader title={sections.find((v) => `/help${v.href}` === page.url.pathname).title}
+	></WindowHeader>
+	<article>
+		{@render children?.()}
+	</article>
 </Window>
+
+<style>
+	article {
+		padding: 0 36px 36px 36px;
+	}
+</style>
