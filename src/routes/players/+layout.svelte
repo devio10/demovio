@@ -8,6 +8,8 @@
 	import WindowNavigationWarning from "$lib/Window/Navigation/WindowNavigationWarning.svelte";
 	import { api_url } from "$lib/const";
 	import { onMount } from "svelte";
+	import WindowNavigationHeader from "$lib/Window/Navigation/WindowNavigationHeader.svelte";
+	import WindowNavigationList from "$lib/Window/Navigation/WindowNavigationList.svelte";
 
 	let { children } = $props();
 
@@ -42,16 +44,15 @@
 <Window>
 	{#snippet navigation()}
 		<WindowNavigation --width="45%">
-			<div class="windownavigation-header">
-				<h2 style="margin-bottom: 16px;">Игроки</h2>
+			<WindowNavigationHeader title="Игроки">
 				<WindowNavigationSearch bind:value={searchQuery} placeholder="Поиск по игрокам" />
-			</div>
+			</WindowNavigationHeader>
 			{#if players}
 				{@const filteredPlayers = players.filter((p) =>
 					p.name.toLowerCase().includes(searchQuery.trim().toLowerCase()),
 				)}
 				{#if filteredPlayers.length}
-					<ul>
+					<WindowNavigationList>
 						{#each filteredPlayers as { name, skin, pronouns }, i (name)}
 							<WindowNavigationPlayer
 								{name}
@@ -60,7 +61,7 @@
 								skin="https://mc-heads.net/avatar/{skin}/48.png"
 							/>
 						{/each}
-					</ul>
+					</WindowNavigationList>
 				{:else}
 					<WindowNavigationPlaceholder>
 						<WindowNavigationWarning>Нет игроков по вашему запросу</WindowNavigationWarning>

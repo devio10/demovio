@@ -1,6 +1,7 @@
 <script lang="ts">
-	import type { Snippet } from "svelte";
-
+	import { setContext, type Snippet } from "svelte";
+	let headerHeightContext = $state({ headerHeight: 0 });
+	setContext("headerHeightContext", headerHeightContext);
 	let { children }: { children?: Snippet } = $props();
 </script>
 
@@ -30,34 +31,6 @@
 				margin: 0;
 				font-size: 28px;
 				font-weight: bold;
-			}
-			.windownavigation-header {
-				padding: 24px;
-				margin-bottom: 16px;
-				position: absolute;
-				z-index: 10;
-
-				width: 100%;
-				top: 0;
-			}
-			ul {
-				display: flex;
-				flex-direction: column;
-				width: 100%;
-				padding-inline-start: 0;
-				padding: 0 24px;
-				overflow-y: auto;
-				scrollbar-width: thin;
-				scrollbar-base-color: rgba(0, 0, 0, 0);
-				margin: 0;
-				padding-top: 136px;
-				padding-bottom: 24px;
-				mask:
-					linear-gradient(to bottom, transparent 0%, transparent 124px, black 140px),
-					linear-gradient(to right, transparent 0%, transparent 95%, black 95.1%);
-				mask-size: cover;
-				mask-repeat: no-repeat;
-				list-style: none;
 			}
 		}
 	}

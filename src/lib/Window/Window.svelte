@@ -21,10 +21,10 @@
 <style lang="scss">
 	.window {
 		position: absolute;
-		width: 85%;
-		max-width: 900px;
-		height: 650px;
-		max-height: 80%;
+		width: 80%;
+		max-width: 1000px;
+		height: 80%;
+		max-height: 850px;
 		display: flex;
 		backdrop-filter: blur(50px);
 		border-radius: 52px;

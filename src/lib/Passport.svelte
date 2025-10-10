@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Profile } from "../routes/profile/+page.server";
+	import type { Profile } from "../routes/profile/+layout.serverer";
 
 	function nameCode(length: number, symbol: string, input: string) {
 		return input.length >= length ? input.slice(0, length) : input.padEnd(length, symbol);
