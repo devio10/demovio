@@ -34,6 +34,7 @@
 		flex: 1;
 		height: 100%;
 		max-height: 100%;
+		min-height: 0;
 		background-color: #393939;
 		background: linear-gradient(-50deg, rgba(255, 255, 255, 0.37) 0%, rgba(114, 114, 114, 0.6) 95%);
 		border-radius: 0 52px 52px 0;

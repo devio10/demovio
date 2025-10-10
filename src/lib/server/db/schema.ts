@@ -3,6 +3,7 @@ import { int, sqliteTable, text, integer } from "drizzle-orm/sqlite-core";
 
 export const playersTable = sqliteTable("players", {
 	id: int().primaryKey({ autoIncrement: true }),
+	uuid: text().notNull(),
 	name: text().notNull().unique(),
 	password: text().notNull(),
 	skin: text().notNull(),
@@ -10,7 +11,7 @@ export const playersTable = sqliteTable("players", {
 		mode: "json",
 	})
 		.$type<{
-			code: string;
+			code: "SH" | "CA" | "NY" | "GE" | "OH" | "CD";
 			date: number;
 			protocol: string;
 			address: string;

@@ -13,6 +13,7 @@
 		width: var(--width, 30%);
 		height: 100%;
 		max-height: 100%;
+		min-height: 0;
 		border-radius: 52px 0 0 52px;
 		display: flex;
 		flex-direction: column;
