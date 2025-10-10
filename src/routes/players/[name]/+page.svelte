@@ -1,7 +1,6 @@
 <script>
 	import { page } from "$app/state";
-	import { onMount } from "svelte";
-	import { SkinViewer } from "skinview3d";
+	import { SkinViewer, IdleAnimation } from "skinview3d";
 	import { Spring } from "svelte/motion";
 	import WindowHeaderButton from "$lib/Window/WindowHeaderButton.svelte";
 	import WindowHeader from "$lib/Window/WindowHeader.svelte";
@@ -59,6 +58,7 @@
 						skin: `https://demovio.love/skins/${name}.png?t=${Date.now()}`,
 					});
 					skinViewer.autoRotate = true;
+					skinViewer.animation = new IdleAnimation();
 					skinViewer.autoRotateSpeed = -0.25;
 					skinViewer.globalLight.intensity = 2.85;
 					skinViewer.controls.enableZoom = false;

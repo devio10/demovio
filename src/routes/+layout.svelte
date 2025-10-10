@@ -44,4 +44,17 @@
 			object-fit: cover;
 		}
 	}
+	:global {
+		.settings-content {
+			min-height: 100%;
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+		.settings-buttons {
+			width: 100%;
+			padding: 24px 48px;
+		}
+	}
 </style>

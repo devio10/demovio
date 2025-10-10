@@ -37,6 +37,7 @@
   "dependencies": {
     "@fontsource-variable/montserrat": "^5.2.8",
     "@libsql/client": "^0.15.15",
+    "bits-ui": "^2.11.5",
     "dotenv": "^17.2.3",
     "drizzle-orm": "^0.44.6",
     "nanoid": "^5.1.6",

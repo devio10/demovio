@@ -1,10 +1,10 @@
 <script>
 	import Passport from "$lib/Passport.svelte";
-	import WindowHeader from "$lib/Window/WindowHeader.svelte";
+	import SettingsHeader from "$lib/Window/SettingsHeader.svelte";
 	let { data } = $props();
 </script>
 
-<WindowHeader title="Паспорт" style="position: absolute;"></WindowHeader>
+<SettingsHeader title="Паспорт" style="position: absolute;"></SettingsHeader>
 <div>
 	<Passport profile={data.profile}></Passport>
 </div>
@@ -14,6 +14,6 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		height: max-content;
+		height: 100%;
 	}
 </style>

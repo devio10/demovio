@@ -188,7 +188,7 @@
 
 		display: grid;
 		grid-template-rows: 1fr 1fr;
-		margin-bottom: 48px;
+		margin-top: 48px;
 		color: rgba(0, 0, 0, 0.9);
 		transition: 0.5s ease-in-out transform;
 
