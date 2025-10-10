@@ -5,6 +5,7 @@
 		children,
 		title,
 		titleChildren,
+		...props
 	}: {
 		children?: Snippet;
 		title: string;
@@ -12,7 +13,7 @@
 	} = $props();
 </script>
 
-<div class="content">
+<div class="content" {...props}>
 	<div class="text">
 		<h2>{title}</h2>
 		{@render titleChildren?.()}

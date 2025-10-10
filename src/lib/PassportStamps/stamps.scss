@@ -1,0 +1,60 @@
+.passport-stamp {
+	--color: #4c1d95;
+	position: absolute;
+	bottom: 46px;
+	right: 32px;
+	border: 3px solid var(--color);
+	border-radius: 4px;
+	display: flex;
+	height: 56px;
+	opacity: 0.5;
+	rotate: -15deg;
+	scale: 0.9;
+	pointer-events: none;
+	user-select: none;
+
+	&.generic {
+		> span {
+			background-color: var(--color);
+			color: white;
+			opacity: 1;
+			padding: 0 6px;
+			display: flex;
+			align-items: center;
+
+			font-size: 24px;
+			font-weight: 500;
+		}
+		div {
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+			span {
+				color: var(--color);
+				opacity: 1;
+				font-weight: 700;
+				font-size: 12px;
+				padding: 0 12px;
+				&:nth-child(2) {
+					color: #db2777;
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.passport-stamp {
+		scale: 0.8;
+		bottom: 24px;
+		right: 6px;
+	}
+}
+
+.passport-stamp.effect {
+	mask-image: url("/images/grunge.png");
+	mask-size: 600px 600px;
+	-webkit-mask-image: url("/images/grunge.png");
+	-webkit-mask-size: 400px 400px;
+	mix-blend-mode: multiply;
+}

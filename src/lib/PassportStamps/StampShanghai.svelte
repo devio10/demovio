@@ -1,0 +1,71 @@
+<div class="stamp effect">
+	<div class="stamp_sh_top">
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			width="24"
+			height="24"
+			fill="currentColor"
+			viewBox="0 0 24 24"
+		>
+			<path
+				d="M4 15.5V6q0-1.325.688-2.113t1.812-1.2t2.563-.55T12 2q1.65 0 3.113.138t2.55.55t1.712 1.2T20 6v9.5q0 1.475-1.012 2.488T16.5 19l.5.5q.425.425.2.963t-.825.537q-.175 0-.337-.062t-.288-.188L14 19h-4l-1.75 1.75q-.125.125-.288.188T7.626 21q-.575 0-.812-.537T7 19.5l.5-.5q-1.475 0-2.488-1.012T4 15.5M12 4q-2.65 0-3.875.313T6.45 5h11.2q-.375-.425-1.612-.712T12 4m-6 6h5V7H6zm10.5 2H6h12zM13 10h5V7h-5zm-4.5 6q.65 0 1.075-.425T10 14.5t-.425-1.075T8.5 13t-1.075.425T7 14.5t.425 1.075T8.5 16m7 0q.65 0 1.075-.425T17 14.5t-.425-1.075T15.5 13t-1.075.425T14 14.5t.425 1.075T15.5 16m-8 1h9q.65 0 1.075-.425T18 15.5V12H6v3.5q0 .65.425 1.075T7.5 17M12 5h5.65h-11.2z"
+			/>
+		</svg>
+		<span>IMMIGRATION 移民</span>
+	</div>
+	<div class="stamp_sh_name">
+		<span>SHANGHAI</span>
+	</div>
+	<span class="stamp_sh_bottom">APPROVED / 已批准</span>
+</div>
+
+<style lang="scss">
+	.stamp {
+		--color: #e11d48;
+		border-radius: 0;
+		border-width: 3px;
+		outline: 2px dashed var(--color);
+		outline-offset: 2px;
+		flex-direction: column;
+		height: auto;
+		opacity: 0.55;
+		span {
+			color: var(--color);
+		}
+		.stamp_sh_top {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 4px;
+			padding: 4px;
+			svg {
+				fill: var(--color);
+			}
+			span {
+				font-size: 12px;
+				border: 1px solid var(--color);
+				border-left: none;
+				border-right: none;
+			}
+		}
+		.stamp_sh_name {
+			width: 100%;
+			background-color: var(--color);
+			font-weight: 800;
+			padding: 2px 0;
+			font-size: 18px;
+			text-align: center;
+			span {
+				color: black;
+			}
+		}
+		.stamp_sh_bottom {
+			height: 26px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 0 6px;
+			font-size: 12px;
+		}
+	}
+</style>

@@ -1,5 +1,12 @@
 <script lang="ts">
 	import type { Profile } from "../routes/profile/+layout.serverer";
+	import PassportStamp from "./PassportStamps/PassportStamp.svelte";
+	import StampCalifornia from "./PassportStamps/StampCalifornia.svelte";
+	import StampConcord from "./PassportStamps/StampConcord.svelte";
+	import StampGeorgia from "./PassportStamps/StampGeorgia.svelte";
+	import StampNewYork from "./PassportStamps/StampNewYork.svelte";
+	import StampOhio from "./PassportStamps/StampOhio.svelte";
+	import StampShanghai from "./PassportStamps/StampShanghai.svelte";
 
 	function nameCode(length: number, symbol: string, input: string) {
 		return input.length >= length ? input.slice(0, length) : input.padEnd(length, symbol);
@@ -49,7 +56,7 @@
 	> = {
 		SH: {
 			language: languages.chinese,
-			name: "Шанхай / Shanghai",
+			name: "上海 / Шанхай / Shanghai",
 			altName: "SHANGHAI",
 		},
 		CA: {
@@ -108,90 +115,21 @@
 					<div class="logo"></div>
 				</div>
 
-				<div class="passport-stamp SH effect">
-					<div class="stamp_sh_top">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="24"
-							height="24"
-							fill="currentColor"
-							viewBox="0 0 24 24"
-						>
-							<path
-								d="M4 15.5V6q0-1.325.688-2.113t1.812-1.2t2.563-.55T12 2q1.65 0 3.113.138t2.55.55t1.712 1.2T20 6v9.5q0 1.475-1.012 2.488T16.5 19l.5.5q.425.425.2.963t-.825.537q-.175 0-.337-.062t-.288-.188L14 19h-4l-1.75 1.75q-.125.125-.288.188T7.626 21q-.575 0-.812-.537T7 19.5l.5-.5q-1.475 0-2.488-1.012T4 15.5M12 4q-2.65 0-3.875.313T6.45 5h11.2q-.375-.425-1.612-.712T12 4m-6 6h5V7H6zm10.5 2H6h12zM13 10h5V7h-5zm-4.5 6q.65 0 1.075-.425T10 14.5t-.425-1.075T8.5 13t-1.075.425T7 14.5t.425 1.075T8.5 16m7 0q.65 0 1.075-.425T17 14.5t-.425-1.075T15.5 13t-1.075.425T14 14.5t.425 1.075T15.5 16m-8 1h9q.65 0 1.075-.425T18 15.5V12H6v3.5q0 .65.425 1.075T7.5 17M12 5h5.65h-11.2z"
-							/>
-						</svg>
-						<span>IMMIGRATION 移民</span>
-					</div>
-					<div class="stamp_sh_name">
-						<span>SHANGHAI</span>
-					</div>
-					<span class="stamp_sh_bottom">APPROVED / 已批准</span>
-				</div>
-				<div class="passport-stamp NY effect">
-					<div>
-						<span class="stamp_ny_text">APPROVED CITIZEN OF</span>
-						<span class="stamp_ny_cityname">NEW YORK</span>
-						<span class="stamp_ny_text">NY REGISTRATION OFFICE</span>
-					</div>
-				</div>
-				<div class="passport-stamp CA effect">
-					<div>
-						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-							<path
-								d="M7 14v-3.09c-.72-.33-1.39-.73-2-1.2V14zm-2 4H3v-2H1v-2h2V7h2v1.43C6.8 10 9.27 11 12 11s5.2-1 7-2.57V7h2v7h2v2h-2v2h-2v-2H5zm12-7.09V14h2V9.71c-.61.47-1.28.87-2 1.2M16 14v-2.68c-.64.23-1.31.4-2 .52V14zm-3 0v-2.04L12 12l-1-.04V14zm-3 0v-2.16c-.69-.12-1.36-.29-2-.52V14z"
-							/>
-						</svg>
-						<span class="date">21 OCT 2024</span>
-						<span>State Of</span>
-						<span class="stamp_ca_name">California</span>
-					</div>
-				</div>
-				<div class="passport-stamp OH effect">
-					<div class="stamp_oh_top">
-						<span>OHIO | ОГАЙО</span>
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="42"
-							height="42"
-							stroke="currentColor"
-							viewBox="0 0 48 48"
-						>
-							<g fill="none" stroke-linecap="round" stroke-linejoin="round">
-								<path
-									d="M16.327 21.295s.623 1.903-1.673 3.497c0 0 .814 1.195.342 2.64c0 0 2.623 2.658-.688 5.566m0 0s-1.808-5.127-3.48-5.668c0 0-.135-3.744-1.204-6.24m0 0s.107-3.825 2.704-7.018c-.209.205-1.11.952-2.831.358m6.908-5.764l3.399 3.136m-1.704.128s2.982-.807 4.917 2.249m0 0s.918 3.071 2.528 9.354c0 0-.186.97.57 1.406c0 0 .52 1.103 1.473 1.513c0 0 2.57-.417 2.387 1.151m-6.715-3.028l1.488 2.226s1.495.461 2.462 1.992c0 0 2.678-.474 2.952 1.14m-9.022-3.52l2.008 2.827s2.365.562 3.197 1.747c0 0 2.522-1.033 2.926 1.237m-10.756-4.457l2.05 2.978s1.813.467 2.845 1.585c0 0 2.815-.627 3.834.825m-11.026-2.461s1.695 4.037 9.324 3.937"
-								/>
-								<path
-									d="M17.204 32.082s-1.91 2.168 1.509 1.704c0 0-1.003 3.245 3.022 1.04c0 0-2.986 3.132 5.04 1.21c0 0 2.876-.541 4.957-3.306m-.455-12.385c-.077.797-.428 3.917 2.33 5.987c0 0-1.6.955-.714 2.636"
-								/>
-								<path
-									d="M32.893 28.968s-2.95 2.872.288 5.397m0 0s1.561-3.564 3.449-4.976c0 0 .751-3.62 1.915-5.698c0 0 1.05-3.749-2.258-9.06m4.131-1.038l-3.18 2.424m-5.515-6.936L28.95 12.43m-4.67 5.65s.55-6.054 6.253-5.551"
-								/>
-								<ellipse cx="24" cy="24" rx="21.5" ry="16.738" />
-								<path d="m9.497 14.43l-2.276-.678" />
-							</g>
-						</svg>
-					</div>
-					<span class="date">21 OCT 2024</span>
-				</div>
-				<div class="passport-stamp GE effect">
-					<span>Citizen of</span>
-					<span class="stamp_ge_name">Georgia</span>
-					<span class="date">21 OCT 2024</span>
-				</div>
-				<div class="passport-stamp CD effect">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						width="42"
-						height="42"
-						fill="currentColor"
-						viewBox="0 0 256 256"
-					>
-						<path
-							d="M238.16,113.89,142.1,17.83a20,20,0,0,0-28.21,0l-96,96.06a20,20,0,0,0,0,28.22l96.05,96.06h0a20,20,0,0,0,28.21,0l96-96.06a20,20,0,0,0,0-28.22ZM128,218.33,37.68,128,128,37.67,218.32,128Z"
-						></path>
-					</svg>
-				</div>
+				<PassportStamp>
+					{#if profile.citizenship.code === "SH"}
+						<StampShanghai />
+					{:else if profile.citizenship.code === "NY"}
+						<StampNewYork />
+					{:else if profile.citizenship.code === "GE"}
+						<StampGeorgia />
+					{:else if profile.citizenship.code === "CA"}
+						<StampCalifornia />
+					{:else if profile.citizenship.code === "OH"}
+						<StampOhio />
+					{:else if profile.citizenship.code === "CD"}
+						<StampConcord />
+					{/if}
+				</PassportStamp>
 
 				<span class="watermark first">DEMOVIO</span>
 				<span class="watermark second">DEMOVIO</span>
@@ -245,8 +183,8 @@
 		margin: 0;
 	}
 	.passport {
-		width: 420px;
-		aspect-ratio: 1.45 / 2.05;
+		width: 410px;
+		aspect-ratio: 1.5 / 2.05;
 
 		display: grid;
 		grid-template-rows: 1fr 1fr;
@@ -257,7 +195,7 @@
 		perspective: 1000px;
 		padding: 0;
 
-		--radius: 16px;
+		--radius: 24px;
 		hr {
 			border: 1px solid rgba(0, 0, 0, 0.2);
 			margin: 0 16px;
@@ -270,8 +208,8 @@
 		}
 		.residentship {
 			transform-origin: bottom;
-			background: linear-gradient(to bottom, #ffedd56b, #d6c0a00a), $noise, #faddb6;
-			z-index: 1;
+			background: linear-gradient(to bottom, #ffedd5ce, #bca7872a), $noise, #ceb18c;
+			z-index: 2;
 
 			transform-style: preserve-3d;
 			transform: rotateX(-180deg) scaleY(1);
@@ -331,7 +269,7 @@
 		.personal {
 			display: grid;
 			grid-template-columns: auto 1fr;
-			background: linear-gradient(to bottom, #ffedd56b, #e4d1b72f), $noise, #faddb6;
+			background: linear-gradient(to bottom, #ffeed78b, #e4d1b72f), $noise, #d2b690;
 			z-index: 0;
 			border-radius: 0 0 var(--radius) var(--radius);
 			overflow: clip;
@@ -341,9 +279,14 @@
 				color: black;
 			}
 			.avatar_container {
-				background-color: rgba(0, 0, 0, 0.1);
-				padding: 24px 16px;
-				border: 1px solid rgba(0, 0, 0, 0.05);
+				background: linear-gradient(
+					45deg,
+					rgba(136, 84, 204, 0.15) 0%,
+					rgba(243, 55, 171, 0.1) 100%
+				);
+				padding: 20px 8px;
+				border: 1px solid rgba(136, 84, 204, 0.15);
+				border-radius: 6px;
 				margin: 24px 0 0 16px;
 				height: min-content;
 			}
@@ -422,6 +365,7 @@
 		background: linear-gradient(to bottom, #082f49cc, #05283f90), $noise, #082f49;
 		transform: rotateY(180deg);
 		border: 2px solid rgba(0, 0, 0, 0.2);
+		z-index: 3;
 		.cover-content {
 			display: flex;
 			flex-direction: column;
@@ -463,18 +407,20 @@
 	.avatars {
 		display: contents;
 		.avatar {
-			width: 96px;
-			height: 96px;
+			--size: 72px;
+			width: var(--size);
+			height: var(--size);
 			box-sizing: content-box;
 			image-rendering: pixelated;
 			image-rendering: crisp-edges;
 			&.custom_skin {
 				background-image: $noise;
 				background-repeat: no-repeat;
-				background-position: -96px -96px;
-				background-size: 768px 768px;
+				background-position: calc(var(--size) * -1) calc(var(--size) * -1);
+				background-size: calc(var(--size) * 8) calc(var(--size) * 8);
 			}
 			&.holo {
+				--size: 28px;
 				padding: 0;
 				border: none;
 				position: absolute;
@@ -484,16 +430,12 @@
 				margin-top: 24px;
 				width: 32px;
 				height: 32px;
-				&.custom_skin {
-					background-position: -32px -32px;
-					background-size: 256px 256px;
-				}
 			}
 		}
 	}
 
 	.technical-information {
-		background: linear-gradient(to bottom, #ffffffa6, #fdf3e583), $noise, #fff7ec;
+		background: linear-gradient(to bottom, #ffffffa1, #fdf3e583), $noise, #eedcc3;
 		width: 100%;
 		height: 100%;
 		grid-column: 1 / 3;
@@ -508,6 +450,7 @@
 			margin: 0;
 			font-family: monospace;
 			font-size: 16px;
+			line-height: 1;
 		}
 	}
 	.watermark {
