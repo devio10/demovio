@@ -6,7 +6,16 @@ export const playersTable = sqliteTable("players", {
 	name: text().notNull().unique(),
 	password: text().notNull(),
 	skin: text().notNull(),
-	citizenship: text().notNull(),
+	citizenship: text({
+		mode: "json",
+	})
+		.$type<{
+			code: string;
+			date: number;
+			protocol: string;
+			address: string;
+		}>()
+		.notNull(),
 	pronouns: text().notNull(),
 	contact: text().notNull(),
 	issueDate: text().notNull(),

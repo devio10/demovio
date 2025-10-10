@@ -19,7 +19,7 @@ export const load: ServerLoad = ({ locals }) => {
 };
 
 export const actions: Actions = {
-	default: ({ cookies }) => {
+	logout: ({ cookies }) => {
 		cookies.delete("session", { path: "/" });
 		return redirect(303, "/");
 	},

@@ -2,6 +2,7 @@
 	import AppIcon from "$lib/AppIcon.svelte";
 	import { api_url } from "$lib/const";
 	import { onMount } from "svelte";
+	import { scale } from "svelte/transition";
 	let { data } = $props();
 	let status = $state("Загрузка...");
 	let players = $state([]);
@@ -58,23 +59,32 @@
 	});
 </script>
 
-<h2>{status}</h2>
-<span class="welcome">Добро пожаловать, devio10</span>
-<nav>
-	<AppIcon icon="Players" href="players" badge="2">Игроки</AppIcon>
-	<AppIcon icon="Passport" href="profile" badge="99+">Паспорт</AppIcon>
-	<AppIcon icon="Help" href="help">Помощь</AppIcon>
-	<br />
-	<AppIcon icon="Wiki" href="https://wiki.demovio.love/">Википедия</AppIcon>
-	<AppIcon icon="Maps" href="https://map.demovio.love/">Карта</AppIcon>
-	<AppIcon icon="Downloads" href="players">Загрузки</AppIcon>
-	<AppIcon icon="About" href="https://demovio.love/?no-redirect">О Сервере</AppIcon>
-</nav>
-<span class="players-number">
-	{getPlayerCountText(players)}
-</span>
+<div transition:scale|global={{ duration: 500, start: 0.5 }}>
+	<h2>{status}</h2>
+	<span class="welcome">Добро пожаловать, devio10</span>
+	<nav>
+		<AppIcon icon="Players" href="players" badge="2">Игроки</AppIcon>
+		<AppIcon icon="Passport" href="profile" badge="99+">Паспорт</AppIcon>
+		<AppIcon icon="Help" href="help">Помощь</AppIcon>
+		<br />
+		<AppIcon icon="Wiki" href="https://wiki.demovio.love/">Википедия</AppIcon>
+		<AppIcon icon="Maps" href="https://map.demovio.love/">Карта</AppIcon>
+		<AppIcon icon="Downloads" href="players">Загрузки</AppIcon>
+		<AppIcon icon="About" href="https://demovio.love/?no-redirect">О Сервере</AppIcon>
+	</nav>
+	<span class="players-number">
+		{getPlayerCountText(players)}
+	</span>
+</div>
 
 <style lang="scss">
+	div {
+		position: absolute;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
 	h2 {
 		font-weight: 500;
 		font-size: 40px;

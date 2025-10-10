@@ -12,6 +12,7 @@
 		background: linear-gradient(-21deg, rgba(57, 57, 57, 0.6) 0%, rgba(97, 97, 97, 0.6) 100%);
 		width: var(--width, 30%);
 		height: 100%;
+		max-height: 100%;
 		border-radius: 52px 0 0 52px;
 		display: flex;
 		flex-direction: column;
