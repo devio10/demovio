@@ -3,7 +3,7 @@
 </script>
 
 <div>
-	<SideNavigationButton alt="Главная" href="/">
+	<SideNavigationButton alt="Главная" href="/" test={/^\/$/}>
 		<svg viewBox="0 0 29 26" xmlns="http://www.w3.org/2000/svg">
 			<path
 				fill="currentColor"
@@ -59,7 +59,11 @@
 
 <style lang="scss">
 	div {
-		background-color: rgba(212, 212, 212, 0.21);
+		background: linear-gradient(
+			-10deg,
+			rgba(114, 114, 114, 0.42) 0%,
+			rgba(255, 255, 255, 0.37) 95%
+		);
 		display: flex;
 		flex-direction: column;
 		padding: 12px;
@@ -72,7 +76,9 @@
 		top: 50%;
 		transform: translateY(-50%);
 		backdrop-filter: blur(24px);
-		border: 0.5px solid rgba(255, 255, 255, 0.4);
+		border: 1px solid rgba(255, 255, 255, 0.4);
+		border-top: none;
+		border-bottom: none;
 		transition-property: transform, border-color, background-color;
 		transition-duration: 300ms;
 		transition-timing-function: ease-out;
@@ -81,7 +87,7 @@
 			transform: translateY(-50%) scale(1.05);
 			transition-duration: 150ms;
 			border-color: rgba(255, 255, 255, 0.5);
-			background-color: rgba(230, 230, 230, 0.21);
+			background-color: rgba(220, 220, 220, 0.21);
 		}
 	}
 </style>

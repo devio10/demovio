@@ -5,6 +5,8 @@
 	import WindowNavigationItem from "$lib/Window/Navigation/WindowNavigationItem.svelte";
 	import WindowHeader from "$lib/Window/WindowHeader.svelte";
 	import { page } from "$app/state";
+	import WindowNavigationList from "$lib/Window/Navigation/WindowNavigationList.svelte";
+	import WindowNavigationHeader from "$lib/Window/Navigation/WindowNavigationHeader.svelte";
 	let searchQuery = $state("");
 	let { children } = $props();
 	const sections = [
@@ -40,17 +42,16 @@
 <Window>
 	{#snippet navigation()}
 		<WindowNavigation --width="35%">
-			<div class="windownavigation-header">
-				<h2 style="margin-bottom: 16px;">Помощь</h2>
+			<WindowNavigationHeader title="Помощь">
 				<WindowNavigationSearch bind:value={searchQuery} placeholder="Поиск" />
-			</div>
-			<ul>
+			</WindowNavigationHeader>
+			<WindowNavigationList>
 				{#each sections as section, i}
 					<WindowNavigationItem href="/help{section.href}" {i}>
 						{section.title}
 					</WindowNavigationItem>
 				{/each}
-			</ul>
+			</WindowNavigationList>
 		</WindowNavigation>
 	{/snippet}
 	{#if section}

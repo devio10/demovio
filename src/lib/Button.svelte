@@ -9,15 +9,16 @@
 <style>
 	button {
 		height: 46px;
-		background-color: rgba(130, 130, 130, 0.35);
+		background-color: rgba(215, 215, 215, 0.4);
 		border: none;
 		border-radius: 100px;
 		width: 100%;
-		border-bottom: 0.5px solid rgba(230, 230, 230, 0.4);
+		border-top: 1px solid rgba(230, 230, 230, 0.4);
+
 		cursor: pointer;
 		font-size: 18px;
 		font-weight: 600;
-		color: #dddbd6;
+		color: #eae8e2;
 		transition-property: scale, background-color, color;
 		transition-duration: 250ms;
 		transition-timing-function: ease-out;
@@ -26,13 +27,13 @@
 				scale: 1.05;
 				transition-duration: 125ms;
 				color: white;
-				background-color: rgba(130, 130, 130, 0.55);
+				background-color: rgba(215, 215, 215, 0.5);
 			}
 			&:active {
 				scale: 1.02;
 				transition-duration: 125ms;
 				color: #dddbd6;
-				background-color: rgba(130, 130, 130, 0.45);
+				background-color: rgba(215, 215, 215, 0.45);
 			}
 		}
 		&:disabled {

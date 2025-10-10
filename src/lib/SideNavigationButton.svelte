@@ -6,14 +6,22 @@
 		children,
 		alt,
 		href,
+		test,
 	}: {
 		children: Snippet;
 		alt: string;
 		href: string;
+		test?: RegExp;
 	} = $props();
 </script>
 
-<a class={{ active: page.url.pathname === href }} aria-label={alt} {href}>{@render children?.()}</a>
+<a
+	class={{ active: test ? test.test(page.url.pathname) : page.url.pathname.startsWith(href) }}
+	aria-label={alt}
+	{href}
+>
+	{@render children?.()}
+</a>
 
 <style lang="scss">
 	a {
