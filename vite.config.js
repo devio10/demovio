@@ -1,15 +1,13 @@
+import tailwindcss from "@tailwindcss/vite";
 import { sveltekit } from "@sveltejs/kit/vite";
 import { defineConfig } from "vite";
 import { enhancedImages } from "@sveltejs/enhanced-img";
 
 export default defineConfig({
-	plugins: [enhancedImages(), sveltekit()],
+	plugins: [tailwindcss(), enhancedImages(), sveltekit()],
 	css: {
 		preprocessorOptions: {
-			less: {
-				math: "always",
-				javascriptEnabled: true,
-			},
+			less: { math: "always", javascriptEnabled: true },
 		},
 	},
 });

@@ -1,8 +1,8 @@
 <script>
-	let { children, code } = $props();
+	let { children } = $props();
 </script>
 
-<div class="passport-stamp {code}">{@render children?.()}</div>
+<div class="passport-stamp">{@render children?.()}</div>
 
 <style lang="scss">
 	:global {

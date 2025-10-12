@@ -1,18 +1,18 @@
 <script>
 	import SettingsButton from "$lib/SettingsButton.svelte";
+	import SettingsSwitch from "$lib/SettingsSwitch.svelte";
 	import SettingsHeader from "$lib/Window/SettingsHeader.svelte";
-	import { Switch } from "bits-ui";
 </script>
 
 <SettingsHeader title="Уведомления"></SettingsHeader>
 <div class="settings-content">
 	<div class="settings-buttons">
-		<SettingsButton disabled>Уведомления от браузера</SettingsButton>
-		<SettingsButton disabled>Уведомления в Telegram</SettingsButton>
+		<SettingsButton tag="div">Уведомления от браузера <SettingsSwitch /></SettingsButton>
+		<SettingsButton tag="div">Уведомления в Telegram <SettingsSwitch /></SettingsButton>
 	</div>
 	<div class="settings-buttons">
-		<SettingsButton disabled>Приглашения от других игроков</SettingsButton>
-		<SettingsButton disabled>Активность избранных игроков</SettingsButton>
-		<SettingsButton disabled>Обновления Demovio</SettingsButton>
+		<SettingsButton tag="div">Приглашения от других игроков <SettingsSwitch /></SettingsButton>
+		<SettingsButton tag="div">Активность избранных игроков <SettingsSwitch /></SettingsButton>
+		<SettingsButton tag="div">Обновления Demovio <SettingsSwitch /></SettingsButton>
 	</div>
 </div>

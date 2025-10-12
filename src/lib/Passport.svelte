@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Profile } from "../routes/profile/+layout.serverer";
+	import type { Profile } from "../routes/profile/+layout.server";
 	import PassportStamp from "./PassportStamps/PassportStamp.svelte";
 	import StampCalifornia from "./PassportStamps/StampCalifornia.svelte";
 	import StampConcord from "./PassportStamps/StampConcord.svelte";
@@ -112,7 +112,13 @@
 							</section>
 						{/each}
 					</div>
-					<div class="logo"></div>
+					<div class="logo">
+						<img
+							class={profile.citizenship.code}
+							src="/stateIcons/passport-{profile.citizenship.code}.svg"
+							alt="Логотип Штата"
+						/>
+					</div>
 				</div>
 
 				<PassportStamp>
@@ -228,15 +234,17 @@
 			}
 			.logo {
 				img {
-					width: 128px;
+					width: 96px;
+					height: 96px;
 					aspect-ratio: 1/1;
-					padding: 0 16px;
-					opacity: 0.9;
+					padding: 0 12px;
+					opacity: 0.75;
 					font-weight: 965;
 					flex-shrink: 0;
 					fill: var(--color);
 					background-color: var(--bg);
 					border: 2px solid var(--bg);
+					border-radius: 4px;
 					&.OH {
 						--color: #1a2e05;
 						--bg: #36531409;
@@ -301,6 +309,7 @@
 			p {
 				color: black;
 				font-size: 18px;
+				line-height: 1;
 				font-weight: 500;
 			}
 		}
