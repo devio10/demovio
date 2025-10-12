@@ -4,6 +4,7 @@
 	import { Spring } from "svelte/motion";
 	import WindowHeaderButton from "$lib/Window/WindowHeaderButton.svelte";
 	import WindowHeader from "$lib/Window/WindowHeader.svelte";
+	import { getSkinURL } from "$lib/scripts";
 	const scale = new Spring(0.5, { damping: 0.2, stiffness: 0.1 });
 	const name = $derived(page.params.name);
 </script>
@@ -55,7 +56,7 @@
 						canvas: canvas,
 						width: 120,
 						height: 200,
-						skin: `https://demovio.love/skins/${name}.png?t=${Date.now()}`,
+						skin: getSkinURL(name, name),
 					});
 					skinViewer.autoRotate = true;
 					skinViewer.animation = new IdleAnimation();

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from "$app/state";
+	import PlayerHead from "$lib/PlayerHead.svelte";
 	import type { Snippet } from "svelte";
 	import { flip } from "svelte/animate";
 	import { expoOut } from "svelte/easing";
@@ -34,7 +35,7 @@
 	out:hide={{ duration: 250, easing: expoOut }}
 >
 	<div class="inner-height">
-		<img src={skin} alt={name} />
+		<PlayerHead url={skin} --width="48px" style="margin-right: 16px;" />
 		<div>
 			<span class="name">{name}</span>
 			<span class="pronouns">{pronouns}</span>
@@ -73,14 +74,6 @@
 		&:hover {
 			transition-duration: 75ms;
 			background-color: rgba(179, 179, 179, 0.2);
-		}
-		img {
-			width: 48px;
-			height: 48px;
-			border-radius: 4px;
-			border: 0.5px solid rgba(255, 255, 255, 0.15);
-			object-fit: cover;
-			margin-right: 16px;
 		}
 		.name {
 			font-size: 16px;

@@ -10,6 +10,7 @@
 	import { onMount } from "svelte";
 	import WindowNavigationHeader from "$lib/Window/Navigation/WindowNavigationHeader.svelte";
 	import WindowNavigationList from "$lib/Window/Navigation/WindowNavigationList.svelte";
+	import { getSkinURL } from "$lib/scripts";
 
 	let { children } = $props();
 
@@ -54,12 +55,7 @@
 				{#if filteredPlayers.length}
 					<WindowNavigationList>
 						{#each filteredPlayers as { name, skin, pronouns }, i (name)}
-							<WindowNavigationPlayer
-								{name}
-								{pronouns}
-								{i}
-								skin="https://mc-heads.net/avatar/{skin}/48.png"
-							/>
+							<WindowNavigationPlayer {name} {pronouns} {i} skin={getSkinURL(skin, name)} />
 						{/each}
 					</WindowNavigationList>
 				{:else}
