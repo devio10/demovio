@@ -35,7 +35,9 @@
 	out:hide={{ duration: 250, easing: expoOut }}
 >
 	<div class="inner-height">
-		<PlayerHead url={skin} --width="48px" style="margin-right: 16px;" />
+		<div class="skin">
+			<PlayerHead url={skin} --width="48px" />
+		</div>
 		<div>
 			<span class="name">{name}</span>
 			<span class="pronouns">{pronouns}</span>
@@ -74,6 +76,13 @@
 		&:hover {
 			transition-duration: 75ms;
 			background-color: rgba(179, 179, 179, 0.2);
+		}
+		.skin {
+			border: 0.5px solid rgba(0, 0, 0, 0.15);
+			border-radius: 4px;
+			margin-right: 16px;
+			width: fit-content;
+			overflow: clip;
 		}
 		.name {
 			font-size: 16px;

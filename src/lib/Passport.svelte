@@ -7,6 +7,8 @@
 	import StampNewYork from "./PassportStamps/StampNewYork.svelte";
 	import StampOhio from "./PassportStamps/StampOhio.svelte";
 	import StampShanghai from "./PassportStamps/StampShanghai.svelte";
+	import PlayerHead from "./PlayerHead.svelte";
+	import { getSkinURL } from "./scripts";
 
 	function nameCode(length: number, symbol: string, input: string) {
 		return input.length >= length ? input.slice(0, length) : input.padEnd(length, symbol);
@@ -155,10 +157,20 @@
 	</div>
 	<div class="personal">
 		<div class="avatars">
-			<div class="avatar_container">
-				<img class="avatar" src="https://mc-heads.net/avatar/MHF_Steve/96.png" />
+			<div class="avatar">
+				<PlayerHead
+					class="avatar"
+					style="--width: 72px"
+					url={getSkinURL(profile.skin, profile.name)}
+				/>
 			</div>
-			<img class="avatar holo" src="https://mc-heads.net/avatar/MHF_Steve/32.png" />
+			<div class="avatar holo">
+				<PlayerHead
+					class="avatar holo"
+					style="--width: 28px; filter: sepia(1);"
+					url={getSkinURL(profile.skin, profile.name)}
+				/>
+			</div>
 		</div>
 		<div class="information-block">
 			{#each Object.entries(state?.language.personalDetails) as [key, value]}
@@ -286,18 +298,6 @@
 			section {
 				color: black;
 			}
-			.avatar_container {
-				background: linear-gradient(
-					45deg,
-					rgba(136, 84, 204, 0.15) 0%,
-					rgba(243, 55, 171, 0.1) 100%
-				);
-				padding: 20px 8px;
-				border: 1px solid rgba(136, 84, 204, 0.15);
-				border-radius: 6px;
-				margin: 24px 0 0 16px;
-				height: min-content;
-			}
 		}
 		section {
 			span {
@@ -416,29 +416,19 @@
 	.avatars {
 		display: contents;
 		.avatar {
-			--size: 72px;
-			width: var(--size);
-			height: var(--size);
-			box-sizing: content-box;
-			image-rendering: pixelated;
-			image-rendering: crisp-edges;
-			&.custom_skin {
-				background-image: $noise;
-				background-repeat: no-repeat;
-				background-position: calc(var(--size) * -1) calc(var(--size) * -1);
-				background-size: calc(var(--size) * 8) calc(var(--size) * 8);
-			}
+			background: linear-gradient(45deg, rgba(136, 84, 204, 0.15) 0%, rgba(243, 55, 171, 0.1) 100%);
+			padding: 20px 8px;
+			border: 1px solid rgba(136, 84, 204, 0.15);
+			border-radius: 6px;
+			margin: 24px 0 0 16px;
+			height: min-content;
 			&.holo {
-				--size: 28px;
 				padding: 0;
 				border: none;
 				position: absolute;
-				filter: sepia(1);
-				opacity: 0.15;
+				opacity: 0.75;
 				right: 24px;
 				margin-top: 24px;
-				width: 32px;
-				height: 32px;
 			}
 		}
 	}

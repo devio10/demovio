@@ -7,8 +7,6 @@
 
 <style>
 	div {
-		border: 0.5px solid rgba(255, 255, 255, 0.15);
-		border-radius: 4px;
 		width: var(--width);
 		aspect-ratio: 1/1;
 		image-rendering: pixelated;
