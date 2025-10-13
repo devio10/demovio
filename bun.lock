@@ -5,6 +5,7 @@
       "name": "demovio",
       "dependencies": {
         "@fontsource-variable/montserrat": "^5.2.8",
+        "@hloth/minecraft-query": "^1.0.0",
         "@libsql/client": "^0.15.15",
         "dotenv": "^17.2.3",
         "drizzle-orm": "^0.44.6",
@@ -142,6 +143,8 @@
     "@floating-ui/utils": ["@floating-ui/utils@0.2.10", "", {}, "sha512-aGTxbpbg8/b5JfU1HXSrbH3wXZuLPJcNEcZQFMxLs3oSzgtVu6nFPkbbGGUvBcUjKV2YyB9Wxxabo+HEH9tcRQ=="],
 
     "@fontsource-variable/montserrat": ["@fontsource-variable/montserrat@5.2.8", "", {}, "sha512-d8wykq7GCKhEOlLwEuQIOK3w3qsXNxwDlH0meru4AZZzQ4/+rZyvHWKL6BBtHdmbovSHEEQDkwkD8qYUKlcFtQ=="],
+
+    "@hloth/minecraft-query": ["@hloth/minecraft-query@1.0.0", "", {}, "sha512-ZnjNpjuMm/uGHSuCUM3u4lquOR3PtBQM0O8Ak1TnrUMzZceuuTFooQyABF4vBIgMdEqlvgzFxJN+DpWwE8LEsw=="],
 
     "@humanfs/core": ["@humanfs/core@0.19.1", "", {}, "sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA=="],
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Profile } from "../routes/profile/+layout.server";
+	import type { Profile } from "../routes/+layout.server";
 	import PassportStamp from "./PassportStamps/PassportStamp.svelte";
 	import StampCalifornia from "./PassportStamps/StampCalifornia.svelte";
 	import StampConcord from "./PassportStamps/StampConcord.svelte";

@@ -1,12 +1,9 @@
-<script>
+<script lang="ts">
 	import AppIcon from "$lib/AppIcon.svelte";
-	import { api_url } from "$lib/const";
-	import { onMount } from "svelte";
 	import { scale } from "svelte/transition";
 	let { data } = $props();
-	let status = $state("Загрузка...");
-	let players = $state([]);
-	function getPlayerCountText(players_online) {
+	$inspect(data.demovioStatus);
+	function getPlayerCountText(players_online: string[]) {
 		let players_text = "Сейчас никто не играет";
 		if (players_online.length === 1 && players_online[0] !== "0") {
 			players_text = `Сейчас играет ${players_online[0]}`;
@@ -32,58 +29,46 @@
 
 		return players_text;
 	}
-	async function checkStatus() {
-		const req = await fetch(`${api_url}status.php`);
-		if (req.status >= 200 && req.status < 300) {
-			const text = await req.text();
-			if (text == "offline") {
-				status = "Сервер оффлайн";
-				players = "";
-				return;
-			}
-			status = "Сервер онлайн";
-			console.log(text);
-			players = text.split(",");
-		} else {
-			status = "Сервер оффлайн";
-			console.error("Request failed with status ", req.status);
-		}
-	}
-
-	onMount(() => {
-		checkStatus();
-		let timer = setInterval(checkStatus, 3000);
-		return () => {
-			clearInterval(timer);
-		};
-	});
 </script>
 
-<div transition:scale|global={{ duration: 500, start: 0.5 }}>
-	<h2>{status}</h2>
-	<span class="welcome">Добро пожаловать, devio10</span>
+<div class="container" transition:scale|global={{ duration: 500, start: 0.5 }}>
+	<div>
+		<h2>{data.demovioStatus ? "Сервер онлайн" : "Сервер оффлайн"}</h2>
+		<span class="players-number">
+			{getPlayerCountText(data.demovioStatus.players)}
+		</span>
+	</div>
+
 	<nav>
-		<AppIcon icon="Players" href="players" badge="2">Игроки</AppIcon>
-		<AppIcon icon="Passport" href="profile/passport" badge="99+">Паспорт</AppIcon>
+		<AppIcon icon="Players" href="players" badge={data.demovioStatus.players.length}>
+			Игроки
+		</AppIcon>
+		<AppIcon icon="Passport" href="profile/passport">Паспорт</AppIcon>
 		<AppIcon icon="Help" href="help">Помощь</AppIcon>
 		<br />
 		<AppIcon icon="Wiki" href="https://wiki.demovio.love/">Википедия</AppIcon>
 		<AppIcon icon="Maps" href="https://map.demovio.love/">Карта</AppIcon>
-		<AppIcon icon="Downloads" href="players">Загрузки</AppIcon>
+		<AppIcon icon="Downloads" href="downloads">Загрузки</AppIcon>
 		<AppIcon icon="About" href="https://demovio.love/?no-redirect">О Сервере</AppIcon>
 	</nav>
-	<span class="players-number">
-		{getPlayerCountText(players)}
-	</span>
+	<div>
+		<span class="welcome">
+			{data.profile ? `Добро пожаловать, ${data.profile.name}` : "Войдите в аккаунт"}
+		</span>
+	</div>
 </div>
 
 <style lang="scss">
 	div {
-		position: absolute;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
+		&.container {
+			position: absolute;
+			display: grid;
+			grid-template-rows: 1fr auto 1fr;
+		}
 	}
 	h2 {
 		font-weight: 500;
@@ -94,18 +79,18 @@
 		font-weight: bold;
 	}
 	.welcome {
-		margin: 16px 0 0 0;
-		color: rgba(255, 255, 255, 0.75);
+		color: rgba(255, 255, 255, 0.85);
+		font-weight: 500;
 	}
 	nav {
-		margin-top: 36px;
+		padding: 32px 0;
 		text-align: center;
 		justify-items: center;
 		align-items: center;
 		white-space: wrap;
 	}
 	.players-number {
-		margin-top: 48px;
+		margin-top: 8px;
 		font-weight: 600;
 		text-shadow: 0 0 30px rgba(0, 0, 0, 0.75);
 	}

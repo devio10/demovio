@@ -46,6 +46,7 @@
 	},
 	"dependencies": {
 		"@fontsource-variable/montserrat": "^5.2.8",
+		"@hloth/minecraft-query": "^1.0.0",
 		"@libsql/client": "^0.15.15",
 		"dotenv": "^17.2.3",
 		"drizzle-orm": "^0.44.6",

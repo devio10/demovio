@@ -7,7 +7,8 @@ export type Profile = Pick<
 export const load: ServerLoad = ({ locals }) => {
 	const player = locals.playerData;
 	if (!player) {
-		return redirect(303, "/login");
+		// return redirect(303, "/login");
+		return {};
 	}
 	const profile: Profile = {
 		name: player.name,

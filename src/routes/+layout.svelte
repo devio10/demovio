@@ -3,7 +3,6 @@
 	import favicon from "$lib/assets/favicon.svg";
 	import HeaderLogo from "$lib/HeaderLogo.svelte";
 	import SideNavigation from "$lib/SideNavigation.svelte";
-	import { fade, scale } from "svelte/transition";
 	import "../app.scss";
 	import "@fontsource-variable/montserrat";
 
@@ -15,7 +14,7 @@
 </svelte:head>
 <div class="page">
 	<div class="page-background">
-		<enhanced:img src="$lib/assets/home-california-3-light.png" alt="Website Background" />
+		<enhanced:img src="$lib/assets/home-collections-2-dark.png" alt="Website Background" />
 	</div>
 	<header>
 		<HeaderLogo />
