@@ -4,13 +4,14 @@
 	let {
 		children,
 		name,
+		...props
 	}: {
 		children: Snippet;
 		name: string;
 	} = $props();
 </script>
 
-<button aria-label={name}>
+<button aria-label={name} {...props}>
 	{@render children?.()}
 </button>
 

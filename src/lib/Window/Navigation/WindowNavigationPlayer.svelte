@@ -2,16 +2,23 @@
 	import { page } from "$app/state";
 	import PlayerHead from "$lib/PlayerHead.svelte";
 	import type { Snippet } from "svelte";
-	import { flip } from "svelte/animate";
 	import { expoOut } from "svelte/easing";
-	import { fly, scale, type EasingFunction, type TransitionConfig } from "svelte/transition";
+	import { fly, type EasingFunction, type TransitionConfig } from "svelte/transition";
 
 	let {
 		name,
 		skin,
 		pronouns,
 		i,
-	}: { name: string; skin: string; pronouns: string; i: number; children?: Snippet } = $props();
+		online,
+	}: {
+		name: string;
+		skin: string;
+		pronouns: string;
+		i: number;
+		children?: Snippet;
+		online?: boolean;
+	} = $props();
 
 	const hide = (
 		node: HTMLElement,
@@ -36,7 +43,12 @@
 >
 	<div class="inner-height">
 		<div class="skin">
-			<PlayerHead url={skin} --width="48px" />
+			<div class={[{ online: online }, "skin-object"]}>
+				<PlayerHead url={skin} --width="48px" />
+			</div>
+			{#if online === true}
+				<div class="online-dot"></div>
+			{/if}
 		</div>
 		<div>
 			<span class="name">{name}</span>
@@ -68,21 +80,32 @@
 		}
 
 		&.active {
-			background-color: rgba(179, 179, 179, 0.3);
+			background-color: rgba(179, 179, 179, 0.25);
 			&:hover {
-				background-color: rgba(179, 179, 179, 0.5);
+				background-color: rgba(179, 179, 179, 0.4);
 			}
 		}
 		&:hover {
-			transition-duration: 75ms;
+			transition-duration: 0ms;
 			background-color: rgba(179, 179, 179, 0.2);
 		}
 		.skin {
-			border: 0.5px solid rgba(0, 0, 0, 0.15);
-			border-radius: 4px;
 			margin-right: 16px;
-			width: fit-content;
-			overflow: clip;
+			position: relative;
+			.skin-object {
+				width: fit-content;
+				overflow: clip;
+				border: 0.5px solid rgba(0, 0, 0, 0.15);
+				border-radius: 4px;
+				&.online {
+					mask: radial-gradient(
+						at calc(100% - 5px) calc(100% - 5px),
+						transparent 0,
+						transparent 9px,
+						black 9.5px
+					);
+				}
+			}
 		}
 		.name {
 			font-size: 16px;
@@ -98,6 +121,16 @@
 			text-align: left;
 			color: rgba(190, 190, 190, 0.75);
 			line-height: 1.2;
+		}
+		.online-dot {
+			background: linear-gradient(rgb(29, 204, 78), rgb(16, 178, 86));
+			border: 0.5px solid rgb(16, 178, 86);
+			border-radius: 100%;
+			width: 10px;
+			aspect-ratio: 1/1;
+			position: absolute;
+			right: 0;
+			bottom: 0;
 		}
 	}
 </style>

@@ -18,7 +18,9 @@
 						Уведомления
 					</WindowNavigationItem>
 					<WindowNavigationItem href="/profile/edit" i={2}>Изменение данных</WindowNavigationItem>
-					<WindowNavigationItem href="/profile/edit" i={3}>Смена гражданства</WindowNavigationItem>
+					<WindowNavigationItem href="/profile/change-citizenship" i={3}>
+						Смена гражданства
+					</WindowNavigationItem>
 					<WindowNavigationItem href="/profile/passport" i={4}>Паспорт</WindowNavigationItem>
 				</WindowNavigationList>
 			</WindowNavigation>

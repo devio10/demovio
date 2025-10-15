@@ -90,4 +90,26 @@
 			background-color: rgba(220, 220, 220, 0.21);
 		}
 	}
+	@media screen and (max-width: 768px) {
+		div {
+			left: 50%;
+			top: auto;
+			bottom: 24px;
+			transform: translateX(-50%);
+			flex-direction: row;
+			height: 80px;
+			width: fit-content;
+			padding: 6px;
+			gap: 2px;
+			background: linear-gradient(
+				-10deg,
+				rgba(114, 114, 114, 0.28) 0%,
+				rgba(255, 255, 255, 0.28) 95%
+			);
+			backdrop-filter: blur(2px);
+			&:hover {
+				transform: translateX(-50%) scale(1.02);
+			}
+		}
+	}
 </style>

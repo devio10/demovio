@@ -80,4 +80,12 @@
 			scale: 1.02;
 		}
 	}
+	@media screen and (max-width: 768px) {
+		a {
+			padding: 8px 12px;
+			img {
+				$image-size: 36px;
+			}
+		}
+	}
 </style>

@@ -6,7 +6,7 @@ export const playersTable = sqliteTable("players", {
 	uuid: text().notNull(),
 	name: text().notNull().unique(),
 	password: text().notNull(),
-	skin: text().notNull(),
+	skin: text(),
 	citizenship: text({
 		mode: "json",
 	})
@@ -21,6 +21,7 @@ export const playersTable = sqliteTable("players", {
 	contact: text().notNull(),
 	issueDate: text().notNull(),
 	isActivated: integer().notNull(),
+	favorites: text({ mode: "json" }).$type<string[]>().notNull().default([]),
 });
 
 export const playerRelations = relations(playersTable, ({ many }) => ({

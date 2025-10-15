@@ -32,7 +32,7 @@
 	</div>
 	<span class="name">{data.profile.name}</span>
 	<div class="settings-buttons">
-		<SettingsButton>Изменить данные</SettingsButton>
+		<SettingsButton tag="a" href="profile/edit">Изменить данные</SettingsButton>
 		<SettingsButton>Пригласить друга</SettingsButton>
 	</div>
 	<form class="settings-buttons" method="POST" action="/profile?/logout" use:enhance>

@@ -21,6 +21,7 @@
 	{href}
 >
 	{@render children?.()}
+	<span class="button-name">{alt}</span>
 </a>
 
 <style lang="scss">
@@ -55,6 +56,32 @@
 		svg {
 			width: 100%;
 			height: 100%;
+		}
+		.button-name {
+			display: none;
+		}
+	}
+	@media screen and (max-width: 768px) {
+		a {
+			width: auto;
+			height: auto;
+			flex-direction: column;
+			&.active {
+				background: none;
+				color: rgb(170, 148, 255);
+				&:hover {
+					background-color: rgba(255, 255, 255, 0.2);
+				}
+			}
+			svg {
+				width: 32px;
+				height: 32px;
+			}
+			.button-name {
+				margin-top: 2px;
+				display: block;
+				font-size: 12px;
+			}
 		}
 	}
 </style>
