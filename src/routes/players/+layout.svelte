@@ -54,6 +54,7 @@
 								{name}
 								{pronouns}
 								{i}
+								featured={data.profile?.favorites.includes(name)}
 								skin={getSkinURL(skin, name)}
 							/>
 						{/each}
