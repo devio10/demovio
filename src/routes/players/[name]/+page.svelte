@@ -5,7 +5,6 @@
 	import SettingsButton from "$lib/SettingsButton.svelte";
 	import { enhance } from "$app/forms";
 	import SkinModel from "./SkinModel.svelte";
-	import { scale } from "svelte/transition";
 	const name = $derived(page.params.name);
 	let { data } = $props();
 	let submitting = $state(false);
@@ -18,11 +17,17 @@
 	<WindowHeader title={name}>
 		{#snippet titleChildren()}
 			<span class="last-seen-online">
-				{#if online}
-					Сейчас играет
-				{:else if name !== data.profile.name}
-					Последний раз играл вчера
-				{/if}
+				{#await data.player}
+					Загрузка...
+				{:then player}
+					{#if online}
+						Сейчас играет
+					{:else if name !== data.profile.name}
+						Последний раз играл вчера
+					{:else}
+						Это вы!
+					{/if}
+				{/await}
 			</span>
 		{/snippet}
 		{#if name !== data.profile.name}
@@ -94,22 +99,26 @@
 	{#await data.player}
 		{@render header(true)}
 	{:then player}
-		{@render header(false)}
-		<div class="top_flex">
-			<p class="description">Не приглашайте меня на сервер, если там нет Вити Кисика!!💕</p>
-			<SkinModel skin={player.skin} name={player.name} />
-		</div>
-		<!-- <div class="player-map"><div></div></div> -->
-		<div class="action-buttons">
-			{#if online}
-				<SettingsButton>Показать на карте</SettingsButton>
-			{:else if name !== data.profile.name}
-				<SettingsButton>Пригласить на сервер</SettingsButton>
-				<SettingsButton style="color: rgb(235, 52, 79)">Пожаловаться</SettingsButton>
-			{:else}
-				<SettingsButton>Открыть свой профиль</SettingsButton>
-			{/if}
-		</div>
+		{#if player !== undefined}
+			{@render header(false)}
+			<div class="top_flex">
+				<p class="description">Не приглашайте меня на сервер, если там нет Вити Кисика!!💕</p>
+				<SkinModel skin={player.skin} name={player.name} />
+			</div>
+			<!-- <div class="player-map"><div></div></div> -->
+			<div class="action-buttons">
+				{#if online}
+					<SettingsButton>Показать на карте</SettingsButton>
+				{:else if name !== data.profile.name}
+					<SettingsButton>Пригласить на сервер</SettingsButton>
+					<SettingsButton style="color: rgb(235, 52, 79)">Пожаловаться</SettingsButton>
+				{:else}
+					<SettingsButton tag="a" href="/profile">Открыть свой профиль</SettingsButton>
+				{/if}
+			</div>
+		{:else}
+			<span>писссьь</span>
+		{/if}
 	{:catch e}
 		<p>{e}</p>
 	{/await}

@@ -32,7 +32,7 @@
 		font-weight: 400;
 		border-bottom: 0.5px solid rgba(230, 230, 230, 0.4);
 		color: #e2e2e2;
-		&:is(button) {
+		&:is(button, a) {
 			cursor: pointer;
 			transition-property: scale, background-color, color;
 			transition-duration: 250ms;
