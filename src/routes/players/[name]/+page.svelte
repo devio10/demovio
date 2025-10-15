@@ -5,6 +5,8 @@
 	import SettingsButton from "$lib/SettingsButton.svelte";
 	import { enhance } from "$app/forms";
 	import SkinModel from "./SkinModel.svelte";
+	import WindowPlaceholder from "$lib/Window/WindowPlaceholder.svelte";
+	import WindowPlaceholderWarning from "$lib/Window/WindowPlaceholderWarning.svelte";
 	const name = $derived(page.params.name);
 	let { data } = $props();
 	let submitting = $state(false);
@@ -117,7 +119,9 @@
 				{/if}
 			</div>
 		{:else}
-			<span>писссьь</span>
+			<WindowPlaceholder>
+				<WindowPlaceholderWarning>Нет игрока с таким именем</WindowPlaceholderWarning>
+			</WindowPlaceholder>
 		{/if}
 	{:catch e}
 		<p>{e}</p>

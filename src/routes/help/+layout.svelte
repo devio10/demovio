@@ -1,7 +1,7 @@
 <script>
 	import Window from "$lib/Window/Window.svelte";
 	import WindowNavigation from "$lib/Window/Navigation/WindowNavigation.svelte";
-	import WindowNavigationSearch from "$lib/Window/Navigation/WindowNavigationSearch.svelte";
+	import WindowPlaceholderSearch from "$lib/Window/WindowPlaceholderSearch.svelte";
 	import WindowNavigationItem from "$lib/Window/Navigation/WindowNavigationItem.svelte";
 	import WindowHeader from "$lib/Window/WindowHeader.svelte";
 	import { page } from "$app/state";
@@ -43,7 +43,7 @@
 	{#snippet navigation()}
 		<WindowNavigation --width="35%">
 			<WindowNavigationHeader title="Помощь">
-				<WindowNavigationSearch bind:value={searchQuery} placeholder="Поиск" />
+				<WindowPlaceholderSearch bind:value={searchQuery} placeholder="Поиск" />
 			</WindowNavigationHeader>
 			<WindowNavigationList>
 				{#each sections as section, i}

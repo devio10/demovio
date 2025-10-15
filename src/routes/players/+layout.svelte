@@ -2,10 +2,10 @@
 	import LoadingWheel from "$lib/LoadingWheel.svelte";
 	import Window from "$lib/Window/Window.svelte";
 	import WindowNavigation from "$lib/Window/Navigation/WindowNavigation.svelte";
-	import WindowNavigationPlaceholder from "$lib/Window/Navigation/WindowNavigationPlaceholder.svelte";
+	import WindowPlaceholder from "$lib/Window/WindowPlaceholder.svelte";
 	import WindowNavigationPlayer from "$lib/Window/Navigation/WindowNavigationPlayer.svelte";
-	import WindowNavigationSearch from "$lib/Window/Navigation/WindowNavigationSearch.svelte";
-	import WindowNavigationWarning from "$lib/Window/Navigation/WindowNavigationWarning.svelte";
+	import WindowPlaceholderSearch from "$lib/Window/WindowPlaceholderSearch.svelte";
+	import WindowPlaceholderWarning from "$lib/Window/WindowPlaceholderWarning.svelte";
 	import WindowNavigationHeader from "$lib/Window/Navigation/WindowNavigationHeader.svelte";
 	import WindowNavigationList from "$lib/Window/Navigation/WindowNavigationList.svelte";
 	import { getSkinURL } from "$lib/scripts";
@@ -20,12 +20,12 @@
 	{#snippet navigation()}
 		<WindowNavigation --width="45%">
 			<WindowNavigationHeader title="Игроки">
-				<WindowNavigationSearch bind:value={searchQuery} placeholder="Поиск по игрокам" />
+				<WindowPlaceholderSearch bind:value={searchQuery} placeholder="Поиск по игрокам" />
 			</WindowNavigationHeader>
 			{#await players}
-				<WindowNavigationPlaceholder>
+				<WindowPlaceholder>
 					<LoadingWheel --wheel-size="128px" --wheel-color="rgba(255,255,255,0.75)" />
-				</WindowNavigationPlaceholder>
+				</WindowPlaceholder>
 			{:then players}
 				{@const filteredPlayers = players
 					.filter((p) => p.name.toLowerCase().includes(searchQuery.trim().toLowerCase()))
@@ -60,20 +60,20 @@
 						{/each}
 					</WindowNavigationList>
 				{:else}
-					<WindowNavigationPlaceholder>
-						<WindowNavigationWarning>Нет игроков по вашему запросу</WindowNavigationWarning>
-					</WindowNavigationPlaceholder>
+					<WindowPlaceholder>
+						<WindowPlaceholderWarning>Нет игроков по вашему запросу</WindowPlaceholderWarning>
+					</WindowPlaceholder>
 				{/if}
 			{:catch e}
-				<WindowNavigationPlaceholder>
+				<WindowPlaceholder>
 					{#if e.name === "TimeoutError"}
-						<WindowNavigationWarning>Превышено время ожидания</WindowNavigationWarning>
+						<WindowPlaceholderWarning>Превышено время ожидания</WindowPlaceholderWarning>
 					{:else if e.name === "AbortError"}
-						<WindowNavigationWarning>Неправильный ответ от сервера</WindowNavigationWarning>
+						<WindowPlaceholderWarning>Неправильный ответ от сервера</WindowPlaceholderWarning>
 					{:else}
-						<WindowNavigationWarning>Ошибка соединения с сервером</WindowNavigationWarning>
+						<WindowPlaceholderWarning>Ошибка соединения с сервером</WindowPlaceholderWarning>
 					{/if}
-				</WindowNavigationPlaceholder>
+				</WindowPlaceholder>
 			{/await}
 		</WindowNavigation>
 	{/snippet}
