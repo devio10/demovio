@@ -15,12 +15,12 @@ export type Profile = Pick<
 	| "favorites"
 >;
 export const load: LayoutServerLoad = async ({ locals }) => {
+	const status: FullResponse | false = await getDemovioStatus();
 	const player = locals.playerData;
 	if (!player) {
-		// return redirect(303, "/login");
-		return {};
+		return { demovioStatus: status };
 	}
-	const status: FullResponse | false = await getDemovioStatus();
+
 	const profile: Profile = {
 		name: player.name,
 		uuid: player.uuid,

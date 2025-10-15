@@ -35,7 +35,7 @@
 	<div>
 		<h2>{data.demovioStatus ? "Сервер онлайн" : "Сервер оффлайн"}</h2>
 		<span class="players-number">
-			{getPlayerCountText(data.demovioStatus.players)}
+			{data.demovioStatus ? getPlayerCountText(data.demovioStatus.players) : ""}
 		</span>
 	</div>
 

@@ -24,7 +24,7 @@
 				{:then player}
 					{#if online}
 						Сейчас играет
-					{:else if name !== data.profile.name}
+					{:else if data.profile === undefined || name !== data.profile.name}
 						Последний раз играл вчера
 					{:else}
 						Это вы!
@@ -32,7 +32,7 @@
 				{/await}
 			</span>
 		{/snippet}
-		{#if name !== data.profile.name}
+		{#if data.profile === undefined || name !== data.profile.name}
 			<div>
 				<WindowHeaderButton disabled={disabled || submitting} name="Уведомления об активности">
 					<svg
@@ -111,7 +111,7 @@
 			<div class="action-buttons">
 				{#if online}
 					<SettingsButton>Показать на карте</SettingsButton>
-				{:else if name !== data.profile.name}
+				{:else if data.profile === undefined || name !== data.profile.name}
 					<SettingsButton>Пригласить на сервер</SettingsButton>
 					<SettingsButton style="color: rgb(235, 52, 79)">Пожаловаться</SettingsButton>
 				{:else}

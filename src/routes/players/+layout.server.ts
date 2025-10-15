@@ -1,6 +1,6 @@
 import { error } from "@sveltejs/kit";
 import type { LayoutServerLoad } from "./$types";
-export const load: LayoutServerLoad = async ({ fetch, depends }) => {
+export const load: LayoutServerLoad = async ({ fetch }) => {
 	async function getPlayers() {
 		try {
 			const req = await fetch(`https://demovio.love/request/players.php`, {

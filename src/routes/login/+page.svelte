@@ -75,9 +75,12 @@
 					</svg>
 				</TextInput>
 
-				<Button type="submit" disabled={submitting} style="margin: 32px 0 24px 0"
-					>Войти в аккаунт</Button
-				>
+				<Button type="submit" disabled={submitting} style="margin: 32px 0 0 0">
+					Войти в аккаунт
+				</Button>
+				<Button tag="a" href="/register" hollow={true} style="margin: 16px 0 0 0">
+					Создать новый аккаунт
+				</Button>
 				{#if formError}
 					<span>{formError}</span>
 				{/if}
