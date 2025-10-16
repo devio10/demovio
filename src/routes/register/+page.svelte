@@ -15,6 +15,7 @@
 	let formError = $derived(form?.error);
 	let submitting = $state(false);
 	let haveLicense = $state(false);
+	
 	let citizenship = $state(demovioStates[0]);
 	let password = $state();
 	let playername = $state();

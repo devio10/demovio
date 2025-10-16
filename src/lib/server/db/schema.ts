@@ -1,3 +1,4 @@
+import type { DemovioStateCode } from "$lib/components/demovio-states";
 import { relations } from "drizzle-orm";
 import { int, sqliteTable, text, integer } from "drizzle-orm/sqlite-core";
 
@@ -11,7 +12,7 @@ export const playersTable = sqliteTable("players", {
 		mode: "json",
 	})
 		.$type<{
-			code: "SH" | "CA" | "NY" | "GE" | "OH" | "CD";
+			code: DemovioStateCode;
 			date: number;
 			protocol: string;
 			address: string;

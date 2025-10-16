@@ -1,8 +1,9 @@
-export const demovioStates = [
-	{
-		name: "Листайте вниз",
-		icon: "initial.svg",
-	},
+export const demovioStates: {
+	name: string;
+	icon: string;
+	code: string;
+	shortCode: DemovioStateCode;
+}[] = [
 	{
 		name: "Конкорд",
 		icon: "concord.svg",
@@ -40,3 +41,6 @@ export const demovioStates = [
 		shortCode: "SH",
 	},
 ];
+
+export const demovioStateCodes = ["SH", "CA", "NY", "GE", "OH", "CD"] as const;
+export type DemovioStateCode = (typeof demovioStateCodes)[number];

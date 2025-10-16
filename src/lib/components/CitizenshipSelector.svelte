@@ -3,8 +3,15 @@
 
 	let cardHeight = $state(0);
 	let stateSelection = $state(0);
-	const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
+	const clamp = (num: number, min: number, max: number) => Math.min(Math.max(num, min), max);
 	let { citizenship = $bindable() } = $props();
+	const states = [
+		{
+			name: "Листайте вниз",
+			icon: "initial.svg",
+		},
+		...demovioStates,
+	];
 </script>
 
 <div class="picker">
@@ -12,23 +19,19 @@
 		class="list"
 		onscroll={({ target }) => {
 			const pos = (target as HTMLDivElement).scrollTop;
-			stateSelection = clamp(
-				Math.floor((pos + cardHeight / 2) / cardHeight),
-				0,
-				demovioStates.length - 1,
-			);
-			citizenship = demovioStates[stateSelection];
+			stateSelection = clamp(Math.floor((pos + cardHeight / 2) / cardHeight), 0, states.length - 1);
+			citizenship = states[stateSelection];
 		}}
 	>
-		{#each demovioStates as state}
-			<div class="state {state.code}" bind:offsetHeight={cardHeight}>
+		{#each states as state}
+			<div class={["state", "code" in state && state.code]} bind:offsetHeight={cardHeight}>
 				<img src="/stateIcons/{state.icon}" />
 				<span>{state.name}</span>
 			</div>
 		{/each}
 	</div>
 	<div class="dots">
-		{#each demovioStates, i}
+		{#each states, i}
 			<div class={{ active: i === stateSelection }}></div>
 		{/each}
 	</div>

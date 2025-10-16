@@ -1,6 +1,14 @@
 <script lang="ts" generics="T extends keyof SvelteHTMLElements">
 	import type { SvelteHTMLElements } from "svelte/elements";
-	let { children, hollow, tag, ...props } = $props();
+	let {
+		children,
+		hollow,
+		tag,
+		...props
+	}: {
+		hollow?: boolean;
+		tag?: T;
+	} & SvelteHTMLElements[T] = $props();
 </script>
 
 <svelte:element this={tag ?? "button"} {...props} class={[props.class, { hollow }, "button"]}>
