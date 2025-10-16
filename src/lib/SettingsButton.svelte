@@ -1,9 +1,9 @@
 <script lang="ts" generics="T extends keyof SvelteHTMLElements">
 	import type { SvelteHTMLElements } from "svelte/elements";
-	let { children, tag, ...props }: { tag?: T } & SvelteHTMLElements[T] = $props();
+	let { children, tag, onclick, ...props }: { tag?: T } & SvelteHTMLElements[T] = $props();
 </script>
 
-<svelte:element this={tag ?? "button"} {...props} class="button">
+<svelte:element this={tag ?? "button"} {onclick} {...props} class="button">
 	{@render children?.()}
 </svelte:element>
 

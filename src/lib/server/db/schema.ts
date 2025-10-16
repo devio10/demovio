@@ -19,8 +19,10 @@ export const playersTable = sqliteTable("players", {
 		.notNull(),
 	pronouns: text().notNull(),
 	contact: text().notNull(),
-	issueDate: text().notNull(),
-	isActivated: integer().notNull(),
+	issueDate: integer({ mode: "timestamp" }).notNull(),
+	isActivated: integer({
+		mode: "boolean",
+	}).notNull(),
 	favorites: text({ mode: "json" }).$type<string[]>().notNull().default([]),
 });
 

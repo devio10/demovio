@@ -109,9 +109,10 @@
 			</div>
 			<!-- <div class="player-map"><div></div></div> -->
 			<div class="action-buttons">
-				{#if online}
-					<SettingsButton>Показать на карте</SettingsButton>
-				{:else if data.profile === undefined || name !== data.profile.name}
+				{#if data.profile === undefined || name !== data.profile.name}
+					{#if online}
+						<SettingsButton>Показать на карте</SettingsButton>
+					{/if}
 					<SettingsButton>Пригласить на сервер</SettingsButton>
 					<SettingsButton style="color: rgb(235, 52, 79)">Пожаловаться</SettingsButton>
 				{:else}
