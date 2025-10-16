@@ -25,10 +25,13 @@ export const actions: Actions = {
 			return fail(400);
 		}
 		const player = await db.query.playersTable.findFirst({
-			where: and(eq(playersTable.name, login), eq(playersTable.password, password)),
+			where: eq(playersTable.name, login),
 		});
 		if (!player) {
-			return fail(403, { error: "No player found" });
+			return fail(403, { error: "Имя игрока не найдено." });
+		}
+		if (!(await Bun.password.verify(password, player.password))) {
+			return fail(401, { error: "Неправильный пароль." });
 		}
 		const sessionId = nanoid();
 		await db.insert(sessionsTable).values({
