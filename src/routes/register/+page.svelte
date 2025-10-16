@@ -15,7 +15,7 @@
 	let formError = $derived(form?.error);
 	let submitting = $state(false);
 	let haveLicense = $state(false);
-	
+
 	let citizenship = $state(demovioStates[0]);
 	let password = $state();
 	let playername = $state();
@@ -71,7 +71,7 @@
 				<input type="hidden" name="password" value={password} />
 				<input type="hidden" name="skin" value={skin} />
 				<input type="hidden" name="haveLicense" value={haveLicense} />
-				<input type="hidden" name="citizenship" value={citizenship} />
+				<input type="hidden" name="citizenship" value={citizenship.shortCode} />
 				<input type="hidden" name="pronouns" value={pronouns} />
 				<TextInput placeholder="Юзернейм Telegram" name="contact" bind:value={contact}>
 					<svg

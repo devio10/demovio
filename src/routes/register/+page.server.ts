@@ -2,9 +2,9 @@ import { db } from "$lib/server/db";
 import { playersTable } from "$lib/server/db/schema";
 import { eq } from "drizzle-orm";
 import type { Actions } from "./$types";
-import { fail, isActionFailure } from "@sveltejs/kit";
+import { fail } from "@sveltejs/kit";
 import crypto from "crypto";
-import { success, z } from "zod";
+import { z } from "zod";
 import { demovioStateCodes } from "$lib/components/demovio-states";
 
 const accountDataSchemas = {
@@ -45,20 +45,31 @@ function constructOfflinePlayerUuid(username: string) {
 export const actions: Actions = {
 	async checkNameAvailability({ request }) {
 		const formData = await request.formData();
-		const name = await accountDataSchemas.name.parseAsync(formData.get("playername"));
-		if (!(await checkNameInDB(name))) {
-			return fail(409, { error: { nameTaken: "Имя уже занято." } });
+		const bodyParsing = await accountDataSchemas.name.safeParseAsync(formData.get("playername"));
+		if (bodyParsing.success) {
+			const name = bodyParsing.data;
+			if (await checkNameInDB(name)) {
+				return fail(409, { error: { nameTaken: "Имя уже занято." } });
+			}
+			return { success: true };
+		} else {
+			const error = bodyParsing.error;
+			return fail(400, { error: { nameTaken: z.prettifyError(error) } });
 		}
-		return { success: true };
 	},
 	async checkPassword({ request }) {
 		const formData = await request.formData();
-		const password = await accountDataSchemas.password.parseAsync(formData.get("password"));
-		return { success: true };
+		const bodyParsing = await accountDataSchemas.password.safeParseAsync(formData.get("password"));
+		if (bodyParsing.success) {
+			return { success: true };
+		} else {
+			const error = bodyParsing.error;
+			return fail(400, { error: { nameTaken: z.prettifyError(error) } });
+		}
 	},
 	async finishRegistration({ request }) {
 		const formData = await request.formData();
-		const body = await accountDataSchema.parseAsync({
+		const bodyParsing = await accountDataSchema.safeParseAsync({
 			name: formData.get("playername"),
 			password: formData.get("password"),
 			contact: formData.get("contact"),
@@ -67,7 +78,11 @@ export const actions: Actions = {
 			skin: formData.get("skin"),
 			haveLicense: formData.get("haveLicense"),
 		});
-		if (!(await checkNameInDB(body.name))) {
+		if (!bodyParsing.success) {
+			return fail(400, { error: { nameToken: z.prettifyError(bodyParsing.error) } });
+		}
+		const body = bodyParsing.data;
+		if (await checkNameInDB(body.name)) {
 			return fail(409, { error: "Имя уже занято." });
 		}
 		let uuid;
