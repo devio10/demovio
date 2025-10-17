@@ -2,6 +2,7 @@
 	import { enhance } from "$app/forms";
 	import Button from "$lib/Button.svelte";
 	import TextInput from "$lib/TextInput.svelte";
+	import { scale } from "svelte/transition";
 	import { RegisterStage } from "./stages";
 
 	let {
@@ -16,6 +17,7 @@
 <form
 	method="POST"
 	action="/register?/checkPassword"
+	transition:scale={{ duration: 250, start: 0.95 }}
 	use:enhance={({ cancel }) => {
 		formError = undefined;
 		submitting = true;

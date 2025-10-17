@@ -2,7 +2,7 @@
 	import { page } from "$app/state";
 	import WindowHeaderButton from "$lib/Window/WindowHeaderButton.svelte";
 	import WindowHeader from "$lib/Window/WindowHeader.svelte";
-	import SettingsButton from "$lib/SettingsButton.svelte";
+	import SettingsButton from "$lib/OptionButton.svelte";
 	import SkinModel from "./SkinModel.svelte";
 	import WindowPlaceholder from "$lib/Window/WindowPlaceholder.svelte";
 	import WindowPlaceholderWarning from "$lib/Window/WindowPlaceholderWarning.svelte";
@@ -109,7 +109,7 @@
 		{#if player !== undefined}
 			{@render header(false)}
 			<div class="top_flex">
-				<p class="description">Не приглашайте меня на сервер, если там нет Вити Кисика!!💕</p>
+				<p class="description">{player.description}</p>
 				{#key player.name}
 					<SkinModel skin={player.skin} name={player.name} />
 				{/key}
@@ -118,7 +118,9 @@
 			<div class="action-buttons">
 				{#if data.profile === undefined || name !== data.profile.name}
 					{#if online}
-						<SettingsButton>Показать на карте</SettingsButton>
+						<SettingsButton tag="a" href="https://map.demovio.love/">
+							Показать на карте
+						</SettingsButton>
 					{/if}
 					<SettingsButton>Пригласить на сервер</SettingsButton>
 					<SettingsButton style="color: rgb(235, 52, 79)">Пожаловаться</SettingsButton>

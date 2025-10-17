@@ -1,11 +1,12 @@
 <script>
-	import SettingsButton from "$lib/SettingsButton.svelte";
+	import SettingsButton from "$lib/OptionButton.svelte";
+	import { scale } from "svelte/transition";
 	import { RegisterStage } from "./stages";
 
 	let { page = $bindable(), haveLicense = $bindable() } = $props();
 </script>
 
-<div class="register-page">
+<div class="register-page" transition:scale={{ duration: 250, start: 0.95 }}>
 	<div style="margin-top: 16px">
 		<SettingsButton
 			onclick={() => {

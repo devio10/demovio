@@ -1,11 +1,12 @@
 <script>
 	import Button from "$lib/Button.svelte";
+	import { scale } from "svelte/transition";
 	import { RegisterStage } from "./stages";
 
 	let { page = $bindable(), skin = $bindable() } = $props();
 </script>
 
-<div class="register-page">
+<div class="register-page" transition:scale={{ duration: 250, start: 0.95 }}>
 	<div style="margin-top: 16px"></div>
 	<Button
 		style="margin: 32px 0 0 0"

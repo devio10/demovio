@@ -1,5 +1,5 @@
 <script>
-	import SettingsButton from "$lib/SettingsButton.svelte";
+	import SettingsButton from "$lib/OptionButton.svelte";
 	import SettingsSwitch from "$lib/SettingsSwitch.svelte";
 	import SettingsHeader from "$lib/Window/SettingsHeader.svelte";
 </script>

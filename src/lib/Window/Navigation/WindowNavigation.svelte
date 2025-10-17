@@ -2,10 +2,10 @@
 	import { setContext, type Snippet } from "svelte";
 	let headerHeightContext = $state({ headerHeight: 0 });
 	setContext("headerHeightContext", headerHeightContext);
-	let { children }: { children?: Snippet } = $props();
+	let { children, ...props }: { children?: Snippet } = $props();
 </script>
 
-<nav>{@render children?.()}</nav>
+<nav {...props}>{@render children?.()}</nav>
 
 <style lang="scss">
 	nav {
