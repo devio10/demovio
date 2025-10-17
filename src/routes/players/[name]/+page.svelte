@@ -3,15 +3,15 @@
 	import WindowHeaderButton from "$lib/Window/WindowHeaderButton.svelte";
 	import WindowHeader from "$lib/Window/WindowHeader.svelte";
 	import SettingsButton from "$lib/SettingsButton.svelte";
-	import { enhance } from "$app/forms";
 	import SkinModel from "./SkinModel.svelte";
 	import WindowPlaceholder from "$lib/Window/WindowPlaceholder.svelte";
 	import WindowPlaceholderWarning from "$lib/Window/WindowPlaceholderWarning.svelte";
-	const name = $derived(page.params.name);
+	import { favoritePlayer, getPlayer } from "./data.remote";
+	import { getPlayers } from "../data.remote";
+	const name = $derived(page.params.name!);
 	let { data } = $props();
 	let submitting = $state(false);
-	$inspect(submitting);
-	let featured = $derived(data.features);
+	const query = $derived(getPlayer(name));
 	const online = $derived(data.demovioStatus.players.includes(name));
 </script>
 
@@ -19,9 +19,9 @@
 	<WindowHeader title={name}>
 		{#snippet titleChildren()}
 			<span class="last-seen-online">
-				{#await data.player}
+				{#await query}
 					Загрузка...
-				{:then player}
+				{:then query}
 					{#if online}
 						Сейчас играет
 					{:else if data.profile === undefined || name !== data.profile.name}
@@ -32,7 +32,7 @@
 				{/await}
 			</span>
 		{/snippet}
-		{#if data.profile === undefined || name !== data.profile.name}
+		{#if (data.profile === undefined || name !== data.profile.name) && name}
 			<div>
 				<WindowHeaderButton disabled={disabled || submitting} name="Уведомления об активности">
 					<svg
@@ -52,21 +52,19 @@
 					</svg>
 				</WindowHeaderButton>
 			</div>
-			<form
-				class=""
-				method="POST"
-				use:enhance={() => {
-					featured = !featured;
-					submitting = true;
-					return ({ update }) => {
-						submitting = false;
-						update();
-					};
-				}}
-			>
-				<input type="hidden" value={name} name="name" />
-				<WindowHeaderButton disabled={disabled || submitting} type="submit" name="Избранное">
-					{#if featured}
+			<div>
+				<WindowHeaderButton
+					disabled={disabled || submitting}
+					name="Избранное"
+					onclick={async () => {
+						try {
+							await favoritePlayer(name).updates(getPlayers());
+						} catch (e) {
+							alert(e);
+						}
+					}}
+				>
+					{#if query.current?.features}
 						<svg
 							version="1.1"
 							xmlns="http://www.w3.org/2000/svg"
@@ -92,15 +90,15 @@
 						</svg>
 					{/if}
 				</WindowHeaderButton>
-			</form>
+			</div>
 		{/if}
 	</WindowHeader>
 {/snippet}
 
-<div class="content">
-	{#await data.player}
+{#if name}
+	{#await query}
 		{@render header(true)}
-	{:then player}
+	{:then { player }}
 		{#if player !== undefined}
 			{@render header(false)}
 			<div class="top_flex">
@@ -129,7 +127,7 @@
 	{:catch e}
 		<p>{e}</p>
 	{/await}
-</div>
+{/if}
 
 <style lang="less">
 	.content {

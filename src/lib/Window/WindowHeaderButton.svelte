@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from "svelte";
+	import type { HTMLButtonAttributes } from "svelte/elements";
 
 	let {
 		children,
@@ -8,7 +9,7 @@
 	}: {
 		children: Snippet;
 		name: string;
-	} = $props();
+	} & HTMLButtonAttributes = $props();
 </script>
 
 <button aria-label={name} {...props}>

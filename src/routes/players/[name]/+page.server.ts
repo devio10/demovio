@@ -1,5 +1,5 @@
 import { fail } from "@sveltejs/kit";
-import type { Actions, PageServerLoad } from "./$types";
+import type { Actions } from "./$types";
 import { db } from "$lib/server/db";
 import { playersTable } from "$lib/server/db/schema";
 import { eq } from "drizzle-orm";
@@ -26,16 +26,4 @@ export const actions: Actions = {
 			.where(eq(playersTable.name, locals.playerData.name));
 		return { success: true };
 	},
-};
-
-export const load: PageServerLoad = async ({ params, parent, locals }) => {
-	const name = params.name;
-	return {
-		player: parent()
-			.then((data) => data.players)
-			.then((players) => {
-				return players.find((p) => p.name === name);
-			}),
-		features: locals.playerData?.favorites.includes(name),
-	};
 };
