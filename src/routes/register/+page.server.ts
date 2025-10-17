@@ -32,7 +32,7 @@ async function checkNameInDB(name: string): Promise<boolean> {
 	});
 	return !!existingPlayer;
 }
-function constructOfflinePlayerUuid(username: string) {
+export function constructPlayerUuid(username: string) {
 	const md5 = crypto.createHash("md5").update(username, "utf8").digest();
 	const bytes = Buffer.from(md5);
 	bytes[6] = (bytes[6] & 0x0f) | 0x30;
@@ -87,9 +87,9 @@ export const actions: Actions = {
 		}
 		let uuid;
 		if (formData.get("haveLicense") === "true") {
-			uuid = constructOfflinePlayerUuid(body.name);
+			uuid = constructPlayerUuid(body.name);
 		} else {
-			uuid = constructOfflinePlayerUuid(`OfflinePlayer:${body.name}`);
+			uuid = constructPlayerUuid(`OfflinePlayer:${body.name}`);
 		}
 		const hashedPassword = await Bun.password.hash(body.password, {
 			algorithm: "bcrypt",

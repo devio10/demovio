@@ -1,16 +1,14 @@
 import type { DemovioStateCode } from "$lib/components/demovio-states";
 import { relations } from "drizzle-orm";
-import { int, sqliteTable, text, integer } from "drizzle-orm/sqlite-core";
+import { serial, pgTable, text, jsonb, boolean, timestamp } from "drizzle-orm/pg-core";
 
-export const playersTable = sqliteTable("players", {
-	id: int().primaryKey({ autoIncrement: true }),
+export const playersTable = pgTable("players", {
+	id: serial().primaryKey(),
 	uuid: text().notNull(),
 	name: text().notNull().unique(),
 	password: text().notNull(),
 	skin: text(),
-	citizenship: text({
-		mode: "json",
-	})
+	citizenship: jsonb()
 		.$type<{
 			code: DemovioStateCode;
 			date: number;
@@ -20,20 +18,21 @@ export const playersTable = sqliteTable("players", {
 		.notNull(),
 	pronouns: text().notNull(),
 	contact: text().notNull(),
-	issueDate: integer({ mode: "timestamp" }).notNull(),
-	isActivated: integer({
-		mode: "boolean",
+	issueDate: timestamp({
+		mode: "date",
+		withTimezone: true,
 	}).notNull(),
+	isActivated: boolean().notNull(),
 	description: text(),
-	isBanned: integer({ mode: "boolean" }).default(false),
-	favorites: text({ mode: "json" }).$type<string[]>().notNull().default([]),
+	isBanned: boolean().default(false),
+	favorites: jsonb().$type<string[]>().notNull().default([]),
 });
 
 export const playerRelations = relations(playersTable, ({ many }) => ({
 	sessions: many(sessionsTable),
 }));
 
-export const sessionsTable = sqliteTable("sessions", {
+export const sessionsTable = pgTable("sessions", {
 	id: text().primaryKey(),
 	name: text()
 		.notNull()
