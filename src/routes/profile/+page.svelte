@@ -44,6 +44,7 @@
 	.canvas-block {
 		--width: 130px;
 		width: var(--width);
+		height: var(--width);
 		aspect-ratio: 1/1;
 		overflow: clip;
 		right: -90px;

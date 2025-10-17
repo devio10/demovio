@@ -1,7 +1,7 @@
 import { fail, redirect, type ServerLoad } from "@sveltejs/kit";
 import type { Actions } from "./$types";
 import { db } from "$lib/server/db";
-import { and, eq } from "drizzle-orm";
+import { eq } from "drizzle-orm";
 import { playersTable, sessionsTable } from "$lib/server/db/schema";
 import { nanoid } from "nanoid";
 
@@ -38,7 +38,12 @@ export const actions: Actions = {
 			id: sessionId,
 			name: login,
 		});
-		cookies.set("session", sessionId, { httpOnly: true, path: "/" });
+		cookies.set("session", sessionId, {
+			httpOnly: true,
+			path: "/",
+			secure: false,
+			maxAge: 60 * 60 * 24 * 90, //90 days
+		});
 		return redirect(303, "/profile");
 	},
 };

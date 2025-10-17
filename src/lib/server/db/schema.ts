@@ -24,6 +24,8 @@ export const playersTable = sqliteTable("players", {
 	isActivated: integer({
 		mode: "boolean",
 	}).notNull(),
+	description: text(),
+	isBanned: integer({ mode: "boolean" }).default(false),
 	favorites: text({ mode: "json" }).$type<string[]>().notNull().default([]),
 });
 
