@@ -10,31 +10,18 @@
 	import WindowNavigationList from "$lib/Window/Navigation/WindowNavigationList.svelte";
 	import { getSkinURL } from "$lib/scripts";
 	import { onMount } from "svelte";
-	import { invalidate } from "$app/navigation";
+	import { getPlayers } from "./data.remote";
 
 	let { children, data } = $props();
 
 	let searchQuery = $state("");
-	let players: { name: string; skin: string | null; pronouns: string }[] | undefined = $state();
 	let playersError: unknown = $state();
 	let updatingList = $state(false);
-	$effect(() => {
-		data.players
-			.then((res) => {
-				players = res;
-				playersError = undefined;
-			})
-			.catch((e) => {
-				playersError = e;
-			})
-			.finally(() => {
-				updatingList = false;
-			});
-	});
+	const query = getPlayers();
 	onMount(() => {
 		const reloadInterval = setInterval(() => {
 			updatingList = true;
-			invalidate("players-list");
+			query.refresh();
 		}, 2000);
 		return () => {
 			clearInterval(reloadInterval);
@@ -47,14 +34,19 @@
 		<WindowNavigation --width="45%">
 			<WindowNavigationHeader title="Игроки">
 				{#snippet titleChildren()}
-					{#if updatingList}
+					{#if query.loading}
 						<LoadingWheel --wheel-size="36px" --wheel-color="rgba(255,255,255,0.75)" />
 					{/if}
 				{/snippet}
 				<WindowPlaceholderSearch bind:value={searchQuery} placeholder="Поиск по игрокам" />
 			</WindowNavigationHeader>
-			{#if players}
-				{@const filteredPlayers = players
+			{#if !query.current}
+				<WindowPlaceholder>
+					<LoadingWheel --wheel-size="128px" --wheel-color="rgba(255,255,255,0.75)" />
+				</WindowPlaceholder>
+			{/if}
+			{#if query.current}
+				{@const filteredPlayers = query.current
 					.filter((p) => p.name.toLowerCase().includes(searchQuery.trim().toLowerCase()))
 					.sort((a, b) => {
 						const scoreFavoriteA = data.profile?.favorites.includes(a.name) ? 10 : 0;
@@ -91,12 +83,8 @@
 						<WindowPlaceholderWarning>Нет игроков по вашему запросу</WindowPlaceholderWarning>
 					</WindowPlaceholder>
 				{/if}
-			{:else}
-				<WindowPlaceholder>
-					<LoadingWheel --wheel-size="128px" --wheel-color="rgba(255,255,255,0.75)" />
-				</WindowPlaceholder>
 			{/if}
-			{#if playersError}
+			{#if query.error}
 				<WindowPlaceholder>
 					{#if playersError instanceof Error}
 						{#if playersError.name === "TimeoutError"}
