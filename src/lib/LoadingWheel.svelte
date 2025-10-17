@@ -9,6 +9,7 @@
 <style>
 	div.container {
 		width: var(--wheel-size, 64px);
+		height: var(--wheel-size, 64px);
 	}
 	div.spinner {
 		position: relative;

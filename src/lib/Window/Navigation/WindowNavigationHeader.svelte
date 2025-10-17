@@ -1,20 +1,29 @@
 <script lang="ts">
 	import { getContext, type Snippet } from "svelte";
 	let height = $state();
-	let { children, title }: { children?: Snippet; title: string } = $props();
+	let {
+		children,
+		title,
+		titleChildren,
+	}: { children?: Snippet; title: string; titleChildren?: Snippet } = $props();
 	let headerHeightContext = getContext("headerHeightContext");
 	$effect(() => {
 		headerHeightContext.headerHeight = height;
 	});
 </script>
 
-<div bind:offsetHeight={height}>
-	<h2 style="margin-bottom: 16px;">{title}</h2>
-	{@render children?.()}
+<div bind:offsetHeight={height} class="header">
+	<div class="text">
+		<h2>{title}</h2>
+		{@render titleChildren?.()}
+	</div>
+	<div class="content">
+		{@render children?.()}
+	</div>
 </div>
 
 <style>
-	div {
+	.header {
 		padding: 24px;
 		margin-bottom: 16px;
 		position: absolute;
@@ -22,6 +31,12 @@
 
 		width: 100%;
 		top: 0;
+	}
+	.text {
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 16px;
+		align-items: center;
 		h2 {
 			margin: 0;
 			font-size: 28px;

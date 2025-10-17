@@ -9,9 +9,17 @@ const config = {
 			silent: false,
 		},
 	}),
+	compilerOptions: {
+		experimental: {
+			async: true,
+		},
+	},
 	// preprocess: vitePreprocess(),
 	kit: {
 		adapter: adapter(),
+		experimental: {
+			remoteFunctions: true,
+		},
 	},
 };
 

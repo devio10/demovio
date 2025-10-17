@@ -1,25 +1,14 @@
-import { error } from "@sveltejs/kit";
 import type { LayoutServerLoad } from "./$types";
-export const load: LayoutServerLoad = async ({ fetch }) => {
+import { db } from "$lib/server/db";
+import { playersTable } from "$lib/server/db/schema";
+import { and, eq } from "drizzle-orm";
+export const load: LayoutServerLoad = async ({ depends }) => {
 	async function getPlayers() {
-		try {
-			const req = await fetch(`https://demovio.love/request/players.php`, {
-				signal: AbortSignal.timeout(8000),
-			});
-			if (!(req.status >= 200 && req.status < 300)) {
-				throw new Error("Failed to fetch: " + req.status);
-			}
-			const data = await req.json();
-			if (data.error) {
-				throw new Error(data.error);
-			}
-			return data;
-		} catch (e) {
-			console.error(e);
-			if (e instanceof Error) {
-				return error(500);
-			}
-		}
+		depends("players-list");
+		return await db.query.playersTable.findMany({
+			columns: { name: true, skin: true, contact: true, description: true, pronouns: true },
+			where: and(eq(playersTable.isActivated, true), eq(playersTable.isBanned, false)),
+		});
 	}
 	return { players: getPlayers() };
 };

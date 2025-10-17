@@ -105,7 +105,9 @@
 			{@render header(false)}
 			<div class="top_flex">
 				<p class="description">Не приглашайте меня на сервер, если там нет Вити Кисика!!💕</p>
-				<SkinModel skin={player.skin} name={player.name} />
+				{#key player.name}
+					<SkinModel skin={player.skin} name={player.name} />
+				{/key}
 			</div>
 			<!-- <div class="player-map"><div></div></div> -->
 			<div class="action-buttons">

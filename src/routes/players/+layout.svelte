@@ -9,24 +9,51 @@
 	import WindowNavigationHeader from "$lib/Window/Navigation/WindowNavigationHeader.svelte";
 	import WindowNavigationList from "$lib/Window/Navigation/WindowNavigationList.svelte";
 	import { getSkinURL } from "$lib/scripts";
+	import { onMount } from "svelte";
+	import { invalidate } from "$app/navigation";
 
 	let { children, data } = $props();
 
 	let searchQuery = $state("");
-	let players: Promise<{ name: string; skin: string; pronouns: string }[]> = $derived(data.players);
+	let players: { name: string; skin: string | null; pronouns: string }[] | undefined = $state();
+	let playersError: unknown = $state();
+	let updatingList = $state(false);
+	$effect(() => {
+		data.players
+			.then((res) => {
+				players = res;
+				playersError = undefined;
+			})
+			.catch((e) => {
+				playersError = e;
+			})
+			.finally(() => {
+				updatingList = false;
+			});
+	});
+	onMount(() => {
+		const reloadInterval = setInterval(() => {
+			updatingList = true;
+			invalidate("players-list");
+		}, 2000);
+		return () => {
+			clearInterval(reloadInterval);
+		};
+	});
 </script>
 
 <Window>
 	{#snippet navigation()}
 		<WindowNavigation --width="45%">
 			<WindowNavigationHeader title="Игроки">
+				{#snippet titleChildren()}
+					{#if updatingList}
+						<LoadingWheel --wheel-size="36px" --wheel-color="rgba(255,255,255,0.75)" />
+					{/if}
+				{/snippet}
 				<WindowPlaceholderSearch bind:value={searchQuery} placeholder="Поиск по игрокам" />
 			</WindowNavigationHeader>
-			{#await players}
-				<WindowPlaceholder>
-					<LoadingWheel --wheel-size="128px" --wheel-color="rgba(255,255,255,0.75)" />
-				</WindowPlaceholder>
-			{:then players}
+			{#if players}
 				{@const filteredPlayers = players
 					.filter((p) => p.name.toLowerCase().includes(searchQuery.trim().toLowerCase()))
 					.sort((a, b) => {
@@ -64,17 +91,24 @@
 						<WindowPlaceholderWarning>Нет игроков по вашему запросу</WindowPlaceholderWarning>
 					</WindowPlaceholder>
 				{/if}
-			{:catch e}
+			{:else}
 				<WindowPlaceholder>
-					{#if e.name === "TimeoutError"}
-						<WindowPlaceholderWarning>Превышено время ожидания</WindowPlaceholderWarning>
-					{:else if e.name === "AbortError"}
-						<WindowPlaceholderWarning>Неправильный ответ от сервера</WindowPlaceholderWarning>
-					{:else}
-						<WindowPlaceholderWarning>Ошибка соединения с сервером</WindowPlaceholderWarning>
+					<LoadingWheel --wheel-size="128px" --wheel-color="rgba(255,255,255,0.75)" />
+				</WindowPlaceholder>
+			{/if}
+			{#if playersError}
+				<WindowPlaceholder>
+					{#if playersError instanceof Error}
+						{#if playersError.name === "TimeoutError"}
+							<WindowPlaceholderWarning>Превышено время ожидания</WindowPlaceholderWarning>
+						{:else if playersError.name === "AbortError"}
+							<WindowPlaceholderWarning>Неправильный ответ от сервера</WindowPlaceholderWarning>
+						{:else}
+							<WindowPlaceholderWarning>Ошибка соединения с сервером</WindowPlaceholderWarning>
+						{/if}
 					{/if}
 				</WindowPlaceholder>
-			{/await}
+			{/if}
 		</WindowNavigation>
 	{/snippet}
 	{@render children?.()}
