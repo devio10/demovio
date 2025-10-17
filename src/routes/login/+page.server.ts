@@ -4,7 +4,6 @@ import { db } from "$lib/server/db";
 import { eq } from "drizzle-orm";
 import { playersTable, sessionsTable } from "$lib/server/db/schema";
 import { nanoid } from "nanoid";
-import z from "zod";
 import { accountDataSchemas } from "$lib/server/data-schemas";
 
 export const load: ServerLoad = ({ locals }) => {

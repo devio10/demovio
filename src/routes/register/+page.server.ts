@@ -3,9 +3,10 @@ import { playersTable } from "$lib/server/db/schema";
 import { eq } from "drizzle-orm";
 import type { Actions } from "./$types";
 import { fail } from "@sveltejs/kit";
-import crypto from "crypto";
+
 import { z } from "zod";
 import { accountDataSchemas } from "$lib/server/data-schemas";
+import { constructPlayerUuid } from "$lib/server/generateUUID";
 
 const accountDataSchema = z.object(accountDataSchemas);
 
@@ -14,15 +15,6 @@ async function checkNameInDB(name: string): Promise<boolean> {
 		where: eq(playersTable.name, name),
 	});
 	return !!existingPlayer;
-}
-export function constructPlayerUuid(username: string) {
-	const md5 = crypto.createHash("md5").update(username, "utf8").digest();
-	const bytes = Buffer.from(md5);
-	bytes[6] = (bytes[6] & 0x0f) | 0x30;
-	bytes[8] = (bytes[8] & 0x3f) | 0x80;
-	const hex = bytes.toString("hex");
-
-	return hex;
 }
 
 export const actions: Actions = {

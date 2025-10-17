@@ -21,7 +21,7 @@
 	let playername = $state();
 	let contact = $state();
 	let skin = $state();
-	let pronouns = "он/его";
+	let pronouns = "test\0piss";
 	$inspect(password);
 </script>
 

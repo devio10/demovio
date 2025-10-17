@@ -1,5 +1,8 @@
 import { demovioStateCodes } from "$lib/components/demovio-states";
 import z from "zod";
+export function noNullCharacter(test: string): boolean {
+	return !test.includes("\0");
+}
 export const accountDataSchemas = {
 	name: z
 		.string()
@@ -12,8 +15,8 @@ export const accountDataSchemas = {
 		.min(5)
 		.max(32)
 		.regex(/^(?!_)(?!.*__)[a-zA-Z0-9_]+(?<!_)$/),
-	pronouns: z.string().min(2).max(16),
+	pronouns: z.string().min(2).max(16).refine(noNullCharacter, "Запрещённый символ"),
 	citizenship: z.enum(demovioStateCodes),
-	skin: z.string().nullable(),
+	skin: z.string().refine(noNullCharacter, "Запрещённый символ").nullable(),
 	haveLicense: z.coerce.boolean(),
 };
