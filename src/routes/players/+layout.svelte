@@ -22,7 +22,7 @@
 		const reloadInterval = setInterval(() => {
 			updatingList = true;
 			query.refresh();
-		}, 2000);
+		}, 10000);
 		return () => {
 			clearInterval(reloadInterval);
 		};
@@ -49,8 +49,8 @@
 				{@const filteredPlayers = query.current
 					.filter((p) => p.name.toLowerCase().includes(searchQuery.trim().toLowerCase()))
 					.sort((a, b) => {
-						const scoreFavoriteA = data.profile?.favorites.includes(a.name) ? 10 : 0;
-						const scoreFavoriteB = data.profile?.favorites.includes(b.name) ? 10 : 0;
+						const scoreFavoriteA = a.featured ? 10 : 0;
+						const scoreFavoriteB = b.featured ? 10 : 0;
 						let scoreOnlineA = 0;
 						let scoreOnlineB = 0;
 						if (data.demovioStatus) {
@@ -65,7 +65,7 @@
 					})}
 				{#if filteredPlayers.length}
 					<WindowNavigationList>
-						{#each filteredPlayers as { name, skin, pronouns }, i (name)}
+						{#each filteredPlayers as { name, skin, pronouns, featured }, i (name)}
 							{@const online =
 								data.demovioStatus === false ? false : data.demovioStatus!.players.includes(name)}
 							<WindowNavigationPlayer
@@ -73,7 +73,7 @@
 								{name}
 								{pronouns}
 								{i}
-								featured={data.profile?.favorites.includes(name)}
+								{featured}
 								skin={getSkinURL(skin, name)}
 							/>
 						{/each}

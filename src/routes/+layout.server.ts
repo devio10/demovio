@@ -14,7 +14,7 @@ export type Profile = Pick<
 	| "issueDate"
 	| "favorites"
 >;
-export const load: LayoutServerLoad = async ({ locals }) => {
+export const load: LayoutServerLoad = async ({ locals, depends }) => {
 	const status: FullResponse | false = await getDemovioStatus();
 	const player = locals.playerData;
 	if (!player) {

@@ -54,7 +54,9 @@
 		</div>
 		<div>
 			<span class="name">{name}</span>
-			<span class="pronouns">{pronouns}</span>
+			{#if pronouns && pronouns !== ""}
+				<span class="pronouns">{pronouns}</span>
+			{/if}
 		</div>
 		{#if featured}
 			<svg
@@ -130,10 +132,10 @@
 			color: white;
 			display: block;
 			text-align: left;
-			margin-bottom: 4px;
 		}
 		.pronouns {
 			font-size: 16px;
+			margin-top: 4px;
 			display: block;
 			text-align: left;
 			color: rgba(190, 190, 190, 0.75);

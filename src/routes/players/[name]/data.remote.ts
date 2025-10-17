@@ -15,7 +15,8 @@ export const favoritePlayer = command(z.string(), async (name) => {
 	if (name === null || typeof name !== "string") {
 		return fail(400);
 	}
-	if (favorites.includes(name)) {
+	const featured = favorites.includes(name);
+	if (featured) {
 		favorites.splice(favorites.indexOf(name), 1);
 	} else {
 		favorites.push(name);
@@ -25,7 +26,7 @@ export const favoritePlayer = command(z.string(), async (name) => {
 		.set({ favorites: favorites })
 		.where(eq(playersTable.name, locals.playerData.name));
 	getPlayers().refresh();
-	return { success: true };
+	return { featured: !featured };
 });
 export const getPlayer = query(z.string(), async (name) => {
 	const { locals } = getRequestEvent();

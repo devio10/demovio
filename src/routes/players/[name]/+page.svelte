@@ -8,10 +8,13 @@
 	import WindowPlaceholderWarning from "$lib/Window/WindowPlaceholderWarning.svelte";
 	import { favoritePlayer, getPlayer } from "./data.remote";
 	import { getPlayers } from "../data.remote";
+	import { fa } from "zod/locales";
+	import { isActionFailure } from "@sveltejs/kit";
 	const name = $derived(page.params.name!);
 	let { data } = $props();
 	let submitting = $state(false);
 	const query = $derived(getPlayer(name));
+	let featured = $derived(query.current?.features);
 	const online = $derived(data.demovioStatus.players.includes(name));
 </script>
 
@@ -58,13 +61,17 @@
 					name="Избранное"
 					onclick={async () => {
 						try {
-							await favoritePlayer(name).updates(getPlayers());
+							const req = await favoritePlayer(name).updates(getPlayers());
+							if (isActionFailure(req)) {
+								throw new Error(req.data);
+							}
+							featured = req.featured;
 						} catch (e) {
 							alert(e);
 						}
 					}}
 				>
-					{#if query.current?.features}
+					{#if featured}
 						<svg
 							version="1.1"
 							xmlns="http://www.w3.org/2000/svg"
