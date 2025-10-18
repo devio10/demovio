@@ -1,0 +1,1 @@
+ALTER TABLE "players" ADD COLUMN "lastOnline" timestamp with time zone;

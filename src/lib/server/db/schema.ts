@@ -16,6 +16,10 @@ export const playersTable = pgTable("players", {
 			address: string;
 		}>()
 		.notNull(),
+	lastOnline: timestamp({
+		mode: "date",
+		withTimezone: true,
+	}),
 	pronouns: text().notNull(),
 	contact: text().notNull(),
 	issueDate: timestamp({
