@@ -56,7 +56,10 @@
 		}
 		.settings-buttons {
 			width: 100%;
-			padding: 24px 48px;
+			padding: 0 48px;
+		}
+		.settings-buttons-space {
+			margin: 12px 0;
 		}
 	}
 </style>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import SettingsButton from "$lib/OptionButton.svelte";
+	import OptionButton from "$lib/OptionButton.svelte";
 	import SettingsSwitch from "$lib/SettingsSwitch.svelte";
 	import { isActionFailure } from "@sveltejs/kit";
 	import { pushNotificationsOff, pushNotificationsOn } from "./data.remote";
@@ -91,7 +91,7 @@
 	</div>
 {/if}
 
-<SettingsButton tag="div">
+<OptionButton tag="div">
 	Уведомления от браузера
 	{#if browser && registration}
 		<SettingsSwitch
@@ -102,4 +102,4 @@
 	{:else}
 		<span>Не поддерживается</span>
 	{/if}
-</SettingsButton>
+</OptionButton>

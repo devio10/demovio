@@ -31,10 +31,12 @@
 		></canvas>
 	</div>
 	<span class="name">{data.profile.name}</span>
+	<div class="settings-buttons-space"></div>
 	<div class="settings-buttons">
 		<SettingsButton tag="a" href="profile/edit">Изменить данные</SettingsButton>
 		<SettingsButton>Пригласить друга</SettingsButton>
 	</div>
+	<div class="settings-buttons-space"></div>
 	<form class="settings-buttons" method="POST" action="/profile?/logout" use:enhance>
 		<SettingsButton style="color: rgb(235, 52, 79)">Выйти из аккаунта</SettingsButton>
 	</form>
