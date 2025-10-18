@@ -1,9 +1,10 @@
 <script lang="ts">
 	import Toggle from "svelte-switcher";
+	let { value = $bindable(), onChange, ...props } = $props();
 </script>
 
 <div class="switch">
-	<Toggle />
+	<Toggle {onChange} checked={value} />
 </div>
 
 <style lang="scss">

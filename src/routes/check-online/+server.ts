@@ -1,15 +1,16 @@
 import { getDemovioStatus } from "$lib/server/minecraft-status";
 import type { FullResponse } from "@hloth/minecraft-query";
 import type { RequestHandler } from "./$types";
-import { SERVER_TOP_SECRET_KEY } from "$env/static/private";
+import { PRIVATE_PUSH_KEY, SERVER_TOP_SECRET_KEY } from "$env/static/private";
 import { db } from "$lib/server/db";
 import {
 	notifySubscriptionsTable,
 	playersTable,
 	pushSubscriptionsTable,
 } from "$lib/server/db/schema";
-import { eq, inArray } from "drizzle-orm";
+import { and, eq, inArray } from "drizzle-orm";
 import webPush from "web-push";
+import { PUBLIC_PUSH_KEY } from "$env/static/public";
 
 export const POST: RequestHandler = async ({ request }) => {
 	const key = request.headers.get("Authorization");
@@ -21,11 +22,13 @@ export const POST: RequestHandler = async ({ request }) => {
 		return new Response(null, { status: 503 });
 	}
 	const onlinePlayers = status.players;
+	// const onlinePlayers = ["anastasiz2009"];
 	await db
 		.update(playersTable)
 		.set({ lastOnline: new Date() })
 		.where(inArray(playersTable.name, onlinePlayers));
 
+	webPush.setVapidDetails("https://demovio.love", PUBLIC_PUSH_KEY, PRIVATE_PUSH_KEY);
 	for (const onlinePlayerName of onlinePlayers) {
 		const onlinePlayerNotificationSubscribers = await db.query.notifySubscriptionsTable.findMany({
 			where: eq(notifySubscriptionsTable.targetName, onlinePlayerName),
@@ -41,7 +44,7 @@ export const POST: RequestHandler = async ({ request }) => {
 			if (
 				!lastSent ||
 				!receiverPlayer.subscriptionFrequency ||
-				Date.now() - lastSent.getTime() <= receiverPlayer.subscriptionFrequency
+				Date.now() - lastSent.getTime() >= receiverPlayer.subscriptionFrequency
 			) {
 				const receiverPushSubscriptions = await db.query.pushSubscriptionsTable.findMany({
 					where: eq(pushSubscriptionsTable.receiverName, receiverName),
@@ -52,6 +55,17 @@ export const POST: RequestHandler = async ({ request }) => {
 						JSON.stringify({ name: onlinePlayerName, pronouns: targetPlayer.pronouns }),
 					);
 				}
+				await db
+					.update(notifySubscriptionsTable)
+					.set({
+						lastSent: new Date(),
+					})
+					.where(
+						and(
+							eq(notifySubscriptionsTable.targetName, onlinePlayerName),
+							eq(notifySubscriptionsTable.receiverName, receiverName),
+						),
+					);
 				//Telegram...
 			}
 		}

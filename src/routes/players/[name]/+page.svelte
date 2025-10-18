@@ -51,7 +51,7 @@
 {#if name}
 	{#await query}
 		{@render header(true)}
-	{:then { player }}
+	{:then player}
 		{#if player !== undefined}
 			{@render header(false)}
 			<div class="top_flex">

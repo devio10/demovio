@@ -62,9 +62,6 @@ export const getPlayer = query(accountDataSchemas.name, async (name) => {
 			eq(playersTable.isBanned, false),
 			eq(playersTable.name, name),
 		),
-		with: {
-			notifySubscribers: true,
-		},
 	});
 	if (!player) {
 		return undefined;
@@ -75,7 +72,10 @@ export const getPlayer = query(accountDataSchemas.name, async (name) => {
 	const authorizedPlayerData = locals.playerData;
 	if (authorizedPlayerData) {
 		featured = authorizedPlayerData.favorites.includes(player.name);
-		subscribed = player.notifySubscribers.some(
+		const subcriptions = await db.query.notifySubscriptionsTable.findMany({
+			where: eq(notifySubscriptionsTable.targetName, player.name),
+		});
+		subscribed = subcriptions.some(
 			(subscription) => subscription.receiverName === authorizedPlayerData.name,
 		);
 	}

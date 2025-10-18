@@ -1,8 +1,6 @@
 import { demovioStateCodes } from "$lib/components/demovio-states";
+import { noNullCharacter } from "$lib/utils";
 import z from "zod";
-export function noNullCharacter(test: string): boolean {
-	return !test.includes("\0");
-}
 export const accountDataSchemas = {
 	name: z
 		.string()

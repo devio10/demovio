@@ -43,7 +43,7 @@ export const sessionRelations = relations(sessionsTable, ({ one }) => ({
 	player: one(playersTable, {
 		fields: [sessionsTable.name],
 		references: [playersTable.name],
-		relationName: "player",
+		relationName: "session_player",
 	}),
 }));
 
@@ -76,25 +76,29 @@ export const PushSubscriptionRelations = relations(pushSubscriptionsTable, ({ on
 	receiverPlayer: one(playersTable, {
 		fields: [pushSubscriptionsTable.receiverName],
 		references: [playersTable.name],
-		relationName: "pushReceiverPlayer",
+		relationName: "push_receiver_player",
 	}),
 }));
 export const notifySubscriptionsRelations = relations(notifySubscriptionsTable, ({ one }) => ({
 	receiverPlayer: one(playersTable, {
 		fields: [notifySubscriptionsTable.receiverName],
 		references: [playersTable.name],
-		relationName: "notifyReceiverPlayer",
+		relationName: "notify_receiver_player",
 	}),
 	targetPlayer: one(playersTable, {
 		fields: [notifySubscriptionsTable.targetName],
 		references: [playersTable.name],
-		relationName: "notifyTargetPlayer",
+		relationName: "notify_target_player",
 	}),
 }));
 export const playerRelations = relations(playersTable, ({ many }) => ({
 	sessions: many(sessionsTable),
-	notifySubscribers: many(notifySubscriptionsTable),
-	notifySubscriptions: many(notifySubscriptionsTable),
+	notifySubscriptions: many(notifySubscriptionsTable, {
+		relationName: "notify_subscriptions",
+	}),
+	notifySubscribers: many(notifySubscriptionsTable, {
+		relationName: "notify_subscribers",
+	}),
 }));
 
 export type PlayerData = typeof playersTable.$inferSelect;

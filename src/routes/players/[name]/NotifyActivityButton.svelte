@@ -6,6 +6,7 @@
 	import { isActionFailure } from "@sveltejs/kit";
 	import { getPlayers } from "../data.remote";
 	import { subscribeToPlayer } from "./data.remote";
+	import IconBell from "$lib/components/icons/IconBell.svelte";
 	let { disabled, submitting = $bindable(), loggedIn, subscribed, name } = $props();
 	let dialogOpened = $state(false);
 </script>
@@ -30,7 +31,11 @@
 			}
 		}}
 	>
-		<IconBellCrossed />
+		{#if subscribed}
+			<IconBell />
+		{:else}
+			<IconBellCrossed />
+		{/if}
 	</WindowHeaderButton>
 </div>
 
