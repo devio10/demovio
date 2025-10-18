@@ -1,6 +1,6 @@
 import type { DemovioStateCode } from "$lib/components/demovio-states";
 import { relations } from "drizzle-orm";
-import { serial, pgTable, text, jsonb, boolean, timestamp } from "drizzle-orm/pg-core";
+import { serial, pgTable, text, jsonb, boolean, timestamp, integer } from "drizzle-orm/pg-core";
 
 export const playersTable = pgTable("players", {
 	id: serial().primaryKey(),
@@ -30,10 +30,12 @@ export const playersTable = pgTable("players", {
 	description: text(),
 	isBanned: boolean().default(false),
 	favorites: jsonb().$type<string[]>().notNull().default([]),
+	subscriptionFrequency: integer().default(60 * 60 * 12),
 });
-
 export const playerRelations = relations(playersTable, ({ many }) => ({
 	sessions: many(sessionsTable),
+	pushSubscribers: many(pushSubscriptionsTable),
+	notifySubscriptions: many(notifySubscriptionsTable),
 }));
 
 export const sessionsTable = pgTable("sessions", {
@@ -42,9 +44,50 @@ export const sessionsTable = pgTable("sessions", {
 		.notNull()
 		.references(() => playersTable.name),
 });
-
 export const sessionRelations = relations(sessionsTable, ({ one }) => ({
 	player: one(playersTable, { fields: [sessionsTable.name], references: [playersTable.name] }),
+}));
+
+export const pushSubscriptionsTable = pgTable("push_subscriptions", {
+	endpoint: text().primaryKey(),
+	p256dh: text().notNull(),
+	auth: text().notNull(),
+	receiverName: text()
+		.notNull()
+		.references(() => playersTable.name),
+	expiresAt: timestamp({
+		mode: "date",
+		withTimezone: true,
+	}),
+});
+export const PushSubscriptionRelations = relations(pushSubscriptionsTable, ({ one }) => ({
+	receiverPlayer: one(playersTable, {
+		fields: [pushSubscriptionsTable.receiverName],
+		references: [playersTable.name],
+	}),
+}));
+
+export const notifySubscriptionsTable = pgTable("notify_subscriptions", {
+	receiverName: text()
+		.notNull()
+		.references(() => playersTable.name),
+	targetName: text()
+		.notNull()
+		.references(() => playersTable.name),
+	lastSent: timestamp({
+		mode: "date",
+		withTimezone: true,
+	}),
+});
+export const notifySubscriptionsRelations = relations(notifySubscriptionsTable, ({ one }) => ({
+	receiverPlayer: one(playersTable, {
+		fields: [notifySubscriptionsTable.receiverName],
+		references: [playersTable.name],
+	}),
+	targetPlayer: one(playersTable, {
+		fields: [notifySubscriptionsTable.targetName],
+		references: [playersTable.name],
+	}),
 }));
 
 export type PlayerData = typeof playersTable.$inferSelect;

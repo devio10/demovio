@@ -1,0 +1,1 @@
+ALTER TABLE "players" ADD COLUMN "subscriptionFrequency" integer DEFAULT 43200;

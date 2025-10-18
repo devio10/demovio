@@ -15,4 +15,9 @@
 		<SettingsButton tag="div">Активность избранных игроков <SettingsSwitch /></SettingsButton>
 		<SettingsButton tag="div">Обновления Demovio <SettingsSwitch /></SettingsButton>
 	</div>
+	<div class="settings-buttons">
+		<SettingsButton tag="div">
+			Частота уведомлений <span>12 часов</span>
+		</SettingsButton>
+	</div>
 </div>
