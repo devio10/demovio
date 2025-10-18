@@ -32,11 +32,6 @@ export const playersTable = pgTable("players", {
 	favorites: jsonb().$type<string[]>().notNull().default([]),
 	subscriptionFrequency: integer().default(60 * 60 * 12),
 });
-export const playerRelations = relations(playersTable, ({ many }) => ({
-	sessions: many(sessionsTable),
-	pushSubscribers: many(pushSubscriptionsTable),
-	notifySubscriptions: many(notifySubscriptionsTable),
-}));
 
 export const sessionsTable = pgTable("sessions", {
 	id: text().primaryKey(),
@@ -45,8 +40,25 @@ export const sessionsTable = pgTable("sessions", {
 		.references(() => playersTable.name),
 });
 export const sessionRelations = relations(sessionsTable, ({ one }) => ({
-	player: one(playersTable, { fields: [sessionsTable.name], references: [playersTable.name] }),
+	player: one(playersTable, {
+		fields: [sessionsTable.name],
+		references: [playersTable.name],
+		relationName: "player",
+	}),
 }));
+
+export const notifySubscriptionsTable = pgTable("notify_subscriptions", {
+	receiverName: text()
+		.notNull()
+		.references(() => playersTable.name),
+	targetName: text()
+		.notNull()
+		.references(() => playersTable.name),
+	lastSent: timestamp({
+		mode: "date",
+		withTimezone: true,
+	}),
+});
 
 export const pushSubscriptionsTable = pgTable("push_subscriptions", {
 	endpoint: text().primaryKey(),
@@ -64,30 +76,25 @@ export const PushSubscriptionRelations = relations(pushSubscriptionsTable, ({ on
 	receiverPlayer: one(playersTable, {
 		fields: [pushSubscriptionsTable.receiverName],
 		references: [playersTable.name],
+		relationName: "pushReceiverPlayer",
 	}),
 }));
-
-export const notifySubscriptionsTable = pgTable("notify_subscriptions", {
-	receiverName: text()
-		.notNull()
-		.references(() => playersTable.name),
-	targetName: text()
-		.notNull()
-		.references(() => playersTable.name),
-	lastSent: timestamp({
-		mode: "date",
-		withTimezone: true,
-	}),
-});
 export const notifySubscriptionsRelations = relations(notifySubscriptionsTable, ({ one }) => ({
 	receiverPlayer: one(playersTable, {
 		fields: [notifySubscriptionsTable.receiverName],
 		references: [playersTable.name],
+		relationName: "notifyReceiverPlayer",
 	}),
 	targetPlayer: one(playersTable, {
 		fields: [notifySubscriptionsTable.targetName],
 		references: [playersTable.name],
+		relationName: "notifyTargetPlayer",
 	}),
+}));
+export const playerRelations = relations(playersTable, ({ many }) => ({
+	sessions: many(sessionsTable),
+	notifySubscribers: many(notifySubscriptionsTable),
+	notifySubscriptions: many(notifySubscriptionsTable),
 }));
 
 export type PlayerData = typeof playersTable.$inferSelect;

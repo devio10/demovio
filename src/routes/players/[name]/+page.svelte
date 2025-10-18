@@ -13,7 +13,8 @@
 	let { data } = $props();
 	let submitting = $state(false);
 	const query = $derived(getPlayer(name));
-	let featured = $derived(query.current?.features);
+	let featured = $derived(query.current?.featured);
+	let subscribed = $derived(query.current?.subscribed);
 	const online = $derived(data.demovioStatus.players.includes(name));
 </script>
 
@@ -35,7 +36,13 @@
 			</span>
 		{/snippet}
 		{#if (data.profile === undefined || name !== data.profile.name) && name}
-			<NotifyActivityButton loggedIn={data.profile} {disabled} bind:submitting />
+			<NotifyActivityButton
+				{name}
+				loggedIn={data.profile}
+				{disabled}
+				bind:submitting
+				{subscribed}
+			/>
 			<FeatureButton {name} bind:featured {disabled} bind:submitting loggedIn={data.profile} />
 		{/if}
 	</WindowHeader>

@@ -4,7 +4,6 @@
 	import { favoritePlayer } from "./data.remote";
 	import { getPlayers } from "../data.remote";
 	import Dialog from "$lib/components/Dialog.svelte";
-	import NoInvitation from "$lib/components/icons/IconNoInvitation.svelte";
 	import DialogButton from "$lib/components/DialogButton.svelte";
 	import IconStar from "$lib/components/icons/IconStar.svelte";
 	import IconStarHollow from "$lib/components/icons/IconStarHollow.svelte";

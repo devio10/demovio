@@ -10,9 +10,11 @@ export const getPlayers = query(async () => {
 	});
 	return res.map((player) => {
 		let featured = false;
-		if (locals.playerData) {
-			featured = locals.playerData.favorites.includes(player.name);
+		const authorizedPlayerData = locals.playerData;
+		if (authorizedPlayerData) {
+			featured = authorizedPlayerData.favorites.includes(player.name);
 		}
+
 		return { featured, ...player };
 	});
 });

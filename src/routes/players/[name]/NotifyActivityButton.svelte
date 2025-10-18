@@ -2,9 +2,11 @@
 	import WindowHeaderButton from "$lib/Window/WindowHeaderButton.svelte";
 	import Dialog from "$lib/components/Dialog.svelte";
 	import DialogButton from "$lib/components/DialogButton.svelte";
-	import IconStarHollow from "$lib/components/icons/IconStarHollow.svelte";
 	import IconBellCrossed from "$lib/components/icons/IconBellCrossed.svelte";
-	let { disabled, submitting = $bindable(), loggedIn } = $props();
+	import { isActionFailure } from "@sveltejs/kit";
+	import { getPlayers } from "../data.remote";
+	import { subscribeToPlayer } from "./data.remote";
+	let { disabled, submitting = $bindable(), loggedIn, subscribed, name } = $props();
 	let dialogOpened = $state(false);
 </script>
 
@@ -16,6 +18,15 @@
 			if (!loggedIn) {
 				dialogOpened = true;
 				return;
+			}
+			try {
+				const req = await subscribeToPlayer(name).updates();
+				if (isActionFailure(req)) {
+					throw new Error(req.data);
+				}
+				subscribed = req.subscribed;
+			} catch (e) {
+				alert(e);
 			}
 		}}
 	>
