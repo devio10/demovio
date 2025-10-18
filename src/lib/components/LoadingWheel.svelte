@@ -1,5 +1,9 @@
+<script>
+	import { fade } from "svelte/transition";
+</script>
+
 <div class="container">
-	<div class="spinner">
+	<div class="spinner" in:fade={{ duration: 300 }} out:fade={{ duration: 100 }}>
 		{#each { length: 12 }}
 			<div></div>
 		{/each}

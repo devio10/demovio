@@ -18,7 +18,7 @@
 				background:
 					radial-gradient(circle at 16px 16px, rgba(255, 255, 255, 0) 0%, transparent 70%),
 					linear-gradient(rgba(130, 130, 130, 0.35) 0%, rgba(130, 130, 130, 0.35) 100%);
-				border-top: 0.5px solid rgba(200, 200, 200, 0.05);
+				border-top: 0.5px solid rgba(200, 200, 200, 0.1);
 				box-shadow:
 					inset 0 -0.5px 1px 0 rgba(30, 30, 30, 0.3),
 					inset 0 -0.5px 1px 0 rgba(255, 255, 255, 0.2),

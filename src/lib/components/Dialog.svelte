@@ -1,32 +1,98 @@
 <script lang="ts">
-	import { onMount } from "svelte";
-	import { fly, scale } from "svelte/transition";
-	let { title, description, children, color = "rgb(131, 87, 251)", icon } = $props();
-	let dialog: HTMLDialogElement;
+	import { type Snippet } from "svelte";
+	import { scale, type EasingFunction, type TransitionConfig } from "svelte/transition";
+	import DialogButton from "./DialogButton.svelte";
+	import { expoOut } from "svelte/easing";
+	import hotkeys from "hotkeys-js";
+	import Portal from "svelte-portal";
+	let {
+		title,
+		description,
+		children,
+		color,
+		icon,
+		opened = $bindable(),
+	}: {
+		title: string;
+		description?: string;
+		children?: Snippet;
+		color?: string;
+		icon?: Snippet;
+		opened: boolean;
+	} = $props();
 
-	onMount(() => {
-		dialog.showModal();
+	const transparency = (
+		node: HTMLElement,
+		{ delay, duration, easing }: { delay?: number; duration?: number; easing?: EasingFunction },
+	): TransitionConfig => {
+		return {
+			delay,
+			duration,
+			easing,
+			css: (t) => {
+				return `background-color: rgba(0,0,0,${0.5 * t})`;
+			},
+		};
+	};
+	$effect(() => {
+		if (opened) {
+			const closeDialog = () => {
+				opened = false;
+			};
+			hotkeys("esc", closeDialog);
+			return () => hotkeys.unbind("esc", closeDialog);
+		}
 	});
 </script>
 
-<dialog closedby="any" transition:scale|global={{ duration: 300, start: 1.5 }} bind:this={dialog}>
-	<div class="content">
-		<div class="icon" style="--color: {color}">
-			{@render icon?.()}
+{#if opened}
+	<Portal target="body">
+		<div
+			class="dialog-background"
+			transition:transparency|global={{ duration: 300, easing: expoOut }}
+		>
+			<div class="dialog" transition:scale|global={{ duration: 300, start: 1.5 }}>
+				<div class="content">
+					<div class="icon" style="--color: {color}">
+						{@render icon?.()}
+					</div>
+					<h3>{title}</h3>
+					<p>{description}</p>
+					<div class="buttons">
+						{#if children}
+							{@render children?.()}
+						{:else}
+							<DialogButton
+								onclick={() => {
+									opened = false;
+								}}
+							>
+								Закрыть
+							</DialogButton>
+						{/if}
+					</div>
+				</div>
+			</div>
 		</div>
-		<h3>{title}</h3>
-		<p>{description}</p>
-		<form method="dialog" class="buttons">
-			{@render children?.()}
-		</form>
-	</div>
-</dialog>
+	</Portal>
+{/if}
 
 <style lang="scss">
-	dialog {
+	.dialog-background {
+		background-color: rgba(0, 0, 0, 0.5);
+		z-index: 90;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 		position: fixed;
+		top: 0;
+		left: 0;
+	}
+	.dialog {
 		width: 380px;
-		z-index: 10;
+		z-index: 89;
 		outline: none;
 		padding: 32px 24px;
 		background-color: rgba(255, 255, 255, 0.1);
@@ -42,13 +108,6 @@
 			display: flex;
 			flex-direction: column;
 			align-items: center;
-		}
-
-		&::backdrop {
-			background-color: rgba(0, 0, 0, 0.5);
-			z-index: 9;
-			width: 100%;
-			height: 100%;
 		}
 
 		h3 {

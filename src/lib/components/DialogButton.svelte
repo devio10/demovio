@@ -4,14 +4,21 @@
 		children,
 		accent,
 		tag,
+		onclick,
 		...props
 	}: {
 		accent?: boolean;
+		onclick?: () => void;
 		tag?: T;
 	} & SvelteHTMLElements[T] = $props();
 </script>
 
-<svelte:element this={tag ?? "button"} {...props} class={[props.class, { accent }, "button"]}>
+<svelte:element
+	this={tag ?? "button"}
+	{onclick}
+	{...props}
+	class={[props.class, { accent }, "button"]}
+>
 	{@render children?.()}
 </svelte:element>
 

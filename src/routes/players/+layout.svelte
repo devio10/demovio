@@ -1,5 +1,5 @@
 <script lang="ts">
-	import LoadingWheel from "$lib/LoadingWheel.svelte";
+	import LoadingWheel from "$lib/components/LoadingWheel.svelte";
 	import Window from "$lib/Window/Window.svelte";
 	import WindowNavigation from "$lib/Window/Navigation/WindowNavigation.svelte";
 	import WindowPlaceholder from "$lib/Window/WindowPlaceholder.svelte";
@@ -35,7 +35,7 @@
 			<WindowNavigationHeader title="Игроки">
 				{#snippet titleChildren()}
 					{#if query.loading}
-						<LoadingWheel --wheel-size="36px" --wheel-color="rgba(255,255,255,0.75)" />
+						<LoadingWheel --wheel-size="34px" --wheel-color="rgba(255,255,255,0.75)" />
 					{/if}
 				{/snippet}
 				<WindowPlaceholderSearch bind:value={searchQuery} placeholder="Поиск по игрокам" />
