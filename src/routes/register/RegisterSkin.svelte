@@ -9,7 +9,7 @@
 <div class="register-page" transition:scale={{ duration: 250, start: 0.95 }}>
 	<div style="margin-top: 16px"></div>
 	<Button
-		style="margin: 32px 0 0 0"
+		style="margin: auto 0 0 0"
 		onclick={() => {
 			page = RegisterStage.applyForCitizenship;
 		}}

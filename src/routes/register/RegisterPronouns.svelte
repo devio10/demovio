@@ -54,6 +54,7 @@
 		onclick={() => {
 			page = RegisterStage.leaveContact;
 		}}
+		style="margin-top: auto"
 	>
 		Продолжить
 	</Button>

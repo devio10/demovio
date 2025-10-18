@@ -12,7 +12,7 @@
 		<CitizenshipSelector bind:citizenship />
 	</div>
 	<Button
-		style="margin: 32px 0 0 0"
+		style="margin: auto 0 0 0"
 		onclick={() => {
 			if (citizenship.code === undefined) {
 				return;

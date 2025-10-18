@@ -85,5 +85,5 @@
 	{#if formError?.wrongCombo}
 		<span>{formError.wrongCombo}</span>
 	{/if}
-	<Button type="submit" disabled={submitting} style="margin: 32px 0 0 0">Продолжить</Button>
+	<Button type="submit" disabled={submitting} style="margin: auto 0 0 0">Продолжить</Button>
 </form>

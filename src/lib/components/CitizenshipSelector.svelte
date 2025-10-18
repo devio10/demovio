@@ -12,6 +12,7 @@
 		},
 		...demovioStates,
 	];
+	citizenship = states[stateSelection];
 </script>
 
 <div class="picker">

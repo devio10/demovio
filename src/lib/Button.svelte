@@ -34,6 +34,7 @@
 		transition-property: scale, background-color, color;
 		transition-duration: 250ms;
 		transition-timing-function: ease-out;
+		text-decoration: none;
 		&:not(:disabled) {
 			&:hover {
 				scale: 1.03;

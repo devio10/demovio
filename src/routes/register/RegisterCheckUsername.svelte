@@ -53,8 +53,8 @@
 	{#if formError?.username}
 		<span>{formError.username}</span>
 	{/if}
-	<Button type="submit" disabled={submitting} style="margin: 32px 0 0 0">Продолжить</Button>
-	<Button tag="a" href="/login" hollow={true} style="margin: 16px 0 0 0">
+	<Button tag="a" href="/login" hollow={true} style="margin: auto 0 0 0">
 		Войти в существующий аккаунт
 	</Button>
+	<Button type="submit" disabled={submitting} style="margin: 16px 0 0 0">Продолжить</Button>
 </form>
