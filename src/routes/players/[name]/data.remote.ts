@@ -56,7 +56,14 @@ export const subscribeToPlayer = command(accountDataSchemas.name, async (targetN
 export const getPlayer = query(accountDataSchemas.name, async (name) => {
 	const { locals } = getRequestEvent();
 	const player = await db.query.playersTable.findFirst({
-		columns: { name: true, skin: true, contact: true, description: true, pronouns: true },
+		columns: {
+			name: true,
+			skin: true,
+			contact: true,
+			description: true,
+			pronouns: true,
+			lastOnline: true,
+		},
 		where: and(
 			eq(playersTable.isActivated, true),
 			eq(playersTable.isBanned, false),

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { ru } from "date-fns/locale/ru";
 	import type { Profile } from "../routes/+layout.server";
 	import PassportStamp from "./PassportStamps/PassportStamp.svelte";
 	import StampCalifornia from "./PassportStamps/StampCalifornia.svelte";
@@ -9,6 +10,7 @@
 	import StampShanghai from "./PassportStamps/StampShanghai.svelte";
 	import PlayerHead from "./PlayerHead.svelte";
 	import { getSkinURL } from "./scripts";
+	import { format } from "date-fns";
 
 	function nameCode(length: number, symbol: string, input: string) {
 		return input.length >= length ? input.slice(0, length) : input.padEnd(length, symbol);
@@ -107,6 +109,10 @@
 									{#if citizenshipProperty === "code"}
 										{@const stateCode = value as Citizenship["code"]}
 										{states[stateCode].name}
+									{:else if citizenshipProperty === "date"}
+										{format(value, "dd MMMM yyyy", {
+											locale: ru,
+										})}
 									{:else}
 										{value}
 									{/if}
@@ -176,7 +182,15 @@
 			{#each Object.entries(state?.language.personalDetails) as [key, value]}
 				<section>
 					<span>{value}</span>
-					<p>{profile[key as keyof Profile]}</p>
+					<p>
+						{#if key === "issueDate"}
+							{format(profile[key as keyof Profile], "dd MMMM yyyy", {
+								locale: ru,
+							})}
+						{:else}
+							{profile[key as keyof Profile]}
+						{/if}
+					</p>
 				</section>
 			{/each}
 			<span class="watermark third">DE:</span>

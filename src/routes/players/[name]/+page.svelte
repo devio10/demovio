@@ -9,6 +9,8 @@
 	import InvitePlayerButton from "./InvitePlayerButton.svelte";
 	import NotifyActivityButton from "./NotifyActivityButton.svelte";
 	import FeatureButton from "./FeatureButton.svelte";
+	import { formatDistanceToNowStrict, formatRelative } from "date-fns";
+	import { ru } from "date-fns/locale/ru";
 	const name = $derived(page.params.name!);
 	let { data } = $props();
 	let submitting = $state(false);
@@ -24,11 +26,15 @@
 			<span class="last-seen-online">
 				{#await query}
 					Загрузка...
-				{:then query}
+				{:then player}
 					{#if online}
 						Сейчас играет
 					{:else if data.profile === undefined || name !== data.profile.name}
-						Последний раз играл вчера
+						{#if player?.pronouns === "он/его"}Играл
+						{:else if player?.pronouns === "она/её"}Играла
+						{:else}Играли
+						{/if}
+						{formatDistanceToNowStrict(player?.lastOnline, { locale: ru, addSuffix: true })}
 					{:else}
 						Это вы!
 					{/if}

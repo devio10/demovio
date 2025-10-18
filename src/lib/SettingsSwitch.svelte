@@ -1,6 +1,13 @@
 <script lang="ts">
 	import Toggle from "svelte-switcher";
-	let { value = $bindable(), onChange, ...props } = $props();
+	let {
+		value = $bindable(),
+		onChange,
+		...props
+	}: {
+		value?: boolean;
+		onChange?: (event: MouseEvent | TouchEvent) => void;
+	} = $props();
 </script>
 
 <div class="switch">

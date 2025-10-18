@@ -14,8 +14,8 @@
 </svelte:head>
 <div class="page">
 	<div class="page-background">
-		<!-- <enhanced:img src="$lib/assets/home-collections-2-dark.png" alt="Website Background" /> -->
-		<enhanced:img src="$lib/assets/home-california-3-light.png" alt="Website Background" />
+		<enhanced:img src="$lib/assets/home-collections-2-dark.png" alt="Website Background" />
+		<!-- <enhanced:img src="$lib/assets/home-california-3-light.png" alt="Website Background" /> -->
 	</div>
 	<header>
 		<HeaderLogo />

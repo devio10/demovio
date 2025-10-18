@@ -54,6 +54,7 @@
 	"dependencies": {
 		"@fontsource-variable/montserrat": "^5.2.8",
 		"@hloth/minecraft-query": "^1.0.0",
+		"date-fns": "^4.1.0",
 		"dotenv": "^17.2.3",
 		"drizzle-orm": "^0.44.6",
 		"hotkeys-js": "^3.13.15",
