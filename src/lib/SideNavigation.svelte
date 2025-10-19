@@ -68,7 +68,7 @@
 		flex-direction: column;
 		padding: 12px;
 		border-radius: 1000px;
-		gap: 16px;
+		gap: 12px;
 		width: 80px;
 		z-index: 4;
 		position: fixed;

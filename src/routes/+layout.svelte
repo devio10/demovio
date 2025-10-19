@@ -59,7 +59,7 @@
 			padding: 0 48px;
 		}
 		.settings-buttons-space {
-			margin: 12px 0;
+			margin: 24px 0;
 		}
 	}
 </style>

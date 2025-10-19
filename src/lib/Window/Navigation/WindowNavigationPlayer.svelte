@@ -135,7 +135,7 @@
 		}
 		.pronouns {
 			font-size: 16px;
-			margin-top: 4px;
+			margin-top: 6px;
 			display: block;
 			text-align: left;
 			color: rgba(190, 190, 190, 0.75);

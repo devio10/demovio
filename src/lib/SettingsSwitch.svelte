@@ -25,7 +25,7 @@
 				border-radius: 100px;
 				background:
 					radial-gradient(circle at 16px 16px, rgba(255, 255, 255, 0) 0%, transparent 70%),
-					linear-gradient(rgba(130, 130, 130, 0.35) 0%, rgba(130, 130, 130, 0.35) 100%);
+					linear-gradient(rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.35) 100%);
 				border-top: 0.5px solid rgba(200, 200, 200, 0.1);
 				box-shadow:
 					inset 0 -0.5px 1px 0 rgba(30, 30, 30, 0.3),
@@ -53,8 +53,8 @@
 			}
 			.svelte-toggle.svelte-toggle:hover:not(.svelte-toggle--disabled) .svelte-toggle--track {
 				background:
-					radial-gradient(circle at 16px 16px, rgba(255, 255, 255, 0.3) 0%, transparent 70%),
-					linear-gradient(rgba(130, 130, 130, 0.35) 0%, rgba(130, 130, 130, 0.35) 100%);
+					radial-gradient(circle at 16px 16px, rgba(255, 255, 255, 0.2) 0%, transparent 70%),
+					linear-gradient(rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.35) 100%);
 			}
 			.svelte-toggle.svelte-toggle--checked:hover:not(.svelte-toggle--disabled)
 				.svelte-toggle--track {

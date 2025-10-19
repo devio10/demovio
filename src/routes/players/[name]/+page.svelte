@@ -61,7 +61,13 @@
 		{#if player !== undefined}
 			{@render header(false)}
 			<div class="top_flex">
-				<p class="description">{player.description}</p>
+				<p class="description">
+					{#if player.description?.length === 0 || !player.description}
+						<i style="color: rgba(200,200,200,0.5)">Описание отсутствует...</i>
+					{:else}
+						{player.description}
+					{/if}
+				</p>
 				{#key player.name}
 					<SkinModel skin={player.skin} name={player.name} />
 				{/key}

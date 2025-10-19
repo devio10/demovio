@@ -11,7 +11,8 @@
 		width: 100%;
 		text-align: left;
 		padding: 8px 64px 0 64px;
+		font-size: 14px;
 		margin: 0;
-		color: rgba(230, 230, 230, 0.85);
+		color: rgba(230, 230, 230, 0.75);
 	}
 </style>

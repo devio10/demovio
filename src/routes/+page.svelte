@@ -2,7 +2,6 @@
 	import AppIcon from "$lib/AppIcon.svelte";
 	import { scale } from "svelte/transition";
 	let { data } = $props();
-	$inspect(data.demovioStatus);
 	function getPlayerCountText(players_online: string[]) {
 		let players_text = "Сейчас никто не играет";
 		if (players_online.length === 1 && players_online[0] !== "0") {
