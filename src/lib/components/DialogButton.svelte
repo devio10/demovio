@@ -24,7 +24,7 @@
 
 <style lang="scss">
 	.button {
-		height: 44px;
+		height: 48px;
 		border: none;
 		border-radius: 100px;
 		width: 100%;
@@ -40,6 +40,7 @@
 		transition-duration: 250ms;
 		transition-timing-function: ease-out;
 		outline: none;
+		text-decoration: none;
 		&:not(:disabled) {
 			&:hover {
 				transition-duration: 125ms;

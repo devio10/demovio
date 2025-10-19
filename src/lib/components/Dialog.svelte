@@ -94,7 +94,7 @@
 		width: 380px;
 		z-index: 89;
 		outline: none;
-		padding: 32px 24px;
+		padding: 24px;
 		background-color: rgba(255, 255, 255, 0.1);
 		backdrop-filter: blur(48px);
 		box-shadow:
@@ -147,7 +147,7 @@
 			display: flex;
 			flex-direction: column;
 			align-items: center;
-			gap: 8px;
+			// gap: 4px;
 			padding-top: 12px;
 			margin-top: 16px;
 			border-top: 0.5px solid rgba(230, 230, 230, 0.5);

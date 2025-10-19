@@ -41,7 +41,7 @@
 
 <Dialog
 	title="Не Удалось Включить Уведомления"
-	description="Войдите в аккаунт, чтобы сохранять игроков в избранное и получать уведомления об их активности."
+	description="Войдите в аккаунт, чтобы получать уведомления об их активности."
 	color="rgb(252, 189, 28)"
 	opened={dialogOpened}
 >
@@ -51,18 +51,18 @@
 		</div>
 	{/snippet}
 	<DialogButton
+		onclick={() => {
+			dialogOpened = false;
+		}}
+	>
+		Войти в аккаунт
+	</DialogButton>
+	<DialogButton
 		accent
 		onclick={() => {
 			dialogOpened = false;
 		}}
 	>
 		Закрыть
-	</DialogButton>
-	<DialogButton
-		onclick={() => {
-			dialogOpened = false;
-		}}
-	>
-		Войти в аккаунт
 	</DialogButton>
 </Dialog>

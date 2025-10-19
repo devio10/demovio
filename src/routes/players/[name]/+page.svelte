@@ -63,7 +63,12 @@
 							Показать на карте
 						</SettingsButton>
 					{/if}
-					<InvitePlayerButton />
+					<InvitePlayerButton contact={player.contact} />
+					{#if player.contact}
+						<SettingsButton tag="a" href="https://t.me/{player.contact}">
+							Написать в Telegram
+						</SettingsButton>
+					{/if}
 					<SettingsButton style="color: rgb(235, 52, 79)">Пожаловаться</SettingsButton>
 				{:else}
 					<SettingsButton tag="a" href="/profile">Открыть свой профиль</SettingsButton>

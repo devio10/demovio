@@ -6,7 +6,11 @@
 
 <SettingsHeader title="Паспорт" style="position: absolute;"></SettingsHeader>
 <div>
-	<Passport profile={data.profile}></Passport>
+	{#if data.profile && data.profile.isActivated}
+		<Passport profile={data.profile}></Passport>
+	{:else}
+		<p>Нет полученных паспортов.</p>
+	{/if}
 </div>
 
 <style>

@@ -22,6 +22,9 @@
 						Смена гражданства
 					</WindowNavigationItem>
 					<WindowNavigationItem href="/profile/passport" i={4}>Паспорт</WindowNavigationItem>
+					<WindowNavigationItem href="/profile/reset-game-password" i={5}>
+						Сброс пароля
+					</WindowNavigationItem>
 				</WindowNavigationList>
 			</WindowNavigation>
 		{/snippet}

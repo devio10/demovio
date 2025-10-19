@@ -59,7 +59,7 @@ export const getPlayer = query(accountDataSchemas.name, async (name) => {
 		columns: {
 			name: true,
 			skin: true,
-			contact: true,
+			contact: locals.loggedIn && locals.playerData?.isActivated,
 			description: true,
 			pronouns: true,
 			lastOnline: true,

@@ -3,43 +3,62 @@
 	import { SkinViewer, IdleAnimation } from "skinview3d";
 	import { Spring } from "svelte/motion";
 	import SettingsHeader from "$lib/Window/SettingsHeader.svelte";
-	import SettingsButton from "$lib/OptionButton.svelte";
+	import OptionButton from "$lib/OptionButton.svelte";
+	import { getSkinURL } from "$lib/scripts.js";
+	import OptionDescription from "$lib/OptionDescription.svelte";
+	import LogoutButton from "./LogoutButton.svelte";
 	let { data } = $props();
 	const scale = new Spring(0.5, { damping: 0.2, stiffness: 0.1 });
 </script>
 
 <SettingsHeader title="Обзор"></SettingsHeader>
 <div class="settings-content">
-	<div class="canvas-block" style="scale: {scale.current}">
-		<canvas
-			{@attach (canvas) => {
-				scale.set(0.5, { instant: true });
-				let skinViewer = new SkinViewer({
-					canvas: canvas,
-					width: 130,
-					height: 270,
-					skin: `https://demovio.love/skins/${data.profile.name}.png?t=${Date.now()}`,
-				});
-				skinViewer.globalLight.intensity = 2.85;
-				skinViewer.controls.enableZoom = false;
-				skinViewer.animation = new IdleAnimation();
-				scale.target = 1;
-				return () => {
-					skinViewer.dispose();
-				};
-			}}
-		></canvas>
-	</div>
-	<span class="name">{data.profile.name}</span>
-	<div class="settings-buttons-space"></div>
-	<div class="settings-buttons">
-		<SettingsButton tag="a" href="profile/edit">Изменить данные</SettingsButton>
-		<SettingsButton>Пригласить друга</SettingsButton>
-	</div>
-	<div class="settings-buttons-space"></div>
-	<form class="settings-buttons" method="POST" action="/profile?/logout" use:enhance>
-		<SettingsButton style="color: rgb(235, 52, 79)">Выйти из аккаунта</SettingsButton>
-	</form>
+	{#if data.profile}
+		<div class="canvas-block" style="scale: {scale.current}">
+			<canvas
+				{@attach (canvas) => {
+					if (data.profile) {
+						scale.set(0.5, { instant: true });
+						let skinViewer = new SkinViewer({
+							canvas: canvas,
+							width: 130,
+							height: 270,
+							skin: getSkinURL(data.profile?.skin, data.profile.name),
+						});
+						skinViewer.globalLight.intensity = 2.85;
+						skinViewer.controls.enableZoom = false;
+						skinViewer.animation = new IdleAnimation();
+						scale.target = 1;
+						return () => {
+							skinViewer.dispose();
+						};
+					}
+				}}
+			></canvas>
+		</div>
+		<span class="name">{data.profile.name}</span>
+		<div class="settings-buttons-space"></div>
+		<div class="settings-buttons">
+			<OptionButton tag="a" href="profile/edit">Изменить данные</OptionButton>
+			<OptionButton>Пригласить друга</OptionButton>
+		</div>
+		<OptionDescription>
+			Вы можете пригласить друзей и знакомых с помощью своей реферальной ссылки. Вы получите бонус
+			20 фасок / изумрудов за каждого приглашённого друга, а они получат дополнительный
+			вступительный бонус в размере 10 фасок / изумрудов.
+		</OptionDescription>
+		<div class="settings-buttons-space"></div>
+		<LogoutButton />
+		<div class="settings-buttons-space"></div>
+		<form class="settings-buttons" method="POST" action="/profile?/logout" use:enhance>
+			<OptionButton style="color: rgb(235, 52, 79)">Удалить аккаунт</OptionButton>
+		</form>
+		<OptionDescription>
+			Если вы больше не планируете играть на сервере Demovio, вы можете деактивировать аккаунт. Он
+			перестанет показываться в списке игроков и со временем будет полностью удалён.
+		</OptionDescription>
+		<div class="settings-buttons-space"></div>
+	{/if}
 </div>
 
 <style lang="scss">

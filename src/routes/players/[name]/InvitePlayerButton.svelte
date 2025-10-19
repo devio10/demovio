@@ -4,6 +4,7 @@
 	import NoInvitation from "$lib/components/icons/IconNoInvitation.svelte";
 	import SettingsButton from "$lib/OptionButton.svelte";
 	let dialogOpened = $state(false);
+	let { contact } = $props();
 </script>
 
 <SettingsButton
@@ -23,6 +24,17 @@
 	{#snippet icon()}
 		<NoInvitation />
 	{/snippet}
+	{#if contact}
+		<DialogButton
+			tag="a"
+			onclick={() => {
+				dialogOpened = false;
+			}}
+			href="https://t.me/{contact}"
+		>
+			Написать в Telegram
+		</DialogButton>
+	{/if}
 	<DialogButton
 		accent
 		onclick={() => {
@@ -30,12 +42,5 @@
 		}}
 	>
 		Закрыть
-	</DialogButton>
-	<DialogButton
-		onclick={() => {
-			dialogOpened = false;
-		}}
-	>
-		Написать в Telegram
 	</DialogButton>
 </Dialog>
