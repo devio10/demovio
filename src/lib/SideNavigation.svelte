@@ -85,7 +85,7 @@
 
 		&:hover {
 			// transform: translateY(-50%) scale(1.05);
-			width: 260px;
+			width: 240px;
 			background-color: rgba(230, 230, 230, 0.2);
 			left: 16px;
 

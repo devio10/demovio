@@ -5,8 +5,20 @@
 	import SideNavigation from "$lib/SideNavigation.svelte";
 	import "../app.scss";
 	import "@fontsource-variable/montserrat";
+	import { localPreferences } from "$lib/local-settings.svelte";
+	import { onMount } from "svelte";
+	import { scale } from "svelte/transition";
 
 	let { children } = $props();
+
+	onMount(() => {
+		const storageEnvironment = localStorage.getItem("environment");
+		if (storageEnvironment !== null) {
+			localPreferences.environment = storageEnvironment;
+		} else {
+			localPreferences.environment = "states-10.webp";
+		}
+	});
 </script>
 
 <svelte:head>
@@ -14,8 +26,13 @@
 </svelte:head>
 <div class="page">
 	<div class="page-background">
-		<enhanced:img src="$lib/assets/home-collections-2-dark.png" alt="Website Background" />
-		<!-- <enhanced:img src="$lib/assets/home-california-3-light.png" alt="Website Background" /> -->
+		{#if localPreferences.environment !== ""}
+			<img
+				src="/EnvironmentPreview/{localPreferences.environment}"
+				alt="Website Background"
+				in:scale={{ duration: 3000, start: 1.5 }}
+			/>
+		{/if}
 	</div>
 	<header>
 		<HeaderLogo />
@@ -38,6 +55,7 @@
 		width: 100vw;
 		height: 100%;
 		filter: brightness(0.85);
+		overflow: clip;
 		picture,
 		img {
 			display: block;

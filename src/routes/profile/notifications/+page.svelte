@@ -21,7 +21,7 @@
 	<div class="settings-buttons">
 		<OptionButton tag="div">Приглашения от других игроков <SettingsSwitch /></OptionButton>
 		<OptionButton tag="div">Обновления Demovio <SettingsSwitch /></OptionButton>
-		<OptionButton tag="div">Активность избранных игроков <SettingsSwitch /></OptionButton>
+		<OptionButton tag="div">Активность выбранных игроков <SettingsSwitch /></OptionButton>
 	</div>
 	<OptionDescription>
 		Уведомления об активности игроков выключены. Вы снова будете получать их, когда включите этот

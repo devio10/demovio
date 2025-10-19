@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { localPreferences } from "$lib/local-settings.svelte";
+
 	let {
 		name,
 		src,
@@ -8,7 +10,12 @@
 	} = $props();
 </script>
 
-<button>
+<button
+	onclick={() => {
+		localStorage.setItem("environment", src);
+		localPreferences.environment = src;	
+	}}
+>
 	<div class="flex">
 		<div class="image">
 			<img draggable="false" src="/EnvironmentPreview/{src}" alt={name} />
