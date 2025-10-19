@@ -9,8 +9,7 @@
 	import InvitePlayerButton from "./InvitePlayerButton.svelte";
 	import NotifyActivityButton from "./NotifyActivityButton.svelte";
 	import FeatureButton from "./FeatureButton.svelte";
-	import { formatDistanceToNowStrict, formatRelative } from "date-fns";
-	import { ru } from "date-fns/locale/ru";
+	import LastSeen from "./LastSeen.svelte";
 	const name = $derived(page.params.name!);
 	let { data } = $props();
 	let submitting = $state(false);
@@ -23,23 +22,7 @@
 {#snippet header(disabled: boolean)}
 	<WindowHeader title={name}>
 		{#snippet titleChildren()}
-			<span class="last-seen-online">
-				{#await query}
-					Загрузка...
-				{:then player}
-					{#if online}
-						Сейчас играет
-					{:else if data.profile === undefined || name !== data.profile.name}
-						{#if player?.pronouns === "он/его"}Играл
-						{:else if player?.pronouns === "она/её"}Играла
-						{:else}Играли
-						{/if}
-						{formatDistanceToNowStrict(player?.lastOnline, { locale: ru, addSuffix: true })}
-					{:else}
-						Это вы!
-					{/if}
-				{/await}
-			</span>
+			<LastSeen {query} {online} profile={data.profile} />
 		{/snippet}
 		{#if (data.profile === undefined || name !== data.profile.name) && name}
 			<NotifyActivityButton
@@ -101,10 +84,6 @@
 		display: flex;
 		flex-direction: column;
 		min-height: 100%;
-	}
-	.last-seen-online {
-		color: rgba(200, 200, 200, 0.7);
-		margin: 0;
 	}
 	.top_flex {
 		display: flex;
