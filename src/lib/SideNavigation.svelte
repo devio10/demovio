@@ -61,13 +61,13 @@
 	div {
 		background: linear-gradient(
 			-10deg,
-			rgba(114, 114, 114, 0.42) 0%,
-			rgba(255, 255, 255, 0.37) 95%
+			rgba(114, 114, 114, 0.32) 0%,
+			rgba(255, 255, 255, 0.27) 95%
 		);
 		display: flex;
 		flex-direction: column;
 		padding: 12px;
-		border-radius: 1000px;
+		border-radius: 40px;
 		gap: 12px;
 		width: 80px;
 		z-index: 4;
@@ -79,15 +79,21 @@
 		border: 1px solid rgba(255, 255, 255, 0.4);
 		border-top: none;
 		border-bottom: none;
-		transition-property: transform, border-color, background-color;
+		transition-property: transform, background-color, width, left;
 		transition-duration: 300ms;
-		transition-timing-function: ease-out;
+		transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
 
 		&:hover {
-			transform: translateY(-50%) scale(1.05);
-			transition-duration: 150ms;
-			border-color: rgba(255, 255, 255, 0.5);
-			background-color: rgba(220, 220, 220, 0.21);
+			// transform: translateY(-50%) scale(1.05);
+			width: 260px;
+			background-color: rgba(230, 230, 230, 0.2);
+			left: 16px;
+
+			:global {
+				.button-name {
+					opacity: 1;
+				}
+			}
 		}
 	}
 	@media screen and (max-width: 768px) {
@@ -108,6 +114,8 @@
 			);
 			backdrop-filter: blur(2px);
 			&:hover {
+				width: fit-content;
+				left: 50%;
 				transform: translateX(-50%) scale(1.02);
 			}
 		}

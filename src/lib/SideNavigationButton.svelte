@@ -20,25 +20,34 @@
 	aria-label={alt}
 	{href}
 >
-	{@render children?.()}
+	<div class="icon">
+		{@render children?.()}
+	</div>
 	<span class="button-name">{alt}</span>
 </a>
 
 <style lang="scss">
 	a {
 		aspect-ratio: 1/1;
-		width: 56px;
+		width: 100%;
 		height: 56px;
 		border: none;
-		border-radius: 100%;
+		border-radius: 100px;
 		background-color: rgba(255, 255, 255, 0);
 		cursor: pointer;
 		padding: 12px;
 		color: white;
 		display: flex;
-		justify-content: center;
+		// justify-content: center;
+		overflow: clip;
 		align-items: center;
 		transition: 300ms background-color ease-out;
+		text-decoration: none;
+		.button-name {
+			opacity: 0;
+			margin-left: 16px;
+			transition: 200ms opacity ease-out;
+		}
 
 		&:hover {
 			background-color: rgba(255, 255, 255, 0.2);
@@ -47,39 +56,52 @@
 
 		&.active {
 			background-color: rgba(255, 255, 255, 0.4);
+			.button-name {
+				font-weight: 500;
+			}
 			&:hover {
 				background-color: rgba(255, 255, 255, 0.5);
 				transition-duration: 150ms;
 			}
 		}
 
-		svg {
-			width: 100%;
+		.icon {
 			height: 100%;
-		}
-		.button-name {
-			display: none;
+			aspect-ratio: 1/1;
+			svg {
+				width: 100%;
+				height: 100%;
+				flex-shrink: 0;
+				flex: 1;
+			}
 		}
 	}
 	@media screen and (max-width: 768px) {
 		a {
 			width: auto;
 			height: auto;
+			aspect-ratio: unset;
 			flex-direction: column;
+			padding: 8px 16px;
+			overflow: initial;
+			flex: 1;
+			min-width: 0;
 			&.active {
 				background: none;
-				color: rgb(170, 148, 255);
+				color: rgb(205, 193, 251);
 				&:hover {
 					background-color: rgba(255, 255, 255, 0.2);
 				}
 			}
-			svg {
+			.icon {
 				width: 32px;
 				height: 32px;
+				flex-shrink: 0;
+				flex: 0;
 			}
 			.button-name {
-				margin-top: 2px;
-				display: block;
+				margin: 4px 0 0 0;
+				opacity: 1;
 				font-size: 12px;
 			}
 		}
