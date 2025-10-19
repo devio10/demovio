@@ -1,5 +1,9 @@
 <script lang="ts">
+	import ActivationDialog from "$lib/ActivationDialog.svelte";
 	import AppIcon from "$lib/AppIcon.svelte";
+	import Dialog from "$lib/components/Dialog.svelte";
+	import DialogButton from "$lib/components/DialogButton.svelte";
+	import EnvelopeWait from "$lib/components/icons/IconEnvelopeWait.svelte";
 	import { scale } from "svelte/transition";
 	let { data } = $props();
 	function getPlayerCountText(players_online: string[]) {
@@ -56,6 +60,8 @@
 		</span>
 	</div>
 </div>
+
+<ActivationDialog profile={data.profile} />
 
 <style lang="scss">
 	div {

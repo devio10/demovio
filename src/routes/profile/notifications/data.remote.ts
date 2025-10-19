@@ -12,7 +12,6 @@ export const pushNotificationsOn = command(notificationSchema, async (subdata) =
 	if (!locals.loggedIn || !locals.playerData) {
 		return fail(401);
 	}
-	console.log("did it on 'em");
 	await db.insert(pushSubscriptionsTable).values({
 		receiverName: locals.playerData.name,
 		auth: subdata.keys.auth,
@@ -34,5 +33,4 @@ export const pushNotificationsOff = command(z.url().refine(noNullCharacter), asy
 				eq(pushSubscriptionsTable.endpoint, endpoint),
 			),
 		);
-	console.log("shitted on 'em");
 });

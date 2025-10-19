@@ -60,7 +60,7 @@
 		}
 		&:disabled {
 			cursor: not-allowed;
-			background-color: rgba(130, 130, 130, 0.3);
+			color: rgba(200, 200, 200, 0.5);
 		}
 		&.accent {
 			font-weight: bold;

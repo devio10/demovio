@@ -9,7 +9,7 @@
 		title,
 		description,
 		children,
-		color,
+		color = "rgb(223, 93, 255)",
 		icon,
 		opened = $bindable(),
 	}: {
@@ -132,7 +132,7 @@
 			height: 52px;
 			border-radius: 100%;
 			background-color: var(--color);
-			// color: rgb(253, 58, 58);
+			color: rgb(223, 93, 255);
 			padding: 4px;
 			:global {
 				svg {
