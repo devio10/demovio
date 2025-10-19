@@ -1,15 +1,15 @@
 <script lang="ts">
 	import { ru } from "date-fns/locale/ru";
-	import type { Profile } from "../routes/+layout.server";
-	import PassportStamp from "./PassportStamps/PassportStamp.svelte";
-	import StampCalifornia from "./PassportStamps/StampCalifornia.svelte";
-	import StampConcord from "./PassportStamps/StampConcord.svelte";
-	import StampGeorgia from "./PassportStamps/StampGeorgia.svelte";
-	import StampNewYork from "./PassportStamps/StampNewYork.svelte";
-	import StampOhio from "./PassportStamps/StampOhio.svelte";
-	import StampShanghai from "./PassportStamps/StampShanghai.svelte";
+	import type { Profile } from "../../routes/+layout.server";
+	import PassportStamp from "../PassportStamps/PassportStamp.svelte";
+	import StampCalifornia from "../PassportStamps/StampCalifornia.svelte";
+	import StampConcord from "../PassportStamps/StampConcord.svelte";
+	import StampGeorgia from "../PassportStamps/StampGeorgia.svelte";
+	import StampNewYork from "../PassportStamps/StampNewYork.svelte";
+	import StampOhio from "../PassportStamps/StampOhio.svelte";
+	import StampShanghai from "../PassportStamps/StampShanghai.svelte";
 	import PlayerHead from "./PlayerHead.svelte";
-	import { getSkinURL } from "./scripts";
+	import { getSkinURL } from "../scripts";
 	import { format } from "date-fns";
 
 	function nameCode(length: number, symbol: string, input: string) {

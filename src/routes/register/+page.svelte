@@ -6,8 +6,8 @@
 	import RegisterCreatePassword from "./RegisterCreatePassword.svelte";
 	import { RegisterStage } from "./stages";
 	import RegisterSkin from "./RegisterSkin.svelte";
-	import TextInput from "$lib/TextInput.svelte";
-	import Button from "$lib/Button.svelte";
+	import TextInput from "$lib/components/TextInput.svelte";
+	import Button from "$lib/components/Button.svelte";
 	import { enhance } from "$app/forms";
 	import { demovioStates } from "$lib/components/demovio-states";
 	import RegisterPronouns from "./RegisterPronouns.svelte";

@@ -77,11 +77,12 @@
 		transform: translateY(-50%);
 		backdrop-filter: blur(24px);
 		border: 1px solid rgba(255, 255, 255, 0.4);
-		border-top: none;
+		border-left: none;
 		border-bottom: none;
 		transition-property: transform, background-color, width, left;
 		transition-duration: 300ms;
 		transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+		box-shadow: 0 4px 30px 5px rgba(0, 0, 0, 0.3);
 
 		&:hover {
 			// transform: translateY(-50%) scale(1.05);

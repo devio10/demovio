@@ -1,11 +1,11 @@
 <script>
-	import OptionButton from "$lib/OptionButton.svelte";
-	import SettingsSwitch from "$lib/SettingsSwitch.svelte";
+	import OptionButton from "$lib/components/OptionButton.svelte";
+	import SettingsSwitch from "$lib/components/SettingsSwitch.svelte";
 	import SettingsHeader from "$lib/Window/SettingsHeader.svelte";
 	import { isActionFailure } from "@sveltejs/kit";
 	import { pushNotificationsOff, pushNotificationsOn } from "./data.remote";
 	import PushNotificationsSwitch from "./PushNotificationsSwitch.svelte";
-	import OptionDescription from "$lib/OptionDescription.svelte";
+	import OptionDescription from "$lib/components/OptionDescription.svelte";
 </script>
 
 <SettingsHeader title="Уведомления"></SettingsHeader>

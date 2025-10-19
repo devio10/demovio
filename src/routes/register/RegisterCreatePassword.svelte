@@ -1,7 +1,7 @@
 <script>
 	import { enhance } from "$app/forms";
-	import Button from "$lib/Button.svelte";
-	import TextInput from "$lib/TextInput.svelte";
+	import Button from "$lib/components/Button.svelte";
+	import TextInput from "$lib/components/TextInput.svelte";
 	import { scale } from "svelte/transition";
 	import { RegisterStage } from "./stages";
 

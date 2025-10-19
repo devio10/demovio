@@ -1,11 +1,13 @@
 <script lang="ts">
 	import ActivationDialog from "$lib/ActivationDialog.svelte";
-	import AppIcon from "$lib/AppIcon.svelte";
+	import AppIcon from "$lib/components/AppIcon.svelte";
 	import Dialog from "$lib/components/Dialog.svelte";
 	import DialogButton from "$lib/components/DialogButton.svelte";
 	import EnvelopeWait from "$lib/components/icons/IconEnvelopeWait.svelte";
+	import { onMount } from "svelte";
 	import { scale } from "svelte/transition";
 	let { data } = $props();
+	let additionalPages = $state(false);
 	function getPlayerCountText(players_online: string[]) {
 		let players_text = "Сейчас никто не играет";
 		if (players_online.length === 1 && players_online[0] !== "0") {
@@ -32,17 +34,25 @@
 
 		return players_text;
 	}
+	onMount(() => {
+		additionalPages =
+			data.profile &&
+			data.profile.administrator &&
+			localStorage.getItem("backstage-additional-pages") === "true";
+	});
 </script>
 
 <div class="container" transition:scale|global={{ duration: 500, start: 0.5 }}>
 	<div>
 		<h2>{data.demovioStatus ? "Сервер онлайн" : "Сервер оффлайн"}</h2>
-		<span class="players-number">
-			{data.demovioStatus ? getPlayerCountText(data.demovioStatus.players) : ""}
-		</span>
+		{#if !additionalPages}
+			<span class="players-number">
+				{data.demovioStatus ? getPlayerCountText(data.demovioStatus.players) : ""}
+			</span>
+		{/if}
 	</div>
 
-	<nav>
+	<nav class={{ smaller: additionalPages }}>
 		<AppIcon icon="Players" href="players" badge={data.demovioStatus.players.length}>
 			Игроки
 		</AppIcon>
@@ -53,6 +63,12 @@
 		<AppIcon icon="Maps" href="https://map.demovio.love/">Карта</AppIcon>
 		<AppIcon icon="Downloads" href="downloads">Загрузки</AppIcon>
 		<AppIcon icon="About" href="https://demovio.love/?no-redirect">О Сервере</AppIcon>
+		{#if additionalPages}
+			<br />
+			<AppIcon icon="Applications" href="https://wiki.demovio.love/">Заявки</AppIcon>
+			<AppIcon icon="Console" href="https://map.demovio.love/">Консоль</AppIcon>
+			<AppIcon icon="Statistics" href="downloads">Статистика</AppIcon>
+		{/if}
 	</nav>
 	<div>
 		<span class="welcome">
@@ -79,9 +95,9 @@
 		font-weight: 500;
 		font-size: 40px;
 		margin: 0;
-		text-shadow: 0 0 30px rgba(0, 0, 0, 0.75);
+		text-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
 		text-align: center;
-		font-weight: bold;
+		font-weight: 500;
 	}
 	.welcome {
 		color: rgba(255, 255, 255, 0.85);
@@ -93,10 +109,13 @@
 		justify-items: center;
 		align-items: center;
 		white-space: wrap;
+		&.smaller {
+			padding: 16px 0;
+		}
 	}
 	.players-number {
-		margin-top: 8px;
-		font-weight: 600;
-		text-shadow: 0 0 30px rgba(0, 0, 0, 0.75);
+		margin-top: 12px;
+		font-weight: 500;
+		text-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
 	}
 </style>

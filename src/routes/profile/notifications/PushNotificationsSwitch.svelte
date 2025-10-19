@@ -1,6 +1,6 @@
 <script lang="ts">
-	import OptionButton from "$lib/OptionButton.svelte";
-	import SettingsSwitch from "$lib/SettingsSwitch.svelte";
+	import OptionButton from "$lib/components/OptionButton.svelte";
+	import SettingsSwitch from "$lib/components/SettingsSwitch.svelte";
 	import { isActionFailure } from "@sveltejs/kit";
 	import { pushNotificationsOff, pushNotificationsOn } from "./data.remote";
 	import { onMount } from "svelte";

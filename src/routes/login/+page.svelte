@@ -1,7 +1,7 @@
 <script>
 	import { enhance } from "$app/forms";
-	import Button from "$lib/Button.svelte";
-	import TextInput from "$lib/TextInput.svelte";
+	import Button from "$lib/components/Button.svelte";
+	import TextInput from "$lib/components/TextInput.svelte";
 	import Window from "$lib/Window/Window.svelte";
 	let { data, form } = $props();
 	let formError = $derived(form?.error);

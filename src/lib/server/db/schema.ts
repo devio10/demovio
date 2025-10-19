@@ -28,6 +28,7 @@ export const playersTable = pgTable("players", {
 	}).notNull(),
 	isActivated: boolean().notNull(),
 	description: text(),
+	administrator: boolean().default(false),
 	isBanned: boolean().default(false),
 	favorites: jsonb().$type<string[]>().notNull().default([]),
 	subscriptionFrequency: integer().default(60 * 60 * 12),

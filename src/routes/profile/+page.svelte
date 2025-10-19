@@ -3,9 +3,9 @@
 	import { SkinViewer, IdleAnimation } from "skinview3d";
 	import { Spring } from "svelte/motion";
 	import SettingsHeader from "$lib/Window/SettingsHeader.svelte";
-	import OptionButton from "$lib/OptionButton.svelte";
+	import OptionButton from "$lib/components/OptionButton.svelte";
 	import { getSkinURL } from "$lib/scripts.js";
-	import OptionDescription from "$lib/OptionDescription.svelte";
+	import OptionDescription from "$lib/components/OptionDescription.svelte";
 	import LogoutButton from "./LogoutButton.svelte";
 	let { data } = $props();
 	const scale = new Spring(0.5, { damping: 0.2, stiffness: 0.1 });

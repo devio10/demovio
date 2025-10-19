@@ -1,5 +1,5 @@
 <script>
-	import Passport from "$lib/Passport.svelte";
+	import Passport from "$lib/components/Passport.svelte";
 	import SettingsHeader from "$lib/Window/SettingsHeader.svelte";
 	let { data } = $props();
 </script>

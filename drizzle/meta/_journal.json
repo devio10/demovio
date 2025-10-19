@@ -43,6 +43,13 @@
       "when": 1760796246984,
       "tag": "0005_friendly_vance_astro",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1760882425765,
+      "tag": "0006_certain_thunderbolt_ross",
+      "breakpoints": true
     }
   ]
 }

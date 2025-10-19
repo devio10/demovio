@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from "$app/state";
-	import PlayerHead from "$lib/PlayerHead.svelte";
+	import PlayerHead from "$lib/components/PlayerHead.svelte";
 	import type { Snippet } from "svelte";
 	import { expoOut } from "svelte/easing";
 	import { fly, type EasingFunction, type TransitionConfig } from "svelte/transition";

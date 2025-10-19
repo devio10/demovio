@@ -2,7 +2,7 @@
 	import { enhance } from "$app/forms";
 	import Dialog from "$lib/components/Dialog.svelte";
 	import DialogButton from "$lib/components/DialogButton.svelte";
-	import OptionButton from "$lib/OptionButton.svelte";
+	import OptionButton from "$lib/components/OptionButton.svelte";
 
 	let showDialog = $state(false);
 </script>

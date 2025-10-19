@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from "$app/state";
 	import WindowHeader from "$lib/Window/WindowHeader.svelte";
-	import SettingsButton from "$lib/OptionButton.svelte";
+	import SettingsButton from "$lib/components/OptionButton.svelte";
 	import SkinModel from "./SkinModel.svelte";
 	import WindowPlaceholder from "$lib/Window/WindowPlaceholder.svelte";
 	import WindowPlaceholderWarning from "$lib/Window/WindowPlaceholderWarning.svelte";

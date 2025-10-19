@@ -15,6 +15,7 @@ export type Profile = Pick<
 	| "favorites"
 	| "isActivated"
 	| "isBanned"
+	| "administrator"
 >;
 export const load: LayoutServerLoad = async ({ locals, depends }) => {
 	const status: FullResponse | false = await getDemovioStatus();
@@ -35,6 +36,7 @@ export const load: LayoutServerLoad = async ({ locals, depends }) => {
 		favorites: player.favorites,
 		isActivated: player.isActivated,
 		isBanned: player.isBanned,
+		administrator: player.administrator,
 	};
 	return {
 		profile,

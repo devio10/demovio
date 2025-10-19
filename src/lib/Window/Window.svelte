@@ -29,6 +29,7 @@
 		backdrop-filter: blur(50px);
 		border-radius: 52px;
 		overflow: clip;
+		box-shadow: 0 6px 30px 5px rgba(0, 0, 0, 0.4);
 	}
 
 	.content {

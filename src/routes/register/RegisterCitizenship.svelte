@@ -1,5 +1,5 @@
 <script>
-	import Button from "$lib/Button.svelte";
+	import Button from "$lib/components/Button.svelte";
 	import CitizenshipSelector from "$lib/components/CitizenshipSelector.svelte";
 	import { scale } from "svelte/transition";
 	import { RegisterStage } from "./stages";

@@ -1,8 +1,8 @@
 <script>
 	import "../tailwind.css";
 	import favicon from "$lib/assets/favicon.svg";
-	import HeaderLogo from "$lib/HeaderLogo.svelte";
-	import SideNavigation from "$lib/SideNavigation.svelte";
+	import HeaderLogo from "$lib/components/HeaderLogo.svelte";
+	import SideNavigation from "$lib/components/SideNavigation.svelte";
 	import "../app.scss";
 	import "@fontsource-variable/montserrat";
 	import { localPreferences } from "$lib/local-settings.svelte";

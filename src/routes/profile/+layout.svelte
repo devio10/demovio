@@ -4,7 +4,7 @@
 	import WindowNavigationItem from "$lib/Window/Navigation/WindowNavigationItem.svelte";
 	import WindowNavigationList from "$lib/Window/Navigation/WindowNavigationList.svelte";
 	import WindowNavigationHeader from "$lib/Window/Navigation/WindowNavigationHeader.svelte";
-	let { children } = $props();
+	let { children, data } = $props();
 </script>
 
 <main>
@@ -25,6 +25,9 @@
 					<WindowNavigationItem href="/profile/reset-game-password" i={5}>
 						Сброс пароля
 					</WindowNavigationItem>
+					{#if data.profile && data.profile.administrator}
+						<WindowNavigationItem href="/profile/backstage" i={5}>Backstage</WindowNavigationItem>
+					{/if}
 				</WindowNavigationList>
 			</WindowNavigation>
 		{/snippet}

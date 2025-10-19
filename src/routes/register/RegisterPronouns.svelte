@@ -1,10 +1,10 @@
 <script>
-	import SettingsButton from "$lib/OptionButton.svelte";
+	import SettingsButton from "$lib/components/OptionButton.svelte";
 	import { custom } from "zod";
 	import { RegisterStage } from "./stages";
-	import TextInput from "$lib/TextInput.svelte";
-	import Button from "$lib/Button.svelte";
-	import OptionButtonCheckmark from "$lib/OptionButtonCheckmark.svelte";
+	import TextInput from "$lib/components/TextInput.svelte";
+	import Button from "$lib/components/Button.svelte";
+	import OptionButtonCheckmark from "$lib/components/OptionButtonCheckmark.svelte";
 	import { scale, slide } from "svelte/transition";
 
 	let { page = $bindable(), pronouns = $bindable() } = $props();

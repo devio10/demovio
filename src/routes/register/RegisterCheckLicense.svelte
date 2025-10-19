@@ -1,5 +1,5 @@
 <script>
-	import SettingsButton from "$lib/OptionButton.svelte";
+	import SettingsButton from "$lib/components/OptionButton.svelte";
 	import { scale } from "svelte/transition";
 	import { RegisterStage } from "./stages";
 
