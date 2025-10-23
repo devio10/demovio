@@ -13,7 +13,7 @@
 <button
 	onclick={() => {
 		localStorage.setItem("environment", src);
-		localPreferences.environment = src;	
+		localPreferences.environment = src;
 	}}
 >
 	<div class="flex">
@@ -26,8 +26,8 @@
 
 <style lang="scss">
 	button {
-		$size: 136px;
-		width: calc($size * 1.6);
+		--size: 136px;
+		width: calc(var(--size) * 1.6);
 		display: inline-block;
 		user-select: none;
 		padding: 16px 0;
@@ -44,8 +44,8 @@
 		}
 		.image {
 			overflow: clip;
-			width: $size;
-			height: $size;
+			width: var(--size);
+			height: var(--size);
 			border-radius: 100px;
 			position: relative;
 			transition-property: width;
@@ -71,7 +71,7 @@
 		&:hover {
 			scale: 1.1;
 			.image {
-				width: calc($size * 1.6);
+				width: calc(var(--size) * 1.6);
 			}
 			span.label {
 				color: white;
@@ -84,10 +84,15 @@
 		}
 	}
 	@media screen and (max-width: 768px) {
-		a {
+		button {
+			--size: 72px;
 			padding: 8px 12px;
-			img {
-				$image-size: 36px;
+			display: flex;
+			flex-direction: column;
+			span.label {
+				font-size: 12px;
+				color: white;
+				font-weight: 500;
 			}
 		}
 	}

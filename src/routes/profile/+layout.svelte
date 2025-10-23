@@ -8,7 +8,7 @@
 </script>
 
 <main>
-	<Window>
+	<Window urlName="/profile/">
 		{#snippet navigation()}
 			<WindowNavigation --width="30%">
 				<WindowNavigationHeader title="Профиль"></WindowNavigationHeader>

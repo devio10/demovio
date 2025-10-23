@@ -82,20 +82,38 @@
 			height: auto;
 			aspect-ratio: unset;
 			flex-direction: column;
-			padding: 8px 16px;
+			padding: 0 16px;
 			overflow: initial;
+			justify-content: center;
 			flex: 1;
 			min-width: 0;
+			transition-property: background-color, scale;
+			transition-duration: 300ms, 1500ms;
+			transition-timing-function: ease-out;
+			cursor: default;
 			&.active {
 				background: none;
-				color: rgb(205, 193, 251);
+				color: rgb(77, 178, 255);
 				&:hover {
-					background-color: rgba(255, 255, 255, 0.2);
+					transition-duration: 0, 250ms;
+					background-color: rgba(0, 0, 0, 0);
+				}
+				&:active {
+					background-color: rgba(255, 255, 255, 0.3);
 				}
 			}
+			&:hover {
+				background-color: rgba(0, 0, 0, 0);
+				transition-duration: 0, 250ms;
+			}
+			&:active {
+				background-color: rgba(255, 255, 255, 0.3);
+				scale: 1.2;
+				transition-duration: 150ms, 250ms;
+			}
 			.icon {
-				width: 32px;
-				height: 32px;
+				width: 26px;
+				height: 26px;
 				flex-shrink: 0;
 				flex: 0;
 			}

@@ -30,4 +30,12 @@
 		flex-wrap: wrap;
 		// gap: 24px;
 	}
+	@media screen and (max-width: 768px) {
+		.environment-list {
+			display: flex;
+			width: 100%;
+			justify-content: center;
+			align-items: baseline;
+		}
+	}
 </style>

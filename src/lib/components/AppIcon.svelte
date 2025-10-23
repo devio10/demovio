@@ -82,9 +82,13 @@
 	}
 	@media screen and (max-width: 768px) {
 		a {
-			padding: 8px 12px;
+			padding: 8px 24px;
 			img {
-				$image-size: 36px;
+				width: 72px;
+				height: 72px;
+			}
+			span.label {
+				font-size: 12px;
 			}
 		}
 	}

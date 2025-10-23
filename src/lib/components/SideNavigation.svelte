@@ -1,5 +1,7 @@
 <script>
+	import { MediaQuery } from "svelte/reactivity";
 	import SideNavigationButton from "./SideNavigationButton.svelte";
+	let isMobile = new MediaQuery("screen and (max-width: 768px)");
 </script>
 
 <div>
@@ -41,20 +43,22 @@
 			/>
 		</svg>
 	</SideNavigationButton>
-	<SideNavigationButton alt="Уведомления" href="/notifications">
-		<svg
-			style="padding: 4px;"
-			version="1.1"
-			xmlns="http://www.w3.org/2000/svg"
-			xmlns:xlink="http://www.w3.org/1999/xlink"
-			viewBox="0 0 18.7891 20.5566"
-		>
-			<path
-				d="M1.47461 16.6406L16.9531 16.6406C17.8711 16.6406 18.4277 16.1719 18.4277 15.459C18.4277 14.4824 17.4316 13.6035 16.5918 12.7344C15.9473 12.0605 15.7715 10.6738 15.6934 9.55078C15.625 5.80078 14.6289 3.22266 12.0312 2.28516C11.6602 1.00586 10.6543 0 9.20898 0C7.77344 0 6.75781 1.00586 6.39648 2.28516C3.79883 3.22266 2.80273 5.80078 2.73438 9.55078C2.65625 10.6738 2.48047 12.0605 1.83594 12.7344C0.986328 13.6035 0 14.4824 0 15.459C0 16.1719 0.546875 16.6406 1.47461 16.6406ZM9.20898 20.5566C10.8691 20.5566 12.0801 19.3457 12.207 17.9785L6.2207 17.9785C6.34766 19.3457 7.55859 20.5566 9.20898 20.5566Z"
-				fill="currentColor"
-			/>
-		</svg>
-	</SideNavigationButton>
+	{#if !isMobile.current}
+		<SideNavigationButton alt="Уведомления" href="/notifications">
+			<svg
+				style="padding: 4px;"
+				version="1.1"
+				xmlns="http://www.w3.org/2000/svg"
+				xmlns:xlink="http://www.w3.org/1999/xlink"
+				viewBox="0 0 18.7891 20.5566"
+			>
+				<path
+					d="M1.47461 16.6406L16.9531 16.6406C17.8711 16.6406 18.4277 16.1719 18.4277 15.459C18.4277 14.4824 17.4316 13.6035 16.5918 12.7344C15.9473 12.0605 15.7715 10.6738 15.6934 9.55078C15.625 5.80078 14.6289 3.22266 12.0312 2.28516C11.6602 1.00586 10.6543 0 9.20898 0C7.77344 0 6.75781 1.00586 6.39648 2.28516C3.79883 3.22266 2.80273 5.80078 2.73438 9.55078C2.65625 10.6738 2.48047 12.0605 1.83594 12.7344C0.986328 13.6035 0 14.4824 0 15.459C0 16.1719 0.546875 16.6406 1.47461 16.6406ZM9.20898 20.5566C10.8691 20.5566 12.0801 19.3457 12.207 17.9785L6.2207 17.9785C6.34766 19.3457 7.55859 20.5566 9.20898 20.5566Z"
+					fill="currentColor"
+				/>
+			</svg>
+		</SideNavigationButton>
+	{/if}
 </div>
 
 <style lang="scss">
@@ -101,17 +105,17 @@
 		div {
 			left: 50%;
 			top: auto;
-			bottom: 24px;
+			bottom: 12px;
 			transform: translateX(-50%);
 			flex-direction: row;
-			height: 80px;
+			height: 64px;
 			width: fit-content;
 			padding: 6px;
 			gap: 2px;
 			background: linear-gradient(
 				-10deg,
-				rgba(114, 114, 114, 0.28) 0%,
-				rgba(255, 255, 255, 0.28) 95%
+				rgba(100, 100, 100, 0.36) 0%,
+				rgba(200, 200, 200, 0.36) 95%
 			);
 			backdrop-filter: blur(2px);
 			&:hover {

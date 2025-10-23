@@ -1,11 +1,16 @@
 <script lang="ts">
 	import { setContext, type Snippet } from "svelte";
+	import { MediaQuery } from "svelte/reactivity";
+	import { fly } from "svelte/transition";
 	let headerHeightContext = $state({ headerHeight: 0 });
 	setContext("headerHeightContext", headerHeightContext);
 	let { children, ...props }: { children?: Snippet } = $props();
+	let isMobile = new MediaQuery("screen and (max-width: 768px)");
 </script>
 
-<nav {...props}>{@render children?.()}</nav>
+<nav {...props} transition:fly|global={{ duration: isMobile.current ? 500 : 0, x: -300 }}>
+	{@render children?.()}
+</nav>
 
 <style lang="scss">
 	nav {
@@ -32,6 +37,15 @@
 				font-size: 28px;
 				font-weight: bold;
 			}
+		}
+	}
+	@media screen and (max-width: 768px) {
+		nav {
+			width: 100%;
+			border-radius: 0;
+			// backdrop-filter: blur(30px);
+			background: none;
+			box-shadow: none;
 		}
 	}
 </style>

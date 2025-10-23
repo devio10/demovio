@@ -19,6 +19,7 @@
             "automatic-gradient" : "display-p3:1.00000,0.91690,0.81553,1.00000"
           },
           "glass" : true,
+          "hidden" : false,
           "image-name" : "MaterialSymbolsLightbulb 1.png",
           "name" : "MaterialSymbolsLightbulb 1"
         }

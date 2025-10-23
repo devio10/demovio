@@ -80,4 +80,9 @@
 			margin: 24px 0;
 		}
 	}
+	@media screen and (max-width: 768px) {
+		header {
+			display: none;
+		}
+	}
 </style>

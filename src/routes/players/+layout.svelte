@@ -29,7 +29,7 @@
 	});
 </script>
 
-<Window>
+<Window urlName="/players/[name]">
 	{#snippet navigation()}
 		<WindowNavigation --width="45%">
 			<WindowNavigationHeader title="Игроки">
