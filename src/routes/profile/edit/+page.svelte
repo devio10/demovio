@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import IconPencilCircle from "$lib/components/icons/IconPencilCircle.svelte";
 	import OptionButton from "$lib/components/OptionButton.svelte";
 	import OptionButtonCheckmark from "$lib/components/OptionButtonCheckmark.svelte";
@@ -12,7 +12,7 @@
 	let { data } = $props();
 	const scale = new Spring(0.5, { damping: 0.2, stiffness: 0.1 });
 	const allPronouns = ["он/его", "она/её", "они/их"];
-	let pronouns = $state(allPronouns[0]);
+	let pronouns: string | undefined = $state(allPronouns[0]);
 	let customPronouns = $state(false);
 </script>
 
@@ -177,9 +177,5 @@
 				}
 			}
 		}
-	}
-	.pronouns-grid {
-		// display: grid;
-		// grid-template-columns: 1fr 1fr;
 	}
 </style>

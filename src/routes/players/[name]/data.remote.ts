@@ -55,7 +55,7 @@ export const subscribeToPlayer = command(accountDataSchemas.name, async (targetN
 });
 export const getPlayer = query(accountDataSchemas.name, async (name) => {
 	const { locals } = getRequestEvent();
-	const player = await db.query.playersTable.findFirst({
+	const player = (await db.query.playersTable.findFirst({
 		columns: {
 			name: true,
 			skin: true,
@@ -69,7 +69,14 @@ export const getPlayer = query(accountDataSchemas.name, async (name) => {
 			eq(playersTable.isBanned, false),
 			eq(playersTable.name, name),
 		),
-	});
+	})) as {
+		name: string;
+		skin: string | null;
+		lastOnline: Date | null;
+		pronouns: string;
+		description: string | null;
+		contact: string | undefined;
+	};
 	if (!player) {
 		return undefined;
 	}

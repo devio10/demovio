@@ -17,7 +17,7 @@ export type Profile = Pick<
 	| "isBanned"
 	| "administrator"
 >;
-export const load: LayoutServerLoad = async ({ locals, depends }) => {
+export const load: LayoutServerLoad = async ({ locals }) => {
 	const status: FullResponse | false = await getDemovioStatus();
 	const player = locals.playerData;
 	if (!player) {

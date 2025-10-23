@@ -13,22 +13,23 @@
 	import IconMove from "$lib/components/icons/IconMove.svelte";
 	import IconKey from "$lib/components/icons/IconKey.svelte";
 	import IconBackstage from "$lib/components/icons/IconBackstage.svelte";
+	import { page } from "$app/state";
 	let { children, data } = $props();
 </script>
 
 <main>
-	<Window urlName="/profile/">
+	<Window sectionOpened={page.route.id?.startsWith("/profile/")}>
 		{#snippet navigation()}
 			<WindowNavigation --width="30%">
 				<WindowNavigationHeader title="Профиль"></WindowNavigationHeader>
 				<WindowNavigationList style="padding-left: 12px; padding-right: 12px">
-					<WindowNavigationItem href="/profile" i={0}>
+					<WindowNavigationItem href="/profile/overview" altHref="/profile">
 						<NavigationItemIcon color="#8E8E91">
 							<IconHome />
 						</NavigationItemIcon>
 						Обзор
 					</WindowNavigationItem>
-					<WindowNavigationItem href="/profile/edit" i={2}>
+					<WindowNavigationItem href="/profile/edit">
 						<NavigationItemIcon color="#8E8E91">
 							<div style="padding: 2px"><IconPencil /></div>
 						</NavigationItemIcon>Изменение данных
@@ -36,19 +37,19 @@
 
 					<div class="navigation-space"></div>
 
-					<WindowNavigationItem href="/profile/passport" i={4}>
+					<WindowNavigationItem href="/profile/passport">
 						<NavigationItemIcon>
 							<IconIDCard />
 						</NavigationItemIcon>
 						Паспорт
 					</WindowNavigationItem>
-					<WindowNavigationItem href="/profile/change-citizenship" i={3}>
+					<WindowNavigationItem href="/profile/change-citizenship">
 						<NavigationItemIcon>
 							<IconMove />
 						</NavigationItemIcon>
 						Смена гражданства
 					</WindowNavigationItem>
-					<WindowNavigationItem href="/profile/reset-game-password" i={5}>
+					<WindowNavigationItem href="/profile/reset-game-password">
 						<NavigationItemIcon>
 							<IconKey />
 						</NavigationItemIcon>
@@ -57,14 +58,14 @@
 
 					<div class="navigation-space"></div>
 
-					<WindowNavigationItem href="/profile/notifications" i={1}>
+					<WindowNavigationItem href="/profile/notifications">
 						<NavigationItemIcon color="rgb(246, 59, 90)">
 							<IconBell />
 						</NavigationItemIcon>
 						Уведомления
 					</WindowNavigationItem>
 					{#if data.profile && data.profile.administrator}
-						<WindowNavigationItem href="/profile/backstage" i={5}>
+						<WindowNavigationItem href="/profile/backstage">
 							<NavigationItemIcon color="rgb(142, 84, 248)">
 								<IconBackstage />
 							</NavigationItemIcon>

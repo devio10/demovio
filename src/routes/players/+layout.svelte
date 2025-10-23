@@ -11,6 +11,7 @@
 	import { getSkinURL } from "$lib/scripts";
 	import { onMount } from "svelte";
 	import { getPlayers } from "./data.remote";
+	import { page } from "$app/state";
 
 	let { children, data } = $props();
 
@@ -29,7 +30,7 @@
 	});
 </script>
 
-<Window urlName="/players/[name]">
+<Window sectionOpened={page.route.id === "/players/[name]"}>
 	{#snippet navigation()}
 		<WindowNavigation --width="45%">
 			<WindowNavigationHeader title="Игроки">

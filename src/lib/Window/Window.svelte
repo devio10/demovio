@@ -7,18 +7,14 @@
 	let {
 		children,
 		navigation,
-		urlName,
+		sectionOpened,
 	}: {
 		children?: Snippet;
 		navigation?: Snippet;
-		urlName: string;
+		sectionOpened?: boolean;
 	} = $props();
 
 	let isMobile = new MediaQuery("screen and (max-width: 768px)");
-	let sectionOpened = $state(false);
-	$effect(() => {
-		sectionOpened = page.route.id === urlName;
-	});
 </script>
 
 {#if !isMobile.current}

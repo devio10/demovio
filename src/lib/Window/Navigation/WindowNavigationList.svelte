@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { getHeaderHeightContext } from "$lib/scripts";
-	import { getContext, type Snippet } from "svelte";
+	import { type Snippet } from "svelte";
 	import type { SvelteHTMLElements } from "svelte/elements";
 	let headerHeightContext = getHeaderHeightContext();
 	let { children, ...props }: { children?: Snippet } & SvelteHTMLElements["ul"] = $props();

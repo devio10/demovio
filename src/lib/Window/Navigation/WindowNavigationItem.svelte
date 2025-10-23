@@ -1,19 +1,12 @@
 <script lang="ts">
 	import { page } from "$app/state";
-	import { hide } from "$lib/scripts";
 	import type { Snippet } from "svelte";
-	import { expoOut } from "svelte/easing";
-	import { fly } from "svelte/transition";
 
-	let { href, i, children }: { href: string; i: number; children?: Snippet } = $props();
+	let { href, altHref, children }: { href: string; altHref?: string; children?: Snippet } =
+		$props();
 </script>
 
-<a
-	{href}
-	class={{ active: page.url.pathname === href }}
-	in:fly|global={{ duration: 150, delay: 10 * i, y: 10 }}
-	out:hide={{ duration: 250, easing: expoOut }}
->
+<a {href} class={{ active: page.url.pathname === href || page.url.pathname === altHref }}>
 	<div class="inner-height">
 		{@render children?.()}
 	</div>

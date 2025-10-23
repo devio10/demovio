@@ -1,10 +1,10 @@
-<script>
+<script lang="ts">
 	import Dialog from "$lib/components/Dialog.svelte";
 	import DialogButton from "$lib/components/DialogButton.svelte";
 	import NoInvitation from "$lib/components/icons/IconNoInvitation.svelte";
 	import SettingsButton from "$lib/components/OptionButton.svelte";
 	let dialogOpened = $state(false);
-	let { contact } = $props();
+	let { contact }: { contact: string | undefined } = $props();
 </script>
 
 <SettingsButton

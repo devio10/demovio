@@ -16,7 +16,7 @@
 	const query = $derived(getPlayer(name));
 	let featured = $derived(query.current?.featured);
 	let subscribed = $derived(query.current?.subscribed);
-	const online = $derived(data.demovioStatus.players.includes(name));
+	const online = $derived(data.demovioStatus && data.demovioStatus.players.includes(name));
 </script>
 
 {#snippet header(disabled: boolean)}
@@ -63,8 +63,8 @@
 							Показать на карте
 						</SettingsButton>
 					{/if}
-					<InvitePlayerButton contact={player.contact} />
-					{#if player.contact}
+					<InvitePlayerButton contact={"contact" in player ? player.contact : undefined} />
+					{#if "contact" in player}
 						<SettingsButton tag="a" href="https://t.me/{player.contact}">
 							Написать в Telegram
 						</SettingsButton>
@@ -85,11 +85,6 @@
 {/if}
 
 <style lang="less">
-	.content {
-		display: flex;
-		flex-direction: column;
-		min-height: 100%;
-	}
 	.top_flex {
 		display: flex;
 	}
@@ -97,25 +92,6 @@
 		margin: 16px 24px 24px 36px;
 		font-weight: 600;
 		line-height: 1.4;
-	}
-	.player-map {
-		margin: 36px;
-		margin-top: auto;
-		width: calc(100% - 72px);
-		aspect-ratio: 2/1;
-
-		background-image: url("$lib/assets/player-map.png");
-		opacity: 0.8;
-		filter: saturate(0.8);
-		border-radius: 16px;
-		overflow: clip;
-		div {
-			width: 100%;
-			height: 100%;
-			border-radius: 16px;
-			backdrop-filter: blur(16px);
-			box-shadow: inset 0px 0px 10px 10px rgba(25, 25, 25, 0.4);
-		}
 	}
 	.action-buttons {
 		margin-top: auto;

@@ -1,4 +1,4 @@
-import { getContext, setContext } from "svelte";
+import { createContext } from "svelte";
 import type { EasingFunction, TransitionConfig } from "svelte/transition";
 
 export function getSkinURL(skin: string | undefined | null, name: string) {
@@ -21,14 +21,6 @@ export const hide = (
 	};
 };
 
-export type HeaderHeightContext = { headerHeight: number };
-
-export function getHeaderHeightContext(): HeaderHeightContext {
-	return getContext("headerHeightContext");
-}
-export function setHeaderHeightContext(value: HeaderHeightContext) {
-	setContext("headerHeightContext", value);
-}
-
-// let headerHeightContext = $state({ headerHeight: 0 });
-// setContext("headerHeightContext", headerHeightContext);
+export const [getHeaderHeightContext, setHeaderHeightContext] = createContext<{
+	headerHeight: number;
+}>();
