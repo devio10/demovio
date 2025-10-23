@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { onMount } from "svelte";
 	import * as THREE from "three";
+	import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 
-	// import { OrbitControls } from "three/addons/controls/OrbitControls.js";
-
-	let camera, controls;
-	let renderer;
-	let scene;
-	let container: HTMLDivElement;
+	let camera: THREE.PerspectiveCamera | undefined = $state();
+	let controls: OrbitControls | undefined = $state();
+	let renderer: THREE.WebGLRenderer | undefined = $state();
+	let scene: THREE.Scene | undefined = $state();
+	let container: HTMLDivElement = $state();
 
 	onMount(() => {
 		renderer = new THREE.WebGLRenderer();
@@ -18,16 +18,20 @@
 
 		scene = new THREE.Scene();
 
-		camera = new THREE.PerspectiveCamera(90, window.innerWidth / window.innerHeight, 0.1, 100);
+		camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.1, 100);
 		camera.position.z = 0.01;
 
-		// controls = new OrbitControls(camera, renderer.domElement);
-		// controls.enableZoom = false;
-		// controls.enablePan = false;
-		// controls.enableDamping = true;
-		// controls.rotateSpeed = 2;
+		controls = new OrbitControls(camera, renderer.domElement);
+		controls.enableZoom = false;
+		controls.enablePan = false;
+		controls.enableDamping = true;
+		controls.rotateSpeed = -0.25;
 
-		const textures = getTexturesFromAtlasFile("/SpatialEnvironments/test.jpg", 6);
+		const textures = getTexturesFromAtlasFile("/SpatialEnvironments/shanghai", 6);
+		// const textures = [];
+		// for (let i = 0; i < 6; i++) {
+		// 	textures[i] = `/SpatialEnvironments/shanghai/${i}.png`;
+		// }
 
 		const materials = [];
 
@@ -43,38 +47,41 @@
 	});
 
 	function getTexturesFromAtlasFile(atlasImgUrl: string, tilesNum: number) {
-		const textures = [];
+		const textures: THREE.Texture[] = [];
 
+		const order = [0, 2, 4, 5, 3, 1];
 		for (let i = 0; i < tilesNum; i++) {
 			textures[i] = new THREE.Texture();
 		}
+		for (let i = 0; i < 6; i++) {
+			new THREE.ImageLoader().load(`${atlasImgUrl}/${order[i]}.png`, (image) => {
+				let canvas, context;
+				const tileWidth = image.height;
 
-		new THREE.ImageLoader().load(atlasImgUrl, (image) => {
-			let canvas, context;
-			const tileWidth = image.height;
-
-			for (let i = 0; i < textures.length; i++) {
 				canvas = document.createElement("canvas");
 				context = canvas.getContext("2d");
 				canvas.height = tileWidth;
 				canvas.width = tileWidth;
-				context.drawImage(
-					image,
-					tileWidth * i,
-					0,
-					tileWidth,
-					tileWidth,
-					0,
-					0,
-					tileWidth,
-					tileWidth,
-				);
+				if (context) {
+					context.drawImage(image, 0, 0, tileWidth, tileWidth, 0, 0, tileWidth, tileWidth);
+					context.rotate(90);
+					// context.drawImage(
+					// 	`${image}/${i}.png`,
+					// 	0,
+					// 	0,
+					// 	tileWidth,
+					// 	tileWidth,
+					// 	0,
+					// 	0,
+					// 	tileWidth,
+					// 	tileWidth,
+					// );
+				}
 				textures[i].colorSpace = THREE.SRGBColorSpace;
 				textures[i].image = canvas;
 				textures[i].needsUpdate = true;
-			}
-		});
-
+			});
+		}
 		return textures;
 	}
 
@@ -86,9 +93,12 @@
 	}
 
 	function animate() {
-		// controls.update(); // required when damping is enabled
+		// controls.update();
 		renderer.render(scene, camera);
-		// camera.rotation 
+		camera.rotation.y -= 0.00035;
+		// camera.rotation.y -= 0.005;
+		// camera.rotation.x -= 0.0005;
+		// camera.rotation.z -= 0.005;
 	}
 </script>
 
