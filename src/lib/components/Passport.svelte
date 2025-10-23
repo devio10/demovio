@@ -325,6 +325,8 @@
 				font-size: 18px;
 				line-height: 1;
 				font-weight: 500;
+				font-family: monospace;
+				margin-top: 3px;
 			}
 		}
 		.information-block {

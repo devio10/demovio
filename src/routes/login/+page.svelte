@@ -40,6 +40,8 @@
 					style="margin-bottom: 16px"
 					placeholder="Имя игрока"
 					name="login"
+					autocorrect="off"
+					autocapitalize="off"
 					disabled={submitting}
 				>
 					<svg

@@ -36,6 +36,8 @@
 		name="playername"
 		bind:value={playername}
 		disabled={submitting}
+		autocorrect="off"
+		autocapitalize="off"
 	>
 		<svg
 			style="padding: 4px;"

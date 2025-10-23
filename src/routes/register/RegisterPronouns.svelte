@@ -47,7 +47,7 @@
 	</div>
 	{#if customPronouns}
 		<div style="padding-bottom: 16px" transition:slide={{ duration: 300 }}>
-			<TextInput placeholder="Укажите ваши местоимения" />
+			<TextInput placeholder="Укажите ваши местоимения" autocorrect="off" autocapitalize="off" />
 		</div>
 	{/if}
 	<Button

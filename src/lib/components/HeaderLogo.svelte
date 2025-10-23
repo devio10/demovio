@@ -22,6 +22,7 @@
 		font-weight: 800;
 		font-size: 16px;
 
+		font-family: "Montserrat Variable", sans-serif;
 		div {
 			background-color: white;
 			width: 6px;
