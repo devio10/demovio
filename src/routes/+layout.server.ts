@@ -9,6 +9,7 @@ export type Profile = Pick<
 	| "uuid"
 	| "skin"
 	| "pronouns"
+	| "description"
 	| "citizenship"
 	| "contact"
 	| "issueDate"
@@ -30,6 +31,7 @@ export const load: LayoutServerLoad = async ({ locals }) => {
 		id: player.id,
 		skin: player.skin,
 		pronouns: player.pronouns,
+		description: player.description,
 		citizenship: player.citizenship,
 		contact: player.contact,
 		issueDate: player.issueDate,

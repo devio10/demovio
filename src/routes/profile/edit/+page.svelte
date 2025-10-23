@@ -11,9 +11,14 @@
 	import { slide } from "svelte/transition";
 	let { data } = $props();
 	const scale = new Spring(0.5, { damping: 0.2, stiffness: 0.1 });
+
 	const allPronouns = ["он/его", "она/её", "они/их"];
-	let pronouns: string | undefined = $state(allPronouns[0]);
+	let pronouns: string | undefined = $derived(
+		data.profile ? data.profile.pronouns : allPronouns[0],
+	);
 	let customPronouns = $state(false);
+
+	let description = $derived(data.profile?.description);
 </script>
 
 <SettingsHeader title="Изменение данных"></SettingsHeader>
@@ -52,7 +57,7 @@
 					<span>Изменить</span>
 				</button>
 			</div>
-			<TextArea placeholder="Описание..." />
+			<TextArea value={description} placeholder="Описание..." />
 		</div>
 		<div class="settings-buttons-space"></div>
 		<h3>Местоимения</h3>
