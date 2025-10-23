@@ -63,6 +63,7 @@
 		"skinview3d": "^3.4.1",
 		"svelte-portal": "^2.2.1",
 		"svelte-switcher": "^1.0.2",
+		"three": "^0.180.0",
 		"web-push": "^3.6.7",
 		"zod": "^4.1.12"
 	},

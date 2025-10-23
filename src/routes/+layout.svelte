@@ -8,6 +8,7 @@
 	import { localPreferences } from "$lib/local-settings.svelte";
 	import { onMount } from "svelte";
 	import { scale } from "svelte/transition";
+	import SpatialEnvironment from "$lib/components/SpatialEnvironment.svelte";
 
 	let { children } = $props();
 
@@ -25,7 +26,7 @@
 	<link rel="icon" href={favicon} />
 </svelte:head>
 <div class="page">
-	<div class="page-background">
+	<!-- <div class="page-background">
 		{#if localPreferences.environment !== ""}
 			<img
 				src="/EnvironmentPreview/{localPreferences.environment}"
@@ -33,7 +34,8 @@
 				in:scale={{ duration: 3000, start: 1.5 }}
 			/>
 		{/if}
-	</div>
+	</div> -->
+	<SpatialEnvironment />
 	<header>
 		<HeaderLogo />
 	</header>
