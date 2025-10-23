@@ -97,7 +97,9 @@
 		<div class="settings-buttons">
 			<OptionButton>Изменить игровой ник</OptionButton>
 			<OptionButton>Изменить контактную информацию (Telegram)</OptionButton>
-			<OptionButton>Изменить предпочтения уведомлений</OptionButton>
+			<OptionButton tag="a" href="/profile/notifications">
+				Изменить предпочтения уведомлений
+			</OptionButton>
 		</div>
 		<div class="settings-buttons-space"></div>
 	</div>
@@ -130,7 +132,7 @@
 			margin: 0;
 			padding: 0;
 			border-radius: 0 0 14px 14px;
-			background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.75) 100%);
+			background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.55) 100%);
 			cursor: pointer;
 			font-size: 14px;
 			font-weight: 500;

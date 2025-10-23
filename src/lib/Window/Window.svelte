@@ -55,7 +55,7 @@
 		height: 80%;
 		max-height: 850px;
 		display: flex;
-		backdrop-filter: blur(50px);
+		backdrop-filter: blur(42px);
 		border-radius: 52px;
 		overflow: clip;
 		box-shadow: 0 6px 30px 5px rgba(0, 0, 0, 0.4);

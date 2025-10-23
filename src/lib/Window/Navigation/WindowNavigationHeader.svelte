@@ -1,12 +1,13 @@
 <script lang="ts">
+	import { getHeaderHeightContext } from "$lib/scripts";
 	import { getContext, type Snippet } from "svelte";
-	let height = $state();
+	let height: number = $state(0);
 	let {
 		children,
 		title,
 		titleChildren,
 	}: { children?: Snippet; title: string; titleChildren?: Snippet } = $props();
-	let headerHeightContext = getContext("headerHeightContext");
+	let headerHeightContext = getHeaderHeightContext();
 	$effect(() => {
 		headerHeightContext.headerHeight = height;
 	});

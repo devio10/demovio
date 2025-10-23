@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { page } from "$app/state";
 	import PlayerHead from "$lib/components/PlayerHead.svelte";
+	import { hide } from "$lib/scripts";
 	import type { Snippet } from "svelte";
 	import { expoOut } from "svelte/easing";
-	import { fly, type EasingFunction, type TransitionConfig } from "svelte/transition";
+	import { fly } from "svelte/transition";
 
 	let {
 		name,
@@ -21,20 +22,6 @@
 		online?: boolean;
 		featured?: boolean;
 	} = $props();
-
-	const hide = (
-		node: HTMLElement,
-		{ delay, duration, easing }: { delay?: number; duration?: number; easing?: EasingFunction },
-	): TransitionConfig => {
-		return {
-			delay,
-			duration,
-			easing,
-			css: (t, u) => {
-				return `height: ${72 * t}px; opacity: ${t}`;
-			},
-		};
-	};
 </script>
 
 <a

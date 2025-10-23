@@ -1,11 +1,12 @@
 <script lang="ts">
+	import { getHeaderHeightContext } from "$lib/scripts";
 	import { getContext, type Snippet } from "svelte";
-	let headerHeightContext = getContext("headerHeightContext");
-	let { children }: { children?: Snippet } = $props();
-	$inspect(headerHeightContext.headerHeight);
+	import type { SvelteHTMLElements } from "svelte/elements";
+	let headerHeightContext = getHeaderHeightContext();
+	let { children, ...props }: { children?: Snippet } & SvelteHTMLElements["ul"] = $props();
 </script>
 
-<ul style="--padding: {headerHeightContext.headerHeight}px">
+<ul {...props} style="--padding: {headerHeightContext.headerHeight}px; {props.style}">
 	{@render children?.()}
 </ul>
 
@@ -29,7 +30,7 @@
 				transparent calc(var(--padding) - 16px),
 				black var(--padding)
 			),
-			linear-gradient(to right, transparent 0%, transparent 95%, black 95.1%);
+			linear-gradient(to right, transparent 0%, transparent 97%, black 95.1%);
 		mask-size: cover;
 		mask-repeat: no-repeat;
 		list-style: none;

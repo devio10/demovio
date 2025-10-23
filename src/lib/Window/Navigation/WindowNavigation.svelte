@@ -1,9 +1,10 @@
 <script lang="ts">
+	import { setHeaderHeightContext } from "$lib/scripts";
 	import { setContext, type Snippet } from "svelte";
 	import { MediaQuery } from "svelte/reactivity";
 	import { fly } from "svelte/transition";
 	let headerHeightContext = $state({ headerHeight: 0 });
-	setContext("headerHeightContext", headerHeightContext);
+	setHeaderHeightContext(headerHeightContext);
 	let { children, ...props }: { children?: Snippet } = $props();
 	let isMobile = new MediaQuery("screen and (max-width: 768px)");
 </script>
@@ -36,6 +37,9 @@
 				margin: 0;
 				font-size: 28px;
 				font-weight: bold;
+			}
+			.navigation-space {
+				margin: 16px;
 			}
 		}
 	}
