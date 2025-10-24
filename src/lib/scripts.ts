@@ -24,3 +24,6 @@ export const hide = (
 export const [getHeaderHeightContext, setHeaderHeightContext] = createContext<{
 	headerHeight: number;
 }>();
+export const [getContentScrollContext, setContentScrollContext] = createContext<{
+	contentScroll: number;
+}>();

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { getContentScrollContext } from "$lib/scripts";
 	import type { Snippet } from "svelte";
 
 	let {

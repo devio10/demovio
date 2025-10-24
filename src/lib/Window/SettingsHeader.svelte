@@ -1,5 +1,7 @@
 <script lang="ts">
+	import { getContentScrollContext } from "$lib/scripts";
 	import type { Snippet } from "svelte";
+	import type { SvelteHTMLElements } from "svelte/elements";
 
 	let {
 		children,
@@ -10,12 +12,19 @@
 		children?: Snippet;
 		title: string;
 		titleChildren?: Snippet;
-	} = $props();
+	} & SvelteHTMLElements["div"] = $props();
+	let contentScrollContext = getContentScrollContext();
+	let titleHideProgress = $state(0);
+	$effect(() => {
+		titleHideProgress = Math.min(Math.max(contentScrollContext.contentScroll * 0.01, -0.3), 1);
+	});
+	$inspect(titleHideProgress);
 </script>
 
 <div class="content" {...props}>
+	<div></div>
 	<div class="text">
-		<h2>{title}</h2>
+		<h2 style="scale: {1 - titleHideProgress}; opacity: {1 - titleHideProgress}">{title}</h2>
 		{@render titleChildren?.()}
 	</div>
 	<div class="buttons">
@@ -26,10 +35,12 @@
 <style lang="scss">
 	.content {
 		width: 100%;
-		padding: 24px 36px;
-		display: flex;
-		justify-content: center;
-		height: 98px;
+		padding: 24px 36px 24px 36px;
+		// display: flex;
+		// justify-content: center;
+		display: grid;
+		grid-template-columns: 1fr auto 1fr;
+		// height: 98px;
 		h2 {
 			margin: 0;
 			height: 34px;

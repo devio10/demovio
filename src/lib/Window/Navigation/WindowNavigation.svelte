@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { setHeaderHeightContext } from "$lib/scripts";
-	import { setContext, type Snippet } from "svelte";
+	import { type Snippet } from "svelte";
 	import { MediaQuery } from "svelte/reactivity";
 	import { fly } from "svelte/transition";
 	let headerHeightContext = $state({ headerHeight: 0 });

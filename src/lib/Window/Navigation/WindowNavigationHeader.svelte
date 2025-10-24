@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { getHeaderHeightContext } from "$lib/scripts";
-	import { getContext, type Snippet } from "svelte";
+	import { type Snippet } from "svelte";
 	let height: number = $state(0);
 	let {
 		children,

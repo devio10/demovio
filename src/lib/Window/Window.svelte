@@ -1,8 +1,14 @@
 <script lang="ts">
-	import { page } from "$app/state";
+	import { setContentScrollContext } from "$lib/scripts";
 	import type { Snippet } from "svelte";
 	import { MediaQuery } from "svelte/reactivity";
-	import { fade, fly, scale, slide } from "svelte/transition";
+	import { fade, fly, scale } from "svelte/transition";
+	let scroll: number = $state(0);
+	let contentScrollContext = $state({ contentScroll: 0 });
+	setContentScrollContext(contentScrollContext);
+	$effect(() => {
+		contentScrollContext.contentScroll = scroll;
+	});
 
 	let {
 		children,
@@ -20,7 +26,12 @@
 {#if !isMobile.current}
 	<div class="window" transition:scale|global={{ duration: 500, start: 0.5 }}>
 		{@render navigation?.()}
-		<div class="content">
+		<div
+			class="content"
+			onscroll={({ target }) => {
+				scroll = (target as HTMLDivElement).scrollTop;
+			}}
+		>
 			{@render children?.()}
 		</div>
 	</div>
@@ -33,6 +44,9 @@
 			<div
 				class={["content", { opened: sectionOpened }]}
 				transition:fly|global={{ duration: 500, x: 300 }}
+				onscroll={({ target }) => {
+					scroll = (target as HTMLDivElement).scrollTop;
+				}}
 			>
 				{@render children?.()}
 			</div>
@@ -41,9 +55,6 @@
 {/if}
 
 <style lang="scss">
-	.navigation {
-		display: contents;
-	}
 	.window {
 		position: absolute;
 		width: 80%;

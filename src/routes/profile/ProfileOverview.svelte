@@ -39,7 +39,7 @@
 		<span class="name">{data.profile.name}</span>
 		<div class="settings-buttons-space"></div>
 		<div class="settings-buttons">
-			<OptionButton tag="a" href="profile/edit">Изменить данные</OptionButton>
+			<OptionButton tag="a" href="/profile/edit">Изменить данные</OptionButton>
 			<OptionButton>Пригласить друга</OptionButton>
 		</div>
 		<OptionDescription>

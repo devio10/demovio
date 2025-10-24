@@ -6,6 +6,7 @@
 	import TextInput from "$lib/components/TextInput.svelte";
 	import { getSkinURL } from "$lib/scripts";
 	import SettingsHeader from "$lib/Window/SettingsHeader.svelte";
+	import WindowHeaderAccentButton from "$lib/Window/WindowHeaderAccentButton.svelte";
 	import { IdleAnimation, SkinViewer } from "skinview3d";
 	import { Spring } from "svelte/motion";
 	import { slide } from "svelte/transition";
@@ -21,7 +22,12 @@
 	let description = $derived(data.profile?.description);
 </script>
 
-<SettingsHeader title="Изменение данных"></SettingsHeader>
+<div class="header">
+	<SettingsHeader title="Изменение данных"></SettingsHeader>
+	<div class="button">
+		<WindowHeaderAccentButton name="Сохранить">Сохранить</WindowHeaderAccentButton>
+	</div>
+</div>
 
 {#if data.profile}
 	<div class="settings-content">
@@ -111,6 +117,16 @@
 {/if}
 
 <style lang="scss">
+	.header {
+		width: 100%;
+		position: relative;
+
+		.button {
+			top: 0;
+			right: 0;
+			position: fixed;
+		}
+	}
 	.skin-container {
 		background-color: rgba(0, 0, 0, 0.25);
 		border-radius: 14px;

@@ -2,6 +2,7 @@ import { getFullInfo } from "@hloth/minecraft-query";
 
 export async function getDemovioStatus() {
 	try {
+		// return false;
 		const q = await getFullInfo({ hostname: "demovio.love", retries: 10 });
 		// const q = { players: ["devio10"] };
 

@@ -1,9 +1,6 @@
 <script lang="ts">
 	import ActivationDialog from "$lib/ActivationDialog.svelte";
 	import AppIcon from "$lib/components/AppIcon.svelte";
-	import Dialog from "$lib/components/Dialog.svelte";
-	import DialogButton from "$lib/components/DialogButton.svelte";
-	import EnvelopeWait from "$lib/components/icons/IconEnvelopeWait.svelte";
 	import { onMount } from "svelte";
 	import { scale } from "svelte/transition";
 	let { data } = $props();
@@ -53,7 +50,11 @@
 	</div>
 
 	<nav class={{ smaller: additionalPages }}>
-		<AppIcon icon="Players" href="players" badge={data.demovioStatus.players.length}>
+		<AppIcon
+			icon="Players"
+			href="players"
+			badge={data.demovioStatus ? data.demovioStatus.players.length : 0}
+		>
 			Игроки
 		</AppIcon>
 		<AppIcon icon="Passport" href="profile/passport">Паспорт</AppIcon>
