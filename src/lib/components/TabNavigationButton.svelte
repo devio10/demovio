@@ -22,6 +22,7 @@
 		padding: 0;
 		font-weight: 500;
 		z-index: 2;
+		color: rgba(250, 250, 250, 0.9);
 		.highlight {
 			height: calc(100% - 24px);
 			padding: 0 18px;
