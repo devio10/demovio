@@ -4,21 +4,43 @@
 	let {
 		name,
 		src,
+		spatial,
+		disabled,
 	}: {
 		name: string;
-		src: string;
+		src?: string;
+		spatial?: string;
+		disabled?: boolean;
 	} = $props();
 </script>
 
 <button
 	onclick={() => {
-		localStorage.setItem("environment", src);
-		localPreferences.environment = src;
+		if (disabled) {
+			return;
+		}
+		localStorage.setItem("spatialEnvironment", "");
+		localPreferences.spatialEnvironment = "";
+		localStorage.setItem("environment", "");
+		localPreferences.environment = "";
+
+		if (spatial) {
+			localStorage.setItem("spatialEnvironment", spatial);
+			localPreferences.spatialEnvironment = spatial;
+		} else {
+			localStorage.setItem("environment", src);
+			localPreferences.environment = src;
+		}
 	}}
+	class={{ disabled: disabled }}
 >
 	<div class="flex">
 		<div class="image">
-			<img draggable="false" src="/EnvironmentPreview/{src}" alt={name} />
+			{#if disabled}
+				<div class="grayed-out"></div>
+			{:else}
+				<img draggable="false" src="/EnvironmentPreview/{src}" alt={name} />
+			{/if}
 		</div>
 		<span class="label">{name}</span>
 	</div>
@@ -35,7 +57,13 @@
 		// display: flex;
 		transition: scale 300ms ease-out;
 		border: none;
-		cursor: pointer;
+		&:not(.disabled) {
+			cursor: pointer;
+			.image {
+				box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
+			}
+		}
+
 		.flex {
 			display: flex;
 			flex-direction: column;
@@ -51,7 +79,11 @@
 			transition-property: width;
 			transition-duration: 300ms;
 			transition-timing-function: ease-out;
-			box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
+		}
+		.grayed-out {
+			width: 100%;
+			height: 100%;
+			background-color: rgba(230, 230, 230, 0.3);
 		}
 		span.label {
 			font-size: 14px;
@@ -68,7 +100,7 @@
 			object-fit: cover;
 		}
 
-		&:hover {
+		&:hover:not(.disabled) {
 			scale: 1.1;
 			.image {
 				width: calc(var(--size) * 1.6);
@@ -77,7 +109,7 @@
 				color: white;
 			}
 		}
-		&:active {
+		&:active:not(.disabled) {
 			transition-duration: 75ms;
 			filter: brightness(0.9);
 			scale: 1.02;

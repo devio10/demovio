@@ -14,11 +14,9 @@
 
 	onMount(() => {
 		const storageEnvironment = localStorage.getItem("environment");
-		if (storageEnvironment !== null) {
-			localPreferences.environment = storageEnvironment;
-		} else {
-			localPreferences.environment = "states-10.webp";
-		}
+		const storageSpatialEnvironment = localStorage.getItem("spatialEnvironment");
+		localPreferences.spatialEnvironment = storageSpatialEnvironment ?? "";
+		localPreferences.environment = storageEnvironment ?? "states-10.webp";
 	});
 </script>
 
@@ -26,7 +24,7 @@
 	<link rel="icon" href={favicon} />
 </svelte:head>
 <div class="page">
-	<!-- <div class="page-background">
+	<div class="page-background">
 		{#if localPreferences.environment !== ""}
 			<img
 				src="/EnvironmentPreview/{localPreferences.environment}"
@@ -34,8 +32,11 @@
 				in:scale={{ duration: 3000, start: 1.5 }}
 			/>
 		{/if}
-	</div> -->
-	<SpatialEnvironment />
+	</div>
+	{#if localPreferences.spatialEnvironment !== ""}
+		<SpatialEnvironment />
+	{/if}
+
 	<header>
 		<HeaderLogo />
 	</header>
