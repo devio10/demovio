@@ -20,7 +20,7 @@ export const playersTable = pgTable("players", {
 		mode: "date",
 		withTimezone: true,
 	}),
-	pronouns: text().notNull(),
+	pronouns: text(),
 	contact: text().notNull(),
 	issueDate: timestamp({
 		mode: "date",

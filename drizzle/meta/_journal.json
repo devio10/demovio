@@ -50,6 +50,13 @@
       "when": 1760882425765,
       "tag": "0006_certain_thunderbolt_ross",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1761325887679,
+      "tag": "0007_fixed_kid_colt",
+      "breakpoints": true
     }
   ]
 }

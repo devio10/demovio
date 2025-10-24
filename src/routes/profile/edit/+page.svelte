@@ -1,5 +1,10 @@
 <script lang="ts">
+	import { enhance } from "$app/forms";
+	import Dialog from "$lib/components/Dialog.svelte";
+	import DialogButton from "$lib/components/DialogButton.svelte";
+	import IconExclamationMark from "$lib/components/icons/IconExclamationMark.svelte";
 	import IconPencilCircle from "$lib/components/icons/IconPencilCircle.svelte";
+	import LoadingWheel from "$lib/components/LoadingWheel.svelte";
 	import OptionButton from "$lib/components/OptionButton.svelte";
 	import OptionButtonCheckmark from "$lib/components/OptionButtonCheckmark.svelte";
 	import TextArea from "$lib/components/TextArea.svelte";
@@ -9,24 +14,54 @@
 	import WindowHeaderAccentButton from "$lib/Window/WindowHeaderAccentButton.svelte";
 	import { IdleAnimation, SkinViewer } from "skinview3d";
 	import { Spring } from "svelte/motion";
-	import { slide } from "svelte/transition";
-	let { data } = $props();
-	const scale = new Spring(0.5, { damping: 0.2, stiffness: 0.1 });
+	import { slide, scale } from "svelte/transition";
+	let { data, form } = $props();
+	let unsavedChanges = $state(false);
+	let updateDataError = $derived(form?.error);
+	let submitting = $state(false);
+	const skinScale = new Spring(0.5, { damping: 0.2, stiffness: 0.1 });
 
 	const allPronouns = ["он/его", "она/её", "они/их"];
-	let pronouns: string | undefined = $derived(
-		data.profile ? data.profile.pronouns : allPronouns[0],
-	);
-	let customPronouns = $state(false);
+	let pronouns: string | null = $derived(data.profile ? data.profile.pronouns : allPronouns[0]);
+	let customPronouns = $derived(pronouns !== null && !allPronouns.includes(pronouns));
 
 	let description = $derived(data.profile?.description);
 </script>
 
 <div class="header">
 	<SettingsHeader title="Изменение данных"></SettingsHeader>
-	<div class="button">
-		<WindowHeaderAccentButton name="Сохранить">Сохранить</WindowHeaderAccentButton>
-	</div>
+	{#if unsavedChanges}
+		<div class="button" transition:scale={{ duration: 300, start: 0.75 }}>
+			<form
+				method="POST"
+				action="/profile/edit?/changeData"
+				use:enhance={() => {
+					updateDataError = undefined;
+					submitting = true;
+					return ({ update, result }) => {
+						submitting = false;
+						if (result.type === "success") {
+							unsavedChanges = false;
+						} else {
+							update();
+						}
+					};
+				}}
+			>
+				<input type="hidden" name="description" value={description} />
+				{#if pronouns !== null}
+					<input type="hidden" name="pronouns" value={pronouns} />
+				{/if}
+				<WindowHeaderAccentButton type="submit" name="Сохранить">
+					{#if submitting}
+						<LoadingWheel --wheel-size="28px" />
+					{:else}
+						Готово
+					{/if}
+				</WindowHeaderAccentButton>
+			</form>
+		</div>
+	{/if}
 </div>
 
 {#if data.profile}
@@ -34,11 +69,11 @@
 		<h3>Основное</h3>
 		<div class="settings-buttons" style="display: flex; flex-direction: row;">
 			<div class="skin-container">
-				<div class="canvas-block" style="scale: {scale.current}">
+				<div class="canvas-block" style="scale: {skinScale.current}">
 					<canvas
 						{@attach (canvas) => {
 							if (data.profile) {
-								scale.set(0.5, { instant: true });
+								skinScale.set(0.5, { instant: true });
 								let skinViewer = new SkinViewer({
 									canvas: canvas,
 									width: 120,
@@ -48,7 +83,7 @@
 								skinViewer.globalLight.intensity = 2.85;
 								skinViewer.controls.enableZoom = false;
 								skinViewer.animation = new IdleAnimation();
-								scale.target = 1;
+								skinScale.target = 1;
 								return () => {
 									skinViewer.dispose();
 								};
@@ -63,7 +98,11 @@
 					<span>Изменить</span>
 				</button>
 			</div>
-			<TextArea value={description} placeholder="Описание..." />
+			<TextArea
+				bind:value={description}
+				placeholder="Описание..."
+				oninput={() => (unsavedChanges = true)}
+			/>
 		</div>
 		<div class="settings-buttons-space"></div>
 		<h3>Местоимения</h3>
@@ -73,6 +112,7 @@
 					onclick={() => {
 						customPronouns = false;
 						pronouns = prn;
+						unsavedChanges = true;
 					}}
 				>
 					{prn}
@@ -81,17 +121,19 @@
 			{/each}
 			<OptionButton
 				onclick={() => {
-					pronouns = undefined;
+					pronouns = null;
 					customPronouns = false;
+					unsavedChanges = true;
 				}}
 			>
 				Не указывать
-				<OptionButtonCheckmark value={pronouns === undefined} />
+				<OptionButtonCheckmark value={pronouns === null} />
 			</OptionButton>
 			<OptionButton
 				onclick={() => {
-					pronouns = "custom";
+					pronouns = "";
 					customPronouns = true;
+					unsavedChanges = true;
 				}}
 			>
 				Другое
@@ -100,7 +142,11 @@
 		</div>
 		{#if customPronouns}
 			<div class="settings-buttons" style="padding-top: 16px" transition:slide={{ duration: 300 }}>
-				<TextInput placeholder="Укажите ваши местоимения" />
+				<TextInput
+					placeholder="Укажите ваши местоимения"
+					bind:value={pronouns}
+					oninput={() => (unsavedChanges = true)}
+				/>
 			</div>
 		{/if}
 		<div class="settings-buttons-space"></div>
@@ -114,6 +160,28 @@
 		</div>
 		<div class="settings-buttons-space"></div>
 	</div>
+{/if}
+
+{#if updateDataError}
+	<Dialog
+		title="Не Удалось Обновить Данные"
+		description={updateDataError.wrongData}
+		color="rgb(253, 58, 58)"
+		opened={updateDataError}
+	>
+		{#snippet icon()}
+			<div style="padding: 6px">
+				<IconExclamationMark />
+			</div>
+		{/snippet}
+		<DialogButton
+			onclick={() => {
+				updateDataError = undefined;
+			}}
+		>
+			Закрыть
+		</DialogButton>
+	</Dialog>
 {/if}
 
 <style lang="scss">

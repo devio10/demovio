@@ -71,11 +71,9 @@
 							use:enhance={() => {
 								formError = undefined;
 								submitting = true;
-								console.log(password);
 								return ({ update, result }) => {
 									submitting = false;
 									if (result.type === "success") {
-										console.log("Ура");
 									}
 									update();
 								};

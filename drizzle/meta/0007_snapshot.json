@@ -1,0 +1,294 @@
+{
+  "id": "1e6b56d8-4583-4faf-bc84-0bd3403ba0be",
+  "prevId": "2b1e8319-eae3-4e44-a971-2c12a2fe70c7",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.notify_subscriptions": {
+      "name": "notify_subscriptions",
+      "schema": "",
+      "columns": {
+        "receiverName": {
+          "name": "receiverName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "targetName": {
+          "name": "targetName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "lastSent": {
+          "name": "lastSent",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "notify_subscriptions_receiverName_players_name_fk": {
+          "name": "notify_subscriptions_receiverName_players_name_fk",
+          "tableFrom": "notify_subscriptions",
+          "tableTo": "players",
+          "columnsFrom": [
+            "receiverName"
+          ],
+          "columnsTo": [
+            "name"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "notify_subscriptions_targetName_players_name_fk": {
+          "name": "notify_subscriptions_targetName_players_name_fk",
+          "tableFrom": "notify_subscriptions",
+          "tableTo": "players",
+          "columnsFrom": [
+            "targetName"
+          ],
+          "columnsTo": [
+            "name"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.players": {
+      "name": "players",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "uuid": {
+          "name": "uuid",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "password": {
+          "name": "password",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "skin": {
+          "name": "skin",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "citizenship": {
+          "name": "citizenship",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "lastOnline": {
+          "name": "lastOnline",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "pronouns": {
+          "name": "pronouns",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "contact": {
+          "name": "contact",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "issueDate": {
+          "name": "issueDate",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "isActivated": {
+          "name": "isActivated",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "administrator": {
+          "name": "administrator",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": false
+        },
+        "isBanned": {
+          "name": "isBanned",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": false
+        },
+        "favorites": {
+          "name": "favorites",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'[]'::jsonb"
+        },
+        "subscriptionFrequency": {
+          "name": "subscriptionFrequency",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "default": 43200
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "players_name_unique": {
+          "name": "players_name_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "name"
+          ]
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.push_subscriptions": {
+      "name": "push_subscriptions",
+      "schema": "",
+      "columns": {
+        "endpoint": {
+          "name": "endpoint",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "p256dh": {
+          "name": "p256dh",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "auth": {
+          "name": "auth",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "receiverName": {
+          "name": "receiverName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "expiresAt": {
+          "name": "expiresAt",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "push_subscriptions_receiverName_players_name_fk": {
+          "name": "push_subscriptions_receiverName_players_name_fk",
+          "tableFrom": "push_subscriptions",
+          "tableTo": "players",
+          "columnsFrom": [
+            "receiverName"
+          ],
+          "columnsTo": [
+            "name"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.sessions": {
+      "name": "sessions",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "sessions_name_players_name_fk": {
+          "name": "sessions_name_players_name_fk",
+          "tableFrom": "sessions",
+          "tableTo": "players",
+          "columnsFrom": [
+            "name"
+          ],
+          "columnsTo": [
+            "name"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

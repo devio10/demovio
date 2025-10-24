@@ -13,8 +13,12 @@ export const accountDataSchemas = {
 		.min(5)
 		.max(32)
 		.regex(/^(?!_)(?!.*__)[a-zA-Z0-9_]+(?<!_)$/),
-	pronouns: z.string().min(2).max(16).refine(noNullCharacter, "Запрещённый символ"),
+	pronouns: z.string().min(2).max(16).refine(noNullCharacter, "Запрещённый символ").nullable(),
 	citizenship: z.enum(demovioStateCodes),
 	skin: z.string().refine(noNullCharacter, "Запрещённый символ").nullable(),
 	haveLicense: z.coerce.boolean(),
+	description: z
+		.string()
+		.max(256, "Максимум 256 символов")
+		.refine(noNullCharacter, "Запрещённый символ"),
 };

@@ -92,6 +92,8 @@
 		margin: 16px 24px 24px 36px;
 		font-weight: 600;
 		line-height: 1.4;
+		overflow-wrap: break-word;
+		white-space: pre-wrap;
 	}
 	.action-buttons {
 		margin-top: auto;
