@@ -4,6 +4,7 @@
 	import TextInput from "$lib/components/TextInput.svelte";
 	import { scale } from "svelte/transition";
 	import { RegisterStage } from "./stages";
+	import RegisterFormError from "./RegisterFormError.svelte";
 
 	let {
 		formError = $bindable(),
@@ -16,6 +17,7 @@
 
 <form
 	method="POST"
+	class="register-page"
 	action="/register?/checkPassword"
 	transition:scale={{ duration: 250, start: 0.95 }}
 	use:enhance={({ cancel }) => {
@@ -79,11 +81,11 @@
 	</TextInput>
 
 	{#if formError?.wrongPassword}
-		<span>{formError.wrongPassword}</span>
+		<RegisterFormError>{formError.wrongPassword}</RegisterFormError>
 	{/if}
 
 	{#if formError?.wrongCombo}
-		<span>{formError.wrongCombo}</span>
+		<RegisterFormError>{formError.wrongCombo}</RegisterFormError>
 	{/if}
 	<Button type="submit" disabled={submitting} style="margin: auto 0 0 0">Продолжить</Button>
 </form>

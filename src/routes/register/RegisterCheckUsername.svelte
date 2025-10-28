@@ -4,6 +4,7 @@
 	import TextInput from "$lib/components/TextInput.svelte";
 	import { scale } from "svelte/transition";
 	import { RegisterStage } from "./stages";
+	import RegisterFormError from "./RegisterFormError.svelte";
 
 	let {
 		formError = $bindable(),
@@ -15,6 +16,7 @@
 
 <form
 	method="POST"
+	class="register-page"
 	action="/register?/checkNameAvailability"
 	transition:scale={{ duration: 250, start: 0.95 }}
 	use:enhance={() => {
@@ -52,8 +54,8 @@
 			/>
 		</svg>
 	</TextInput>
-	{#if formError?.username}
-		<span>{formError.username}</span>
+	{#if formError?.nameTaken}
+		<RegisterFormError>{formError.nameTaken}</RegisterFormError>
 	{/if}
 	<Button tag="a" href="/login" hollow={true} style="margin: auto 0 0 0">
 		Войти в существующий аккаунт

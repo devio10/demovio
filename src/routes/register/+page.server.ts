@@ -29,7 +29,7 @@ export const actions: Actions = {
 			return { success: true };
 		} else {
 			const error = bodyParsing.error;
-			return fail(400, { error: { nameTaken: z.prettifyError(error) } });
+			return fail(400, { error: { nameTaken: z.treeifyError(error).errors[0] } });
 		}
 	},
 	async checkPassword({ request }) {
@@ -39,7 +39,17 @@ export const actions: Actions = {
 			return { success: true };
 		} else {
 			const error = bodyParsing.error;
-			return fail(400, { error: { nameTaken: z.prettifyError(error) } });
+			return fail(400, { error: { wrongPassword: z.treeifyError(error).errors[0] } });
+		}
+	},
+	async checkPronouns({ request }) {
+		const formData = await request.formData();
+		const bodyParsing = await accountDataSchemas.pronouns.safeParseAsync(formData.get("pronouns"));
+		if (bodyParsing.success) {
+			return { success: true };
+		} else {
+			const error = bodyParsing.error;
+			return fail(400, { error: { invalidPronouns: z.treeifyError(error).errors[0] } });
 		}
 	},
 	async finishRegistration({ request }) {
@@ -54,7 +64,7 @@ export const actions: Actions = {
 			haveLicense: formData.get("haveLicense"),
 		});
 		if (!bodyParsing.success) {
-			return fail(400, { error: { nameToken: z.prettifyError(bodyParsing.error) } });
+			return fail(400, { error: { nameToken: z.treeifyError(bodyParsing.error).errors[0] } });
 		}
 		const body = bodyParsing.data;
 		if (await checkNameInDB(body.name)) {

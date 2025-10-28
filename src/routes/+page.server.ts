@@ -1,5 +1,5 @@
-import { getDemovioStatus } from "$lib/server/minecraft-status";
+// import { getDemovioStatus } from "$lib/server/minecraft-status";
 
-export async function load() {
-	return { demovioStatus: await getDemovioStatus() };
-}
+// export async function load() {
+// 	return { demovioStatus: await getDemovioStatus() };
+// }

@@ -22,6 +22,7 @@
 		border: none;
 		border-radius: 100px;
 		width: 100%;
+		flex-shrink: 0;
 		border-top: 1px solid rgba(230, 230, 230, 0.4);
 
 		cursor: pointer;

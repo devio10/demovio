@@ -1,6 +1,4 @@
 import type { PlayerData } from "$lib/server/db/schema";
-import { getDemovioStatus } from "$lib/server/minecraft-status";
-import type { FullResponse } from "@hloth/minecraft-query";
 import type { LayoutServerLoad } from "./$types";
 export type Profile = Pick<
 	PlayerData,
@@ -19,10 +17,9 @@ export type Profile = Pick<
 	| "administrator"
 >;
 export const load: LayoutServerLoad = async ({ locals }) => {
-	const status: FullResponse | false = await getDemovioStatus();
 	const player = locals.playerData;
 	if (!player) {
-		return { demovioStatus: status };
+		return {};
 	}
 
 	const profile: Profile = {
@@ -42,6 +39,5 @@ export const load: LayoutServerLoad = async ({ locals }) => {
 	};
 	return {
 		profile,
-		demovioStatus: status,
 	};
 };

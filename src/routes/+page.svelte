@@ -3,6 +3,7 @@
 	import AppIcon from "$lib/components/AppIcon.svelte";
 	import { onMount } from "svelte";
 	import { scale } from "svelte/transition";
+	import { getCurrentDemovioStatus } from "./status.remote.js";
 	let { data } = $props();
 	let additionalPages = $state(false);
 	function getPlayerCountText(players_online: string[]) {
@@ -35,16 +36,25 @@
 		additionalPages =
 			data.profile &&
 			data.profile.administrator &&
-			localStorage.getItem("backstage-additional-pages") === "true";
+			localStorage.getItem("backstage-additional-pages") === "true" &&
+			localStorage.getItem("backstage-state") === "true";
 	});
 </script>
 
 <div class="container" transition:scale|global={{ duration: 500, start: 0.5 }}>
 	<div>
-		<h2>{data.demovioStatus ? "Сервер онлайн" : "Сервер оффлайн"}</h2>
+		<h2>
+			{#await getCurrentDemovioStatus()}
+				Загрузка...
+			{:then status}
+				{status ? "Сервер онлайн" : "Сервер оффлайн"}
+			{/await}
+		</h2>
 		{#if !additionalPages}
 			<span class="players-number">
-				{data.demovioStatus ? getPlayerCountText(data.demovioStatus.players) : ""}
+				{#await getCurrentDemovioStatus() then status}
+					{status ? getPlayerCountText(status.players) : ""}
+				{/await}
 			</span>
 		{/if}
 	</div>
