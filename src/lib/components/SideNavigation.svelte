@@ -8,6 +8,7 @@
 	let isMobile = new MediaQuery("screen and (max-width: 768px)");
 </script>
 
+<div class="mobile-shadow"></div>
 <div class="side-navigation">
 	<SideNavigationButton alt="Главная" href="/" test={/^\/$/}>
 		<IconHome />
@@ -66,6 +67,14 @@
 		}
 	}
 	@media screen and (max-width: 768px) {
+		.mobile-shadow {
+			position: fixed;
+			bottom: 0;
+			height: 92px;
+			z-index: 3;
+			background: linear-gradient(to bottom, transparent 10%, rgba(0, 0, 0, 0.65) 100%);
+			width: 100%;
+		}
 		.side-navigation {
 			left: 50%;
 			top: auto;

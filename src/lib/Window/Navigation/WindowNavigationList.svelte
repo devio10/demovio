@@ -35,4 +35,9 @@
 		mask-repeat: no-repeat;
 		list-style: none;
 	}
+	@media screen and (max-width: 768px) {
+		ul {
+			padding: var(--padding) 16px 86px 16px;
+		}
+	}
 </style>

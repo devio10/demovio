@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getPlayers, type GetPlayersResponse } from "./data.remote";
+	import { getPlayers } from "./data.remote";
 	import { getSkinURL } from "$lib/scripts";
 	import * as Window from "$lib/Window/index.svelte";
 	import { getCurrentDemovioStatus } from "../status.remote";

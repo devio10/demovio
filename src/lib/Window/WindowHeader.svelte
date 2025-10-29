@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { getContentScrollContext } from "$lib/scripts";
 	import type { Snippet } from "svelte";
+	import WindowBackButton from "./Navigation/WindowBackButton.svelte";
 
 	let {
 		children,
@@ -15,9 +16,14 @@
 </script>
 
 <div class="content" {...props}>
-	<div class="text">
-		<h2>{title}</h2>
-		{@render subtitle?.()}
+	<div class="left-part">
+		<div class="back-button">
+			<WindowBackButton />
+		</div>
+		<div class="text">
+			<h2>{title}</h2>
+			{@render subtitle?.()}
+		</div>
 	</div>
 	<div class="buttons">
 		{@render children?.()}
@@ -25,6 +31,9 @@
 </div>
 
 <style lang="scss">
+	.left-part {
+		display: flex;
+	}
 	.content {
 		width: 100%;
 		padding: 24px 36px;
@@ -41,6 +50,14 @@
 			gap: 12px;
 			&.text {
 				flex-direction: column;
+			}
+		}
+	}
+	@media screen and (max-width: 768px) {
+		.content {
+			padding: 20px 24px;
+			.text {
+				gap: 8px;
 			}
 		}
 	}

@@ -87,5 +87,10 @@
 		header {
 			display: none;
 		}
+		:global {
+			.settings-buttons {
+				padding: 0 24px;
+			}
+		}
 	}
 </style>

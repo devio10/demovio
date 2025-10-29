@@ -142,4 +142,12 @@
 		width: 100%;
 		padding: 36px;
 	}
+	@media screen and (max-width: 768px) {
+		.description {
+			margin: 12px 16px 16px 24px;
+		}
+		.action-buttons {
+			padding: 24px 24px 48px 24px;
+		}
+	}
 </style>

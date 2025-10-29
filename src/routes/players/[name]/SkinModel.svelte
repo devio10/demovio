@@ -39,4 +39,9 @@
 		display: block;
 		width: fit-content;
 	}
+	@media screen and (max-width: 768px) {
+		.canvas-block {
+			margin-right: 16px;
+		}
+	}
 </style>
