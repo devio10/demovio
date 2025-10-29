@@ -14,8 +14,8 @@
 		formError = $bindable(),
 		submitting = $bindable(),
 	} = $props();
+
 	let customPronouns = $state(false);
-	$inspect(pronouns);
 	const allPronouns = ["он/его", "она/её", "они/их"];
 </script>
 

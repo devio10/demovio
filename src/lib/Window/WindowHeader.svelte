@@ -5,19 +5,19 @@
 	let {
 		children,
 		title,
-		titleChildren,
+		subtitle,
 		...props
 	}: {
 		children?: Snippet;
 		title: string;
-		titleChildren?: Snippet;
+		subtitle?: Snippet;
 	} = $props();
 </script>
 
 <div class="content" {...props}>
 	<div class="text">
 		<h2>{title}</h2>
-		{@render titleChildren?.()}
+		{@render subtitle?.()}
 	</div>
 	<div class="buttons">
 		{@render children?.()}

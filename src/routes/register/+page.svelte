@@ -16,7 +16,6 @@
 	let { form } = $props();
 	let page = $state(RegisterStage.chooseSkin);
 	let formError = $derived(form?.error);
-	$inspect(page);
 	let submitting = $state(false);
 	let haveLicense = $state(false);
 
@@ -26,7 +25,6 @@
 	let contact = $state();
 	let skin = $state();
 	let pronouns = $state();
-	$inspect(password);
 </script>
 
 <Window>

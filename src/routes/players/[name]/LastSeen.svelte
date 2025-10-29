@@ -1,27 +1,47 @@
-<script>
+<script lang="ts">
 	import { formatDistanceToNowStrict } from "date-fns";
 	import { ru } from "date-fns/locale/ru";
-	let { query, online, profile } = $props();
+
+	let {
+		value,
+	}: {
+		value: Promise<
+			| {
+					online: true;
+			  }
+			| {
+					lastSeen: Date | null;
+					pronouns?: string;
+			  }
+			| {
+					isSelf: true;
+			  }
+		>;
+	} = $props();
 </script>
 
 <span class="last-seen-online">
-	{#await query}
+	{#await value}
 		Загрузка...
-	{:then player}
-		{#if online}
+	{:then value}
+		{#if "online" in value}
 			Сейчас играет
-		{:else if profile === undefined || name !== profile.name}
-			{#if player?.pronouns === "он/его"}Играл
-			{:else if player?.pronouns === "она/её"}Играла
-			{:else}Играли
+		{:else if "isSelf" in value}
+			Это вы!
+		{:else}
+			{@const { pronouns, lastSeen } = value}
+			{#if pronouns === "он/его"}
+				Играл
+			{:else if pronouns === "она/её"}
+				Играла
+			{:else}
+				Играли
 			{/if}
-			{#if player?.lastOnline !== null && player?.lastOnline}
-				{formatDistanceToNowStrict(player?.lastOnline, { locale: ru, addSuffix: true })}
+			{#if lastSeen !== null}
+				{formatDistanceToNowStrict(lastSeen, { locale: ru, addSuffix: true })}
 			{:else}
 				давно
 			{/if}
-		{:else}
-			Это вы!
 		{/if}
 	{/await}
 </span>

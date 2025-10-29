@@ -13,7 +13,7 @@
 	let registration: ServiceWorkerRegistration | null = $state(null);
 	let loading = $state(false);
 	let error: null | string = $state(null);
-	$inspect(registration);
+
 	onMount(() => {
 		if (typeof window !== "undefined" && "serviceWorker" in navigator) {
 			navigator.serviceWorker.ready.then((reg) => {

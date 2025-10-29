@@ -20,7 +20,7 @@
 		sectionOpened?: boolean;
 	} = $props();
 
-	let isMobile = new MediaQuery("screen and (max-width: 768px)");
+	let isMobile = new MediaQuery("screen and (max-width: 768px)", false);
 </script>
 
 {#if !isMobile.current}

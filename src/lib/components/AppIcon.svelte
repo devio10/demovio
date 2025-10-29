@@ -12,7 +12,6 @@
 		href: string;
 		badge?: string | number | Promise<string | number>;
 	} = $props();
-	$inspect(badge);
 </script>
 
 <div>

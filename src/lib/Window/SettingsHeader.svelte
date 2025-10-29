@@ -6,26 +6,25 @@
 	let {
 		children,
 		title,
-		titleChildren,
+		subtitle,
 		...props
 	}: {
 		children?: Snippet;
 		title: string;
-		titleChildren?: Snippet;
+		subtitle?: Snippet;
 	} & SvelteHTMLElements["div"] = $props();
 	let contentScrollContext = getContentScrollContext();
 	let titleHideProgress = $state(0);
 	$effect(() => {
 		titleHideProgress = Math.min(Math.max(contentScrollContext.contentScroll * 0.01, -0.3), 1);
 	});
-	$inspect(titleHideProgress);
 </script>
 
 <div class="content" {...props}>
 	<div></div>
 	<div class="text">
 		<h2 style="scale: {1 - titleHideProgress}; opacity: {1 - titleHideProgress}">{title}</h2>
-		{@render titleChildren?.()}
+		{@render subtitle?.()}
 	</div>
 	<div class="buttons">
 		{@render children?.()}

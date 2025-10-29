@@ -4,10 +4,10 @@
 	import DialogButton from "$lib/components/DialogButton.svelte";
 	import IconBellCrossed from "$lib/components/icons/IconBellCrossed.svelte";
 	import { isActionFailure } from "@sveltejs/kit";
-	import { getPlayers } from "../data.remote";
 	import { subscribeToPlayer } from "./data.remote";
 	import IconBell from "$lib/components/icons/IconBell.svelte";
-	let { disabled, submitting = $bindable(), loggedIn, subscribed, name } = $props();
+	import { page } from "$app/state";
+	let { disabled, submitting = $bindable(), subscribed = $bindable(), name } = $props();
 	let dialogOpened = $state(false);
 </script>
 
@@ -16,7 +16,7 @@
 		disabled={disabled || submitting}
 		name="Уведомления об активности"
 		onclick={async () => {
-			if (!loggedIn) {
+			if (!page.data.profile) {
 				dialogOpened = true;
 				return;
 			}

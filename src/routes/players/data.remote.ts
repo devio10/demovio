@@ -9,6 +9,7 @@ export const getPlayers = query(async () => {
 		where: and(eq(playersTable.isActivated, true), eq(playersTable.isBanned, false)),
 		orderBy: desc(playersTable.lastOnline),
 	});
+	await new Promise((resolve) => setTimeout(resolve, 300));
 	return res.map((player) => {
 		let featured = false;
 		const authorizedPlayerData = locals.playerData;

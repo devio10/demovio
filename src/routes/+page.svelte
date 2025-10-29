@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
 	import ActivationDialog from "$lib/ActivationDialog.svelte";
 	import AppIcon from "$lib/components/AppIcon.svelte";
 	import { onMount } from "svelte";
@@ -126,4 +126,4 @@
 		font-weight: 500;
 		text-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
 	}
-</style>
+</style> -->

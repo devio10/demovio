@@ -7,7 +7,8 @@
 	import DialogButton from "$lib/components/DialogButton.svelte";
 	import IconStar from "$lib/components/icons/IconStar.svelte";
 	import IconStarHollow from "$lib/components/icons/IconStarHollow.svelte";
-	let { disabled, name, submitting = $bindable(), featured = $bindable(), loggedIn } = $props();
+	import { page } from "$app/state";
+	let { disabled, name, submitting = $bindable(), featured = $bindable() } = $props();
 	let dialogOpened = $state(false);
 </script>
 
@@ -16,7 +17,7 @@
 		disabled={disabled || submitting}
 		name="Избранное"
 		onclick={async () => {
-			if (!loggedIn) {
+			if (!page.data.profile) {
 				dialogOpened = true;
 				return;
 			}

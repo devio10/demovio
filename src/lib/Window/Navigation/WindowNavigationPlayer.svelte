@@ -29,6 +29,7 @@
 	class={{ active: page.params.name === name }}
 	in:fly|global={{ duration: 150, delay: 10 * i, y: 10 }}
 	out:hide={{ duration: 250, easing: expoOut }}
+	data-sveltekit-preload-data={false}
 >
 	<div class="inner-height">
 		<div class="skin">

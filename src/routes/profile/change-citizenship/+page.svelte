@@ -15,8 +15,6 @@
 	let formSuccess = $derived(form?.success);
 	let formAccepted = $derived(form?.accepted);
 	let submitting = $state(false);
-
-	$inspect(formAccepted);
 </script>
 
 <SettingsHeader title="Смена гражданства"></SettingsHeader>
