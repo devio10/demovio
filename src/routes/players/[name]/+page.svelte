@@ -10,13 +10,14 @@
 	import NotifyActivityButton from "./NotifyActivityButton.svelte";
 	import FeatureButton from "./FeatureButton.svelte";
 	import LastSeen from "./LastSeen.svelte";
+	import { getCurrentDemovioStatus } from "../../status.remote";
 	const name = $derived(page.params.name!);
 	let { data } = $props();
 	let submitting = $state(false);
 	const query = $derived(getPlayer(name));
 	let featured = $derived(query.current?.featured);
 	let subscribed = $derived(query.current?.subscribed);
-	const online = $derived(data.demovioStatus && data.demovioStatus.players.includes(name));
+	const online = $state();
 </script>
 
 {#snippet header(disabled: boolean)}

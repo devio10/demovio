@@ -10,8 +10,9 @@
 		children?: Snippet;
 		icon: string;
 		href: string;
-		badge?: string;
+		badge?: string | number | Promise<string | number>;
 	} = $props();
+	$inspect(badge);
 </script>
 
 <div>

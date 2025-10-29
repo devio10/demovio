@@ -6,6 +6,7 @@
 	import { getCurrentDemovioStatus } from "./status.remote.js";
 	let { data } = $props();
 	let additionalPages = $state(false);
+	const query = getCurrentDemovioStatus();
 	function getPlayerCountText(players_online: string[]) {
 		let players_text = "Сейчас никто не играет";
 		if (players_online.length === 1 && players_online[0] !== "0") {
@@ -60,11 +61,7 @@
 	</div>
 
 	<nav class={{ smaller: additionalPages }}>
-		<AppIcon
-			icon="Players"
-			href="players"
-			badge={data.demovioStatus ? data.demovioStatus.players.length : 0}
-		>
+		<AppIcon icon="Players" href="players" badge={query.current ? query.current.players.length : 0}>
 			Игроки
 		</AppIcon>
 		<AppIcon icon="Passport" href="profile/passport">Паспорт</AppIcon>

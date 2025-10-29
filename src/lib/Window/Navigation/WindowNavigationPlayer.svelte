@@ -16,7 +16,7 @@
 	}: {
 		name: string;
 		skin: string;
-		pronouns: string;
+		pronouns: string | undefined;
 		i: number;
 		children?: Snippet;
 		online?: boolean;

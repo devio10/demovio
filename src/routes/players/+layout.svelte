@@ -12,8 +12,9 @@
 	import { onMount } from "svelte";
 	import { getPlayers } from "./data.remote";
 	import { page } from "$app/state";
+	import { getCurrentDemovioStatus } from "../status.remote";
 
-	let { children, data } = $props();
+	let { children } = $props();
 
 	let searchQuery = $state("");
 	let playersError: unknown = $state();
@@ -54,10 +55,10 @@
 						const scoreFavoriteB = b.featured ? 10 : 0;
 						let scoreOnlineA = 0;
 						let scoreOnlineB = 0;
-						if (data.demovioStatus) {
-							scoreOnlineA = data.demovioStatus.players.includes(a.name) ? 1 : 0;
-							scoreOnlineB = data.demovioStatus.players.includes(b.name) ? 1 : 0;
-						}
+						// if (data.demovioStatus) {
+						// 	scoreOnlineA = data.demovioStatus.players.includes(a.name) ? 1 : 0;
+						// 	scoreOnlineB = data.demovioStatus.players.includes(b.name) ? 1 : 0;
+						// }
 
 						const finalScoreA = scoreFavoriteA + scoreOnlineA;
 						const finalScoreB = scoreFavoriteB + scoreOnlineB;
@@ -67,8 +68,9 @@
 				{#if filteredPlayers.length}
 					<WindowNavigationList>
 						{#each filteredPlayers as { name, skin, pronouns, featured }, i (name)}
-							{@const online =
-								data.demovioStatus === false ? false : data.demovioStatus!.players.includes(name)}
+							{@const online = await getCurrentDemovioStatus().then((status) =>
+								status ? status.players.includes(name) : false,
+							)}
 							<WindowNavigationPlayer
 								{online}
 								{name}
