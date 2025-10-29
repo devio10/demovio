@@ -1,4 +1,4 @@
-import { getFullInfo } from "@hloth/minecraft-query";
+// import { getFullInfo } from "@hloth/minecraft-query";
 
 export async function getDemovioStatus() {
 	try {
