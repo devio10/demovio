@@ -84,6 +84,7 @@
 				onclick={() => {
 					handleSubscribe();
 					opened = false;
+					localStorage.setItem("not-activated-dialog", "true");
 				}}
 			>
 				Включить уведомления

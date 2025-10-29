@@ -100,8 +100,6 @@
 	</div>
 </div>
 
-<ActivationDialog profile={data.profile} />
-
 <style lang="scss">
 	div {
 		display: flex;

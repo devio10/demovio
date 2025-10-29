@@ -9,8 +9,9 @@
 	import { onMount } from "svelte";
 	import { scale } from "svelte/transition";
 	import SpatialEnvironment from "$lib/components/SpatialEnvironment.svelte";
+	import ActivationDialog from "$lib/ActivationDialog.svelte";
 
-	let { children } = $props();
+	let { children, data } = $props();
 
 	onMount(() => {
 		const storageEnvironment = localStorage.getItem("environment");
@@ -44,6 +45,7 @@
 	<main>
 		{@render children?.()}
 	</main>
+	<ActivationDialog profile={data.profile} />
 </div>
 
 <style lang="scss">
