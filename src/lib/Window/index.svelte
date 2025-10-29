@@ -7,4 +7,5 @@
 	export { default as PlaceholderWarning } from "./WindowPlaceholderWarning.svelte";
 	export { default as NavigationHeader } from "./Navigation/WindowNavigationHeader.svelte";
 	export { default as NavigationList } from "./Navigation/WindowNavigationList.svelte";
+	export { default as Error } from "./WindowError.svelte";
 </script>

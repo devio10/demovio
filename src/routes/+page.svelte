@@ -1,12 +1,16 @@
-<!-- <script lang="ts">
+<script lang="ts">
 	import ActivationDialog from "$lib/ActivationDialog.svelte";
 	import AppIcon from "$lib/components/AppIcon.svelte";
 	import { onMount } from "svelte";
 	import { scale } from "svelte/transition";
 	import { getCurrentDemovioStatus } from "./status.remote.js";
+
 	let { data } = $props();
+
 	let additionalPages = $state(false);
-	const query = getCurrentDemovioStatus();
+
+	const demovioStatus = getCurrentDemovioStatus();
+
 	function getPlayerCountText(players_online: string[]) {
 		let players_text = "Сейчас никто не играет";
 		if (players_online.length === 1 && players_online[0] !== "0") {
@@ -33,35 +37,46 @@
 
 		return players_text;
 	}
+
 	onMount(() => {
 		additionalPages =
-			data.profile &&
-			data.profile.administrator &&
+			data.profile?.administrator === true &&
 			localStorage.getItem("backstage-additional-pages") === "true" &&
 			localStorage.getItem("backstage-state") === "true";
+	});
+
+	onMount(() => {
+		const interval = setInterval(() => {
+			getCurrentDemovioStatus().refresh();
+		}, 5000);
+		return () => clearInterval(interval);
 	});
 </script>
 
 <div class="container" transition:scale|global={{ duration: 500, start: 0.5 }}>
 	<div>
 		<h2>
-			{#await getCurrentDemovioStatus()}
+			{#if demovioStatus.current}
+				{demovioStatus.current ? "Сервер онлайн" : "Сервер оффлайн"}
+			{:else}
 				Загрузка...
-			{:then status}
-				{status ? "Сервер онлайн" : "Сервер оффлайн"}
-			{/await}
+			{/if}
 		</h2>
 		{#if !additionalPages}
 			<span class="players-number">
-				{#await getCurrentDemovioStatus() then status}
-					{status ? getPlayerCountText(status.players) : ""}
-				{/await}
+				{#if demovioStatus.current}
+					{demovioStatus.current ? getPlayerCountText(demovioStatus.current.players) : ""}
+				{/if}
 			</span>
 		{/if}
 	</div>
 
 	<nav class={{ smaller: additionalPages }}>
-		<AppIcon icon="Players" href="players" badge={query.current ? query.current.players.length : 0}>
+		<AppIcon
+			icon="Players"
+			href="players"
+			badge={demovioStatus.current ? demovioStatus.current.players.length : 0}
+		>
 			Игроки
 		</AppIcon>
 		<AppIcon icon="Passport" href="profile/passport">Паспорт</AppIcon>
@@ -126,4 +141,4 @@
 		font-weight: 500;
 		text-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
 	}
-</style> -->
+</style>

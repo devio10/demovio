@@ -6,17 +6,15 @@
 	import PlayersList from "./PlayersList.svelte";
 
 	let searchQuery = $state("");
-
 	let updating = $state(false);
 
 	onMount(() => {
 		const reloadInterval = setInterval(() => {
-			console.log(123);
 			updating = true;
 			getPlayers()
 				.refresh()
 				.finally(() => (updating = false));
-		}, 1000);
+		}, 10000);
 		return () => clearInterval(reloadInterval);
 	});
 </script>

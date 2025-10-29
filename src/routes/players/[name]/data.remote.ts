@@ -25,6 +25,7 @@ export const favoritePlayer = command(accountDataSchemas.name, async (name) => {
 	getPlayers().refresh();
 	return { featured: !featured };
 });
+
 export const subscribeToPlayer = command(accountDataSchemas.name, async (targetName) => {
 	const { locals } = getRequestEvent();
 	if (!locals.loggedIn || !locals.playerData) {
@@ -53,6 +54,9 @@ export const subscribeToPlayer = command(accountDataSchemas.name, async (targetN
 	}
 	return { subscribed: !subscribed };
 });
+
+export type GetPlayerResponse = Awaited<ReturnType<typeof getPlayer>>;
+
 export const getPlayer = query(accountDataSchemas.name, async (name) => {
 	const { locals } = getRequestEvent();
 	const player = (await db.query.playersTable.findFirst({

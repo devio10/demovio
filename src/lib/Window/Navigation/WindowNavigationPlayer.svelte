@@ -33,7 +33,7 @@
 >
 	<div class="inner-height">
 		<div class="skin">
-			<div class={[{ online: online }, "skin-object"]}>
+			<div class={[{ online }, "skin-object"]}>
 				<PlayerHead url={skin} --width="48px" />
 			</div>
 			{#if online === true}

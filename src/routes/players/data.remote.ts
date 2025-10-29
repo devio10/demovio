@@ -2,6 +2,7 @@ import { getRequestEvent, query } from "$app/server";
 import { db } from "$lib/server/db";
 import { playersTable } from "$lib/server/db/schema";
 import { and, desc, eq } from "drizzle-orm";
+
 export const getPlayers = query(async () => {
 	const { locals } = getRequestEvent();
 	const res = await db.query.playersTable.findMany({
@@ -9,7 +10,6 @@ export const getPlayers = query(async () => {
 		where: and(eq(playersTable.isActivated, true), eq(playersTable.isBanned, false)),
 		orderBy: desc(playersTable.lastOnline),
 	});
-	await new Promise((resolve) => setTimeout(resolve, 300));
 	return res.map((player) => {
 		let featured = false;
 		const authorizedPlayerData = locals.playerData;
@@ -20,3 +20,5 @@ export const getPlayers = query(async () => {
 		return { featured, ...player };
 	});
 });
+
+export type GetPlayersResponse = Awaited<ReturnType<typeof getPlayers>>[number][];
