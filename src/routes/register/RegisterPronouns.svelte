@@ -4,9 +4,10 @@
 	import TextInput from "$lib/components/TextInput.svelte";
 	import Button from "$lib/components/Button.svelte";
 	import OptionButtonCheckmark from "$lib/components/OptionButtonCheckmark.svelte";
-	import { scale, slide } from "svelte/transition";
+	import { slide } from "svelte/transition";
 	import { enhance } from "$app/forms";
 	import RegisterFormError from "./RegisterFormError.svelte";
+	import RegisterPage from "./RegisterPage.svelte";
 
 	let {
 		page = $bindable(),
@@ -19,7 +20,7 @@
 	const allPronouns = ["он/его", "она/её", "они/их"];
 </script>
 
-<div class="register-page" transition:scale={{ duration: 250, start: 0.95 }}>
+<RegisterPage>
 	<div style="padding-bottom: 16px;">
 		{#each allPronouns as prn}
 			<SettingsButton
@@ -94,4 +95,4 @@
 		{/if}
 		<Button type="submit" style="margin: auto 0 0 0">Продолжить</Button>
 	</form>
-</div>
+</RegisterPage>

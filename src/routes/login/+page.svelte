@@ -99,4 +99,12 @@
 			width: 40%;
 		}
 	}
+	@media screen and (max-width: 768px) {
+		section {
+			form {
+				width: 100%;
+				padding: 0 24px;
+			}
+		}
+	}
 </style>

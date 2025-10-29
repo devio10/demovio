@@ -59,6 +59,9 @@
 			.text {
 				gap: 8px;
 			}
+			h2 {
+				font-size: 26px;
+			}
 		}
 	}
 </style>

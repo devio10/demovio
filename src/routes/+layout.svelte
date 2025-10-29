@@ -89,7 +89,10 @@
 		}
 		:global {
 			.settings-buttons {
-				padding: 0 24px;
+				padding: 0 20px;
+			}
+			.settings-buttons-space {
+				margin: 16px 0;
 			}
 		}
 	}

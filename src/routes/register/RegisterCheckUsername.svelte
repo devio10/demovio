@@ -2,9 +2,9 @@
 	import { enhance } from "$app/forms";
 	import Button from "$lib/components/Button.svelte";
 	import TextInput from "$lib/components/TextInput.svelte";
-	import { scale } from "svelte/transition";
 	import { RegisterStage } from "./stages";
 	import RegisterFormError from "./RegisterFormError.svelte";
+	import RegisterPage from "./RegisterPage.svelte";
 
 	let {
 		formError = $bindable(),
@@ -14,21 +14,25 @@
 	} = $props();
 </script>
 
-<form
+<RegisterPage
 	method="POST"
-	class="register-page"
+	tag="form"
 	action="/register?/checkNameAvailability"
-	transition:scale={{ duration: 250, start: 0.95 }}
-	use:enhance={() => {
-		formError = undefined;
-		submitting = true;
-		return ({ update, result }) => {
-			submitting = false;
-			if (result.type === "success") {
-				page = RegisterStage.createPassword;
-			}
-			update({ reset: false });
-		};
+	useEnhance={(form) => {
+		if (!(form instanceof HTMLFormElement)) {
+			return;
+		}
+		return enhance(form, () => {
+			formError = undefined;
+			submitting = true;
+			return ({ update, result }) => {
+				submitting = false;
+				if (result.type === "success") {
+					page = RegisterStage.createPassword;
+				}
+				update({ reset: false });
+			};
+		});
 	}}
 >
 	<TextInput
@@ -61,4 +65,4 @@
 		Войти в существующий аккаунт
 	</Button>
 	<Button type="submit" disabled={submitting} style="margin: 16px 0 0 0">Продолжить</Button>
-</form>
+</RegisterPage>

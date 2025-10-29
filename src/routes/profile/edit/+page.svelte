@@ -232,6 +232,7 @@
 			transition-property: height;
 			transition-duration: 200ms;
 			transition-timing-function: ease-in-out;
+			color: rgba(230, 230, 230, 0.9);
 			.icon {
 				width: 28px;
 				height: 28px;

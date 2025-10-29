@@ -7,6 +7,7 @@
 	import { PUBLIC_PUSH_KEY } from "$env/static/public";
 	import { notificationSchema } from "./notification-schema";
 	import { browser } from "$app/environment";
+	import OptionButtonLabel from "$lib/components/OptionButtonLabel.svelte";
 
 	let subscribed = $state(false);
 	let subscription: PushSubscription | null = $state(null);
@@ -100,6 +101,6 @@
 			onChange={subscribed ? handleUnsubscribe : handleSubscribe}
 		/>
 	{:else}
-		<span>Не поддерживается</span>
+		<OptionButtonLabel>Ошибка</OptionButtonLabel>
 	{/if}
 </OptionButton>

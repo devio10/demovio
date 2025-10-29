@@ -1,13 +1,13 @@
 <script>
 	import Button from "$lib/components/Button.svelte";
 	import CitizenshipSelector from "$lib/components/CitizenshipSelector.svelte";
-	import { scale } from "svelte/transition";
 	import { RegisterStage } from "./stages";
+	import RegisterPage from "./RegisterPage.svelte";
 
 	let { page = $bindable(), citizenship = $bindable() } = $props();
 </script>
 
-<div class="register-page" transition:scale={{ duration: 250, start: 0.95 }}>
+<RegisterPage>
 	<div style="margin-top: 16px">
 		<CitizenshipSelector bind:citizenship />
 	</div>
@@ -26,4 +26,4 @@
 			Выбрать ({citizenship.name})
 		{/if}
 	</Button>
-</div>
+</RegisterPage>

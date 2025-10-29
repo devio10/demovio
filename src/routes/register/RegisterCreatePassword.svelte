@@ -2,9 +2,9 @@
 	import { enhance } from "$app/forms";
 	import Button from "$lib/components/Button.svelte";
 	import TextInput from "$lib/components/TextInput.svelte";
-	import { scale } from "svelte/transition";
 	import { RegisterStage } from "./stages";
 	import RegisterFormError from "./RegisterFormError.svelte";
+	import RegisterPage from "./RegisterPage.svelte";
 
 	let {
 		formError = $bindable(),
@@ -15,26 +15,30 @@
 	let repeatPassword = $state();
 </script>
 
-<form
+<RegisterPage
 	method="POST"
-	class="register-page"
+	tag="form"
 	action="/register?/checkPassword"
-	transition:scale={{ duration: 250, start: 0.95 }}
-	use:enhance={({ cancel }) => {
-		formError = undefined;
-		submitting = true;
-		if (password != repeatPassword) {
-			formError = { wrongCombo: "Пароли не совпадают." };
-			submitting = false;
-			return cancel();
+	useEnhance={(form) => {
+		if (!(form instanceof HTMLFormElement)) {
+			return;
 		}
-		return ({ update, result }) => {
-			submitting = false;
-			if (result.type === "success") {
-				page = RegisterStage.checkForLicense;
+		return enhance(form, ({ cancel }) => {
+			formError = undefined;
+			submitting = true;
+			if (password != repeatPassword) {
+				formError = { wrongCombo: "Пароли не совпадают." };
+				submitting = false;
+				return cancel();
 			}
-			update({ reset: false });
-		};
+			return ({ update, result }) => {
+				submitting = false;
+				if (result.type === "success") {
+					page = RegisterStage.checkForLicense;
+				}
+				update({ reset: false });
+			};
+		});
 	}}
 >
 	<TextInput
@@ -88,4 +92,4 @@
 		<RegisterFormError>{formError.wrongCombo}</RegisterFormError>
 	{/if}
 	<Button type="submit" disabled={submitting} style="margin: auto 0 0 0">Продолжить</Button>
-</form>
+</RegisterPage>

@@ -2,6 +2,7 @@
 	import { getContentScrollContext } from "$lib/scripts";
 	import type { Snippet } from "svelte";
 	import type { SvelteHTMLElements } from "svelte/elements";
+	import WindowBackButton from "./Navigation/WindowBackButton.svelte";
 
 	let {
 		children,
@@ -21,7 +22,7 @@
 </script>
 
 <div class="content" {...props}>
-	<div></div>
+	<div><WindowBackButton /></div>
 	<div class="text">
 		<h2 style="scale: {1 - titleHideProgress}; opacity: {1 - titleHideProgress}">{title}</h2>
 		{@render subtitle?.()}
@@ -52,6 +53,17 @@
 			gap: 12px;
 			&.text {
 				flex-direction: column;
+			}
+		}
+	}
+	@media screen and (max-width: 768px) {
+		.content {
+			padding: 16px 26px;
+			h2 {
+				font-size: 18px;
+				height: 100%;
+				display: flex;
+				align-items: center;
 			}
 		}
 	}

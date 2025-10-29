@@ -24,6 +24,7 @@
 			border-bottom-right-radius: var(--radius);
 			border-bottom: none;
 		}
+		text-align: left;
 		width: 100%;
 		display: flex;
 		justify-content: space-between;
@@ -54,6 +55,14 @@
 			&:disabled {
 				cursor: default;
 			}
+		}
+	}
+	@media screen and (max-width: 768px) {
+		.button {
+			font-size: 15px;
+			height: 56px;
+			--radius: 24px;
+			padding: 0 16px;
 		}
 	}
 </style>

@@ -15,4 +15,9 @@
 		margin: 0;
 		color: rgba(230, 230, 230, 0.75);
 	}
+	@media screen and (max-width: 768px) {
+		p {
+			padding: 6px 42px 0 42px;
+		}
+	}
 </style>

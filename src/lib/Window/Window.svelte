@@ -37,10 +37,10 @@
 	</div>
 {:else}
 	<div class="window" transition:fade|global={{ duration: 500 }}>
-		{#if !sectionOpened}
+		{#if !sectionOpened && navigation !== undefined}
 			{@render navigation?.()}
 		{/if}
-		{#if sectionOpened}
+		{#if sectionOpened || navigation === undefined}
 			<div
 				class={["content", { opened: sectionOpened }]}
 				transition:fly|global={{ duration: 500, x: 300 }}

@@ -1,14 +1,23 @@
 import { db } from "$lib/server/db";
-import { playersTable } from "$lib/server/db/schema";
+import { playersTable, sessionsTable } from "$lib/server/db/schema";
 import { eq } from "drizzle-orm";
 import type { Actions } from "./$types";
-import { fail } from "@sveltejs/kit";
+import { fail, redirect } from "@sveltejs/kit";
 
 import { z } from "zod";
 import { accountDataSchemas } from "$lib/server/data-schemas";
 import { constructPlayerUuid } from "$lib/server/generateUUID";
+import { nanoid } from "nanoid";
 
-const accountDataSchema = z.object(accountDataSchemas);
+const accountDataSchema = z.object({
+	name: accountDataSchemas.name,
+	password: accountDataSchemas.password,
+	contact: accountDataSchemas.contact,
+	pronouns: accountDataSchemas.pronouns,
+	citizenship: accountDataSchemas.citizenship,
+	skin: accountDataSchemas.skin,
+	haveLicense: accountDataSchemas.haveLicense,
+});
 
 async function checkNameInDB(name: string): Promise<boolean> {
 	const existingPlayer = await db.query.playersTable.findFirst({
@@ -52,7 +61,7 @@ export const actions: Actions = {
 			return fail(400, { error: { invalidPronouns: z.treeifyError(error).errors[0] } });
 		}
 	},
-	async finishRegistration({ request }) {
+	async finishRegistration({ request, cookies }) {
 		const formData = await request.formData();
 		const bodyParsing = await accountDataSchema.safeParseAsync({
 			name: formData.get("playername"),
@@ -64,6 +73,7 @@ export const actions: Actions = {
 			haveLicense: formData.get("haveLicense"),
 		});
 		if (!bodyParsing.success) {
+			console.log(bodyParsing.error);
 			return fail(400, { error: { nameToken: z.treeifyError(bodyParsing.error).errors[0] } });
 		}
 		const body = bodyParsing.data;
@@ -97,7 +107,18 @@ export const actions: Actions = {
 			isActivated: false,
 		});
 		if (dbRequest) {
-			return { success: true };
+			const sessionId = nanoid();
+			await db.insert(sessionsTable).values({
+				id: sessionId,
+				name: body.name,
+			});
+			cookies.set("session", sessionId, {
+				httpOnly: true,
+				path: "/",
+				secure: false,
+				maxAge: 60 * 60 * 24 * 90, //90 days
+			});
+			return redirect(303, "/profile");
 		} else {
 			return { error: "lol" };
 		}

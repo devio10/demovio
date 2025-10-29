@@ -12,9 +12,10 @@
 	import { demovioStates } from "$lib/components/demovio-states";
 	import RegisterPronouns from "./RegisterPronouns.svelte";
 	import WindowNavigation from "$lib/Window/Navigation/WindowNavigation.svelte";
-	import { scale } from "svelte/transition";
+	import RegisterPage from "./RegisterPage.svelte";
+	import { redirect } from "@sveltejs/kit";
 	let { form } = $props();
-	let page = $state(RegisterStage.chooseSkin);
+	let page = $state(RegisterStage.checkName);
 	let formError = $derived(form?.error);
 	let submitting = $state(false);
 	let haveLicense = $state(false);
@@ -64,20 +65,22 @@
 						{:else if page === RegisterStage.choosePronouns}
 							<RegisterPronouns bind:formError bind:page bind:pronouns bind:submitting />
 						{:else if page === RegisterStage.leaveContact}
-							<form
+							<RegisterPage
 								method="POST"
 								action="/register?/finishRegistration"
-								class="register-page"
-								transition:scale={{ duration: 250, start: 0.95 }}
-								use:enhance={() => {
-									formError = undefined;
-									submitting = true;
-									return ({ update, result }) => {
-										submitting = false;
-										if (result.type === "success") {
-										}
-										update();
-									};
+								tag="form"
+								useEnhance={(form) => {
+									if (!(form instanceof HTMLFormElement)) {
+										return;
+									}
+									return enhance(form, () => {
+										formError = undefined;
+										submitting = true;
+										return ({ update, result }) => {
+											submitting = false;
+											update();
+										};
+									});
 								}}
 							>
 								<input type="hidden" name="playername" value={playername} />
@@ -100,8 +103,11 @@
 										/>
 									</svg>
 								</TextInput>
+								{#if formError?.nameToken}
+									<p>{formError.nameToken}</p>
+								{/if}
 								<Button type="submit" style="margin: auto 0 0 0">Завершить</Button>
-							</form>
+							</RegisterPage>
 						{/if}
 					</div>
 				</div>
@@ -202,17 +208,6 @@
 			flex-direction: column;
 			flex: 1;
 			position: relative;
-			:global {
-				.register-page {
-					width: 100%;
-					height: 100%;
-					position: absolute;
-					display: flex;
-					flex-direction: column;
-					flex: 1;
-					padding-bottom: 32px;
-				}
-			}
 		}
 	}
 	.title {
@@ -233,5 +228,7 @@
 		font-size: 96px;
 		font-weight: bolder;
 		color: rgba(230, 230, 230, 0.5);
+	}
+	@media screen and (max-width: 768px) {
 	}
 </style>
