@@ -166,7 +166,7 @@
 	<Dialog
 		title="Не Удалось Обновить Данные"
 		description={updateDataError.wrongData}
-		color="rgb(253, 58, 58)"
+		color="var(--red)"
 		opened={updateDataError}
 	>
 		{#snippet icon()}

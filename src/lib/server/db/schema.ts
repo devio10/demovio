@@ -11,7 +11,7 @@ export const playersTable = pgTable("players", {
 	citizenship: jsonb()
 		.$type<{
 			code: DemovioStateCode;
-			date: number;
+			date: Date | number;
 			protocol: string;
 			address: string;
 		}>()
@@ -32,6 +32,26 @@ export const playersTable = pgTable("players", {
 	isBanned: boolean().default(false),
 	favorites: jsonb().$type<string[]>().notNull().default([]),
 	subscriptionFrequency: integer().default(60 * 60 * 12),
+});
+
+export const citizenshipApplicationsTable = pgTable("citizenship_applications", {
+	id: serial().primaryKey(),
+	playerName: text()
+		.notNull()
+		.references(() => playersTable.name),
+	accepted: boolean().notNull(),
+	acceptanceDate: timestamp({ mode: "date", withTimezone: true }),
+	desiredCitizenship: text().$type<DemovioStateCode>(),
+	creationDate: timestamp({ mode: "date", withTimezone: true }),
+	note: text(),
+	previousCitizenship: jsonb()
+		.$type<{
+			code: DemovioStateCode;
+			date: Date | number;
+			protocol: string;
+			address: string;
+		}>()
+		.notNull(),
 });
 
 export const sessionsTable = pgTable("sessions", {

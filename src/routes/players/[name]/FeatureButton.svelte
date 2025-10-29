@@ -42,7 +42,7 @@
 <Dialog
 	title="Не Удалось Добавить в Избранное"
 	description="Войдите в аккаунт, чтобы сохранять игроков в избранное."
-	color="rgb(252, 189, 28)"
+	color="var(--yellow)"
 	opened={dialogOpened}
 >
 	{#snippet icon()}

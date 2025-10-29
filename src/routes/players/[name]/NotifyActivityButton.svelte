@@ -42,7 +42,7 @@
 <Dialog
 	title="Не Удалось Включить Уведомления"
 	description="Войдите в аккаунт, чтобы получать уведомления об их активности."
-	color="rgb(252, 189, 28)"
+	color="var(--yellow)"
 	opened={dialogOpened}
 >
 	{#snippet icon()}

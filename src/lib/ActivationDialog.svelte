@@ -121,7 +121,9 @@
 		opened={error !== null}
 	>
 		{#snippet icon()}
-			<IconExclamationMark />
+			<div style="padding: 6px">
+				<IconExclamationMark />
+			</div>
 		{/snippet}
 		<DialogButton onclick={() => (error = null)} />
 	</Dialog>

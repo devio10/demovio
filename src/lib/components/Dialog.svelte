@@ -18,7 +18,7 @@
 		children?: Snippet;
 		color?: string;
 		icon?: Snippet;
-		opened: boolean;
+		opened: boolean | undefined;
 	} = $props();
 
 	const transparency = (
@@ -128,6 +128,10 @@
 			margin: 6px 0 0 0;
 		}
 		.icon {
+			--red: rgb(253, 58, 58);
+			--yellow: rgb(252, 189, 28);
+			--green: rgb(123, 242, 49);
+
 			width: 52px;
 			height: 52px;
 			border-radius: 100%;
@@ -135,7 +139,8 @@
 			color: rgb(223, 93, 255);
 			padding: 4px;
 			:global {
-				svg {
+				svg,
+				div {
 					width: 100%;
 					height: 100%;
 					color: white;

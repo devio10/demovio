@@ -96,7 +96,6 @@ export const actions: Actions = {
 			issueDate: new Date(),
 			isActivated: false,
 		});
-		console.log("missi");
 		if (dbRequest) {
 			return { success: true };
 		} else {

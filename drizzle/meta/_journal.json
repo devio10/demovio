@@ -57,6 +57,13 @@
       "when": 1761325887679,
       "tag": "0007_fixed_kid_colt",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1761737162920,
+      "tag": "0008_sleepy_impossible_man",
+      "breakpoints": true
     }
   ]
 }

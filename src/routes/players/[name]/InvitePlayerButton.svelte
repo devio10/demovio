@@ -18,7 +18,7 @@
 <Dialog
 	title="Не Удалось Отправить Приглашение"
 	description="Игрок запретил приглашать себя в игру."
-	color="rgb(253, 58, 58)"
+	color="var(--red)"
 	opened={dialogOpened}
 >
 	{#snippet icon()}

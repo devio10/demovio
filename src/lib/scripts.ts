@@ -27,3 +27,7 @@ export const [getHeaderHeightContext, setHeaderHeightContext] = createContext<{
 export const [getContentScrollContext, setContentScrollContext] = createContext<{
 	contentScroll: number;
 }>();
+
+export function randomNum(min: number, max: number) {
+	return Math.floor(Math.random() * (max - min + 1) + min);
+}
