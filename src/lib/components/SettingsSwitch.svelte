@@ -11,7 +11,7 @@
 </script>
 
 <div class="switch">
-	<Toggle {onChange} checked={value} />
+	<Toggle {onChange} checked={value} {...props} />
 </div>
 
 <style lang="scss">
