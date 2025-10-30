@@ -23,6 +23,9 @@ export const actions: Actions = {
 			return fail(400, { error: { wrongData: z.prettifyError(bodyParsing.error) } });
 		}
 		const body = bodyParsing.data;
+		if (formData.get("skin")) {
+			console.log("skin uploaded");
+		}
 		const dbRequest = await db
 			.update(playersTable)
 			.set({

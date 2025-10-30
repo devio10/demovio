@@ -7,6 +7,7 @@
 	import LoadingWheel from "$lib/components/LoadingWheel.svelte";
 	import OptionButton from "$lib/components/OptionButton.svelte";
 	import OptionButtonCheckmark from "$lib/components/OptionButtonCheckmark.svelte";
+	import SkinEditor from "$lib/components/SkinEditor.svelte";
 	import TextArea from "$lib/components/TextArea.svelte";
 	import TextInput from "$lib/components/TextInput.svelte";
 	import { getSkinURL } from "$lib/scripts";
@@ -17,6 +18,10 @@
 	import { slide, scale } from "svelte/transition";
 	let { data, form } = $props();
 	let unsavedChanges = $state(false);
+	$inspect(unsavedChanges);
+	let editingSkin = $state(false);
+	let skin: File | undefined = $state();
+	let skinError: string | undefined = $state(undefined);
 	let updateDataError = $derived(form?.error);
 	let submitting = $state(false);
 	const skinScale = new Spring(0.5, { damping: 0.2, stiffness: 0.1 });
@@ -52,6 +57,9 @@
 				{#if pronouns !== null}
 					<input type="hidden" name="pronouns" value={pronouns} />
 				{/if}
+				{#if skin !== undefined}
+					<input type="hidden" style="display: none" name="skin" value={skin} />
+				{/if}
 				<WindowHeaderAccentButton type="submit" name="Сохранить">
 					{#if submitting}
 						<LoadingWheel --wheel-size="28px" />
@@ -73,36 +81,80 @@
 					<canvas
 						{@attach (canvas) => {
 							if (data.profile) {
-								skinScale.set(0.5, { instant: true });
-								let skinViewer = new SkinViewer({
-									canvas: canvas,
-									width: 120,
-									height: 200,
-									skin: getSkinURL(data.profile?.skin, data.profile.name),
-								});
-								skinViewer.globalLight.intensity = 2.85;
-								skinViewer.controls.enableZoom = false;
-								skinViewer.animation = new IdleAnimation();
-								skinScale.target = 1;
+								let skinPreview: HTMLImageElement = document.createElement("img");
+								if (skin) {
+									skinPreview.src = URL.createObjectURL(skin);
+									unsavedChanges = true;
+								} else {
+									skinPreview.src = getSkinURL(data.profile?.skin, data.profile.name);
+									unsavedChanges = false;
+								}
+								skinPreview.crossOrigin = "Anonymous";
+								console.log(skinPreview.src);
+
+								let skinViewer: SkinViewer | undefined;
+								async function load() {
+									await new Promise<void>((resolve) => {
+										skinPreview.onload = () => resolve();
+									});
+									skinScale.set(0.5, { instant: true });
+									try {
+										skinViewer = new SkinViewer({
+											canvas: canvas,
+											width: 120,
+											height: 200,
+											skin: skinPreview,
+										});
+										skinViewer.globalLight.intensity = 2.85;
+										skinViewer.controls.enableZoom = false;
+										skinViewer.animation = new IdleAnimation();
+										skinScale.target = 1;
+									} catch (e) {
+										console.log(`Ошибка при загрузке скина: ${e}`);
+										skinError = "Неправильный формат изображения.";
+										skin = undefined;
+									}
+								}
+								load();
 								return () => {
-									skinViewer.dispose();
+									skinViewer?.dispose();
+									if (unsavedChanges) {
+										URL.revokeObjectURL(skinPreview.src);
+									}
 								};
 							}
 						}}
 					></canvas>
 				</div>
-				<button class="skin-edit-button">
+				<button
+					class="skin-edit-button"
+					onclick={() => {
+						editingSkin = !editingSkin;
+						unsavedChanges = false;
+						skin = undefined;
+					}}
+				>
 					<div class="icon">
 						<IconPencilCircle />
 					</div>
-					<span>Изменить</span>
+					<span>
+						{#if editingSkin}
+							Отменить
+						{:else}
+							Изменить
+						{/if}
+					</span>
 				</button>
 			</div>
-			<TextArea
-				bind:value={description}
-				placeholder="Описание..."
-				oninput={() => (unsavedChanges = true)}
-			/>
+			{#if !editingSkin}
+				<TextArea
+					bind:value={description}
+					placeholder="Описание..."
+					oninput={() => (unsavedChanges = true)}
+				/>
+			{:else}
+				<SkinEditor bind:skin bind:skinError />
+			{/if}
 		</div>
 		<div class="settings-buttons-space"></div>
 		<h3>Местоимения</h3>
@@ -183,6 +235,35 @@
 		</DialogButton>
 	</Dialog>
 {/if}
+{#if skinError}
+	<Dialog
+		title="Не Удалось Загрузить Скин"
+		description={skinError}
+		color="var(--red)"
+		opened={skinError}
+	>
+		{#snippet icon()}
+			<div style="padding: 6px">
+				<IconExclamationMark />
+			</div>
+		{/snippet}
+		<DialogButton
+			onclick={() => {
+				skinError = undefined;
+			}}
+		>
+			Закрыть
+		</DialogButton>
+	</Dialog>
+{/if}
+<svelte:window
+	ondrop={(event) => {
+		event.preventDefault();
+	}}
+	ondragover={(event) => {
+		event.preventDefault();
+	}}
+/>
 
 <style lang="scss">
 	.header {

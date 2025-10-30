@@ -1,16 +1,14 @@
 <script>
 	import Button from "$lib/components/Button.svelte";
 	import { RegisterStage } from "./stages";
-	import Dropzone from "svelte-file-dropzone";
 	import RegisterPage from "./RegisterPage.svelte";
+	import SkinEditor from "$lib/components/SkinEditor.svelte";
 
 	let { page = $bindable(), skin = $bindable() } = $props();
 </script>
 
 <RegisterPage>
-	<div>
-		<Dropzone accept="image/png" maxSize={12240} />
-	</div>
+	<SkinEditor />
 	<Button
 		style="margin: auto 0 0 0"
 		onclick={() => {
