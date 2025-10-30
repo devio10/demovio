@@ -8,6 +8,7 @@ import { z } from "zod";
 import { accountDataSchemas } from "$lib/server/data-schemas";
 import { constructPlayerUuid } from "$lib/server/generateUUID";
 import { nanoid } from "nanoid";
+import { setTimeout } from "timers/promises";
 
 const accountDataSchema = z.object({
 	name: accountDataSchemas.name,
@@ -28,6 +29,7 @@ async function checkNameInDB(name: string): Promise<boolean> {
 
 export const actions: Actions = {
 	async checkNameAvailability({ request }) {
+		// await setTimeout(1200);
 		const formData = await request.formData();
 		const bodyParsing = await accountDataSchemas.name.safeParseAsync(formData.get("playername"));
 		if (bodyParsing.success) {
@@ -42,6 +44,7 @@ export const actions: Actions = {
 		}
 	},
 	async checkPassword({ request }) {
+		await setTimeout(750);
 		const formData = await request.formData();
 		const bodyParsing = await accountDataSchemas.password.safeParseAsync(formData.get("password"));
 		if (bodyParsing.success) {
@@ -52,6 +55,7 @@ export const actions: Actions = {
 		}
 	},
 	async checkPronouns({ request }) {
+		await setTimeout(750);
 		const formData = await request.formData();
 		const bodyParsing = await accountDataSchemas.pronouns.safeParseAsync(formData.get("pronouns"));
 		if (bodyParsing.success) {
@@ -62,6 +66,7 @@ export const actions: Actions = {
 		}
 	},
 	async finishRegistration({ request, cookies }) {
+		await setTimeout(1000);
 		const formData = await request.formData();
 		const bodyParsing = await accountDataSchema.safeParseAsync({
 			name: formData.get("playername"),
@@ -74,11 +79,11 @@ export const actions: Actions = {
 		});
 		if (!bodyParsing.success) {
 			console.log(bodyParsing.error);
-			return fail(400, { error: { nameToken: z.treeifyError(bodyParsing.error).errors[0] } });
+			return fail(400, { error: { finalError: z.treeifyError(bodyParsing.error).errors[0] } });
 		}
 		const body = bodyParsing.data;
 		if (await checkNameInDB(body.name)) {
-			return fail(409, { error: "Имя уже занято." });
+			return fail(409, { error: { finalError: "Имя уже занято." } });
 		}
 		let uuid;
 		if (formData.get("haveLicense") === "true") {
@@ -120,7 +125,7 @@ export const actions: Actions = {
 			});
 			return redirect(303, "/profile");
 		} else {
-			return { error: "lol" };
+			return { error: { finalError: "Произошла неизвестная ошибка." } };
 		}
 	},
 };

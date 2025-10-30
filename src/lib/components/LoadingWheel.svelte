@@ -1,9 +1,10 @@
-<script>
+<script lang="ts">
 	import { fade } from "svelte/transition";
+	let { duration = 300 }: { duration?: number } = $props();
 </script>
 
 <div class="container">
-	<div class="spinner" in:fade={{ duration: 300 }} out:fade={{ duration: 100 }}>
+	<div class="spinner" in:fade={{ duration: duration }} out:fade={{ duration: duration / 3 }}>
 		{#each { length: 12 }}
 			<div></div>
 		{/each}

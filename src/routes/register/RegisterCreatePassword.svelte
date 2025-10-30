@@ -5,6 +5,7 @@
 	import { RegisterStage } from "./stages";
 	import RegisterFormError from "./RegisterFormError.svelte";
 	import RegisterPage from "./RegisterPage.svelte";
+	import LoadingWheel from "$lib/components/LoadingWheel.svelte";
 
 	let {
 		formError = $bindable(),
@@ -91,5 +92,11 @@
 	{#if formError?.wrongCombo}
 		<RegisterFormError>{formError.wrongCombo}</RegisterFormError>
 	{/if}
-	<Button type="submit" disabled={submitting} style="margin: auto 0 0 0">Продолжить</Button>
+	<Button type="submit" disabled={submitting} style="margin: auto 0 0 0">
+		{#if submitting}
+			<LoadingWheel duration={0} --wheel-size="36px" />
+		{:else}
+			Продолжить
+		{/if}
+	</Button>
 </RegisterPage>

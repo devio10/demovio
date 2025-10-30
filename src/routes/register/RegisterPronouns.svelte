@@ -8,6 +8,7 @@
 	import { enhance } from "$app/forms";
 	import RegisterFormError from "./RegisterFormError.svelte";
 	import RegisterPage from "./RegisterPage.svelte";
+	import LoadingWheel from "$lib/components/LoadingWheel.svelte";
 
 	let {
 		page = $bindable(),
@@ -93,6 +94,12 @@
 		{#if pronouns !== null}
 			<input type="hidden" value={pronouns} name="pronouns" />
 		{/if}
-		<Button type="submit" style="margin: auto 0 0 0">Продолжить</Button>
+		<Button type="submit" style="margin: auto 0 0 0">
+			{#if submitting}
+				<LoadingWheel duration={0} --wheel-size="36px" />
+			{:else}
+				Продолжить
+			{/if}
+		</Button>
 	</form>
 </RegisterPage>

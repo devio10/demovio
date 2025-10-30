@@ -14,6 +14,10 @@
 	import WindowNavigation from "$lib/Window/Navigation/WindowNavigation.svelte";
 	import RegisterPage from "./RegisterPage.svelte";
 	import RegisterStepDescription from "./RegisterStepDescription.svelte";
+	import Dialog from "$lib/components/Dialog.svelte";
+	import IconExclamationMark from "$lib/components/icons/IconExclamationMark.svelte";
+	import DialogButton from "$lib/components/DialogButton.svelte";
+	import LoadingWheel from "$lib/components/LoadingWheel.svelte";
 	let { form } = $props();
 	let page = $state(RegisterStage.checkName);
 	let formError = $derived(form?.error);
@@ -73,7 +77,7 @@
 											submitting = true;
 											return ({ update, result }) => {
 												submitting = false;
-												update();
+												update({ reset: false });
 											};
 										});
 									}}
@@ -101,7 +105,13 @@
 									<!-- {#if formError?.nameToken}
 									<p>{formError.nameToken}</p>
 								{/if} -->
-									<Button type="submit" style="margin: auto 0 0 0">Завершить</Button>
+									<Button type="submit" style="margin: auto 0 0 0">
+										{#if submitting}
+											<LoadingWheel duration={0} --wheel-size="36px" />
+										{:else}
+											Завершить
+										{/if}
+									</Button>
 								</RegisterPage>
 							{/if}
 						</div>
@@ -112,6 +122,26 @@
 	{/snippet}
 	<RegisterStepDescription {page} {citizenship} {haveLicense} />
 </Window>
+
+{#if formError !== undefined && "finalError" in formError}
+	<Dialog
+		opened={"finalError" in formError}
+		color="var(--red)"
+		title="Произошла Ошибка При Регистрации"
+		description="Код ошибки: {formError.finalError}"
+	>
+		{#snippet icon()}
+			<div style="padding: 6px"><IconExclamationMark /></div>
+		{/snippet}
+		<DialogButton
+			onclick={() => {
+				formError = undefined;
+			}}
+		>
+			Закрыть
+		</DialogButton>
+	</Dialog>
+{/if}
 
 <style lang="scss">
 	.scrollable {
