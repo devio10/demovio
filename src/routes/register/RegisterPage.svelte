@@ -28,8 +28,11 @@
 		position: absolute;
 		display: flex;
 		flex-direction: column;
-		flex: 1;
+		// flex: 1;
+		// min-height: 0;
 		padding-bottom: 32px;
+		flex-shrink: 0;
+		min-height: fit-content;
 	}
 	@media screen and (max-width: 768px) {
 		.register-page {

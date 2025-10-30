@@ -91,7 +91,6 @@
 				&.georgia {
 					--color: #f9731679;
 				}
-				svg,
 				img {
 					fill: var(--color);
 					/* stroke: var(--color); */
@@ -126,6 +125,29 @@
 				&.active {
 					background-color: rgba(255, 255, 255, 0.75);
 					transition-duration: 75ms;
+				}
+			}
+		}
+	}
+	@media screen and (max-width: 768px) {
+		.picker {
+			.list {
+				width: 212px;
+				.state {
+					padding: 20px;
+					img {
+						width: 55%;
+					}
+					span {
+						font-size: 14px;
+					}
+				}
+			}
+			.dots {
+				right: -11px;
+				gap: 5px;
+				div {
+					width: 5px;
 				}
 			}
 		}

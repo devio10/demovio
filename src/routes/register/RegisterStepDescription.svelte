@@ -1,0 +1,103 @@
+<script lang="ts">
+	import { RegisterStage } from "./stages";
+
+	let { page, citizenship, haveLicense } = $props();
+</script>
+
+<div class="step-description">
+	<span class="step">{page + 1}/{RegisterStage.leaveContact + 1}</span>
+	{#if page === RegisterStage.checkName}
+		<h3>Введите имя игрока</h3>
+		<p>Мы рассмотрим вашу заявку на вступление.</p>
+	{:else if page === RegisterStage.createPassword}
+		<h3>Придумайте пароль</h3>
+		<p>
+			Он будет использоваться на сайте. Для входа на сервер вам будет необходимо использовать другой
+			пароль.
+		</p>
+	{:else if page === RegisterStage.checkForLicense}
+		<h3>У вас лицензионный Minecraft?</h3>
+		<p>Игроки без лицензионной игры тоже могут заходить на сервер.</p>
+	{:else if page === RegisterStage.chooseSkin}
+		<h3>Выберите скин</h3>
+		<p>
+			Загрузите свой файл или введите имя игрока, скин которого хотите использовать. Доступные
+			варианты есть на сайте <a href="https://skinmc.netskinmc.net">skinmc.net.</a>
+			<br />
+			{#if haveLicense}
+				Вы можете пропустить этот этап, так как у вас есть лицензионная игра.
+			{/if}
+		</p>
+	{:else if page === RegisterStage.applyForCitizenship}
+		<h3>Выберите гражданство</h3>
+		<p class="state-description">
+			{#if citizenship.shortCode === "SH"}
+				В штате Шанхай возвышается несколько небоскрёбов, а между ними разъезжают трамваи. Вы можете
+				рассчитывать на стартовый бонус в виде бесплатного жилья и 25 фасок (единиц валюты), а также
+				комфортную инфраструктуру и благоприятные условия для бизнеса.
+			{:else if citizenship.shortCode === "CD"}
+				Штат Конкорд рекомендован для новых игроков, которые хотят начать с нуля или если им больше
+				по душе ванильное выживание. В нём нет никаких правил и его граждане сами решают, каким
+				должен быть штат.
+			{:else if citizenship.shortCode === "NY"}
+				Штат Нью Йорк подходит для тех, кто гонется за «Американской мечтой». Он основан на
+				одноимённом реальном городе и лидирует в инновациях в сфере строительства и заводов.
+			{:else if citizenship.shortCode === "OH"}
+				Ну про этот штат я не знаю что написать...
+			{:else if citizenship.shortCode === "CA"}
+				Солнечная Калифорния! В этом штате находятся два уютных города и Мировой Суд, решающий все
+				конфликты в игровом пространстве.
+			{:else if citizenship.shortCode === "GE"}
+				Территория самого большого штата, Джорджии, находится в лесу и имеет множество красивых
+				пейзажей. Граждане могут рассчитывать на полную свободу при строительстве и отсутствие
+				правил.
+			{:else}
+				Гражданство определённого штата может дать вам разные преимущества. В будущем его можно
+				поменять.
+			{/if}
+		</p>
+	{:else if page === RegisterStage.choosePronouns}
+		<h3>Укажите ваши местоимения</h3>
+		<p>Это необходимо для того, чтобы мы знали, как к вам обращаться.</p>
+	{:else if page === RegisterStage.leaveContact}
+		<h3>Укажите ваш Telegram</h3>
+		<p>
+			Рассмотрение заявки занимает до двух дней, после этого мы напишем вам и пригласим в общую
+			беседу Demovio.
+		</p>
+	{/if}
+</div>
+
+<style lang="scss">
+	.step-description {
+		padding: 48px 36px;
+		h3 {
+			font-size: 24px;
+		}
+		p {
+			line-height: 1.5;
+		}
+	}
+	.step {
+		font-size: 96px;
+		font-weight: bolder;
+		color: rgba(230, 230, 230, 0.5);
+	}
+	@media screen and (max-width: 768px) {
+		.step {
+			display: none;
+		}
+		.step-description {
+			padding: 16px 0 0 0;
+			h3 {
+				margin-bottom: 0;
+			}
+			&.fullHeight {
+				flex: 1;
+			}
+		}
+		.state-description {
+			flex: 1;
+		}
+	}
+</style>
