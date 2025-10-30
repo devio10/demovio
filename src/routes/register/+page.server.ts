@@ -14,9 +14,9 @@ const accountDataSchema = z.object({
 	name: accountDataSchemas.name,
 	password: accountDataSchemas.password,
 	contact: accountDataSchemas.contact,
-	pronouns: accountDataSchemas.pronouns,
+	pronouns: accountDataSchemas.pronouns.nullable(),
 	citizenship: accountDataSchemas.citizenship,
-	skin: accountDataSchemas.skin,
+	skin: accountDataSchemas.skin.nullable(),
 	haveLicense: accountDataSchemas.haveLicense,
 });
 

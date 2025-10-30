@@ -1,5 +1,9 @@
 <script lang="ts">
-	import { enhance } from "$app/forms";
+	import { Spring } from "svelte/motion";
+	import { slide, scale } from "svelte/transition";
+	import { invalidate } from "$app/navigation";
+	import { IdleAnimation, SkinViewer } from "skinview3d";
+	import { getSkinURL } from "$lib/scripts";
 	import Dialog from "$lib/components/Dialog.svelte";
 	import DialogButton from "$lib/components/DialogButton.svelte";
 	import IconExclamationMark from "$lib/components/icons/IconExclamationMark.svelte";
@@ -10,27 +14,31 @@
 	import SkinEditor from "$lib/components/SkinEditor.svelte";
 	import TextArea from "$lib/components/TextArea.svelte";
 	import TextInput from "$lib/components/TextInput.svelte";
-	import { getSkinURL } from "$lib/scripts";
 	import SettingsHeader from "$lib/Window/SettingsHeader.svelte";
 	import WindowHeaderAccentButton from "$lib/Window/WindowHeaderAccentButton.svelte";
-	import { IdleAnimation, SkinViewer } from "skinview3d";
-	import { Spring } from "svelte/motion";
-	import { slide, scale } from "svelte/transition";
-	let { data, form } = $props();
-	let unsavedChanges = $state(false);
-	$inspect(unsavedChanges);
-	let editingSkin = $state(false);
-	let skin: File | undefined = $state();
-	let skinError: string | undefined = $state(undefined);
-	let updateDataError = $derived(form?.error);
-	let submitting = $state(false);
-	const skinScale = new Spring(0.5, { damping: 0.2, stiffness: 0.1 });
+	import { saveData } from "./savedata.remote.js";
 
 	const allPronouns = ["он/его", "она/её", "они/их"];
+
+	let { data } = $props();
+
+	let unsavedChanges = $state(false);
+	let editingSkin = $state(false);
+	let skin: File | undefined = $state();
+	let skinError: string | undefined = $state();
+	let updateDataError: unknown | undefined = $state();
+
+	const skinScale = new Spring(0.5, { damping: 0.2, stiffness: 0.1 });
+
 	let pronouns: string | null = $derived(data.profile ? data.profile.pronouns : allPronouns[0]);
 	let customPronouns = $derived(pronouns !== null && !allPronouns.includes(pronouns));
-
 	let description = $derived(data.profile?.description);
+
+	$effect(() => {
+		if (skin) {
+			saveData.fields.skin.set(skin);
+		}
+	});
 </script>
 
 <div class="header">
@@ -38,30 +46,28 @@
 	{#if unsavedChanges}
 		<div class="button" transition:scale={{ duration: 300, start: 0.75 }}>
 			<form
-				method="POST"
-				action="/profile/edit?/changeData"
-				use:enhance={() => {
+				{...saveData.enhance(async ({ submit }) => {
 					updateDataError = undefined;
-					submitting = true;
-					return ({ update, result }) => {
-						submitting = false;
-						if (result.type === "success") {
-							unsavedChanges = false;
-						} else {
-							update();
-						}
-					};
-				}}
+					try {
+						await submit();
+						await invalidate("app:user:profile");
+						unsavedChanges = false;
+					} catch (e) {
+						console.error(e);
+						updateDataError = e;
+					}
+				})}
+				enctype="multipart/form-data"
 			>
-				<input type="hidden" name="description" value={description} />
-				{#if pronouns !== null}
-					<input type="hidden" name="pronouns" value={pronouns} />
-				{/if}
-				{#if skin !== undefined}
-					<input type="hidden" style="display: none" name="skin" value={skin} />
-				{/if}
-				<WindowHeaderAccentButton type="submit" name="Сохранить">
-					{#if submitting}
+				<div style="display: none;">
+					<input {...saveData.fields.description.as("text")} value={description} />
+					<input {...saveData.fields.pronouns.as("text")} value={pronouns} />
+					{#if skin}
+						<input {...saveData.fields.skin.as("file")} />
+					{/if}
+				</div>
+				<WindowHeaderAccentButton name="Сохранить" type="submit" disabled={saveData.pending > 0}>
+					{#if saveData.pending}
 						<LoadingWheel --wheel-size="28px" />
 					{:else}
 						Готово
@@ -214,12 +220,12 @@
 	</div>
 {/if}
 
-{#if updateDataError}
+{#if updateDataError instanceof Error}
 	<Dialog
 		title="Не Удалось Обновить Данные"
-		description={updateDataError.wrongData}
+		description={updateDataError.message}
 		color="var(--red)"
-		opened={updateDataError}
+		opened={true}
 	>
 		{#snippet icon()}
 			<div style="padding: 6px">
@@ -240,7 +246,7 @@
 		title="Не Удалось Загрузить Скин"
 		description={skinError}
 		color="var(--red)"
-		opened={skinError}
+		opened={true}
 	>
 		{#snippet icon()}
 			<div style="padding: 6px">

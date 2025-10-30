@@ -1,6 +1,7 @@
 import type { LayoutServerLoad } from "./$types";
 
-export const load: LayoutServerLoad = async ({ locals }) => {
+export const load: LayoutServerLoad = async ({ locals, depends }) => {
+	depends("app:user:profile");
 	const player = locals.playerData;
 	return {
 		profile: player

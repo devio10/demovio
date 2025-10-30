@@ -32,18 +32,23 @@
 		border: 0.5px solid rgba(230, 230, 230, 0.3);
 		border-left: none;
 		border-bottom: none;
-		cursor: pointer;
 		transition-property: scale, background-color;
 		transition-duration: 250ms;
 		transition-timing-function: ease-out;
 		margin: 16px 24px;
 		box-shadow: -2px 2px 5px 1px rgba(0, 0, 0, 0.2);
-		&:hover {
+		&:disabled {
+			background-color: rgba(255, 255, 255, 0.4);
+		}
+		&:not(:disabled) {
+			cursor: pointer;
+		}
+		&:hover:not(:disabled) {
 			background-color: rgba(255, 255, 255, 0.4);
 			scale: 1.05;
 			transition-duration: 100ms;
 		}
-		&:active {
+		&:active:not(:disabled) {
 			background-color: rgba(230, 230, 230, 0.4);
 			scale: 0.97;
 		}

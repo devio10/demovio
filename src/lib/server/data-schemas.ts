@@ -13,9 +13,9 @@ export const accountDataSchemas = {
 		.min(5)
 		.max(32)
 		.regex(/^(?!_)(?!.*__)[a-zA-Z0-9_]+(?<!_)$/),
-	pronouns: z.string().min(2).max(16).refine(noNullCharacter, "Запрещённый символ").nullable(),
+	pronouns: z.string().min(2).max(16).refine(noNullCharacter, "Запрещённый символ"),
 	citizenship: z.enum(demovioStateCodes),
-	skin: z.string().refine(noNullCharacter, "Запрещённый символ").nullable(),
+	skin: z.string().refine(noNullCharacter, "Запрещённый символ"),
 	haveLicense: z.coerce.boolean(),
 	description: z
 		.string()
