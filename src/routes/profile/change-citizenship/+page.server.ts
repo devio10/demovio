@@ -5,6 +5,7 @@ import { db } from "$lib/server/db";
 import { citizenshipApplicationsTable, playersTable } from "$lib/server/db/schema";
 import { fail, type Actions } from "@sveltejs/kit";
 import { differenceInDays } from "date-fns";
+import { setTimeout } from "timers/promises";
 import z from "zod";
 
 const citizenshipApplicationSchema = z.object({
@@ -12,8 +13,23 @@ const citizenshipApplicationSchema = z.object({
 });
 export const actions: Actions = {
 	applyForCitizenship: async ({ locals, request }) => {
+		await setTimeout(1000);
 		if (!locals.playerData) {
 			return fail(401);
+		}
+		if (!locals.playerData.isActivated) {
+			return fail(403, {
+				error: {
+					tooEarly: `Вы не можете менять гражданство, пока ваш аккаунт не активирован.`,
+				},
+			});
+		}
+		if (locals.playerData.isBanned) {
+			return fail(403, {
+				error: {
+					tooEarly: `Вы были забанены на сервере.`,
+				},
+			});
 		}
 		const daysDifference = differenceInDays(new Date(), locals.playerData.citizenship.date);
 		if (daysDifference < 30) {

@@ -17,6 +17,7 @@
 	import SettingsHeader from "$lib/Window/SettingsHeader.svelte";
 	import WindowHeaderAccentButton from "$lib/Window/WindowHeaderAccentButton.svelte";
 	import { saveData } from "./savedata.remote.js";
+	import Button from "$lib/components/Button.svelte";
 
 	const allPronouns = ["он/его", "она/её", "они/их"];
 
@@ -68,7 +69,7 @@
 				</div>
 				<WindowHeaderAccentButton name="Сохранить" type="submit" disabled={saveData.pending > 0}>
 					{#if saveData.pending}
-						<LoadingWheel --wheel-size="28px" />
+						<LoadingWheel --wheel-size="32px" duration={0} />
 					{:else}
 						Готово
 					{/if}
@@ -162,6 +163,10 @@
 				<SkinEditor bind:skin bind:skinError />
 			{/if}
 		</div>
+		{#if editingSkin}
+			<div class="settings-buttons" style="margin-top: 16px" transition:slide={{ duration: 300 }}>
+				<Button>Использовать лицензионный скин</Button>
+			</div>{/if}
 		<div class="settings-buttons-space"></div>
 		<h3>Местоимения</h3>
 		<div class="settings-buttons pronouns-grid">

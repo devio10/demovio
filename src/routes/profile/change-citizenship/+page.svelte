@@ -7,6 +7,7 @@
 	import IconCitizenshipAccepted from "$lib/components/icons/IconCitizenshipAccepted.svelte";
 	import IconClock from "$lib/components/icons/IconClock.svelte";
 	import IconExclamationMark from "$lib/components/icons/IconExclamationMark.svelte";
+	import LoadingWheel from "$lib/components/LoadingWheel.svelte";
 	import OptionDescription from "$lib/components/OptionDescription.svelte";
 	import SettingsHeader from "$lib/Window/SettingsHeader.svelte";
 	let { form } = $props();
@@ -55,8 +56,10 @@
 	>
 		{#if citizenship.code === undefined}
 			Выберите штат
-		{:else}
+		{:else if !submitting}
 			Подать заявку ({citizenship.name})
+		{:else}
+			<LoadingWheel duration={0} --wheel-size="36px" />
 		{/if}
 	</Button>
 </form>

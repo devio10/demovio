@@ -15,14 +15,17 @@
 		background-color: rgba(30, 30, 30, 0.4);
 		border: none;
 		border-radius: 0;
+		transform-origin: center;
 		&:first-child {
 			border-top-left-radius: var(--radius);
 			border-top-right-radius: var(--radius);
+			transform-origin: bottom;
 		}
 		&:last-child {
 			border-bottom-left-radius: var(--radius);
 			border-bottom-right-radius: var(--radius);
 			border-bottom: none;
+			transform-origin: top;
 		}
 		text-align: left;
 		width: 100%;
