@@ -4,6 +4,10 @@
 	let { data } = $props();
 </script>
 
+<svelte:head>
+	<title>Профиль Demovio – Паспорт</title>
+</svelte:head>
+
 <SettingsHeader title="Паспорт" style="position: absolute;"></SettingsHeader>
 <div>
 	{#if data.profile && data.profile.isActivated}

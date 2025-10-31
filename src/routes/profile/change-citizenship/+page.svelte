@@ -18,6 +18,9 @@
 	let submitting = $state(false);
 </script>
 
+<svelte:head>
+	<title>Профиль Demovio – Смена гражданства</title>
+</svelte:head>
 <SettingsHeader title="Смена гражданства"></SettingsHeader>
 <div class="settings-buttons">
 	<p style="line-height: 1.4; margin: 12px 0 0 0">

@@ -15,6 +15,10 @@
 	});
 </script>
 
+<svelte:head>
+	<title>Профиль Demovio – Backstage</title>
+</svelte:head>
+
 <SettingsHeader title="Backstage"></SettingsHeader>
 {#if data.profile && data.profile.administrator}
 	<div class="settings-content">

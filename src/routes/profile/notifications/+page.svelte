@@ -11,6 +11,10 @@
 	import OptionDescription from "$lib/components/OptionDescription.svelte";
 </script>
 
+<svelte:head>
+	<title>Профиль Demovio – Уведомления</title>
+</svelte:head>
+
 <SettingsHeader title="Уведомления"></SettingsHeader>
 <div class="settings-content">
 	<div class="settings-buttons">
@@ -34,11 +38,11 @@
 	<OptionDescription>
 		{#if playerActivitySubscription && demovioUpdatesSubscription}
 			Вы будете получать уведомления об активности выбранных игроков и обновлениях сервера Demovio.
-			{:else if playerActivitySubscription}
+		{:else if playerActivitySubscription}
 			Вы будете получать уведомления только об активности выбранных игроков.
-			{:else if demovioUpdatesSubscription}
+		{:else if demovioUpdatesSubscription}
 			Вы будете получать уведомления только об обновлениях сервера Demovio.
-			{:else}
+		{:else}
 			Вы выключили все уведомления от Demovio.
 		{/if}
 	</OptionDescription>

@@ -53,10 +53,16 @@
 	});
 </script>
 
+<svelte:head>
+	<title>
+		{demovioStatus.current ? "Сервер онлайн – Demovio" : "Статус сервера – Demovio"}
+	</title>
+</svelte:head>
+
 <div class="container" transition:scale|global={{ duration: 500, start: 0.5 }}>
 	<div>
 		<h2>
-			{#if demovioStatus.current}
+			{#if demovioStatus.current !== undefined}
 				{demovioStatus.current ? "Сервер онлайн" : "Сервер оффлайн"}
 			{:else}
 				Загрузка...

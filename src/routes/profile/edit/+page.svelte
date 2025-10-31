@@ -42,6 +42,10 @@
 	});
 </script>
 
+<svelte:head>
+	<title>Профиль Demovio – Изменение данных</title>
+</svelte:head>
+
 <div class="header">
 	<SettingsHeader title="Изменение данных"></SettingsHeader>
 	{#if unsavedChanges}
