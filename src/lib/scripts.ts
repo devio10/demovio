@@ -3,7 +3,7 @@ import type { EasingFunction, TransitionConfig } from "svelte/transition";
 
 export function getSkinURL(skin: string | undefined | null, name: string) {
 	skin = skin === null || skin === "" || !skin ? name : skin;
-	return skin.includes("skins/") ? skin : `https://mc-heads.net/skin/${skin}.png`;
+	return skin.includes("skins/") ? `${skin}` : `https://mc-heads.net/skin/${skin}.png`;
 }
 export const hide = (
 	node: HTMLElement,

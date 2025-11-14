@@ -5,6 +5,7 @@ import { db } from "$lib/server/db";
 import { citizenshipApplicationsTable, playersTable } from "$lib/server/db/schema";
 import { fail, type Actions } from "@sveltejs/kit";
 import { differenceInDays } from "date-fns";
+import { eq } from "drizzle-orm";
 import { setTimeout } from "timers/promises";
 import z from "zod";
 
@@ -61,14 +62,17 @@ export const actions: Actions = {
 			acceptanceDate: currentState.autoAcceptSwitch === true ? new Date() : null,
 		});
 		if (currentState.autoAcceptSwitch === true) {
-			await db.update(playersTable).set({
-				citizenship: {
-					code: body.stateCode,
-					date: new Date(),
-					protocol: `№0${demovioStates.indexOf(currentState)}:${randomNum(1000, 9999)}`,
-					address: "-",
-				},
-			});
+			await db
+				.update(playersTable)
+				.set({
+					citizenship: {
+						code: body.stateCode,
+						date: new Date(),
+						protocol: `№0${demovioStates.indexOf(currentState)}:${randomNum(1000, 9999)}`,
+						address: "-",
+					},
+				})
+				.where(eq(playersTable.name, locals.playerData.name));
 			console.log("acceptik");
 			return { accepted: true };
 		}

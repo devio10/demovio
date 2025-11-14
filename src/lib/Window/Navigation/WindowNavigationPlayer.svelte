@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from "$app/state";
+	import type { DemovioStateCode } from "$lib/components/demovio-states";
 	import PlayerHead from "$lib/components/PlayerHead.svelte";
 	import { hide } from "$lib/scripts";
 	import type { Snippet } from "svelte";
@@ -13,6 +14,7 @@
 		i,
 		online,
 		featured,
+		backstageCitizenship,
 	}: {
 		name: string;
 		skin: string;
@@ -21,6 +23,14 @@
 		children?: Snippet;
 		online?: boolean;
 		featured?: boolean;
+		backstageCitizenship:
+			| undefined
+			| {
+					code: DemovioStateCode;
+					date: Date | number;
+					protocol: string;
+					address: string;
+			  };
 	} = $props();
 </script>
 
@@ -41,7 +51,15 @@
 			{/if}
 		</div>
 		<div>
-			<span class="name">{name}</span>
+			<div style="display: flex;">
+				<span class="name">{name}</span>
+				{#if backstageCitizenship}
+					<span class={["backstage-state", backstageCitizenship.code]}>
+						{backstageCitizenship.code}
+					</span>
+				{/if}
+			</div>
+
 			{#if pronouns && pronouns !== ""}
 				<span class="pronouns">{pronouns}</span>
 			{/if}
@@ -120,6 +138,30 @@
 			color: white;
 			display: block;
 			text-align: left;
+		}
+		.backstage-state {
+			--color: rgba(230, 230, 230, 0.5);
+			margin: 0 8px;
+			font-weight: bolder;
+			color: var(--color);
+			&.OH {
+				--color: #64a30d;
+			}
+			&.SH {
+				--color: #e11d48;
+			}
+			&.NY {
+				--color: #74a6fd;
+			}
+			&.CA {
+				--color: #facc15;
+			}
+			&.GE {
+				--color: #f97316;
+			}
+			&.CD {
+				--color: rgba(154, 22, 249, 1);
+			}
 		}
 		.pronouns {
 			font-size: 16px;

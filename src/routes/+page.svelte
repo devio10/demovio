@@ -4,6 +4,7 @@
 	import { onMount } from "svelte";
 	import { scale } from "svelte/transition";
 	import { getCurrentDemovioStatus } from "./status.remote.js";
+	import { localPreferences } from "$lib/local-settings.svelte.js";
 
 	let { data } = $props();
 
@@ -41,8 +42,8 @@
 	onMount(() => {
 		additionalPages =
 			data.profile?.administrator === true &&
-			localStorage.getItem("backstage-additional-pages") === "true" &&
-			localStorage.getItem("backstage-state") === "true";
+			localPreferences.backstageStatus &&
+			localPreferences.backstagePages;
 	});
 
 	onMount(() => {

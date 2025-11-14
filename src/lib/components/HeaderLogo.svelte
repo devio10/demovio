@@ -1,10 +1,8 @@
 <script>
+	import { localPreferences } from "$lib/local-settings.svelte";
 	import { onMount } from "svelte";
 
-	let backstageStatus = $state(false);
-	onMount(() => {
-		backstageStatus = localStorage.getItem("backstage-status") === "true";
-	});
+	let backstageStatus = $derived(localPreferences.backstageStatus);
 </script>
 
 <div>

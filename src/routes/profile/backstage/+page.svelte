@@ -2,6 +2,7 @@
 	import OptionButton from "$lib/components/OptionButton.svelte";
 	import OptionDescription from "$lib/components/OptionDescription.svelte";
 	import SettingsSwitch from "$lib/components/SettingsSwitch.svelte";
+	import { localPreferences } from "$lib/local-settings.svelte.js";
 	import SettingsHeader from "$lib/Window/SettingsHeader.svelte";
 	import { onMount } from "svelte";
 	let { data } = $props();
@@ -9,9 +10,9 @@
 	let backstageStatus = $state(false);
 	let listResidence = $state(false);
 	onMount(() => {
-		additionalPages = localStorage.getItem("backstage-additional-pages") === "true";
-		backstageStatus = localStorage.getItem("backstage-status") === "true";
-		listResidence = localStorage.getItem("backstage-list-residence") === "true";
+		additionalPages = localPreferences.backstagePages;
+		backstageStatus = localPreferences.backstageStatus;
+		listResidence = localPreferences.backstageCitizenship;
 	});
 </script>
 
@@ -30,10 +31,11 @@
 						const value = localStorage.getItem("backstage-status");
 						if (value === "true") {
 							localStorage.setItem("backstage-status", "false");
+							localPreferences.backstageStatus = false;
 						} else {
 							localStorage.setItem("backstage-status", "true");
+							localPreferences.backstageStatus = true;
 						}
-						window.location.reload();
 					}}
 				/>
 			</OptionButton>
@@ -51,8 +53,10 @@
 						const value = localStorage.getItem("backstage-list-residence");
 						if (value === "true") {
 							localStorage.setItem("backstage-list-residence", "false");
+							localPreferences.backstageCitizenship = false;
 						} else {
 							localStorage.setItem("backstage-list-residence", "true");
+							localPreferences.backstageCitizenship = true;
 						}
 					}}
 				/>
@@ -67,8 +71,10 @@
 						const value = localStorage.getItem("backstage-additional-pages");
 						if (value === "true") {
 							localStorage.setItem("backstage-additional-pages", "false");
+							localPreferences.backstagePages = false;
 						} else {
 							localStorage.setItem("backstage-additional-pages", "true");
+							localPreferences.backstagePages = true;
 						}
 					}}
 				/>

@@ -5,6 +5,7 @@
 	import { getCurrentDemovioStatus } from "../status.remote";
 	import LoadingWheel from "$lib/components/LoadingWheel.svelte";
 	import { onMount } from "svelte";
+	import { localPreferences } from "$lib/local-settings.svelte";
 
 	let {
 		searchQuery,
@@ -29,6 +30,7 @@
 		<Window.Error error={players.error} />
 	</Window.Placeholder>
 {:else if players.current}
+	{console.log(players.current)}
 	{#if players.current.length}
 		<Window.NavigationList>
 			{@const list = players.current
@@ -49,13 +51,17 @@
 
 					return finalScoreB - finalScoreA;
 				})}
-			{#each list as { name, skin, pronouns, featured }, i (name)}
+			{#each list as { name, skin, pronouns, featured, citizenship }, i (name)}
 				<Window.NavigationPlayer
 					online={demovioStatus.current && demovioStatus.current.players.includes(name)}
 					{name}
 					pronouns={pronouns ?? undefined}
 					{i}
 					{featured}
+					backstageCitizenship={localPreferences.backstageStatus &&
+					localPreferences.backstageCitizenship
+						? citizenship
+						: undefined}
 					skin={getSkinURL(skin, name)}
 				/>
 			{/each}
