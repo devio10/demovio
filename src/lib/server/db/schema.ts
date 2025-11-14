@@ -22,6 +22,10 @@ export const playersTable = pgTable("players", {
 	}),
 	pronouns: text(),
 	contact: text().notNull(),
+	getTelegramNotifications: boolean().default(false),
+	notificationsInvites: boolean().default(false),
+	notificationsServerUpdates: boolean().default(false),
+	notificationsPlayersActivity: boolean().default(false),
 	issueDate: timestamp({
 		mode: "date",
 		withTimezone: true,

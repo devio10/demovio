@@ -1,4 +1,5 @@
 <script lang="ts">
+	import type { ComponentProps } from "svelte";
 	import Toggle from "svelte-switcher";
 	let {
 		value = $bindable(),
@@ -7,7 +8,7 @@
 	}: {
 		value?: boolean;
 		onChange?: (event: MouseEvent | TouchEvent) => void;
-	} = $props();
+	} & Omit<ComponentProps<Toggle>, "value"> = $props();
 </script>
 
 <div class="switch">

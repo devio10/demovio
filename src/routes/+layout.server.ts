@@ -19,6 +19,9 @@ export const load: LayoutServerLoad = async ({ locals, depends }) => {
 					isActivated: player.isActivated,
 					isBanned: player.isBanned,
 					administrator: player.administrator,
+					notificationsServerUpdates: player.notificationsServerUpdates,
+					notificationsInvites: player.notificationsInvites,
+					notificationsPlayersActivity: player.notificationsPlayersActivity,
 				}
 			: null,
 	};

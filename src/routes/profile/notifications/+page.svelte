@@ -2,13 +2,15 @@
 	import OptionButton from "$lib/components/OptionButton.svelte";
 	import SettingsSwitch from "$lib/components/SettingsSwitch.svelte";
 	import SettingsHeader from "$lib/Window/SettingsHeader.svelte";
-	import { isActionFailure } from "@sveltejs/kit";
-	import { pushNotificationsOff, pushNotificationsOn } from "./data.remote";
 	let subscribedToPush = $state(false);
-	let playerActivitySubscription = $state(false);
-	let demovioUpdatesSubscription = $state(false);
+	let { data } = $props();
+	let playerActivitySubscription = $derived(data.profile?.notificationsPlayersActivity);
+	let demovioUpdatesSubscription = $derived(data.profile?.notificationsServerUpdates);
 	import PushNotificationsSwitch from "./PushNotificationsSwitch.svelte";
 	import OptionDescription from "$lib/components/OptionDescription.svelte";
+	import PlayerInvitesSwitch from "./PlayerInvitesSwitch.svelte";
+	import ServerUpdatesSwitch from "./ServerUpdatesSwitch.svelte";
+	import PlayersActivitySwitch from "./PlayersActivitySwitch.svelte";
 </script>
 
 <svelte:head>
@@ -31,9 +33,9 @@
 	</OptionDescription>
 	<div class="settings-buttons-space"></div>
 	<div class="settings-buttons">
-		<OptionButton tag="div">Приглашения от других игроков <SettingsSwitch disabled /></OptionButton>
-		<OptionButton tag="div">Обновления Demovio <SettingsSwitch /></OptionButton>
-		<OptionButton tag="div">Активность выбранных игроков <SettingsSwitch /></OptionButton>
+		<PlayerInvitesSwitch />
+		<ServerUpdatesSwitch />
+		<PlayersActivitySwitch />
 	</div>
 	<OptionDescription>
 		{#if playerActivitySubscription && demovioUpdatesSubscription}

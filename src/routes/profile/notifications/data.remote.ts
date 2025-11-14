@@ -1,6 +1,6 @@
 import { command, getRequestEvent } from "$app/server";
 import { db } from "$lib/server/db";
-import { pushSubscriptionsTable } from "$lib/server/db/schema";
+import { playersTable, pushSubscriptionsTable } from "$lib/server/db/schema";
 import { fail } from "@sveltejs/kit";
 import { and, eq } from "drizzle-orm";
 import { notificationSchema } from "./notification-schema";
@@ -33,4 +33,34 @@ export const pushNotificationsOff = command(z.url().refine(noNullCharacter), asy
 				eq(pushSubscriptionsTable.endpoint, endpoint),
 			),
 		);
+});
+
+export const notificationsServerUpdates = command(z.boolean(), async (value) => {
+	const { locals } = getRequestEvent();
+	if (!locals.loggedIn || !locals.playerData) {
+		return fail(401);
+	}
+	await db
+		.update(playersTable)
+		.set({
+			notificationsServerUpdates: value,
+		})
+		.where(eq(playersTable.name, locals.playerData.name));
+
+	return { success: true };
+});
+
+export const notificationsPlayersActivity = command(z.boolean(), async (value) => {
+	const { locals } = getRequestEvent();
+	if (!locals.loggedIn || !locals.playerData) {
+		return fail(401);
+	}
+	await db
+		.update(playersTable)
+		.set({
+			notificationsPlayersActivity: value,
+		})
+		.where(eq(playersTable.name, locals.playerData.name));
+
+	return { success: true };
 });

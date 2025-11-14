@@ -15,6 +15,9 @@ export type Profile = Pick<
 	| "isActivated"
 	| "isBanned"
 	| "administrator"
+	| "notificationsPlayersActivity"
+	| "notificationsInvites"
+	| "notificationsServerUpdates"
 >;
 
 declare global {
