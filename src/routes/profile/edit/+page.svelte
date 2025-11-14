@@ -18,6 +18,7 @@
 	import WindowHeaderAccentButton from "$lib/Window/WindowHeaderAccentButton.svelte";
 	import { saveData } from "./savedata.remote.js";
 	import Button from "$lib/components/Button.svelte";
+	import IconXCircle from "$lib/components/icons/IconXCircle.svelte";
 
 	const allPronouns = ["он/его", "она/её", "они/их"];
 
@@ -146,7 +147,11 @@
 					}}
 				>
 					<div class="icon">
-						<IconPencilCircle />
+						{#if editingSkin}
+							<IconXCircle />
+						{:else}
+							<IconPencilCircle />
+						{/if}
 					</div>
 					<span>
 						{#if editingSkin}
