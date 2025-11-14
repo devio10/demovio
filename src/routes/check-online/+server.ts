@@ -8,7 +8,7 @@ import {
 	playersTable,
 	pushSubscriptionsTable,
 } from "$lib/server/db/schema";
-import { and, eq, inArray } from "drizzle-orm";
+import { and, eq, inArray, notInArray } from "drizzle-orm";
 import webPush from "web-push";
 import { PUBLIC_PUSH_KEY } from "$env/static/public";
 
@@ -23,10 +23,6 @@ export const POST: RequestHandler = async ({ request }) => {
 	}
 	const onlinePlayers = status.players;
 	// const onlinePlayers = ["anastasiz2009"];
-	await db
-		.update(playersTable)
-		.set({ lastOnline: new Date() })
-		.where(inArray(playersTable.name, onlinePlayers));
 
 	webPush.setVapidDetails("https://demovio.love", PUBLIC_PUSH_KEY, PRIVATE_PUSH_KEY);
 	for (const onlinePlayerName of onlinePlayers) {
@@ -42,9 +38,10 @@ export const POST: RequestHandler = async ({ request }) => {
 			targetPlayer,
 		} of onlinePlayerNotificationSubscribers) {
 			if (
-				!lastSent ||
-				!receiverPlayer.subscriptionFrequency ||
-				Date.now() - lastSent.getTime() >= receiverPlayer.subscriptionFrequency
+				(!lastSent ||
+					!receiverPlayer.subscriptionFrequency ||
+					Date.now() - lastSent.getTime() >= receiverPlayer.subscriptionFrequency) &&
+				!receiverPlayer.currentlyOnline
 			) {
 				const receiverPushSubscriptions = await db.query.pushSubscriptionsTable.findMany({
 					where: eq(pushSubscriptionsTable.receiverName, receiverName),
@@ -70,6 +67,16 @@ export const POST: RequestHandler = async ({ request }) => {
 			}
 		}
 	}
+
+	await db
+		.update(playersTable)
+		.set({ lastOnline: new Date(), currentlyOnline: true })
+		.where(inArray(playersTable.name, onlinePlayers));
+
+	await db
+		.update(playersTable)
+		.set({ currentlyOnline: false })
+		.where(notInArray(playersTable.name, onlinePlayers));
 
 	return new Response();
 };

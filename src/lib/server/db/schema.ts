@@ -21,6 +21,7 @@ export const playersTable = pgTable("players", {
 		mode: "date",
 		withTimezone: true,
 	}),
+	currentlyOnline: boolean().default(false),
 	pronouns: text(),
 	contact: text().notNull(),
 	getTelegramNotifications: boolean().default(false),
