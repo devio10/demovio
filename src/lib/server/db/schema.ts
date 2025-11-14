@@ -8,6 +8,7 @@ export const playersTable = pgTable("players", {
 	name: text().notNull().unique(),
 	password: text().notNull(),
 	skin: text(),
+	appliedSkin: boolean().default(false),
 	citizenship: jsonb()
 		.$type<{
 			code: DemovioStateCode;

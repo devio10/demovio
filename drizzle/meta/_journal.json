@@ -71,6 +71,13 @@
       "when": 1763111807206,
       "tag": "0009_ambitious_raza",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1763115956871,
+      "tag": "0010_exotic_madripoor",
+      "breakpoints": true
     }
   ]
 }
