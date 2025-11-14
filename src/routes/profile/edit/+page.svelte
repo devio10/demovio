@@ -122,7 +122,7 @@
 										skinViewer.animation = new IdleAnimation();
 										skinScale.target = 1;
 									} catch (e) {
-										console.log(`Ошибка при загрузке скина: ${e}`);
+										console.error(`Ошибка при загрузке скина: ${e}`);
 										skinError = "Неправильный формат изображения.";
 										skin = undefined;
 									}

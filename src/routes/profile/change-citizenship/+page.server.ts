@@ -73,10 +73,8 @@ export const actions: Actions = {
 					},
 				})
 				.where(eq(playersTable.name, locals.playerData.name));
-			console.log("acceptik");
 			return { accepted: true };
 		}
-		console.log("successik");
 		return { success: true };
 	},
 };

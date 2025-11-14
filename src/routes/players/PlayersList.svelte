@@ -30,7 +30,6 @@
 		<Window.Error error={players.error} />
 	</Window.Placeholder>
 {:else if players.current}
-	{console.log(players.current)}
 	{#if players.current.length}
 		<Window.NavigationList>
 			{@const list = players.current

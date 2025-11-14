@@ -78,7 +78,7 @@ export const actions: Actions = {
 			haveLicense: formData.get("haveLicense"),
 		});
 		if (!bodyParsing.success) {
-			console.log(bodyParsing.error);
+			console.error(bodyParsing.error);
 			return fail(400, { error: { finalError: z.treeifyError(bodyParsing.error).errors[0] } });
 		}
 		const body = bodyParsing.data;

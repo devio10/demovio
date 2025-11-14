@@ -18,7 +18,6 @@ export const getPlayers = query(async () => {
 		where: and(eq(playersTable.isActivated, true), eq(playersTable.isBanned, false)),
 		orderBy: desc(playersTable.lastOnline),
 	});
-	console.log(res);
 	return res.map(({ citizenship, ...player }) => {
 		let featured = false;
 		const authorizedPlayerData = locals.playerData;
