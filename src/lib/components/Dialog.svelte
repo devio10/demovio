@@ -20,7 +20,6 @@
 		icon?: Snippet;
 		opened: boolean | undefined;
 	} = $props();
-
 	const transparency = (
 		node: HTMLElement,
 		{ delay, duration, easing }: { delay?: number; duration?: number; easing?: EasingFunction },

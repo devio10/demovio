@@ -1,9 +1,6 @@
 <script lang="ts">
-	import { Spring } from "svelte/motion";
 	import { slide, scale } from "svelte/transition";
 	import { invalidate } from "$app/navigation";
-	import { IdleAnimation, SkinViewer } from "skinview3d";
-	import { getSkinURL } from "$lib/scripts";
 	import Dialog from "$lib/components/Dialog.svelte";
 	import DialogButton from "$lib/components/DialogButton.svelte";
 	import IconExclamationMark from "$lib/components/icons/IconExclamationMark.svelte";
@@ -19,6 +16,7 @@
 	import { saveData } from "./savedata.remote.js";
 	import Button from "$lib/components/Button.svelte";
 	import IconXCircle from "$lib/components/icons/IconXCircle.svelte";
+	import SkinEditorPreview from "$lib/components/SkinEditorPreview.svelte";
 
 	const allPronouns = ["он/его", "она/её", "они/их"];
 
@@ -29,8 +27,6 @@
 	let skin: File | undefined = $state();
 	let skinError: string | undefined = $state();
 	let updateDataError: unknown | undefined = $state();
-
-	const skinScale = new Spring(0.5, { damping: 0.2, stiffness: 0.1 });
 
 	let pronouns: string | null = $derived(data.profile ? data.profile.pronouns : allPronouns[0]);
 	let customPronouns = $derived(pronouns !== null && !allPronouns.includes(pronouns));
@@ -89,55 +85,9 @@
 		<h3>Основное</h3>
 		<div class="settings-buttons" style="display: flex; flex-direction: row;">
 			<div class="skin-container">
-				<div class="canvas-block" style="scale: {skinScale.current}">
-					<canvas
-						{@attach (canvas) => {
-							if (data.profile) {
-								let skinPreview: HTMLImageElement = document.createElement("img");
-								if (skin) {
-									skinPreview.src = URL.createObjectURL(skin);
-									unsavedChanges = true;
-								} else {
-									skinPreview.src = getSkinURL(data.profile?.skin, data.profile.name);
-									unsavedChanges = false;
-								}
-								skinPreview.crossOrigin = "Anonymous";
-								console.log(skinPreview.src);
-
-								let skinViewer: SkinViewer | undefined;
-								async function load() {
-									await new Promise<void>((resolve) => {
-										skinPreview.onload = () => resolve();
-									});
-									skinScale.set(0.5, { instant: true });
-									try {
-										skinViewer = new SkinViewer({
-											canvas: canvas,
-											width: 120,
-											height: 200,
-											skin: skinPreview,
-										});
-										skinViewer.globalLight.intensity = 2.85;
-										skinViewer.controls.enableZoom = false;
-										skinViewer.animation = new IdleAnimation();
-										skinScale.target = 1;
-									} catch (e) {
-										console.error(`Ошибка при загрузке скина: ${e}`);
-										skinError = "Неправильный формат изображения.";
-										skin = undefined;
-									}
-								}
-								load();
-								return () => {
-									skinViewer?.dispose();
-									if (unsavedChanges) {
-										URL.revokeObjectURL(skinPreview.src);
-									}
-								};
-							}
-						}}
-					></canvas>
-				</div>
+				{#if data.profile}
+					<SkinEditorPreview profile={data.profile} {skin} bind:skinError bind:unsavedChanges />
+				{/if}
 				<button
 					class="skin-edit-button"
 					onclick={() => {

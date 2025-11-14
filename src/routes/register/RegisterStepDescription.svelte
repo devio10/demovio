@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { RegisterStage } from "./stages";
+	import SkinEditorPreview from "$lib/components/SkinEditorPreview.svelte";
 
-	let { page, citizenship, haveLicense } = $props();
+	let { page, citizenship, haveLicense, skin, name, skinError = $bindable() } = $props();
 </script>
 
 <div class="step-description">
@@ -19,15 +20,23 @@
 		<h3>У вас лицензионный Minecraft?</h3>
 		<p>Игроки без лицензионной игры тоже могут заходить на сервер.</p>
 	{:else if page === RegisterStage.chooseSkin}
-		<h3>Выберите скин</h3>
-		<p>
-			Загрузите свой файл или введите имя игрока, скин которого хотите использовать. Доступные
-			варианты есть на сайте <a href="https://skinmc.netskinmc.net">skinmc.net.</a>
-			<br />
-			{#if haveLicense}
-				Вы можете пропустить этот этап, так как у вас есть лицензионная игра.
-			{/if}
-		</p>
+		<div class="skin-flex">
+			<div>
+				<h3>Выберите скин</h3>
+				<p>
+					Загрузите свой файл или введите имя игрока, скин которого хотите использовать. Доступные
+					варианты есть на сайте <a href="https://skinmc.netskinmc.net">skinmc.net.</a>
+					<br />
+					{#if haveLicense}
+						Вы можете пропустить этот этап, так как у вас есть лицензионная игра.
+					{/if}
+				</p>
+			</div>
+
+			<div class="skin-preview">
+				<SkinEditorPreview {skin} bind:skinError name={haveLicense ? name : undefined} />
+			</div>
+		</div>
 	{:else if page === RegisterStage.applyForCitizenship}
 		<h3>Выберите гражданство</h3>
 		<p class="state-description">
@@ -70,11 +79,14 @@
 
 <style lang="scss">
 	.step-description {
-		padding: 48px 36px;
+		padding: 48px 0 48px 36px;
 		h3 {
 			font-size: 24px;
+			padding: 0 24px 0 0;
 		}
 		p {
+			padding: 0 24px 0 0;
+			margin: 0;
 			line-height: 1.5;
 		}
 	}
@@ -83,12 +95,20 @@
 		font-weight: bolder;
 		color: rgba(230, 230, 230, 0.5);
 	}
+	.skin-flex {
+		display: flex;
+		justify-content: space-between;
+		// align-items: flex-start;
+		padding-right: 24px;
+		align-items: center;
+	}
 	@media screen and (max-width: 768px) {
 		.step {
 			display: none;
 		}
 		.step-description {
 			padding: 16px 0 0 0;
+			margin: 0;
 			h3 {
 				margin-bottom: 0;
 			}

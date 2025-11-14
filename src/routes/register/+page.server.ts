@@ -34,7 +34,7 @@ export const actions: Actions = {
 		const bodyParsing = await accountDataSchemas.name.safeParseAsync(formData.get("playername"));
 		if (bodyParsing.success) {
 			const name = bodyParsing.data;
-			if (await checkNameInDB(name)) {
+			if ((await checkNameInDB(name)) || name === "default") {
 				return fail(409, { error: { nameTaken: "Имя уже занято." } });
 			}
 			return { success: true };

@@ -19,7 +19,7 @@
 	import DialogButton from "$lib/components/DialogButton.svelte";
 	import LoadingWheel from "$lib/components/LoadingWheel.svelte";
 	let { form } = $props();
-	let page = $state(RegisterStage.checkName);
+	let page = $state(RegisterStage.checkForLicense);
 	let formError = $derived(form?.error);
 	let submitting = $state(false);
 	let haveLicense = $state(false);
@@ -29,6 +29,7 @@
 	let playername = $state();
 	let contact = $state();
 	let skin = $state();
+	let skinError = $state(undefined);
 	let pronouns = $state();
 </script>
 
@@ -47,7 +48,14 @@
 					</div>
 					<div class="register-content">
 						<div class="mobile-description">
-							<RegisterStepDescription {page} {citizenship} {haveLicense} />
+							<RegisterStepDescription
+								{page}
+								{citizenship}
+								{haveLicense}
+								{skin}
+								name={playername}
+								bind:skinError
+							/>
 						</div>
 
 						<div class="steps">
@@ -58,7 +66,7 @@
 							{:else if page === RegisterStage.checkForLicense}
 								<RegisterCheckLicense bind:page bind:haveLicense />
 							{:else if page === RegisterStage.chooseSkin}
-								<RegisterSkin bind:page bind:skin />
+								<RegisterSkin bind:page bind:skin bind:skinError {haveLicense} />
 							{:else if page === RegisterStage.applyForCitizenship}
 								<RegisterCitizenship bind:page bind:citizenship />
 							{:else if page === RegisterStage.choosePronouns}
@@ -120,7 +128,14 @@
 			</div>
 		</WindowNavigation>
 	{/snippet}
-	<RegisterStepDescription {page} {citizenship} {haveLicense} />
+	<RegisterStepDescription
+		{page}
+		{citizenship}
+		{haveLicense}
+		{skin}
+		name={playername}
+		bind:skinError
+	/>
 </Window>
 
 {#if formError !== undefined && "finalError" in formError}

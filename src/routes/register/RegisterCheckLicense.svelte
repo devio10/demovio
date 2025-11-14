@@ -7,7 +7,7 @@
 </script>
 
 <RegisterPage>
-	<div style="margin-top: 16px">
+	<div class="settings-buttons" style="padding: 0">
 		<SettingsButton
 			onclick={() => {
 				page = RegisterStage.chooseSkin;

@@ -78,7 +78,7 @@
 		overflow-y: auto;
 		background-color: #393939;
 		position: relative;
-		background: linear-gradient(-50deg, rgba(255, 255, 255, 0.37) 0%, rgba(114, 114, 114, 0.6) 95%);
+		background: linear-gradient(-35deg, rgba(215, 215, 215, 0.45) 0%, rgba(114, 114, 114, 0.6) 95%);
 		border-radius: 0 52px 52px 0;
 		box-shadow:
 			inset 0px 1.92px 5.76px 0px rgba(255, 255, 255, 0.25),
@@ -87,7 +87,7 @@
 
 		&:first-child {
 			background-color: rgba(57, 57, 57, 0.6);
-			background: linear-gradient(-21deg, rgba(57, 57, 57, 0.6) 0%, rgba(97, 97, 97, 0.6) 100%);
+			background: linear-gradient(35deg, rgba(57, 57, 57, 0.6) 0%, rgba(97, 97, 97, 0.6) 100%);
 			border-radius: 52px;
 		}
 	}
@@ -98,7 +98,7 @@
 			border-radius: 0;
 			max-height: none;
 			// backdrop-filter: none;
-			background: linear-gradient(-21deg, rgba(57, 57, 57, 0.6) 0%, rgba(97, 97, 97, 0.6) 100%);
+			background: linear-gradient(35deg, rgba(57, 57, 57, 0.6) 0%, rgba(97, 97, 97, 0.6) 100%);
 
 			.content {
 				// backdrop-filter: blur(30px);

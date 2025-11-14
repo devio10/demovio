@@ -16,7 +16,7 @@
 <style lang="scss">
 	nav {
 		background-color: rgba(57, 57, 57, 0.6);
-		background: linear-gradient(-21deg, rgba(57, 57, 57, 0.6) 0%, rgba(97, 97, 97, 0.6) 100%);
+		background: linear-gradient(-35deg, rgba(50, 50, 50, 0.6) 0%, rgba(100, 100, 100, 0.6) 100%);
 		width: var(--width, 30%);
 		height: 100%;
 		max-height: 100%;
