@@ -16,7 +16,7 @@ export const accountDataSchemas = {
 	pronouns: z.string().min(2).max(16).refine(noNullCharacter, "Запрещённый символ"),
 	citizenship: z.enum(demovioStateCodes),
 	skin: z.string().refine(noNullCharacter, "Запрещённый символ"),
-	haveLicense: z.coerce.boolean(),
+	haveLicense: z.boolean(),
 	description: z
 		.string()
 		.max(256, "Максимум 256 символов")

@@ -110,9 +110,6 @@
 											/>
 										</svg>
 									</TextInput>
-									<!-- {#if formError?.nameToken}
-									<p>{formError.nameToken}</p>
-								{/if} -->
 									<Button type="submit" style="margin: auto 0 0 0">
 										{#if submitting}
 											<LoadingWheel duration={0} --wheel-size="36px" />

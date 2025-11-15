@@ -10,17 +10,7 @@ import { constructPlayerUuid } from "$lib/server/generateUUID";
 import { nanoid } from "nanoid";
 import { setTimeout } from "timers/promises";
 
-const accountDataSchema = z.object({
-	name: accountDataSchemas.name,
-	password: accountDataSchemas.password,
-	contact: accountDataSchemas.contact,
-	pronouns: accountDataSchemas.pronouns.nullable(),
-	citizenship: accountDataSchemas.citizenship,
-	skin: accountDataSchemas.skin.nullable(),
-	haveLicense: accountDataSchemas.haveLicense,
-});
-
-async function checkNameInDB(name: string): Promise<boolean> {
+export async function checkNameInDB(name: string): Promise<boolean> {
 	const existingPlayer = await db.query.playersTable.findFirst({
 		where: eq(playersTable.name, name),
 	});
