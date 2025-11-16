@@ -38,6 +38,11 @@ export const playersTable = pgTable("players", {
 	isBanned: boolean().default(false),
 	favorites: jsonb().$type<string[]>().notNull().default([]),
 	subscriptionFrequency: integer().default(60 * 60 * 12),
+	lastDownloadedBuild: jsonb().$type<{
+		version: string;
+		minimap: boolean;
+		optimized: boolean;
+	} | null>(),
 });
 
 export const citizenshipApplicationsTable = pgTable("citizenship_applications", {
