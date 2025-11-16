@@ -7,6 +7,7 @@
 	import { getSkinURL } from "$lib/scripts.js";
 	import OptionDescription from "$lib/components/OptionDescription.svelte";
 	import LogoutButton from "./LogoutButton.svelte";
+	import LoadingWheel from "$lib/components/LoadingWheel.svelte";
 	let { data } = $props();
 	const scale = new Spring(0.5, { damping: 0.2, stiffness: 0.1 });
 </script>
@@ -47,6 +48,18 @@
 			20 фасок / изумрудов за каждого приглашённого друга, а они получат дополнительный
 			вступительный бонус в размере 10 фасок / изумрудов.
 		</OptionDescription>
+
+		<div class="settings-buttons-space"></div>
+		<div class="settings-buttons">
+			<OptionButton>
+				Принудительно применить скин
+				<!-- <LoadingWheel --wheel-size="36px" /> -->
+			</OptionButton>
+		</div>
+		<OptionDescription>
+			Если ваш скин не показывается во время игры на сервере, вы можете попробовать принудительно
+			его применить.
+		</OptionDescription>
 		<div class="settings-buttons-space"></div>
 		<LogoutButton />
 		<div class="settings-buttons-space"></div>
@@ -54,7 +67,7 @@
 			<OptionButton style="color: rgb(235, 52, 79)">Удалить аккаунт</OptionButton>
 		</form>
 		<OptionDescription>
-			Если вы больше не планируете играть на сервере Demovio, вы можете деактивировать аккаунт. Он
+			Вы можете деактивировать аккаунт, если вы больше не планируете играть на сервере Demovio. Он
 			перестанет показываться в списке игроков и со временем будет полностью удалён.
 		</OptionDescription>
 		<div class="settings-buttons-space"></div>

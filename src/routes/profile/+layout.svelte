@@ -14,6 +14,7 @@
 	import IconKey from "$lib/components/icons/IconKey.svelte";
 	import IconBackstage from "$lib/components/icons/IconBackstage.svelte";
 	import { page } from "$app/state";
+	import IconSecurity from "$lib/components/icons/IconSecurity.svelte";
 	let { children, data } = $props();
 </script>
 
@@ -34,6 +35,11 @@
 							<div style="padding: 2px"><IconPencil /></div>
 						</NavigationItemIcon>Изменение данных
 					</WindowNavigationItem>
+					<WindowNavigationItem href="/profile/security">
+						<NavigationItemIcon color="#8E8E91">
+							<div><IconSecurity /></div>
+						</NavigationItemIcon>Безопасность аккаунта
+					</WindowNavigationItem>
 
 					<div class="navigation-space"></div>
 
@@ -53,7 +59,7 @@
 						<NavigationItemIcon>
 							<IconKey />
 						</NavigationItemIcon>
-						Сброс пароля
+						Сброс игрового пароля
 					</WindowNavigationItem>
 
 					<div class="navigation-space"></div>
