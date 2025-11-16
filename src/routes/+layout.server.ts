@@ -23,6 +23,7 @@ export const load: LayoutServerLoad = async ({ locals, depends }) => {
 					notificationsInvites: player.notificationsInvites,
 					notificationsPlayersActivity: player.notificationsPlayersActivity,
 					lastDownloadedBuild: player.lastDownloadedBuild,
+					haveLicense: player.haveLicense,
 				}
 			: null,
 	};

@@ -43,6 +43,7 @@ export const playersTable = pgTable("players", {
 		minimap: boolean;
 		optimized: boolean;
 	} | null>(),
+	haveLicense: boolean().default(false),
 });
 
 export const citizenshipApplicationsTable = pgTable("citizenship_applications", {

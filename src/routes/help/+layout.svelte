@@ -15,11 +15,19 @@
 			href: "",
 		},
 		{
-			title: "Установка игры",
+			title: "Шаг 1: Установка игры",
 			href: "/install-game",
 		},
 		{
-			title: "Установка модов",
+			title: "Шаг 2: Выбор архива с модами",
+			href: "/choose-modpack",
+		},
+		{
+			title: "Шаг 3: Установка модов",
+			href: "/install-mods",
+		},
+		{
+			title: "Штаты",
 			href: "/install-mods",
 		},
 		{
@@ -62,8 +70,24 @@
 	</article>
 </Window>
 
-<style>
+<style lang="scss">
 	article {
 		padding: 0 36px 36px 36px;
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+	}
+	:global {
+		p,
+		span {
+			font-size: 14px;
+			text-align: justify;
+		}
+		p {
+			margin: 0;
+		}
+		a {
+			color: white;
+		}
 	}
 </style>
