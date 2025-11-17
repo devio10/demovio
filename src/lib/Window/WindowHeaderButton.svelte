@@ -1,23 +1,25 @@
-<script lang="ts">
+<script lang="ts" generics="T extends keyof SvelteHTMLElements">
 	import type { Snippet } from "svelte";
-	import type { HTMLButtonAttributes } from "svelte/elements";
+	import type { SvelteHTMLElements } from "svelte/elements";
 
 	let {
 		children,
 		name,
+		tag,
 		...props
 	}: {
 		children: Snippet;
 		name: string;
-	} & HTMLButtonAttributes = $props();
+		tag?: T;
+	} & SvelteHTMLElements[T] = $props();
 </script>
 
-<button aria-label={name} {...props}>
+<svelte:element this={tag ?? "button"} aria-label={name} {...props} class="button">
 	{@render children?.()}
-</button>
+</svelte:element>
 
 <style lang="scss">
-	button {
+	.button {
 		width: 42px;
 		height: 42px;
 		display: flex;
