@@ -83,7 +83,7 @@
 {#if data.profile}
 	<div class="settings-content">
 		<h3>Основное</h3>
-		<div class="settings-buttons" style="display: flex; flex-direction: row;">
+		<div class="settings-buttons skin-and-description">
 			<div class="skin-container">
 				{#if data.profile}
 					<SkinEditorPreview profile={data.profile} {skin} bind:skinError bind:unsavedChanges />
@@ -112,15 +112,17 @@
 					</span>
 				</button>
 			</div>
-			{#if !editingSkin}
-				<TextArea
-					bind:value={description}
-					placeholder="Описание..."
-					oninput={() => (unsavedChanges = true)}
-				/>
-			{:else}
-				<SkinEditor bind:skin bind:skinError />
-			{/if}
+			<div class="editor">
+				{#if !editingSkin}
+					<TextArea
+						bind:value={description}
+						placeholder="Описание..."
+						oninput={() => (unsavedChanges = true)}
+					/>
+				{:else}
+					<SkinEditor bind:skin bind:skinError />
+				{/if}
+			</div>
 		</div>
 		{#if editingSkin}
 			<div class="settings-buttons" style="margin-top: 16px" transition:slide={{ duration: 300 }}>
@@ -239,7 +241,7 @@
 	.header {
 		width: 100%;
 		position: relative;
-
+		z-index: 2;
 		.button {
 			top: 0;
 			right: 0;
@@ -317,6 +319,29 @@
 					opacity: 1;
 				}
 			}
+		}
+	}
+	.skin-and-description {
+		display: flex;
+		flex-direction: row;
+		.editor {
+			display: contents;
+		}
+	}
+	@media screen and (max-width: 768px) {
+		.skin-and-description {
+			flex-direction: column;
+			.editor {
+				display: flex;
+				height: 128px;
+				margin-top: 16px;
+			}
+		}
+		.skin-container {
+			width: 100%;
+			height: fit-content;
+			display: flex;
+			justify-content: center;
 		}
 	}
 </style>

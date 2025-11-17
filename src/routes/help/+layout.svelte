@@ -42,7 +42,9 @@
 		},
 	];
 
-	const section = $derived(sections.find((v) => `/help${v.href}` === page.url.pathname));
+	const section = $derived(
+		sections.find((v) => `/help${v.href}` === page.url.pathname) ?? { title: "Главная" },
+	);
 </script>
 
 <Window.Root sectionOpened={page.route.id?.startsWith("/help/")}>

@@ -13,7 +13,7 @@
 	import DownloadsDescription from "./DownloadsDescription.svelte";
 	import { MediaQuery } from "svelte/reactivity";
 	import WindowHeaderButton from "$lib/Window/WindowHeaderButton.svelte";
-	import IconBell from "$lib/components/icons/IconBell.svelte";
+	import IconHelpCircle from "$lib/components/icons/IconHelpCircle.svelte";
 	let { data } = $props();
 	let isMobile = new MediaQuery("screen and (max-width: 768px)");
 
@@ -35,8 +35,8 @@
 				title="Загрузка модов"
 				style="flex-direction: row; justify-content: space-between;"
 			>
-				<WindowHeaderButton name="Помощь">
-					<IconBell />
+				<WindowHeaderButton name="Помощь" tag="a" href="/help/choose-modpack">
+					<IconHelpCircle />
 				</WindowHeaderButton>
 			</WindowNavigationHeader>
 			<WindowNavigationList>
