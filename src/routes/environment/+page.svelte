@@ -2,10 +2,12 @@
 	import EnvironmentIcon from "$lib/components/EnvironmentIcon.svelte";
 	import TabNavigation from "$lib/components/TabNavigation.svelte";
 	import TabNavigationButton from "$lib/components/TabNavigationButton.svelte";
+	import { MediaQuery } from "svelte/reactivity";
 	import { fly, scale } from "svelte/transition";
 	let page = $state(0);
 	let flyDirection = $state(1);
-	let tabNavigationSelection = $state(16);
+	let isMobile = new MediaQuery("screen and (max-width: 768px)");
+	let tabNavigationSelection = $state(isMobile.current ? 8 : 16);
 	let tabNavigationSelectionWidth = $state(82);
 </script>
 

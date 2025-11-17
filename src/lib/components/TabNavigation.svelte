@@ -48,4 +48,13 @@
 		transition-duration: 300ms;
 		transition-timing-function: eas; */
 	}
+	@media screen and (max-width: 768px) {
+		nav {
+			height: 48px;
+			padding: 0 8px;
+		}
+		.selection {
+			height: calc(100% - 16px);
+		}
+	}
 </style>

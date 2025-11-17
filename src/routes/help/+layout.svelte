@@ -1,18 +1,16 @@
 <script>
-	import Window from "$lib/Window/Window.svelte";
 	import WindowNavigation from "$lib/Window/Navigation/WindowNavigation.svelte";
-	import WindowPlaceholderSearch from "$lib/Window/WindowPlaceholderSearch.svelte";
 	import WindowNavigationItem from "$lib/Window/Navigation/WindowNavigationItem.svelte";
 	import WindowHeader from "$lib/Window/WindowHeader.svelte";
 	import { page } from "$app/state";
+	import * as Window from "$lib/Window/index.svelte";
 	import WindowNavigationList from "$lib/Window/Navigation/WindowNavigationList.svelte";
 	import WindowNavigationHeader from "$lib/Window/Navigation/WindowNavigationHeader.svelte";
-	let searchQuery = $state("");
 	let { children } = $props();
 	const sections = [
 		{
 			title: "Главная",
-			href: "",
+			href: "/home",
 		},
 		{
 			title: "Шаг 1: Установка игры",
@@ -47,15 +45,13 @@
 	const section = $derived(sections.find((v) => `/help${v.href}` === page.url.pathname));
 </script>
 
-<Window>
+<Window.Root sectionOpened={page.route.id?.startsWith("/help/")}>
 	{#snippet navigation()}
 		<WindowNavigation --width="35%">
-			<WindowNavigationHeader title="Помощь">
-				<WindowPlaceholderSearch bind:value={searchQuery} placeholder="Поиск" />
-			</WindowNavigationHeader>
+			<WindowNavigationHeader title="Помощь"></WindowNavigationHeader>
 			<WindowNavigationList>
 				{#each sections as section, i}
-					<WindowNavigationItem href="/help{section.href}" {i}>
+					<WindowNavigationItem href="/help{section.href}">
 						{section.title}
 					</WindowNavigationItem>
 				{/each}
@@ -68,7 +64,7 @@
 	<article>
 		{@render children?.()}
 	</article>
-</Window>
+</Window.Root>
 
 <style lang="scss">
 	article {
@@ -88,6 +84,11 @@
 		}
 		a {
 			color: white;
+		}
+	}
+	@media screen and (max-width: 768px) {
+		article {
+			padding: 0 16px 56px 16px;
 		}
 	}
 </style>

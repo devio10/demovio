@@ -35,4 +35,11 @@
 			color: white;
 		}
 	}
+	@media screen and (max-width: 768px) {
+		.button {
+			.highlight {
+				height: calc(100% - 16px);
+			}
+		}
+	}
 </style>

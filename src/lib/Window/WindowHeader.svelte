@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { getContentScrollContext } from "$lib/scripts";
 	import type { Snippet } from "svelte";
 	import WindowBackButton from "./Navigation/WindowBackButton.svelte";
 
@@ -56,8 +55,11 @@
 	@media screen and (max-width: 768px) {
 		.content {
 			padding: 20px 24px;
+
 			.text {
 				gap: 8px;
+				justify-content: center;
+				height: 100%;
 			}
 			h2 {
 				font-size: 26px;

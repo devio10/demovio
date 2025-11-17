@@ -1,5 +1,5 @@
 <script>
-	import HelpWarn from "./HelpWarn.svelte";
+	import HelpHome from "./HelpHome.svelte";
 </script>
 
-<p>Всем привет лоль</p>
+<HelpHome />
