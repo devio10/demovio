@@ -45,7 +45,9 @@ export const actions: Actions = {
 	async checkPronouns({ request }) {
 		await setTimeout(750);
 		const formData = await request.formData();
-		const bodyParsing = await accountDataSchemas.pronouns.safeParseAsync(formData.get("pronouns"));
+		const bodyParsing = await accountDataSchemas.pronouns
+			.nullable()
+			.safeParseAsync(formData.get("pronouns"));
 		if (bodyParsing.success) {
 			return { success: true };
 		} else {

@@ -28,9 +28,10 @@
 	let password = $state();
 	let playername = $state();
 	let skin: File | undefined = $state();
+	let skinName: string | undefined = $state();
 	let skinError = $state(undefined);
 	let pronouns = $state();
-	$inspect(skin);
+	$inspect(skinName);
 	$effect(() => {
 		if (skin) {
 			finishRegistration.fields.skin.set(skin);
@@ -71,7 +72,14 @@
 							{:else if page === RegisterStage.checkForLicense}
 								<RegisterCheckLicense bind:page bind:haveLicense />
 							{:else if page === RegisterStage.chooseSkin}
-								<RegisterSkin bind:page bind:skin bind:skinError {haveLicense} />
+								<RegisterSkin
+									bind:page
+									bind:skin
+									bind:skinError
+									bind:skinName
+									{haveLicense}
+									{playername}
+								/>
 							{:else if page === RegisterStage.applyForCitizenship}
 								<RegisterCitizenship bind:page bind:citizenship />
 							{:else if page === RegisterStage.choosePronouns}
@@ -91,9 +99,12 @@
 										}
 									})}
 									enctype="multipart/form-data"
+									class="register-page"
 								>
 									<div style="display: none;">
-										<input {...finishRegistration.fields.pronouns.as("text")} value={pronouns} />
+										{#if pronouns}
+											<input {...finishRegistration.fields.pronouns.as("text")} value={pronouns} />
+										{/if}
 										<input {...finishRegistration.fields.name.as("text")} value={playername} />
 										<input {...finishRegistration.fields.password.as("text")} value={password} />
 										{#if haveLicense}
@@ -109,6 +120,7 @@
 										{#if skin}
 											<input {...finishRegistration.fields.skin.as("file")} />
 										{/if}
+										<input {...finishRegistration.fields.skinName.as("text")} value={skinName} />
 									</div>
 
 									<TextInput
@@ -219,8 +231,21 @@
 	.mobile-step {
 		display: none;
 	}
+	.register-page {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		display: flex;
+		flex-direction: column;
+		padding-bottom: 32px;
+		flex-shrink: 0;
+		min-height: fit-content;
+	}
 
 	@media screen and (max-width: 768px) {
+		.register-page {
+			padding-bottom: 92px;
+		}
 		.title {
 			font-size: 28px;
 			margin: 0;

@@ -10,7 +10,14 @@
 	import IconExclamationMark from "$lib/components/icons/IconExclamationMark.svelte";
 	import DialogButton from "$lib/components/DialogButton.svelte";
 
-	let { page = $bindable(), skin = $bindable(), haveLicense, skinError = $bindable() } = $props();
+	let {
+		page = $bindable(),
+		skin = $bindable(),
+		skinName = $bindable(),
+		haveLicense,
+		playername,
+		skinError = $bindable(),
+	} = $props();
 	let chooseCustomSkin = $state(!haveLicense);
 </script>
 
@@ -20,6 +27,7 @@
 			<OptionButton
 				onclick={() => {
 					chooseCustomSkin = false;
+					skinName = playername;
 				}}
 			>
 				Использовать свой лицензионный скин
@@ -28,6 +36,7 @@
 			<OptionButton
 				onclick={() => {
 					chooseCustomSkin = true;
+					skinName = undefined;
 				}}
 			>
 				Загрузить свой файл скина
@@ -47,6 +56,7 @@
 		style="margin: auto 0 0 0"
 		disabled={!skin && chooseCustomSkin}
 		onclick={() => {
+			skinName = haveLicense && !chooseCustomSkin ? playername : undefined;
 			page = RegisterStage.applyForCitizenship;
 		}}
 	>
@@ -57,6 +67,7 @@
 		style="margin: 16px 0 0 0"
 		onclick={() => {
 			skin = null;
+			skinName = undefined;
 			page = RegisterStage.applyForCitizenship;
 		}}
 	>
