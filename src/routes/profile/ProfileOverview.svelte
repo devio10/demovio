@@ -9,6 +9,7 @@
 	import LogoutButton from "./LogoutButton.svelte";
 	import LoadingWheel from "$lib/components/LoadingWheel.svelte";
 	import DeactivateAccountButton from "./DeactivateAccountButton.svelte";
+	import ReapplySkinButton from "./ReapplySkinButton.svelte";
 	let { data } = $props();
 	const scale = new Spring(0.5, { damping: 0.2, stiffness: 0.1 });
 </script>
@@ -52,10 +53,7 @@
 
 		<div class="settings-buttons-space"></div>
 		<div class="settings-buttons">
-			<OptionButton>
-				Принудительно применить скин
-				<!-- <LoadingWheel --wheel-size="36px" /> -->
-			</OptionButton>
+			<ReapplySkinButton />
 		</div>
 		<OptionDescription>
 			Если ваш скин не показывается во время игры на сервере, вы можете попробовать принудительно

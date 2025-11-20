@@ -133,6 +133,7 @@
 	.description {
 		margin: 16px 24px 24px 36px;
 		font-weight: 600;
+		font-size: 16px;
 		line-height: 1.4;
 		overflow-wrap: break-word;
 		white-space: pre-wrap;
