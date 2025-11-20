@@ -4,12 +4,27 @@
 	import OptionButton from "$lib/components/OptionButton.svelte";
 	import { scale } from "svelte/transition";
 	import { forceReapplySkin } from "./overview/overview.remote";
+	import Dialog from "$lib/components/Dialog.svelte";
+	import { getCurrentDemovioStatus } from "../status.remote";
+	import DialogButton from "$lib/components/DialogButton.svelte";
+	import IconExclamationMark from "$lib/components/icons/IconExclamationMark.svelte";
 	let loading = $state(false);
 	let success = $state(false);
+	let error = $state();
+	let { name } = $props();
+	const demovioStatus = getCurrentDemovioStatus();
 </script>
 
 <OptionButton
 	onclick={async () => {
+		if (!demovioStatus.current) {
+			error = "Сервер Demovio сейчас выключен. Попробуйте позже.";
+			return;
+		}
+		if (!demovioStatus.current.players.includes(name)) {
+			error = "Зайдите на сервер Demovio, чтобы вручную применить скин.";
+			return;
+		}
 		loading = true;
 		await forceReapplySkin();
 		loading = false;
@@ -20,14 +35,20 @@
 	Принудительно применить скин
 	<div class="icon-container">
 		{#if loading}
-			<div>
+			<div class="block">
 				<LoadingWheel --wheel-size="36px" />
 			</div>
 		{:else if success}
-			<div class="icon" transition:scale={{ duration: 300 }}><IconCheckmark /></div>
+			<div class="icon block" transition:scale={{ duration: 300 }}><IconCheckmark /></div>
 		{/if}
 	</div>
 </OptionButton>
+<Dialog title="Не Удалось Применить Скин" description={error} opened={error} color="var(--yellow)">
+	{#snippet icon()}
+		<div style="padding: 6px;"><IconExclamationMark /></div>
+	{/snippet}
+	<DialogButton onclick={() => (error = undefined)}>Закрыть</DialogButton>
+</Dialog>
 
 <style lang="scss">
 	.icon-container {
@@ -36,7 +57,7 @@
 		justify-content: center;
 		align-items: center;
 	}
-	div {
+	.block {
 		position: absolute;
 		right: 0;
 		&.icon {

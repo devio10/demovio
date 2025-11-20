@@ -7,7 +7,6 @@
 	import { getSkinURL } from "$lib/scripts.js";
 	import OptionDescription from "$lib/components/OptionDescription.svelte";
 	import LogoutButton from "./LogoutButton.svelte";
-	import LoadingWheel from "$lib/components/LoadingWheel.svelte";
 	import DeactivateAccountButton from "./DeactivateAccountButton.svelte";
 	import ReapplySkinButton from "./ReapplySkinButton.svelte";
 	let { data } = $props();
@@ -53,7 +52,7 @@
 
 		<div class="settings-buttons-space"></div>
 		<div class="settings-buttons">
-			<ReapplySkinButton />
+			<ReapplySkinButton name={data.profile?.name} />
 		</div>
 		<OptionDescription>
 			Если ваш скин не показывается во время игры на сервере, вы можете попробовать принудительно
