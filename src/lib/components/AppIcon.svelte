@@ -63,7 +63,6 @@
 			padding: 10px;
 			line-height: 60%;
 			border-radius: 100px;
-			backdrop-filter: blur(10px);
 			font-weight: bold;
 			color: white;
 			text-align: center;

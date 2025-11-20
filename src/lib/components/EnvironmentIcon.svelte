@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { localPreferences } from "$lib/local-settings.svelte";
+	import IconCheckmark from "./icons/IconCheckmark.svelte";
 
 	let {
 		name,
@@ -27,7 +28,7 @@
 		if (spatial) {
 			localStorage.setItem("spatialEnvironment", spatial);
 			localPreferences.spatialEnvironment = spatial;
-		} else {
+		} else if (src) {
 			localStorage.setItem("environment", src);
 			localPreferences.environment = src;
 		}
@@ -43,6 +44,9 @@
 			{/if}
 		</div>
 		<span class="label">{name}</span>
+		{#if (spatial && localPreferences.spatialEnvironment === spatial) || (src && localPreferences.environment === src)}
+			<span class="badge"><IconCheckmark /></span>
+		{/if}
 	</div>
 </button>
 
@@ -54,9 +58,9 @@
 		user-select: none;
 		padding: 16px 0;
 		background: none;
-		// display: flex;
 		transition: scale 300ms ease-out;
 		border: none;
+		position: relative;
 		&:not(.disabled) {
 			cursor: pointer;
 			.image {
@@ -92,6 +96,19 @@
 			text-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
 			text-align: center;
 			margin-top: 8px;
+		}
+		span.badge {
+			position: absolute;
+			right: 40px;
+			top: 28px;
+			width: 30px;
+			height: 30px;
+			background-color: white;
+			padding: 8px;
+			border-radius: 100px;
+			box-shadow: 0 2px 5px 2px rgba(0, 0, 0, 0.25);
+			font-weight: bold;
+			color: black;
 		}
 
 		img {
