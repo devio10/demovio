@@ -39,7 +39,7 @@
 					skinName = undefined;
 				}}
 			>
-				Загрузить свой файл скина
+				Загрузить файл скина
 				<OptionButtonCheckmark value={chooseCustomSkin} />
 			</OptionButton>
 		</div>

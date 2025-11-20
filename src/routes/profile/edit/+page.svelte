@@ -14,7 +14,6 @@
 	import SettingsHeader from "$lib/Window/SettingsHeader.svelte";
 	import WindowHeaderAccentButton from "$lib/Window/WindowHeaderAccentButton.svelte";
 	import { saveData } from "./savedata.remote.js";
-	import Button from "$lib/components/Button.svelte";
 	import IconXCircle from "$lib/components/icons/IconXCircle.svelte";
 	import SkinEditorPreview from "$lib/components/SkinEditorPreview.svelte";
 
@@ -24,6 +23,7 @@
 
 	let unsavedChanges = $state(false);
 	let editingSkin = $state(false);
+	let useLicenseSkin = $state(false);
 	let skin: File | undefined = $state();
 	let skinError: string | undefined = $state();
 	let updateDataError: unknown | undefined = $state();
@@ -54,6 +54,7 @@
 						await submit();
 						await invalidate("app:user:profile");
 						unsavedChanges = false;
+						editingSkin = false;
 					} catch (e) {
 						console.error(e);
 						updateDataError = e;
@@ -66,6 +67,9 @@
 					<input {...saveData.fields.pronouns.as("text")} value={pronouns} />
 					{#if skin}
 						<input {...saveData.fields.skin.as("file")} />
+					{/if}
+					{#if useLicenseSkin}
+						<input {...saveData.fields.skinName.as("text")} value={data.profile?.name} />
 					{/if}
 				</div>
 				<WindowHeaderAccentButton name="Сохранить" type="submit" disabled={saveData.pending > 0}>
@@ -113,7 +117,7 @@
 				</button>
 			</div>
 			<div class="editor">
-				{#if !editingSkin}
+				{#if !editingSkin || useLicenseSkin}
 					<TextArea
 						bind:value={description}
 						placeholder="Описание..."
@@ -126,7 +130,24 @@
 		</div>
 		{#if editingSkin}
 			<div class="settings-buttons" style="margin-top: 16px" transition:slide={{ duration: 300 }}>
-				<Button>Использовать лицензионный скин</Button>
+				<OptionButton
+					onclick={() => {
+						useLicenseSkin = false;
+						unsavedChanges = true;
+					}}
+				>
+					Загрузить файл скина
+					<OptionButtonCheckmark value={!useLicenseSkin} />
+				</OptionButton>
+				<OptionButton
+					onclick={() => {
+						useLicenseSkin = true;
+						unsavedChanges = true;
+					}}
+				>
+					Использовать свой лицензионный скин
+					<OptionButtonCheckmark value={useLicenseSkin} />
+				</OptionButton>
 			</div>{/if}
 		<div class="settings-buttons-space"></div>
 		<h3>Местоимения</h3>
