@@ -11,16 +11,17 @@
 	import { demovioStates } from "$lib/components/demovio-states";
 	import RegisterPronouns from "./RegisterPronouns.svelte";
 	import WindowNavigation from "$lib/Window/Navigation/WindowNavigation.svelte";
-	import RegisterPage from "./RegisterPage.svelte";
 	import RegisterStepDescription from "./RegisterStepDescription.svelte";
 	import Dialog from "$lib/components/Dialog.svelte";
 	import IconExclamationMark from "$lib/components/icons/IconExclamationMark.svelte";
 	import DialogButton from "$lib/components/DialogButton.svelte";
 	import LoadingWheel from "$lib/components/LoadingWheel.svelte";
 	import { finishRegistration } from "./register.remote";
+	import RegisterFormError from "./RegisterFormError.svelte";
 	let { form } = $props();
 	let page = $state(RegisterStage.checkName);
-	let formError = $derived(form?.error);
+	let formError: any = $derived(form?.error);
+	$inspect(formError);
 	let submitting = $state(false);
 	let haveLicense = $state(false);
 
@@ -89,10 +90,12 @@
 									{...finishRegistration.enhance(async ({ submit, data }) => {
 										formError = undefined;
 										submitting = true;
+										finishRegistration.fields.allIssues();
 										try {
 											console.log(data.haveLicense);
 											await submit();
 											submitting = false;
+											formError = finishRegistration.fields.contact.issues();
 										} catch (e) {
 											console.error(e);
 											formError = e;
@@ -120,11 +123,14 @@
 										{#if skin}
 											<input {...finishRegistration.fields.skin.as("file")} />
 										{/if}
-										<input {...finishRegistration.fields.skinName.as("text")} value={skinName} />
+										{#if skinName}
+											<input {...finishRegistration.fields.skinName.as("text")} value={skinName} />
+										{/if}
 									</div>
 
 									<TextInput
 										placeholder="Юзернейм Telegram"
+										style="margin-bottom: 16px"
 										{...finishRegistration.fields.contact.as("text")}
 									>
 										<svg
@@ -140,6 +146,9 @@
 											/>
 										</svg>
 									</TextInput>
+									{#if Array.isArray(formError)}
+										<RegisterFormError>{formError[0]?.message}</RegisterFormError>
+									{/if}
 									<Button type="submit" style="margin: auto 0 0 0">
 										{#if submitting}
 											<LoadingWheel duration={0} --wheel-size="36px" />
@@ -196,15 +205,10 @@
 		width: calc(100% - 48px);
 		display: flex;
 		flex-direction: column;
-		// justify-content: center;
-		// align-items: left;
 		min-height: 100%;
 		margin: 0 auto 0 auto;
 		max-width: 400px;
 		flex-shrink: 0;
-		// max-width: 400px;
-		// margin: 24px;
-
 		.steps {
 			margin-top: 24px;
 			display: flex;

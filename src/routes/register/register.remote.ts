@@ -35,7 +35,7 @@ export const finishRegistration = form(
 		{ name, password, contact, citizenship, skin, pronouns, haveLicense, skinName },
 		invalid,
 	) => {
-		await setTimeout(1000);
+		await setTimeout(750);
 		const { cookies } = getRequestEvent();
 		if (await checkNameInDB(name)) {
 			return invalid.name("Имя уже занято.");

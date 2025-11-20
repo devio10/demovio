@@ -17,7 +17,7 @@ const checkNameInDB = async (name: string): Promise<boolean> => {
 
 export const actions: Actions = {
 	async checkNameAvailability({ request }) {
-		await setTimeout(1200);
+		await setTimeout(750);
 		const formData = await request.formData();
 		const bodyParsing = await accountDataSchemas.name.safeParseAsync(formData.get("playername"));
 		if (bodyParsing.success) {
@@ -32,7 +32,7 @@ export const actions: Actions = {
 		}
 	},
 	async checkPassword({ request }) {
-		await setTimeout(750);
+		await setTimeout(500);
 		const formData = await request.formData();
 		const bodyParsing = await accountDataSchemas.password.safeParseAsync(formData.get("password"));
 		if (bodyParsing.success) {
@@ -43,7 +43,7 @@ export const actions: Actions = {
 		}
 	},
 	async checkPronouns({ request }) {
-		await setTimeout(750);
+		await setTimeout(500);
 		const formData = await request.formData();
 		const bodyParsing = await accountDataSchemas.pronouns
 			.nullable()
