@@ -26,19 +26,19 @@
 		},
 		{
 			title: "Штаты",
-			href: "/install-mods",
+			href: "/states",
 		},
 		{
 			title: "Версия игры и сервера",
-			href: "/kiss",
+			href: "/game-version",
 		},
 		{
 			title: "Изменение персональных данных",
-			href: "/kiss",
+			href: "/change-personal-data",
 		},
 		{
 			title: "Прочие материалы",
-			href: "/kiss",
+			href: "/other",
 		},
 	];
 
