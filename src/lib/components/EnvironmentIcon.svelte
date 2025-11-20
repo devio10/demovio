@@ -109,6 +109,7 @@
 			box-shadow: 0 2px 5px 2px rgba(0, 0, 0, 0.25);
 			font-weight: bold;
 			color: black;
+			display: flex;
 		}
 
 		img {
@@ -142,6 +143,13 @@
 				font-size: 12px;
 				color: white;
 				font-weight: 500;
+			}
+			span.badge {
+				width: 24px;
+				height: 24px;
+				top: 10px;
+				right: 14px;
+				padding: 6px;
 			}
 		}
 	}
