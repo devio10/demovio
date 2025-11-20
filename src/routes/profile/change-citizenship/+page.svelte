@@ -23,7 +23,7 @@
 </svelte:head>
 <SettingsHeader title="Смена гражданства"></SettingsHeader>
 <div class="settings-buttons">
-	<p style="line-height: 1.4; margin: 12px 0 0 0">
+	<p style="line-height: 1.4; margin: 12px 0 0 0; font-size: 16px">
 		У вас есть возможность сменить своё гражданство, если вы больше не планируете жить в своём
 		штате. Учтите, что гражданство можно менять не чаще, чем раз в 30 дней.
 	</p>

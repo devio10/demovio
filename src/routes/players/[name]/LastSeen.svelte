@@ -50,5 +50,6 @@
 	.last-seen-online {
 		color: rgba(230, 230, 230, 0.75);
 		margin: 0;
+		font-size: 16px;
 	}
 </style>

@@ -48,7 +48,7 @@ export const demovioStates: {
 		code: "shanghai",
 		shortCode: "SH",
 		autoAcceptSwitch: true,
-		acceptOldPlayers: false,
+		acceptOldPlayers: true,
 	},
 ];
 
