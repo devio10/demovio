@@ -142,6 +142,10 @@
 			font-size: 48px;
 			margin: 0;
 		}
+		p {
+			margin: 8px 0;
+			font-size: 16px;
+		}
 	}
 	.list-button {
 		border: none;

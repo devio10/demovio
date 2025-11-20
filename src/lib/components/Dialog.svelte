@@ -157,4 +157,20 @@
 			border-top: 0.5px solid rgba(230, 230, 230, 0.5);
 		}
 	}
+	@media screen and (max-width: 768px) {
+		.dialog {
+			width: calc(100% - 24px);
+			max-width: 380px;
+			padding: 24px 16px 16px 16px;
+			.icon {
+				width: 46px;
+				height: 46px;
+			}
+			h3 {
+				padding-top: 12px;
+				line-height: 1.4;
+				font-size: 18px;
+			}
+		}
+	}
 </style>

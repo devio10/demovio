@@ -46,6 +46,7 @@
 		.button-name {
 			opacity: 0;
 			margin-left: 16px;
+			font-size: 16px;
 			transition: 200ms opacity ease-out;
 		}
 

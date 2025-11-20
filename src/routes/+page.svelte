@@ -102,7 +102,7 @@
 	</nav>
 	<div>
 		<span class="welcome">
-			{data.profile ? `Добро пожаловать, ${data.profile.name}` : "Войдите в аккаунт"}
+			{data.profile ? `Добро пожаловать, ${data.profile.name}.` : "Войдите в аккаунт"}
 		</span>
 	</div>
 </div>
@@ -130,6 +130,8 @@
 	.welcome {
 		color: rgba(255, 255, 255, 0.85);
 		font-weight: 500;
+		font-size: 16px;
+		margin: 0;
 	}
 	nav {
 		padding: 32px 0;
@@ -145,5 +147,6 @@
 		margin-top: 12px;
 		font-weight: 500;
 		text-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+		font-size: 16px;
 	}
 </style>
