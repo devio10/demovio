@@ -10,6 +10,7 @@
             "automatic-gradient" : "display-p3:0.62796,0.96783,0.61414,1.00000"
           },
           "glass" : true,
+          "hidden" : true,
           "image-name" : "Ellipse 4.png",
           "name" : "Ellipse 4"
         },
@@ -34,12 +35,13 @@
         {
           "blend-mode" : "normal",
           "fill" : {
-            "automatic-gradient" : "display-p3:0.24637,0.24658,0.96783,1.00000"
+            "automatic-gradient" : "srgb:0.00000,0.00000,0.00000,0.61501"
           },
           "glass" : true,
           "hidden" : false,
           "image-name" : "Ellipse 5.svg",
           "name" : "Ellipse 5",
+          "opacity" : 1,
           "position" : {
             "scale" : 20,
             "translation-in-points" : [
