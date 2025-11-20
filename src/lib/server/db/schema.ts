@@ -33,6 +33,7 @@ export const playersTable = pgTable("players", {
 		withTimezone: true,
 	}).notNull(),
 	isActivated: boolean().notNull(),
+	isDeactivated: boolean().default(false),
 	description: text(),
 	administrator: boolean().default(false),
 	isBanned: boolean().default(false),

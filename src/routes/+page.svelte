@@ -93,7 +93,9 @@
 		<AppIcon
 			icon="Downloads"
 			href="downloads"
-			badge={data.profile?.lastDownloadedBuild?.version !== data.latestBuild ? 1 : 0}
+			badge={data.profile && data.profile?.lastDownloadedBuild?.version !== data.latestBuild
+				? 1
+				: 0}
 		>
 			Загрузки
 		</AppIcon>

@@ -15,7 +15,11 @@ export const getPlayers = query(async () => {
 			pronouns: true,
 			citizenship: true,
 		},
-		where: and(eq(playersTable.isActivated, true), eq(playersTable.isBanned, false)),
+		where: and(
+			eq(playersTable.isActivated, true),
+			eq(playersTable.isBanned, false),
+			eq(playersTable.isDeactivated, false),
+		),
 		orderBy: desc(playersTable.lastOnline),
 	});
 	return res.map(({ citizenship, ...player }) => {

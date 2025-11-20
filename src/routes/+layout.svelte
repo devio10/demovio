@@ -10,6 +10,7 @@
 	import { scale } from "svelte/transition";
 	import SpatialEnvironment from "$lib/components/SpatialEnvironment.svelte";
 	import ActivationDialog from "$lib/ActivationDialog.svelte";
+	import ReactivationDialog from "$lib/ReactivationDialog.svelte";
 
 	let { children, data } = $props();
 
@@ -46,6 +47,7 @@
 		{@render children?.()}
 	</main>
 	<ActivationDialog profile={data.profile} />
+	<ReactivationDialog profile={data.profile} />
 </div>
 
 <style lang="scss">

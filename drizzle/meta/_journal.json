@@ -99,6 +99,13 @@
       "when": 1763305468474,
       "tag": "0013_faulty_bloodaxe",
       "breakpoints": true
+    },
+    {
+      "idx": 14,
+      "version": "7",
+      "when": 1763658962062,
+      "tag": "0014_rare_power_man",
+      "breakpoints": true
     }
   ]
 }

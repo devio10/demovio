@@ -8,6 +8,7 @@
 	import OptionDescription from "$lib/components/OptionDescription.svelte";
 	import LogoutButton from "./LogoutButton.svelte";
 	import LoadingWheel from "$lib/components/LoadingWheel.svelte";
+	import DeactivateAccountButton from "./DeactivateAccountButton.svelte";
 	let { data } = $props();
 	const scale = new Spring(0.5, { damping: 0.2, stiffness: 0.1 });
 </script>
@@ -63,11 +64,9 @@
 		<div class="settings-buttons-space"></div>
 		<LogoutButton />
 		<div class="settings-buttons-space"></div>
-		<form class="settings-buttons" method="POST" action="/profile?/logout" use:enhance>
-			<OptionButton style="color: rgb(235, 52, 79)">Удалить аккаунт</OptionButton>
-		</form>
+		<DeactivateAccountButton />
 		<OptionDescription>
-			Вы можете деактивировать аккаунт, если вы больше не планируете играть на сервере Demovio. Он
+			Вы можете деактивировать аккаунт, если больше не планируете играть на сервере Demovio. Он
 			перестанет показываться в списке игроков и со временем будет полностью удалён.
 		</OptionDescription>
 		<div class="settings-buttons-space"></div>

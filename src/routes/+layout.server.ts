@@ -25,6 +25,7 @@ export const load: LayoutServerLoad = async ({ locals, depends }) => {
 					notificationsPlayersActivity: player.notificationsPlayersActivity,
 					lastDownloadedBuild: player.lastDownloadedBuild,
 					haveLicense: player.haveLicense,
+					isDeactivated: player.isDeactivated,
 				}
 			: null,
 		latestBuild: LATEST_MODPACK_VERSION,
