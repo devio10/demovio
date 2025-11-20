@@ -20,11 +20,11 @@
 	let performance = $derived(data.profile?.lastDownloadedBuild?.optimized ?? false);
 	let minimap = $derived(data.profile?.lastDownloadedBuild?.minimap ?? false);
 	let loading = $state(false);
-	let downloadLink = $state("https://demovio.love/src/demovio-2.6.0-barebones.zip");
+	let downloadLink = $state(`https://demovio.love/src/demovio-${data.latestBuild}-barebones.zip`);
 	function generateDownloadLink() {
 		let keyword = performance ? "optimized" : "barebones";
 		keyword = minimap ? keyword + "-minimap" : keyword;
-		downloadLink = `https://demovio.love/src/demovio-2.6.0-${keyword}.zip`;
+		downloadLink = `https://demovio.love/src/demovio-${data.latestBuild}-${keyword}.zip`;
 	}
 </script>
 
@@ -41,7 +41,10 @@
 			</WindowNavigationHeader>
 			<WindowNavigationList>
 				{#if isMobile.current}
-					<DownloadsDescription lastDownloadedBuild={data.profile?.lastDownloadedBuild} />
+					<DownloadsDescription
+						currentBuild={data.latestBuild}
+						lastDownloadedBuild={data.profile?.lastDownloadedBuild}
+					/>
 				{/if}
 				<div>
 					<OptionButton>
@@ -89,7 +92,11 @@
 					onclick={async () => {
 						loading = true;
 						if (data.profile) {
-							await downloadBuild({ version: "2.6.0", optimized: performance, minimap: minimap });
+							await downloadBuild({
+								version: data.latestBuild,
+								optimized: performance,
+								minimap: minimap,
+							});
 							await invalidate("app:user:profile");
 						}
 						saveAs(downloadLink);
@@ -105,7 +112,10 @@
 			</div>
 		</WindowNavigation>
 	{/snippet}
-	<DownloadsDescription lastDownloadedBuild={data.profile?.lastDownloadedBuild} />
+	<DownloadsDescription
+		currentBuild={data.latestBuild}
+		lastDownloadedBuild={data.profile?.lastDownloadedBuild}
+	/>
 </Window>
 
 <style lang="scss">

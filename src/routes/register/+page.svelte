@@ -55,7 +55,7 @@
 					<div class="register-content">
 						<div class="mobile-description">
 							<RegisterStepDescription
-								{page}
+								bind:page
 								{citizenship}
 								{haveLicense}
 								{skin}
@@ -156,7 +156,7 @@
 		</WindowNavigation>
 	{/snippet}
 	<RegisterStepDescription
-		{page}
+		bind:page
 		{citizenship}
 		{haveLicense}
 		{skin}

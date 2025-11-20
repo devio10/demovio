@@ -1,5 +1,4 @@
 <script lang="ts">
-	import ActivationDialog from "$lib/ActivationDialog.svelte";
 	import AppIcon from "$lib/components/AppIcon.svelte";
 	import { onMount } from "svelte";
 	import { scale } from "svelte/transition";
@@ -91,7 +90,13 @@
 		<br />
 		<AppIcon icon="Wiki" href="https://wiki.demovio.love/">Википедия</AppIcon>
 		<AppIcon icon="Maps" href="https://map.demovio.love/">Карта</AppIcon>
-		<AppIcon icon="Downloads" href="downloads">Загрузки</AppIcon>
+		<AppIcon
+			icon="Downloads"
+			href="downloads"
+			badge={data.profile?.lastDownloadedBuild?.version !== data.latestBuild ? 1 : 0}
+		>
+			Загрузки
+		</AppIcon>
 		<AppIcon icon="About" href="https://demovio.love/?no-redirect">О Сервере</AppIcon>
 		{#if additionalPages}
 			<br />

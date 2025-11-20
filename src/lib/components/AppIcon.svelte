@@ -90,6 +90,11 @@
 			span.label {
 				font-size: 12px;
 			}
+			span.badge {
+				right: 8px;
+				top: 8px;
+				font-size: 14px;
+			}
 		}
 	}
 </style>

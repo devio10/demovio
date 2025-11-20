@@ -1,3 +1,4 @@
+import { LATEST_MODPACK_VERSION } from "$env/static/private";
 import type { LayoutServerLoad } from "./$types";
 
 export const load: LayoutServerLoad = async ({ locals, depends }) => {
@@ -26,5 +27,6 @@ export const load: LayoutServerLoad = async ({ locals, depends }) => {
 					haveLicense: player.haveLicense,
 				}
 			: null,
+		latestBuild: LATEST_MODPACK_VERSION,
 	};
 };

@@ -1,6 +1,5 @@
 <script>
 	import { localPreferences } from "$lib/local-settings.svelte";
-	import { onMount } from "svelte";
 
 	let backstageStatus = $derived(localPreferences.backstageStatus);
 </script>

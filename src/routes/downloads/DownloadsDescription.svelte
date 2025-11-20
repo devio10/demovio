@@ -1,15 +1,19 @@
 <script>
 	import IconRight from "$lib/components/icons/IconRight.svelte";
 	import { slide } from "svelte/transition";
-	let { lastDownloadedBuild } = $props();
+	let { lastDownloadedBuild, currentBuild } = $props();
 	let openedModsList = $state(false);
 </script>
 
 <div class="about">
 	<div class="about-content">
-		<h2>Demovio 2.6.0</h2>
+		<h2>Demovio {currentBuild}</h2>
 		{#if lastDownloadedBuild}
-			<p>Ваша версия: {lastDownloadedBuild.version}</p>
+			<p>
+				{#if currentBuild === lastDownloadedBuild.version}У вас актуальная версия.
+				{:else}
+					Ваша версия: {lastDownloadedBuild.version}{/if}
+			</p>
 		{/if}
 		<button
 			onclick={() => {

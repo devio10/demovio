@@ -1,12 +1,26 @@
 <script lang="ts">
 	import { RegisterStage } from "./stages";
 	import SkinEditorPreview from "$lib/components/SkinEditorPreview.svelte";
+	import IconBack from "$lib/components/icons/IconBack.svelte";
 
-	let { page, citizenship, haveLicense, skin, name, skinError = $bindable() } = $props();
+	let {
+		page = $bindable(),
+		citizenship,
+		haveLicense,
+		skin,
+		name,
+		skinError = $bindable(),
+	} = $props();
 </script>
 
 <div class="step-description">
 	<span class="step">{page + 1}/{RegisterStage.leaveContact + 1}</span>
+	{#if page > 0}
+		<button class="back-button mobile" onclick={() => page--}>
+			<div class="icon"><IconBack /></div>
+			Назад
+		</button>
+	{/if}
 	{#if page === RegisterStage.checkName}
 		<h3>Введите имя игрока</h3>
 		<p>Мы рассмотрим вашу заявку на вступление.</p>
@@ -24,8 +38,7 @@
 			<div>
 				<h3>Выберите скин</h3>
 				<p>
-					Загрузите свой файл или введите имя игрока, скин которого хотите использовать. Доступные
-					варианты есть на сайте <a href="https://skinmc.netskinmc.net">skinmc.net.</a>
+					Загрузите корректный файл скина в формате PNG.
 					<br />
 					{#if haveLicense}
 						Вы можете пропустить этот этап, так как у вас есть лицензионная игра.
@@ -75,18 +88,28 @@
 			беседу Demovio.
 		</p>
 	{/if}
+
+	{#if page > 0}
+		<button class="back-button" onclick={() => page--}>
+			<div class="icon"><IconBack /></div>
+			Назад
+		</button>
+	{/if}
 </div>
 
 <style lang="scss">
 	.step-description {
 		padding: 48px 0 48px 36px;
+		display: flex;
+		flex-direction: column;
+		height: 100%;
 		h3 {
 			font-size: 24px;
 			padding: 0 24px 0 0;
 		}
 		p {
 			padding: 0 24px 0 0;
-			margin: 0;
+			margin: 0 0 24px 0;
 			line-height: 1.5;
 		}
 	}
@@ -102,6 +125,32 @@
 		padding-right: 24px;
 		align-items: center;
 	}
+	.back-button {
+		background: none;
+		cursor: pointer;
+		font-size: 16px;
+		border: none;
+		color: white;
+		padding: 0;
+		margin-top: auto;
+		width: fit-content;
+		display: flex;
+		align-items: center;
+		gap: 4px;
+		.icon {
+			width: 16px;
+			height: 16px;
+			:global {
+				svg {
+					width: 100%;
+					height: 100%;
+				}
+			}
+		}
+		&.mobile {
+			display: none;
+		}
+	}
 	@media screen and (max-width: 768px) {
 		.step {
 			display: none;
@@ -110,7 +159,10 @@
 			padding: 16px 0 0 0;
 			margin: 0;
 			h3 {
-				margin-bottom: 0;
+				margin-bottom: 16px;
+			}
+			p {
+				margin: 0;
 			}
 			&.fullHeight {
 				flex: 1;
@@ -118,6 +170,14 @@
 		}
 		.state-description {
 			flex: 1;
+		}
+		.back-button {
+			display: none;
+			&.mobile {
+				display: flex;
+				margin-top: 8px;
+				font-weight: bold;
+			}
 		}
 	}
 </style>
