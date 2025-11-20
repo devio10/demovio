@@ -3,13 +3,14 @@
 	import OptionDescription from "$lib/components/OptionDescription.svelte";
 	import SettingsSwitch from "$lib/components/SettingsSwitch.svelte";
 	import SettingsHeader from "$lib/Window/SettingsHeader.svelte";
+	import SettingsContent from "../SettingsContent.svelte";
 </script>
 
 <svelte:head>
 	<title>Профиль Demovio – Безопасность аккаунта</title>
 </svelte:head>
 <SettingsHeader title="Безопасность аккаунта"></SettingsHeader>
-<div class="settings-content">
+<SettingsContent>
 	<div class="settings-buttons-space"></div>
 	<div class="settings-buttons">
 		<OptionButton tag="a">Изменить пароль для входа на сайт</OptionButton>
@@ -29,4 +30,4 @@
 		Добавление ключа на устройство или в браузер позволит входить вам в аккаунт Demovio безопасно,
 		не вводя пароль.
 	</OptionDescription>
-</div>
+</SettingsContent>

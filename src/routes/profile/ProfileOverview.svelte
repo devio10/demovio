@@ -9,12 +9,13 @@
 	import LogoutButton from "./LogoutButton.svelte";
 	import DeactivateAccountButton from "./DeactivateAccountButton.svelte";
 	import ReapplySkinButton from "./ReapplySkinButton.svelte";
+	import SettingsContent from "./SettingsContent.svelte";
 	let { data } = $props();
 	const scale = new Spring(0.5, { damping: 0.2, stiffness: 0.1 });
 </script>
 
 <SettingsHeader title="Обзор"></SettingsHeader>
-<div class="settings-content">
+<SettingsContent>
 	{#if data.profile}
 		<div class="canvas-block" style="scale: {scale.current}">
 			<canvas
@@ -68,7 +69,7 @@
 		</OptionDescription>
 		<div class="settings-buttons-space"></div>
 	{/if}
-</div>
+</SettingsContent>
 
 <style lang="scss">
 	.canvas-block {

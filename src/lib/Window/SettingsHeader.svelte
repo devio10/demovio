@@ -3,6 +3,7 @@
 	import type { Snippet } from "svelte";
 	import type { SvelteHTMLElements } from "svelte/elements";
 	import WindowBackButton from "./Navigation/WindowBackButton.svelte";
+	import { fade } from "svelte/transition";
 
 	let {
 		children,
@@ -21,7 +22,7 @@
 	});
 </script>
 
-<div class="content" {...props}>
+<div class="content" {...props} transition:fade|global={{ duration: 250 }}>
 	<div><WindowBackButton /></div>
 	<div class="text">
 		<h2 style="scale: {1 - titleHideProgress}; opacity: {1 - titleHideProgress}">{title}</h2>
@@ -41,6 +42,8 @@
 		display: grid;
 		grid-template-columns: 1fr auto 1fr;
 		// height: 98px;
+		position: absolute;
+		z-index: 3;
 		h2 {
 			margin: 0;
 			height: 34px;

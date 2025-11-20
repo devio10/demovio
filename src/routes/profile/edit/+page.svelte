@@ -16,6 +16,7 @@
 	import { saveData } from "./savedata.remote.js";
 	import IconXCircle from "$lib/components/icons/IconXCircle.svelte";
 	import SkinEditorPreview from "$lib/components/SkinEditorPreview.svelte";
+	import SettingsContent from "../SettingsContent.svelte";
 
 	const allPronouns = ["он/его", "она/её", "они/их"];
 
@@ -85,7 +86,7 @@
 </div>
 
 {#if data.profile}
-	<div class="settings-content">
+	<SettingsContent>
 		<h3>Основное</h3>
 		<div class="settings-buttons skin-and-description">
 			<div class="skin-container">
@@ -204,7 +205,7 @@
 			</OptionButton>
 		</div>
 		<div class="settings-buttons-space"></div>
-	</div>
+	</SettingsContent>
 {/if}
 
 {#if updateDataError instanceof Error}

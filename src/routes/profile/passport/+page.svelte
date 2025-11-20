@@ -1,6 +1,7 @@
 <script>
 	import Passport from "$lib/components/Passport.svelte";
 	import SettingsHeader from "$lib/Window/SettingsHeader.svelte";
+	import SettingsContent from "../SettingsContent.svelte";
 	let { data } = $props();
 </script>
 
@@ -8,14 +9,16 @@
 	<title>Профиль Demovio – Паспорт</title>
 </svelte:head>
 
-<SettingsHeader title="Паспорт" style="position: absolute;"></SettingsHeader>
-<div>
-	{#if data.profile && data.profile.isActivated}
-		<Passport profile={data.profile}></Passport>
-	{:else}
-		<p>Нет полученных паспортов.</p>
-	{/if}
-</div>
+<SettingsHeader title="Паспорт"></SettingsHeader>
+<SettingsContent style="padding-top: 32px;">
+	<div>
+		{#if data.profile && data.profile.isActivated}
+			<Passport profile={data.profile}></Passport>
+		{:else}
+			<p>Нет полученных паспортов.</p>
+		{/if}
+	</div>
+</SettingsContent>
 
 <style>
 	div {

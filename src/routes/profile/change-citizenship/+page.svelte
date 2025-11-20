@@ -10,6 +10,7 @@
 	import LoadingWheel from "$lib/components/LoadingWheel.svelte";
 	import OptionDescription from "$lib/components/OptionDescription.svelte";
 	import SettingsHeader from "$lib/Window/SettingsHeader.svelte";
+	import SettingsContent from "../SettingsContent.svelte";
 	let { form } = $props();
 	let citizenship = $state(demovioStates[0]);
 	let formError = $derived(form?.error);
@@ -22,50 +23,51 @@
 	<title>Профиль Demovio – Смена гражданства</title>
 </svelte:head>
 <SettingsHeader title="Смена гражданства"></SettingsHeader>
-<div class="settings-buttons">
-	<p style="line-height: 1.4; margin: 12px 0 0 0; font-size: 16px">
-		У вас есть возможность сменить своё гражданство, если вы больше не планируете жить в своём
-		штате. Учтите, что гражданство можно менять не чаще, чем раз в 30 дней.
-	</p>
-</div>
-<div class="settings-buttons-space"></div>
-<CitizenshipSelector bind:citizenship />
-<div class="settings-buttons-space"></div>
-{#if typeof citizenship.autoAcceptSwitch === "string"}
-	<OptionDescription>{citizenship.autoAcceptSwitch}</OptionDescription>
-{/if}
-{#if citizenship.acceptOldPlayers === false}
-	<OptionDescription>Этот штат на данный момент не принимает новых игроков.</OptionDescription>
-{/if}
-<form
-	action="/profile/change-citizenship?/applyForCitizenship"
-	method="POST"
-	class="settings-buttons"
-	style="margin-top: auto; margin-bottom: 36px"
-	use:enhance={() => {
-		formError = undefined;
-		submitting = true;
-		return ({ update }) => {
-			submitting = false;
-			update({ reset: false });
-		};
-	}}
->
-	<input type="hidden" value={citizenship.shortCode} name="stateCode" />
-	<Button
-		disabled={citizenship.acceptOldPlayers === false ||
-			citizenship.code === undefined ||
-			submitting}
+<SettingsContent style="min-height: 100%;">
+	<div class="settings-buttons">
+		<p style="line-height: 1.4; margin: 12px 0 0 0; font-size: 16px">
+			У вас есть возможность сменить своё гражданство, если вы больше не планируете жить в своём
+			штате. Учтите, что гражданство можно менять не чаще, чем раз в 30 дней.
+		</p>
+	</div>
+	<div class="settings-buttons-space"></div>
+	<CitizenshipSelector bind:citizenship />
+	<div class="settings-buttons-space"></div>
+	{#if typeof citizenship.autoAcceptSwitch === "string"}
+		<OptionDescription>{citizenship.autoAcceptSwitch}</OptionDescription>
+	{/if}
+	{#if citizenship.acceptOldPlayers === false}
+		<OptionDescription>Этот штат на данный момент не принимает новых игроков.</OptionDescription>
+	{/if}
+	<form
+		action="/profile/change-citizenship?/applyForCitizenship"
+		method="POST"
+		class="settings-buttons form"
+		use:enhance={() => {
+			formError = undefined;
+			submitting = true;
+			return ({ update }) => {
+				submitting = false;
+				update({ reset: false });
+			};
+		}}
 	>
-		{#if citizenship.code === undefined}
-			Выберите штат
-		{:else if !submitting}
-			Подать заявку ({citizenship.name})
-		{:else}
-			<LoadingWheel duration={0} --wheel-size="36px" />
-		{/if}
-	</Button>
-</form>
+		<input type="hidden" value={citizenship.shortCode} name="stateCode" />
+		<Button
+			disabled={citizenship.acceptOldPlayers === false ||
+				citizenship.code === undefined ||
+				submitting}
+		>
+			{#if citizenship.code === undefined}
+				Выберите штат
+			{:else if !submitting}
+				Подать заявку ({citizenship.name})
+			{:else}
+				<LoadingWheel duration={0} --wheel-size="36px" />
+			{/if}
+		</Button>
+	</form>
+</SettingsContent>
 
 <Dialog
 	opened={formError?.wrongData}
@@ -127,3 +129,14 @@
 		</div>
 	{/snippet}
 </Dialog>
+
+<style>
+	.form {
+		margin-top: auto;
+		margin-bottom: 36px;
+	}
+	@media screen and (max-width: 768px) {
+		.form {
+		}
+	}
+</style>

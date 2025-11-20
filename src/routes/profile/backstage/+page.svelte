@@ -5,6 +5,7 @@
 	import { localPreferences } from "$lib/local-settings.svelte.js";
 	import SettingsHeader from "$lib/Window/SettingsHeader.svelte";
 	import { onMount } from "svelte";
+	import SettingsContent from "../SettingsContent.svelte";
 	let { data } = $props();
 	let additionalPages = $state(false);
 	let backstageStatus = $state(false);
@@ -22,7 +23,7 @@
 
 <SettingsHeader title="Backstage"></SettingsHeader>
 {#if data.profile && data.profile.administrator}
-	<div class="settings-content">
+	<SettingsContent>
 		<div class="settings-buttons">
 			<OptionButton tag="div">
 				Demovio Backstage <SettingsSwitch
@@ -83,7 +84,7 @@
 		<OptionDescription>
 			Отображение страниц «Заявки на Вступление», «Консоль» и «Статистика» на главном экране сайта.
 		</OptionDescription>
-	</div>
+	</SettingsContent>
 {:else}
 	<p>Доступ запрещён</p>
 {/if}

@@ -11,6 +11,7 @@
 	import PlayerInvitesSwitch from "./PlayerInvitesSwitch.svelte";
 	import ServerUpdatesSwitch from "./ServerUpdatesSwitch.svelte";
 	import PlayersActivitySwitch from "./PlayersActivitySwitch.svelte";
+	import SettingsContent from "../SettingsContent.svelte";
 </script>
 
 <svelte:head>
@@ -18,7 +19,7 @@
 </svelte:head>
 
 <SettingsHeader title="Уведомления"></SettingsHeader>
-<div class="settings-content">
+<SettingsContent>
 	<div class="settings-buttons">
 		<PushNotificationsSwitch />
 		<OptionButton tag="div">Уведомления в Telegram <SettingsSwitch disabled /></OptionButton>
@@ -63,4 +64,4 @@
 		<OptionButton style="color: rgb(235, 52, 79)">Отключить все уведомления</OptionButton>
 	</div>
 	<div class="settings-buttons-space"></div>
-</div>
+</SettingsContent>
