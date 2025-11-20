@@ -8,7 +8,6 @@
 	import RegisterSkin from "./RegisterSkin.svelte";
 	import TextInput from "$lib/components/TextInput.svelte";
 	import Button from "$lib/components/Button.svelte";
-	import { enhance } from "$app/forms";
 	import { demovioStates } from "$lib/components/demovio-states";
 	import RegisterPronouns from "./RegisterPronouns.svelte";
 	import WindowNavigation from "$lib/Window/Navigation/WindowNavigation.svelte";
@@ -18,8 +17,9 @@
 	import IconExclamationMark from "$lib/components/icons/IconExclamationMark.svelte";
 	import DialogButton from "$lib/components/DialogButton.svelte";
 	import LoadingWheel from "$lib/components/LoadingWheel.svelte";
+	import { finishRegistration } from "./register.remote";
 	let { form } = $props();
-	let page = $state(RegisterStage.checkForLicense);
+	let page = $state(RegisterStage.checkName);
 	let formError = $derived(form?.error);
 	let submitting = $state(false);
 	let haveLicense = $state(false);
@@ -27,10 +27,15 @@
 	let citizenship = $state(demovioStates[0]);
 	let password = $state();
 	let playername = $state();
-	let contact = $state();
-	let skin = $state();
+	let skin: File | undefined = $state();
 	let skinError = $state(undefined);
 	let pronouns = $state();
+	$inspect(skin);
+	$effect(() => {
+		if (skin) {
+			finishRegistration.fields.skin.set(skin);
+		}
+	});
 </script>
 
 <Window>
@@ -72,31 +77,44 @@
 							{:else if page === RegisterStage.choosePronouns}
 								<RegisterPronouns bind:formError bind:page bind:pronouns bind:submitting />
 							{:else if page === RegisterStage.leaveContact}
-								<RegisterPage
-									method="POST"
-									action="/register?/finishRegistration"
-									tag="form"
-									useEnhance={(form) => {
-										if (!(form instanceof HTMLFormElement)) {
-											return;
+								<form
+									{...finishRegistration.enhance(async ({ submit, data }) => {
+										formError = undefined;
+										submitting = true;
+										try {
+											console.log(data.haveLicense);
+											await submit();
+											submitting = false;
+										} catch (e) {
+											console.error(e);
+											formError = e;
 										}
-										return enhance(form, () => {
-											formError = undefined;
-											submitting = true;
-											return ({ update, result }) => {
-												submitting = false;
-												update({ reset: false });
-											};
-										});
-									}}
+									})}
+									enctype="multipart/form-data"
 								>
-									<input type="hidden" name="playername" value={playername} />
-									<input type="hidden" name="password" value={password} />
-									<input type="hidden" name="skin" value={skin} />
-									<input type="hidden" name="haveLicense" value={haveLicense} />
-									<input type="hidden" name="citizenship" value={citizenship.shortCode} />
-									<input type="hidden" name="pronouns" value={pronouns} />
-									<TextInput placeholder="Юзернейм Telegram" name="contact" bind:value={contact}>
+									<div style="display: none;">
+										<input {...finishRegistration.fields.pronouns.as("text")} value={pronouns} />
+										<input {...finishRegistration.fields.name.as("text")} value={playername} />
+										<input {...finishRegistration.fields.password.as("text")} value={password} />
+										{#if haveLicense}
+											<input
+												{...finishRegistration.fields.haveLicense.as("checkbox")}
+												value={true}
+											/>
+										{/if}
+										<input
+											{...finishRegistration.fields.citizenship.as("text")}
+											value={citizenship.shortCode}
+										/>
+										{#if skin}
+											<input {...finishRegistration.fields.skin.as("file")} />
+										{/if}
+									</div>
+
+									<TextInput
+										placeholder="Юзернейм Telegram"
+										{...finishRegistration.fields.contact.as("text")}
+									>
 										<svg
 											version="1.1"
 											style="padding: 2px 0"
@@ -117,7 +135,7 @@
 											Завершить
 										{/if}
 									</Button>
-								</RegisterPage>
+								</form>
 							{/if}
 						</div>
 					</div>
