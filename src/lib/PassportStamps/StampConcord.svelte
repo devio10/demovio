@@ -23,6 +23,8 @@
 		border-color: #8c1ff2;
 		scale: 1;
 		svg {
+			width: 42px;
+			height: 42px;
 			fill: #b56d09;
 		}
 	}

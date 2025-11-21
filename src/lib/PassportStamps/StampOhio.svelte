@@ -47,6 +47,8 @@
 		}
 		svg {
 			stroke: var(--color);
+			width: 42px;
+			height: 42px;
 		}
 		.date {
 			text-align: center;

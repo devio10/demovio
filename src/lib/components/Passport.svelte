@@ -222,7 +222,7 @@
 		grid-template-rows: 1fr 1fr;
 		margin-top: 48px;
 		color: rgba(0, 0, 0, 0.9);
-		transition: 0.5s ease-in-out transform;
+		transition: 0.75s ease-in-out transform;
 
 		perspective: 1000px;
 		padding: 0;
@@ -245,7 +245,7 @@
 
 			transform-style: preserve-3d;
 			transform: rotateX(-180deg) scaleY(1);
-			transition: 0.5s all ease-in-out;
+			transition: 0.75s all ease-in-out;
 
 			border-radius: var(--radius) var(--radius) 0 0;
 

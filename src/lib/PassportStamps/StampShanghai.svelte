@@ -39,6 +39,8 @@
 			gap: 4px;
 			padding: 4px;
 			svg {
+				width: 24px;
+				height: 24px;
 				fill: var(--color);
 			}
 			span {

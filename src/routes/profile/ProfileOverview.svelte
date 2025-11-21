@@ -43,7 +43,7 @@
 		<div class="settings-buttons-space"></div>
 		<div class="settings-buttons">
 			<OptionButton tag="a" href="/profile/edit">Изменить данные</OptionButton>
-			<OptionButton>Пригласить друга</OptionButton>
+			<OptionButton tag="a" href="/profile/overview/invite">Пригласить друга</OptionButton>
 		</div>
 		<OptionDescription>
 			Вы можете пригласить друзей и знакомых с помощью своей реферальной ссылки. Вы получите бонус
