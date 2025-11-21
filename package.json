@@ -55,6 +55,7 @@
 	"dependencies": {
 		"@fontsource-variable/montserrat": "^5.2.8",
 		"@hloth/minecraft-query": "^1.0.0",
+		"@minecraft-js/rcon": "^1.1.0",
 		"date-fns": "^4.1.0",
 		"dotenv": "^17.2.3",
 		"drizzle-orm": "^0.44.6",
@@ -66,6 +67,7 @@
 		"svelte-portal": "^2.2.1",
 		"svelte-switcher": "^1.0.2",
 		"three": "^0.180.0",
+		"typed-emitter": "^2.1.0",
 		"web-push": "^3.6.7",
 		"zod": "^4.1.12"
 	},

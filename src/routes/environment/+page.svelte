@@ -35,6 +35,17 @@
 		>
 			Панорама
 		</TabNavigationButton>
+		<TabNavigationButton
+			onclick={({ target }) => {
+				const targetPage = 2;
+				flyDirection = page > targetPage ? -1 : 1;
+				page = targetPage;
+				tabNavigationSelection = target.offsetLeft;
+				tabNavigationSelectionWidth = target.clientWidth;
+			}}
+		>
+			Сезоны
+		</TabNavigationButton>
 	</TabNavigation>
 </div>
 <div class="content" transition:scale|global={{ duration: 500, start: 0.5 }}>
@@ -46,18 +57,18 @@
 		>
 			<EnvironmentIcon src="states-1.webp" name="Центральный Вокзал" />
 			<EnvironmentIcon src="states-2.webp" name="Киото" />
-			<EnvironmentIcon src="states-3.webp" name="Хэллоуин" />
+			<EnvironmentIcon src="states-5.webp" name="Огайо" />
 			<br />
 			<EnvironmentIcon src="states-4.webp" name="Улицы Шанхая" />
-			<EnvironmentIcon src="states-5.webp" name="Огайо" />
-			<EnvironmentIcon src="states-6.webp" name="Шанхайская мэрия" />
+			<EnvironmentIcon disabled name="Скоро выйдет" />
+			<EnvironmentIcon disabled name="Скоро выйдет" />
 			<EnvironmentIcon src="states-7.webp" name="Башня Нью Йорка" />
 			<br />
 			<EnvironmentIcon src="states-8.webp" name="Горы Джорджии" />
-			<EnvironmentIcon src="states-9.webp" name="Осенний Лес" />
+			<EnvironmentIcon src="states-6.webp" name="Шанхайская мэрия" />
 			<EnvironmentIcon src="states-10.webp" name="Банк Калифорния" />
 		</div>
-	{:else}
+	{:else if page === 1}
 		<div
 			class="environment-list"
 			in:fly={{ x: 300 * flyDirection, duration: 450 }}
@@ -65,6 +76,25 @@
 		>
 			<EnvironmentIcon spatial="shanghai" src="states-4.webp" name="Шанхай" />
 			<EnvironmentIcon disabled name="Скоро выйдет" />
+			<EnvironmentIcon disabled name="Скоро выйдет" />
+			<br />
+			<EnvironmentIcon disabled name="Скоро выйдет" />
+			<EnvironmentIcon disabled name="Скоро выйдет" />
+			<EnvironmentIcon disabled name="Скоро выйдет" />
+			<EnvironmentIcon disabled name="Скоро выйдет" />
+			<br />
+			<EnvironmentIcon disabled name="Скоро выйдет" />
+			<EnvironmentIcon disabled name="Скоро выйдет" />
+			<EnvironmentIcon disabled name="Скоро выйдет" />
+		</div>
+	{:else}
+		<div
+			class="environment-list"
+			in:fly={{ x: 300 * flyDirection, duration: 450 }}
+			out:fly={{ x: -300 * flyDirection, duration: 450 }}
+		>
+			<EnvironmentIcon src="states-3.webp" name="Хэллоуин" />
+			<EnvironmentIcon src="states-9.webp" name="Осенний Лес" />
 			<EnvironmentIcon disabled name="Скоро выйдет" />
 			<br />
 			<EnvironmentIcon disabled name="Скоро выйдет" />

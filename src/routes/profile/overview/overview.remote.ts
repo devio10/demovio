@@ -3,6 +3,7 @@ import { db } from "$lib/server/db";
 import { playersTable } from "$lib/server/db/schema";
 import { eq } from "drizzle-orm";
 import { setTimeout } from "timers/promises";
+import { applySkin } from "../../status.remote";
 
 export const forceReapplySkin = query(async () => {
 	await setTimeout(1000);
@@ -14,6 +15,8 @@ export const forceReapplySkin = query(async () => {
 		.update(playersTable)
 		.set({ appliedSkin: true })
 		.where(eq(playersTable.name, locals.playerData.name));
-	//apply skin here...
+
+	await applySkin({ playerName: locals.playerData.name });
+
 	return { success: true };
 });

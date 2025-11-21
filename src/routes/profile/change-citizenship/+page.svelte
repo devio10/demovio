@@ -11,7 +11,7 @@
 	import OptionDescription from "$lib/components/OptionDescription.svelte";
 	import SettingsHeader from "$lib/Window/SettingsHeader.svelte";
 	import SettingsContent from "../SettingsContent.svelte";
-	let { form } = $props();
+	let { form, data } = $props();
 	let citizenship = $state(demovioStates[0]);
 	let formError = $derived(form?.error);
 	let formSuccess = $derived(form?.success);
@@ -56,10 +56,13 @@
 		<Button
 			disabled={citizenship.acceptOldPlayers === false ||
 				citizenship.code === undefined ||
+				data.profile?.citizenship.code === citizenship.shortCode ||
 				submitting}
 		>
 			{#if citizenship.code === undefined}
 				Выберите штат
+			{:else if data.profile?.citizenship.code === citizenship.shortCode}
+				Ваш текущий штат
 			{:else if !submitting}
 				Подать заявку ({citizenship.name})
 			{:else}
@@ -134,9 +137,5 @@
 	.form {
 		margin-top: auto;
 		margin-bottom: 36px;
-	}
-	@media screen and (max-width: 768px) {
-		.form {
-		}
 	}
 </style>

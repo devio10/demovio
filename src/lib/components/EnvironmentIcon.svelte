@@ -87,12 +87,13 @@
 		.grayed-out {
 			width: 100%;
 			height: 100%;
-			background-color: rgba(230, 230, 230, 0.3);
+			background-color: rgba(220, 220, 220, 0.5);
+			// backdrop-filter: blur(10px);
 		}
 		span.label {
 			font-size: 14px;
 			font-weight: 500;
-			color: rgba(230, 230, 230, 0.85);
+			color: rgba(240, 240, 240, 0.9);
 			text-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
 			text-align: center;
 			margin-top: 8px;
