@@ -20,11 +20,11 @@
 	let performance = $derived(data.profile?.lastDownloadedBuild?.optimized ?? false);
 	let minimap = $derived(data.profile?.lastDownloadedBuild?.minimap ?? false);
 	let loading = $state(false);
-	let downloadLink = $state(`https://demovio.love/res/demovio-${data.latestBuild}-barebones.zip`);
+	let downloadFile = $state(`demovio-${data.latestBuild}-barebones.zip`);
 	function generateDownloadLink() {
 		let keyword = performance ? "optimized" : "barebones";
 		keyword = minimap ? keyword + "-minimap" : keyword;
-		downloadLink = `https://demovio.love/res/demovio-${data.latestBuild}-${keyword}.zip`;
+		downloadFile = `demovio-${data.latestBuild}-${keyword}.zip`;
 	}
 </script>
 
@@ -91,6 +91,7 @@
 				<Button
 					onclick={async () => {
 						loading = true;
+						generateDownloadLink();
 						if (data.profile) {
 							await downloadBuild({
 								version: data.latestBuild,
@@ -99,7 +100,7 @@
 							});
 							await invalidate("app:user:profile");
 						}
-						saveAs(downloadLink);
+						saveAs(`https://demovio.love/res/${downloadFile}`, downloadFile);
 						loading = false;
 					}}
 				>

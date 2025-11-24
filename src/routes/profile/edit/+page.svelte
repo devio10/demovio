@@ -131,7 +131,7 @@
 				{/if}
 			</div>
 		</div>
-		{#if editingSkin}
+		{#if editingSkin && data.profile.haveLicense}
 			<div class="settings-buttons" style="margin-top: 16px" transition:slide={{ duration: 300 }}>
 				<OptionButton
 					onclick={() => {
@@ -200,8 +200,10 @@
 		<div class="settings-buttons-space"></div>
 		<h3>Прочее</h3>
 		<div class="settings-buttons">
-			<OptionButton>Изменить игровой ник</OptionButton>
-			<OptionButton>Изменить контактную информацию (Telegram)</OptionButton>
+			<OptionButton tag="a" href="/profile/edit/name">Изменить игровой ник</OptionButton>
+			<OptionButton tag="a" href="/profile/edit/contact">
+				Изменить контактную информацию (Telegram)
+			</OptionButton>
 			<OptionButton tag="a" href="/profile/notifications">
 				Изменить предпочтения уведомлений
 			</OptionButton>

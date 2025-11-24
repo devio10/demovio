@@ -61,7 +61,9 @@
 	</OptionDescription>
 	<div class="settings-buttons-space"></div>
 	<div class="settings-buttons">
-		<OptionButton style="color: rgb(235, 52, 79)">Отключить все уведомления</OptionButton>
+		<OptionButton disabled={true} style="color: rgb(235, 52, 79)">
+			Отключить все уведомления
+		</OptionButton>
 	</div>
 	<div class="settings-buttons-space"></div>
 </SettingsContent>

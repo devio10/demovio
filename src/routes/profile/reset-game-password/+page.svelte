@@ -57,7 +57,7 @@
 		</TextInput>
 	</div>
 	<div class="settings-buttons button">
-		<Button disabled={submitting}>
+		<Button disabled={submitting || true}>
 			{#if !submitting}
 				Изменить пароль
 			{:else}
