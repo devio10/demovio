@@ -31,7 +31,7 @@ export const actions: Actions = {
 		if (!player) {
 			return fail(403, { error: "Имя игрока не найдено." });
 		}
-		if (!(await Bun.password.verify(password.data, player.password))) {
+		if (!(await Bun.password.verify(password.data, player.password, "bcrypt"))) {
 			return fail(401, { error: "Неправильный пароль." });
 		}
 		const sessionId = nanoid();
