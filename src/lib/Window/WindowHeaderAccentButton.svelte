@@ -32,6 +32,7 @@
 		border: 0.5px solid rgba(230, 230, 230, 0.3);
 		border-left: none;
 		border-bottom: none;
+		z-index: 5;
 		transition-property: scale, background-color;
 		transition-duration: 250ms;
 		transition-timing-function: ease-out;

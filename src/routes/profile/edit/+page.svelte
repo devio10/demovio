@@ -268,6 +268,7 @@
 			top: 0;
 			right: 0;
 			position: fixed;
+			z-index: 4;
 		}
 	}
 	.skin-container {
