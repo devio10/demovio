@@ -19,7 +19,7 @@ export const applySkin = command(
 			return { error: "Войдите в аккаунт." };
 		}
 		let skin = locals.playerData?.skin?.includes("/skins/")
-			? `/var/www/demovio.love/website${locals.playerData?.skin}`
+			? `/var/www/demovio.love${locals.playerData?.skin}`
 			: locals.playerData?.skin;
 		if (skin === null) {
 			skin = playerName;
