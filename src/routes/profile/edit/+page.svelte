@@ -125,7 +125,9 @@
 						oninput={() => (unsavedChanges = true)}
 					/>
 				{:else}
-					<SkinEditor bind:skin bind:skinError />
+					<div class="skin-editor">
+						<SkinEditor bind:skin bind:skinError />
+					</div>
 				{/if}
 			</div>
 		</div>
@@ -358,6 +360,10 @@
 				display: flex;
 				height: 128px;
 				margin-top: 16px;
+			}
+			.skin-editor {
+				height: 100%;
+				width: 100%;
 			}
 		}
 		.skin-container {
