@@ -53,7 +53,7 @@
 <style lang="scss">
 	.page {
 		position: relative;
-		min-height: 100vh;
+		min-height: 100dvh;
 	}
 	.page-background {
 		position: absolute;
