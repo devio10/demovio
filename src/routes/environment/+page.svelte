@@ -11,7 +11,10 @@
 	let tabNavigationSelectionWidth = $state(82);
 </script>
 
-<div class="navigation" transition:fly|global={{ duration: 300, y: 200, opacity: 1 }}>
+<div
+	class="navigation"
+	transition:fly|global={{ duration: 500, y: isMobile.current ? -150 : 150, opacity: 1 }}
+>
 	<TabNavigation selection={tabNavigationSelection} selectionWidth={tabNavigationSelectionWidth}>
 		<TabNavigationButton
 			onclick={({ target }) => {
