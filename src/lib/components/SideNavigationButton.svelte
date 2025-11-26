@@ -90,13 +90,13 @@
 			min-width: 0;
 			transition-property: background-color, scale;
 			transition-duration: 300ms, 1500ms;
-			transition-timing-function: ease-out;
+			transition-timing-function: ease-in-out;
 			cursor: default;
 			&.active {
 				background: none;
 				color: rgb(77, 178, 255);
 				&:hover {
-					transition-duration: 0, 250ms;
+					transition-duration: 0, 150ms;
 					background-color: rgba(0, 0, 0, 0);
 				}
 				&:active {
@@ -105,12 +105,12 @@
 			}
 			&:hover {
 				background-color: rgba(0, 0, 0, 0);
-				transition-duration: 0, 250ms;
+				transition-duration: 0, 150ms;
 			}
 			&:active {
 				background-color: rgba(255, 255, 255, 0.3);
 				scale: 1.2;
-				transition-duration: 150ms, 250ms;
+				transition-duration: 150ms, 150ms;
 			}
 			.icon {
 				width: 26px;
@@ -122,6 +122,7 @@
 				margin: 4px 0 0 0;
 				opacity: 1;
 				font-size: 12px;
+				user-select: none;
 			}
 		}
 	}

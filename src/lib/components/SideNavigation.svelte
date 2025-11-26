@@ -78,7 +78,7 @@
 		.side-navigation {
 			left: 50%;
 			top: auto;
-			bottom: 12px;
+			bottom: 20px;
 			transform: translateX(-50%);
 			flex-direction: row;
 			height: 64px;
