@@ -41,7 +41,7 @@ export const POST: RequestHandler = async ({ request }) => {
 				(!lastSent ||
 					!receiverPlayer.subscriptionFrequency ||
 					Date.now() - lastSent.getTime() >= receiverPlayer.subscriptionFrequency) &&
-				!receiverPlayer.currentlyOnline
+				!targetPlayer.currentlyOnline
 			) {
 				const receiverPushSubscriptions = await db.query.pushSubscriptionsTable.findMany({
 					where: eq(pushSubscriptionsTable.receiverName, receiverName),
