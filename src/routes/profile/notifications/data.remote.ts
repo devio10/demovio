@@ -64,3 +64,18 @@ export const notificationsPlayersActivity = command(z.boolean(), async (value) =
 
 	return { success: true };
 });
+
+export const notificationsInvites = command(z.boolean(), async (value) => {
+	const { locals } = getRequestEvent();
+	if (!locals.loggedIn || !locals.playerData) {
+		return fail(401);
+	}
+	await db
+		.update(playersTable)
+		.set({
+			notificationsInvites: value,
+		})
+		.where(eq(playersTable.name, locals.playerData.name));
+
+	return { success: true };
+});

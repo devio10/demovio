@@ -6,6 +6,7 @@
 	let { data } = $props();
 	let playerActivitySubscription = $derived(data.profile?.notificationsPlayersActivity);
 	let demovioUpdatesSubscription = $derived(data.profile?.notificationsServerUpdates);
+	let invitesSubscription = $derived(data.profile?.notificationsInvites);
 	import PushNotificationsSwitch from "./PushNotificationsSwitch.svelte";
 	import OptionDescription from "$lib/components/OptionDescription.svelte";
 	import PlayerInvitesSwitch from "./PlayerInvitesSwitch.svelte";
@@ -42,11 +43,14 @@
 		{#if playerActivitySubscription && demovioUpdatesSubscription}
 			Вы будете получать уведомления об активности выбранных игроков и обновлениях сервера Demovio.
 		{:else if playerActivitySubscription}
-			Вы будете получать уведомления только об активности выбранных игроков.
+			Вы будете получать уведомления об активности выбранных игроков.
 		{:else if demovioUpdatesSubscription}
-			Вы будете получать уведомления только об обновлениях сервера Demovio.
-		{:else}
+			Вы будете получать уведомления об обновлениях сервера Demovio.
+		{:else if !invitesSubscription}
 			Вы выключили все уведомления от Demovio.
+		{/if}
+		{#if invitesSubscription}
+			Другие игроки могут приглашать вас в игру.
 		{/if}
 	</OptionDescription>
 	<div class="settings-buttons-space"></div>

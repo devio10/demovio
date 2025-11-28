@@ -491,4 +491,25 @@
 			font-size: 64px;
 		}
 	}
+	@media screen and (max-width: 768px) {
+		.passport {
+			width: 370px;
+			aspect-ratio: 1.5 / 2.1;
+
+			section {
+				span {
+					font-size: 11px;
+				}
+				p {
+					font-size: 16px;
+				}
+			}
+		}
+		.technical-information {
+			padding: 0 8px;
+			span {
+				font-size: 14px;
+			}
+		}
+	}
 </style>
