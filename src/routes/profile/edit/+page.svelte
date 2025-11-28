@@ -67,7 +67,7 @@
 				<div style="display: none;">
 					<input {...saveData.fields.description.as("text")} value={description} />
 					<input {...saveData.fields.pronouns.as("text")} value={pronouns} />
-					{#if skin}
+					{#if skin && !useLicenseSkin}
 						<input {...saveData.fields.skin.as("file")} />
 					{/if}
 					{#if useLicenseSkin}
