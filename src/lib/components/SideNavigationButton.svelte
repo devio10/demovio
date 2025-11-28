@@ -69,12 +69,6 @@
 		.icon {
 			height: 100%;
 			aspect-ratio: 1/1;
-			svg {
-				width: 100%;
-				height: 100%;
-				flex-shrink: 0;
-				flex: 1;
-			}
 		}
 	}
 	@media screen and (max-width: 768px) {
@@ -93,11 +87,14 @@
 			transition-timing-function: ease-in-out;
 			cursor: default;
 			&.active {
-				background: none;
-				color: rgb(77, 178, 255);
+				background-color: rgba(255, 255, 255, 0.15);
+				color: rgb(48, 165, 255);
+				.button-name {
+					font-weight: bold;
+				}
 				&:hover {
 					transition-duration: 0, 150ms;
-					background-color: rgba(0, 0, 0, 0);
+					background-color: rgba(255, 255, 255, 0.15);
 				}
 				&:active {
 					background-color: rgba(255, 255, 255, 0.3);
@@ -119,9 +116,9 @@
 				flex: 0;
 			}
 			.button-name {
-				margin: 4px 0 0 0;
+				margin: 1px 0 0 0;
 				opacity: 1;
-				font-size: 12px;
+				font-size: 11px;
 				user-select: none;
 			}
 		}

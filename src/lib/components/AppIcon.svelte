@@ -81,13 +81,16 @@
 	}
 	@media screen and (max-width: 768px) {
 		a {
-			padding: 8px 24px;
+			padding: 8px 18px;
+			gap: 6px;
 			img {
-				width: 72px;
-				height: 72px;
+				width: 64px;
+				height: 64px;
 			}
 			span.label {
-				font-size: 12px;
+				font-size: 13px;
+				font-weight: 500;
+				text-shadow: 0 0px 5px rgba(0, 0, 0, 0.45);
 			}
 			span.badge {
 				right: 8px;

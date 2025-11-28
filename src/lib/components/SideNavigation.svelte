@@ -70,7 +70,7 @@
 		.mobile-shadow {
 			position: fixed;
 			bottom: 0;
-			height: 92px;
+			height: 102px;
 			z-index: 3;
 			background: linear-gradient(to bottom, transparent 10%, rgba(0, 0, 0, 0.65) 100%);
 			width: 100%;
@@ -78,23 +78,25 @@
 		.side-navigation {
 			left: 50%;
 			top: auto;
-			bottom: 20px;
+			bottom: max(env(safe-area-inset-bottom, 20px), 16px);
 			transform: translateX(-50%);
 			flex-direction: row;
 			height: 64px;
 			width: fit-content;
-			padding: 6px;
-			gap: 2px;
+			padding: 4px;
+			gap: 0px;
 			background: linear-gradient(
 				-10deg,
 				rgba(100, 100, 100, 0.36) 0%,
 				rgba(200, 200, 200, 0.36) 95%
 			);
 			backdrop-filter: blur(2px);
+			transition-duration: 1000ms;
 			&:hover {
 				width: fit-content;
 				left: 50%;
-				transform: translateX(-50%) scale(1.02);
+				background-color: rgba(255, 255, 255, 0.1);
+				transform: translateX(-50%) scale(1.05);
 			}
 		}
 	}

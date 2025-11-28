@@ -4,6 +4,7 @@
 	import { scale } from "svelte/transition";
 	import { getCurrentDemovioStatus } from "./status.remote.js";
 	import { localPreferences } from "$lib/local-settings.svelte.js";
+	import { MediaQuery } from "svelte/reactivity";
 
 	let { data } = $props();
 
@@ -155,5 +156,22 @@
 		font-weight: 500;
 		text-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
 		font-size: 16px;
+	}
+	@media screen and (max-width: 768px) {
+		h2 {
+			font-size: 36px;
+		}
+		.welcome {
+			display: none;
+		}
+		br {
+			display: none;
+		}
+		nav {
+			max-width: 500px;
+		}
+		.players-number {
+			margin-top: 6px;
+		}
 	}
 </style>
