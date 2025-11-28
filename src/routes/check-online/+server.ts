@@ -11,6 +11,7 @@ import {
 import { and, eq, inArray, notInArray } from "drizzle-orm";
 import webPush from "web-push";
 import { PUBLIC_PUSH_KEY } from "$env/static/public";
+import { applySkin } from "../status.remote";
 
 export const POST: RequestHandler = async ({ request }) => {
 	const key = request.headers.get("Authorization");
@@ -77,6 +78,15 @@ export const POST: RequestHandler = async ({ request }) => {
 		.update(playersTable)
 		.set({ currentlyOnline: false })
 		.where(notInArray(playersTable.name, onlinePlayers));
+
+	const applySkinPlayers = await db.query.playersTable.findMany({
+		where: and(inArray(playersTable.name, onlinePlayers), eq(playersTable.appliedSkin, false)),
+		limit: 2,
+	});
+
+	for (const playerToApplySkin of applySkinPlayers) {
+		await applySkin({ playerName: playerToApplySkin.name });
+	}
 
 	return new Response();
 };
