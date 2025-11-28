@@ -56,6 +56,7 @@
 						await invalidate("app:user:profile");
 						unsavedChanges = false;
 						editingSkin = false;
+						useLicenseSkin = false;
 					} catch (e) {
 						console.error(e);
 						updateDataError = e;

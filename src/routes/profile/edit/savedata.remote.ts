@@ -39,6 +39,7 @@ export const saveData = form(
 				description: description || null,
 				pronouns: pronouns || null,
 				skin: skin ? `${PUBLIC_SKINS_PREFIX + locals.playerData.name}.png` : skinFallback,
+				appliedSkin: skin || skinName ? false : undefined,
 			})
 			.where(eq(playersTable.name, locals.playerData?.name));
 		if (dbRequest) {
