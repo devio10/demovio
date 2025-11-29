@@ -106,20 +106,19 @@
 				transition-duration: 150ms;
 			}
 			&:active {
-				scale: 1.4;
+				// scale: 1.1;
 				transition-duration: 150ms;
 
 				&:active {
 					transition-duration: 0, 150ms;
-					transition-delay: 15	0ms;
-					background-color: rgba(255, 255, 255, 0);
-					border: 1.5px solid rgba(255, 255, 255, 0.25);
+					transition-delay: 15 0ms;
+					background-color: rgba(255, 255, 255, 0.15);
+					// border: 1.5px solid rgba(255, 255, 255, 0.25);
 					border-left: none;
 					border-bottom: none;
-					// backdrop-filter: blur(4px);
-					box-shadow:
-						inset 2.8px 2.8px 1.87px 0 rgba(255, 255, 255, 0.1),
-						inset -1.87px 0 1.87px 0 rgba(255, 255, 255, 0.2);
+					// box-shadow:
+					// 	inset 2.8px 2.8px 1.87px 0 rgba(255, 255, 255, 0.1),
+					// 	inset -1.87px 0 1.87px 0 rgba(255, 255, 255, 0.2);
 				}
 			}
 			.icon {
