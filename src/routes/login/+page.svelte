@@ -73,7 +73,7 @@
 				<Button type="submit" disabled={submitting} style="margin: 32px 0 0 0">
 					Войти в аккаунт
 				</Button>
-				<Button tag="a" href="/register" hollow={true} style="margin: 16px 0 0 0">
+				<Button tag="a" href="/register" hollow={true} class="lower-button">
 					Создать новый аккаунт
 				</Button>
 			</form>
@@ -98,12 +98,18 @@
 			width: 40%;
 		}
 	}
+	.lower-button {
+		margin: 16px 0 0 0;
+	}
 	@media screen and (max-width: 768px) {
 		section {
 			form {
 				width: 100%;
 				padding: 0 24px;
 			}
+		}
+		.lower-button {
+			margin: 8px 0 0 0;
 		}
 	}
 </style>

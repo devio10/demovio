@@ -22,53 +22,57 @@
 </script>
 
 <RegisterPage>
-	<div style="padding-bottom: 16px;">
-		{#each allPronouns as prn}
+	<div class="mobile-scrollable">
+		<div style="padding-bottom: 24px;">
+			{#each allPronouns as prn}
+				<SettingsButton
+					onclick={() => {
+						customPronouns = false;
+						pronouns = prn;
+						formError = undefined;
+					}}
+				>
+					{prn}
+					<OptionButtonCheckmark value={pronouns === prn} />
+				</SettingsButton>
+			{/each}
 			<SettingsButton
 				onclick={() => {
+					pronouns = null;
 					customPronouns = false;
-					pronouns = prn;
 					formError = undefined;
 				}}
 			>
-				{prn}
-				<OptionButtonCheckmark value={pronouns === prn} />
+				Не указывать
+				<OptionButtonCheckmark value={pronouns === null} />
 			</SettingsButton>
-		{/each}
-		<SettingsButton
-			onclick={() => {
-				pronouns = null;
-				customPronouns = false;
-				formError = undefined;
-			}}
-		>
-			Не указывать
-			<OptionButtonCheckmark value={pronouns === null} />
-		</SettingsButton>
-		<SettingsButton
-			onclick={() => {
-				pronouns = "";
-				customPronouns = true;
-				formError = undefined;
-			}}
-		>
-			Другое
-			<OptionButtonCheckmark value={customPronouns} />
-		</SettingsButton>
-	</div>
-	{#if customPronouns}
-		<div style="padding-bottom: 16px" transition:slide={{ duration: 300 }}>
-			<TextInput
-				bind:value={pronouns}
-				placeholder="Укажите ваши местоимения"
-				autocorrect="off"
-				autocapitalize="off"
-				oninput={() => (formError = undefined)}
-			/>
+			<SettingsButton
+				onclick={() => {
+					pronouns = "";
+					customPronouns = true;
+					formError = undefined;
+				}}
+			>
+				Другое
+				<OptionButtonCheckmark value={customPronouns} />
+			</SettingsButton>
 		</div>
-	{/if}
+		{#if customPronouns}
+			<div style="padding-bottom: 16px" transition:slide={{ duration: 300 }}>
+				<TextInput
+					bind:value={pronouns}
+					placeholder="Укажите ваши местоимения"
+					autocorrect="off"
+					autocapitalize="off"
+					oninput={() => (formError = undefined)}
+				/>
+			</div>
+		{/if}
+	</div>
 	{#if formError?.invalidPronouns}
-		<RegisterFormError>{formError.invalidPronouns}</RegisterFormError>
+		<div class="warning" transition:slide={{ duration: 200 }}>
+			<RegisterFormError>{formError.invalidPronouns}</RegisterFormError>
+		</div>
 	{/if}
 	<form
 		method="POST"

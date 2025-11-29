@@ -64,7 +64,7 @@
 	</Button>
 	<Button
 		hollow={true}
-		style="margin: 16px 0 0 0"
+		class="lower-button"
 		onclick={() => {
 			skin = null;
 			skinName = undefined;
@@ -116,5 +116,13 @@
 
 	.settings-buttons {
 		padding: 0;
+	}
+	@media screen and (max-width: 768px) {
+		.skin-editor-container {
+			// margin: 0;
+			.skin-editor {
+				height: 75px;
+			}
+		}
 	}
 </style>

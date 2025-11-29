@@ -65,7 +65,7 @@
 	<Button tag="a" href="/login" hollow={true} style="margin: auto 0 0 0">
 		Войти в существующий аккаунт
 	</Button>
-	<Button type="submit" disabled={submitting} style="margin: 16px 0 0 0">
+	<Button type="submit" disabled={submitting} class="lower-button">
 		{#if submitting}
 			<LoadingWheel duration={0} --wheel-size="36px" />
 		{:else}

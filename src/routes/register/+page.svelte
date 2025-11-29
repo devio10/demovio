@@ -19,7 +19,7 @@
 	import { finishRegistration } from "./register.remote";
 	import RegisterFormError from "./RegisterFormError.svelte";
 	let { form } = $props();
-	let page = $state(RegisterStage.chooseSkin);
+	let page = $state(RegisterStage.applyForCitizenship);
 	let formError: any = $derived(form?.error);
 	$inspect(formError);
 	let submitting = $state(false);
@@ -245,6 +245,11 @@
 		flex-shrink: 0;
 		min-height: fit-content;
 	}
+	:global {
+		.lower-button {
+			margin: 16px 0 0 0;
+		}
+	}
 
 	@media screen and (max-width: 768px) {
 		.register-page {
@@ -268,6 +273,28 @@
 			font-size: 48px;
 			font-weight: bolder;
 			color: rgba(230, 230, 230, 0.5);
+		}
+		.main-content {
+			.steps {
+				margin-top: 16px;
+			}
+		}
+		:global {
+			.mobile-scrollable {
+				max-height: 100%;
+				overflow-y: auto;
+				flex: 1;
+				scrollbar-width: thin;
+				// padding-top: 16px;
+				scrollbar-base-color: rgba(0, 0, 0, 0);
+				mask: linear-gradient(to top, transparent 0%, transparent 12px, black 24px);
+				mask-size: cover;
+				mask-repeat: no-repeat;
+				list-style: none;
+			}
+			.lower-button {
+				margin: 8px 0 0 0;
+			}
 		}
 	}
 </style>

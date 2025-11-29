@@ -2,6 +2,7 @@
 	import { RegisterStage } from "./stages";
 	import SkinEditorPreview from "$lib/components/SkinEditorPreview.svelte";
 	import IconBack from "$lib/components/icons/IconBack.svelte";
+	import RegisterStateDescription from "./RegisterStateDescription.svelte";
 
 	let {
 		page = $bindable(),
@@ -52,32 +53,9 @@
 		</div>
 	{:else if page === RegisterStage.applyForCitizenship}
 		<h3>Выберите гражданство</h3>
-		<p class="state-description">
-			{#if citizenship.shortCode === "SH"}
-				В штате Шанхай возвышается несколько небоскрёбов, а между ними разъезжают трамваи. Вы можете
-				рассчитывать на стартовый бонус в виде бесплатного жилья и 25 фасок (единиц валюты), а также
-				комфортную инфраструктуру и благоприятные условия для бизнеса.
-			{:else if citizenship.shortCode === "CD"}
-				Штат Конкорд рекомендован для новых игроков, которые хотят начать с нуля или если им больше
-				по душе ванильное выживание. В нём нет никаких правил и его граждане сами решают, каким
-				должен быть штат.
-			{:else if citizenship.shortCode === "NY"}
-				Штат Нью Йорк подходит для тех, кто гонется за «Американской мечтой». Он основан на
-				одноимённом реальном городе и лидирует в инновациях в сфере строительства и заводов.
-			{:else if citizenship.shortCode === "OH"}
-				Ну про этот штат я не знаю что написать...
-			{:else if citizenship.shortCode === "CA"}
-				Солнечная Калифорния! В этом штате находятся два уютных города и Мировой Суд, решающий все
-				конфликты в игровом пространстве.
-			{:else if citizenship.shortCode === "GE"}
-				Территория самого большого штата, Джорджии, находится в лесу и имеет множество красивых
-				пейзажей. Граждане могут рассчитывать на полную свободу при строительстве и отсутствие
-				правил.
-			{:else}
-				Гражданство определённого штата может дать вам разные преимущества. В будущем его можно
-				поменять.
-			{/if}
-		</p>
+		<div class="state-description">
+			<RegisterStateDescription {citizenship} />
+		</div>
 	{:else if page === RegisterStage.choosePronouns}
 		<h3>Укажите ваши местоимения</h3>
 		<p>Это необходимо для того, чтобы мы знали, как к вам обращаться.</p>
@@ -121,11 +99,9 @@
 	.skin-flex {
 		display: flex;
 		justify-content: space-between;
-		// align-items: flex-start;
-		align-items: center;
 	}
 	.skin-preview {
-		height: 190px;
+		height: 180px;
 		width: 120px;
 		margin-right: 12px;
 		// overflow: clip;
@@ -157,11 +133,15 @@
 		}
 	}
 	@media screen and (max-width: 768px) {
+		.state-description {
+			display: none;
+			flex: 1;
+		}
 		.step {
 			display: none;
 		}
 		.step-description {
-			padding: 16px 0 0 0;
+			padding: 0 0 0 0;
 			margin: 0;
 			h3 {
 				margin-bottom: 16px;
@@ -173,14 +153,11 @@
 				flex: 1;
 			}
 		}
-		.state-description {
-			flex: 1;
-		}
 		.back-button {
 			display: none;
 			&.mobile {
 				display: flex;
-				margin-top: 8px;
+				margin-top: 24px;
 				font-weight: bold;
 			}
 		}

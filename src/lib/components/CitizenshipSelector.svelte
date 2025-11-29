@@ -132,11 +132,15 @@
 	@media screen and (max-width: 768px) {
 		.picker {
 			.list {
-				width: 212px;
+				width: 240px;
+				height: 190px;
+				aspect-ratio: auto;
+				border-radius: 36px;
 				.state {
 					padding: 20px;
 					img {
-						width: 55%;
+						height: 55%;
+						width: auto;
 					}
 					span {
 						font-size: 14px;
