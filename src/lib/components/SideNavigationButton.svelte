@@ -47,7 +47,9 @@
 			opacity: 0;
 			margin-left: 16px;
 			font-size: 16px;
-			transition: 200ms opacity ease-out;
+			transition-duration: 200ms;
+			transition-property: opacity, font-weight;
+			transition-timing-function: ease-out;
 		}
 
 		&:hover {
@@ -82,10 +84,13 @@
 			justify-content: center;
 			flex: 1;
 			min-width: 0;
-			transition-property: background-color, scale;
-			transition-duration: 300ms, 1500ms;
+			transition-property: background-color, scale, box-shadow, border;
+			transition-duration: 300ms;
 			transition-timing-function: ease-in-out;
 			cursor: default;
+			box-shadow:
+				inset 2.8px 2.8px 1.87px 0 rgba(255, 255, 255, 0),
+				inset -1.87px 0 1.87px 0 rgba(255, 255, 255, 0);
 			&.active {
 				background-color: rgba(255, 255, 255, 0.15);
 				color: rgb(48, 165, 255);
@@ -93,21 +98,29 @@
 					font-weight: bold;
 				}
 				&:hover {
-					transition-duration: 0, 150ms;
-					background-color: rgba(255, 255, 255, 0.15);
-				}
-				&:active {
-					background-color: rgba(255, 255, 255, 0.3);
+					background: rgba(255, 255, 255, 0.15);
 				}
 			}
 			&:hover {
 				background-color: rgba(0, 0, 0, 0);
-				transition-duration: 0, 150ms;
+				transition-duration: 150ms;
 			}
 			&:active {
-				background-color: rgba(255, 255, 255, 0.3);
-				scale: 1.2;
-				transition-duration: 150ms, 150ms;
+				scale: 1.4;
+				transition-duration: 150ms;
+
+				&:active {
+					transition-duration: 0, 150ms;
+					transition-delay: 15	0ms;
+					background-color: rgba(255, 255, 255, 0);
+					border: 1.5px solid rgba(255, 255, 255, 0.25);
+					border-left: none;
+					border-bottom: none;
+					// backdrop-filter: blur(4px);
+					box-shadow:
+						inset 2.8px 2.8px 1.87px 0 rgba(255, 255, 255, 0.1),
+						inset -1.87px 0 1.87px 0 rgba(255, 255, 255, 0.2);
+				}
 			}
 			.icon {
 				width: 26px;

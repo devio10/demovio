@@ -100,13 +100,13 @@
 			</div>
 			<!-- <div class="player-map"><div></div></div> -->
 			<div class="action-buttons">
-				{#if !isSelf}
+				{#if !isSelf || true}
 					{#if isOnline}
 						<SettingsButton tag="a" href="https://map.demovio.love/">
 							Показать на карте
 						</SettingsButton>
 					{:else}
-						<InvitePlayerButton contact={player.contact} />
+						<InvitePlayerButton {name} contact={player.contact} />
 					{/if}
 					{#if player.contact}
 						<SettingsButton tag="a" href="https://t.me/{player.contact}">

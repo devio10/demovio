@@ -1,10 +1,13 @@
 import { command, getRequestEvent, query } from "$app/server";
 import { db } from "$lib/server/db";
 import { notifySubscriptionsTable, playersTable } from "$lib/server/db/schema";
-import { fail } from "@sveltejs/kit";
+import { error, fail } from "@sveltejs/kit";
 import { and, eq } from "drizzle-orm";
 import { getPlayers } from "../data.remote";
 import { accountDataSchemas } from "$lib/server/data-schemas";
+import { sendPushNotification } from "$lib/server/notifications";
+import { NotificationType } from "$lib/scripts";
+import { setTimeout } from "timers/promises";
 
 export const favoritePlayer = command(accountDataSchemas.name, async (name) => {
 	const { locals } = getRequestEvent();
@@ -24,6 +27,33 @@ export const favoritePlayer = command(accountDataSchemas.name, async (name) => {
 		.where(eq(playersTable.name, locals.playerData.name));
 	getPlayers().refresh();
 	return { featured: !featured };
+});
+
+export const invitePlayer = command(accountDataSchemas.name, async (name) => {
+	const { locals } = getRequestEvent();
+	await setTimeout(750);
+	if (!locals.loggedIn || !locals.playerData) {
+		return fail(401);
+	}
+	const playerToInvite = await db.query.playersTable.findFirst({
+		where: eq(playersTable.name, name),
+	});
+	if (!playerToInvite) {
+		return fail(400);
+	}
+	if (!playerToInvite.notificationsInvites) {
+		return error(403, `Игрок запретил приглашать себя в игру.`);
+	}
+
+	sendPushNotification({
+		name: name,
+		content: JSON.stringify({
+			name: locals.playerData.name,
+			type: NotificationType.invitationFromPlayer,
+		}),
+	});
+
+	return { success: true };
 });
 
 export const subscribeToPlayer = command(accountDataSchemas.name, async (targetName) => {

@@ -12,6 +12,7 @@ import { and, eq, inArray, notInArray } from "drizzle-orm";
 import webPush from "web-push";
 import { PUBLIC_PUSH_KEY } from "$env/static/public";
 import { applySkin } from "../status.remote";
+import { NotificationType } from "$lib/scripts";
 
 export const POST: RequestHandler = async ({ request }) => {
 	const key = request.headers.get("Authorization");
@@ -50,7 +51,11 @@ export const POST: RequestHandler = async ({ request }) => {
 				for (const { endpoint, auth, p256dh } of receiverPushSubscriptions) {
 					await webPush.sendNotification(
 						{ endpoint: endpoint, keys: { auth: auth, p256dh: p256dh } },
-						JSON.stringify({ name: onlinePlayerName, pronouns: targetPlayer.pronouns }),
+						JSON.stringify({
+							name: onlinePlayerName,
+							pronouns: targetPlayer.pronouns,
+							type: NotificationType.playerJoinedTheGame,
+						}),
 					);
 				}
 				await db

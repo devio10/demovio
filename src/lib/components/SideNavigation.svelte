@@ -78,7 +78,7 @@
 		.side-navigation {
 			left: 50%;
 			top: auto;
-			bottom: max(env(safe-area-inset-bottom, 20px), 16px);
+			bottom: max(min(env(safe-area-inset-bottom, 20px), 20px), 12px);
 			transform: translateX(-50%);
 			flex-direction: row;
 			height: 64px;
@@ -95,8 +95,18 @@
 			&:hover {
 				width: fit-content;
 				left: 50%;
+				background: linear-gradient(
+					-10deg,
+					rgba(100, 100, 100, 0.36) 0%,
+					rgba(200, 200, 200, 0.36) 95%
+				);
+			}
+			&:active {
+				width: fit-content;
+				left: 50%;
 				background-color: rgba(255, 255, 255, 0.1);
 				transform: translateX(-50%) scale(1.05);
+				transition-delay: 200ms;
 			}
 		}
 	}

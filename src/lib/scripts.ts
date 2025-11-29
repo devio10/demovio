@@ -9,6 +9,12 @@ export function getSkinURL(skin: string | undefined | null, name: string | undef
 	}
 	return output;
 }
+export enum NotificationType {
+	playerJoinedTheGame,
+	invitationFromPlayer,
+	serverUpdate,
+	other,
+}
 export const hide = (
 	node: HTMLElement,
 	{ delay, duration, easing }: { delay?: number; duration?: number; easing?: EasingFunction },

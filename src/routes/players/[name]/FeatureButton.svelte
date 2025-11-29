@@ -52,6 +52,8 @@
 		</div>
 	{/snippet}
 	<DialogButton
+		tag="a"
+		href="/login"
 		onclick={() => {
 			dialogOpened = false;
 		}}
