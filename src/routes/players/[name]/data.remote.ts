@@ -1,13 +1,14 @@
 import { command, getRequestEvent, query } from "$app/server";
 import { db } from "$lib/server/db";
-import { notifySubscriptionsTable, playersTable } from "$lib/server/db/schema";
+import { notifySubscriptionsTable, playersTable, rateLimitsTable } from "$lib/server/db/schema";
 import { error, fail } from "@sveltejs/kit";
-import { and, eq } from "drizzle-orm";
+import { and, eq, gt, sql } from "drizzle-orm";
 import { getPlayers } from "../data.remote";
 import { accountDataSchemas } from "$lib/server/data-schemas";
 import { sendPushNotification } from "$lib/server/notifications";
 import { NotificationType } from "$lib/scripts";
 import { setTimeout } from "timers/promises";
+import { subDays } from "date-fns";
 
 export const favoritePlayer = command(accountDataSchemas.name, async (name) => {
 	const { locals } = getRequestEvent();
@@ -45,12 +46,49 @@ export const invitePlayer = command(accountDataSchemas.name, async (name) => {
 		return error(403, `Игрок запретил приглашать себя в игру.`);
 	}
 
+	const invokerSentInvites = await db.query.rateLimitsTable.findMany({
+		where: and(
+			eq(rateLimitsTable.actionType, "invitation"),
+			eq(rateLimitsTable.invokerId, locals.playerData.id),
+			gt(rateLimitsTable.time, subDays(new Date(), 1)),
+		),
+	});
+
+	if (invokerSentInvites.length > 2) {
+		return error(403, "Вы можете приглашать максимум трёх игроков в сутки.");
+	}
+
+	const inviteeReceivedInvites = await db
+		.select()
+		.from(rateLimitsTable)
+		.where(
+			and(
+				eq(rateLimitsTable.actionType, "invitation"),
+				// eq(rateLimitsTable.invokerId, locals.playerData.id),
+				gt(rateLimitsTable.time, subDays(new Date(), 1)),
+				sql`${rateLimitsTable.data}->>'receiver' = ${name}`,
+			),
+		);
+	console.log(inviteeReceivedInvites);
+	if (inviteeReceivedInvites.length > 1) {
+		return error(403, "Игрок уже получил слишком много приглашений за сутки.");
+	}
+
 	sendPushNotification({
 		name: name,
 		content: JSON.stringify({
 			name: locals.playerData.name,
 			type: NotificationType.invitationFromPlayer,
 		}),
+	});
+
+	await db.insert(rateLimitsTable).values({
+		actionType: "invitation",
+		invokerId: locals.playerData.id,
+		time: new Date(),
+		data: {
+			receiver: name,
+		},
 	});
 
 	return { success: true };

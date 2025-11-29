@@ -106,6 +106,27 @@ export const pushSubscriptionsTable = pgTable("push_subscriptions", {
 		withTimezone: true,
 	}),
 });
+
+export const rateLimitsTable = pgTable("rate_limits", {
+	id: serial().primaryKey(),
+	invokerId: integer()
+		.notNull()
+		.references(() => playersTable.id),
+	actionType: text({ enum: ["invitation"] }).notNull(),
+	data: jsonb().notNull(),
+	time: timestamp({
+		mode: "date",
+		withTimezone: true,
+	}),
+});
+export const rateLimitsRelations = relations(rateLimitsTable, ({ one }) => ({
+	invokerId: one(playersTable, {
+		fields: [rateLimitsTable.invokerId],
+		references: [playersTable.id],
+		relationName: "invoke_rate_limit",
+	}),
+}));
+
 export const PushSubscriptionRelations = relations(pushSubscriptionsTable, ({ one }) => ({
 	receiverPlayer: one(playersTable, {
 		fields: [pushSubscriptionsTable.receiverName],
@@ -132,6 +153,9 @@ export const playerRelations = relations(playersTable, ({ many }) => ({
 	}),
 	notifySubscribers: many(notifySubscriptionsTable, {
 		relationName: "notify_subscribers",
+	}),
+	invokedRateLimits: many(rateLimitsTable, {
+		relationName: "invoked_rate_limits",
 	}),
 }));
 
