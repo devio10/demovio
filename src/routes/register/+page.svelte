@@ -19,7 +19,7 @@
 	import { finishRegistration } from "./register.remote";
 	import RegisterFormError from "./RegisterFormError.svelte";
 	let { form } = $props();
-	let page = $state(RegisterStage.applyForCitizenship);
+	let page = $state(RegisterStage.checkName);
 	let formError: any = $derived(form?.error);
 	$inspect(formError);
 	let submitting = $state(false);

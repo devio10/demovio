@@ -126,11 +126,7 @@
 <style lang="scss">
 	.about {
 		width: 100%;
-		height: 100%;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
+		margin: auto 0;
 		overflow: auto;
 		.about-content {
 			padding: 16px 0;
@@ -200,7 +196,6 @@
 	}
 	@media screen and (max-width: 768px) {
 		.about {
-			height: auto;
 			overflow: unset;
 			margin-bottom: 16px;
 		}

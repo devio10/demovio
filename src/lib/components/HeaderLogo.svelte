@@ -5,13 +5,11 @@
 </script>
 
 <div>
-	<span class="page_logo">
-		Demovio
-		<div></div>
-		{#if backstageStatus}
-			Backstage
-		{/if}
-	</span>
+	{#if backstageStatus}
+		<img src="/backstage-header_logo.svg" alt="Demovio logo" />
+	{:else}
+		<img src="/demovio-header_logo.svg" alt="Demovio logo" />
+	{/if}
 </div>
 
 <style lang="scss">

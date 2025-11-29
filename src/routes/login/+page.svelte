@@ -73,9 +73,11 @@
 				<Button type="submit" disabled={submitting} style="margin: 32px 0 0 0">
 					Войти в аккаунт
 				</Button>
-				<Button tag="a" href="/register" hollow={true} class="lower-button">
-					Создать новый аккаунт
-				</Button>
+				<div class="lower-button">
+					<Button tag="a" href="/register" hollow={true} class="lower-button">
+						Создать новый аккаунт
+					</Button>
+				</div>
 			</form>
 		{/if}
 	</section>
