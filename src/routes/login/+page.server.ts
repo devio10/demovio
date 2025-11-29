@@ -22,17 +22,14 @@ export const actions: Actions = {
 		const body = await request.formData();
 		const login = await accountDataSchemas.name.safeParseAsync(body.get("login"));
 		const password = await accountDataSchemas.password.safeParseAsync(body.get("password"));
-		if (login.error) return fail(400);
-		if (password.error) return fail(400);
+		if (login.error) return fail(400, { error: "Неправильный формат имени." });
+		if (password.error) return fail(400, { error: "Неправильный формат пароля." });
 
 		const player = await db.query.playersTable.findFirst({
 			where: eq(playersTable.name, login.data),
 		});
-		if (!player) {
-			return fail(403, { error: "Имя игрока не найдено." });
-		}
-		if (!(await Bun.password.verify(password.data, player.password, "bcrypt"))) {
-			return fail(401, { error: "Неправильный пароль." });
+		if (!player || !(await Bun.password.verify(password.data, player.password, "bcrypt"))) {
+			return fail(401, { error: "Неправильные имя или пароль." });
 		}
 		const sessionId = nanoid();
 		await db.insert(sessionsTable).values({

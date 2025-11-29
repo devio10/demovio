@@ -4,6 +4,8 @@
 	import IconKey from "$lib/components/icons/IconKey.svelte";
 	import TextInput from "$lib/components/TextInput.svelte";
 	import Window from "$lib/Window/Window.svelte";
+	import { slide } from "svelte/transition";
+	import RegisterFormError from "../register/RegisterFormError.svelte";
 	let { data, form } = $props();
 	let formError = $derived(form?.error);
 	let submitting = $state(false);
@@ -62,18 +64,19 @@
 					<IconKey />
 				</TextInput>
 
+				{#if formError}
+					<div transition:slide={{ duration: 200 }} style="margin: 16px 0">
+						<RegisterFormError style="margin: 0">{formError}</RegisterFormError>
+					</div>
+				{/if}
+
 				<Button type="submit" disabled={submitting} style="margin: 32px 0 0 0">
 					Войти в аккаунт
 				</Button>
 				<Button tag="a" href="/register" hollow={true} style="margin: 16px 0 0 0">
 					Создать новый аккаунт
 				</Button>
-				{#if formError}
-					<span>{formError}</span>
-				{/if}
 			</form>
-		{:else}
-			<p>Эммм а ниче тот факт что ты вашел уже норм да?</p>
 		{/if}
 	</section>
 </Window>

@@ -2,10 +2,10 @@
 	import IconExclamationMark from "$lib/components/icons/IconExclamationMark.svelte";
 	import { fade } from "svelte/transition";
 
-	let { children } = $props();
+	let { children, ...props } = $props();
 </script>
 
-<span in:fade={{ duration: 100 }} out:fade={{ duration: 400 }}>
+<span in:fade={{ duration: 100 }} out:fade={{ duration: 400 }} {...props}>
 	<div class="icon"><IconExclamationMark /></div>
 	{@render children?.()}
 </span>
