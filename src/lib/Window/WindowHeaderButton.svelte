@@ -50,4 +50,18 @@
 			}
 		}
 	}
+	@media screen and (max-width: 768px) {
+		.button {
+			&:hover {
+				scale: 1;
+				background-color: rgba(255, 255, 255, 0.3);
+				transition-duration: 250ms;
+			}
+			&:active {
+				scale: 0.9;
+				background-color: rgba(255, 255, 255, 0.5);
+				transition-duration: 100ms;
+			}
+		}
+	}
 </style>

@@ -74,7 +74,7 @@
 					/>
 				{/if}
 			{/snippet}
-			{#if ourProfile !== null && ourProfile.name !== name}
+			{#if ourProfile === null || ourProfile.name !== name}
 				<NotifyActivityButton {name} bind:subscribed {disabled} bind:submitting />
 				<FeatureButton {name} bind:featured {disabled} bind:submitting />
 			{/if}

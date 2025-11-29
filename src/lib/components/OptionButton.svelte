@@ -52,7 +52,7 @@
 					scale: 0.98;
 					transition-duration: 125ms;
 					color: #dddbd6;
-					background-color: rgba(100, 100, 100, 0.45);
+					background-color: rgba(70, 70, 70, 0.55);
 				}
 			}
 			&:disabled {
@@ -66,6 +66,20 @@
 			height: 52px;
 			--radius: 24px;
 			padding: 0 16px;
+			&:is(button, a) {
+				&:not(:disabled) {
+					&:hover {
+						color: #e2e2e2;
+						background-color: rgba(30, 30, 30, 0.4);
+						transition-duration: 250ms;
+					}
+					&:active {
+						transition-duration: 125ms;
+						color: white;
+						background-color: rgba(60, 60, 60, 0.4);
+					}
+				}
+			}
 		}
 	}
 </style>

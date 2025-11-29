@@ -70,8 +70,27 @@
 		.button {
 			height: 42px;
 			font-size: 14px;
+			transition-duration: 350ms;
+			user-select: none;
 			&.hollow {
 				font-size: 14px;
+			}
+			&:not(:disabled) {
+				&:hover {
+					scale: 1;
+					color: #eae8e2;
+					background-color: rgba(215, 215, 215, 0.4);
+					transition-duration: 250ms;
+				}
+				&:active {
+					scale: 0.95;
+					transition-duration: 125ms;
+					color: white;
+					background-color: rgba(215, 215, 215, 0.5);
+					&.hollow {
+						background-color: rgba(215, 215, 215, 0.3);
+					}
+				}
 			}
 		}
 	}
