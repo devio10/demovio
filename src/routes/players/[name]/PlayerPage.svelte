@@ -100,7 +100,7 @@
 			</div>
 			<!-- <div class="player-map"><div></div></div> -->
 			<div class="action-buttons">
-				{#if !isSelf || true}
+				{#if !isSelf}
 					{#if isOnline}
 						<SettingsButton tag="a" href="https://map.demovio.love/">
 							Показать на карте

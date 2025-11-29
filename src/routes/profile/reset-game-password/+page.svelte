@@ -13,10 +13,11 @@
 <SettingsHeader title="Сброс игрового пароля"></SettingsHeader>
 <SettingsContent style="min-height: 100%;">
 	<div class="settings-buttons">
-		<p style="line-height: 1.4; margin: 12px 0 12px 0; font-size: 16px">
+		<p style="line-height: 1.4; margin: 12px 0 0 0; font-size: 16px">
 			Если вы забыли пароль для входа на сервер Demovio, то можете сбросить его. Учтите, что для
 			входа на сайт используется отдельный пароль.
 		</p>
+		<div class="settings-buttons-space"></div>
 		<TextInput
 			style="margin-bottom: 16px"
 			placeholder="Новый пароль"

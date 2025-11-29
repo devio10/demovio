@@ -26,17 +26,19 @@
 	<link rel="icon" href={favicon} />
 </svelte:head>
 <div class="page">
-	<div class="page-background">
-		{#if localPreferences.environment !== ""}
-			<img
-				src="/EnvironmentPreview/{localPreferences.environment}"
-				alt="Website Background"
-				in:scale={{ duration: 3000, start: 1.5 }}
-			/>
+	{#if localPreferences.showEnvironment}
+		<div class="page-background">
+			{#if localPreferences.environment !== ""}
+				<img
+					src="/EnvironmentPreview/{localPreferences.environment}"
+					alt="Website Background"
+					in:scale={{ duration: 3000, start: 1.5 }}
+				/>
+			{/if}
+		</div>
+		{#if localPreferences.spatialEnvironment !== ""}
+			<SpatialEnvironment />
 		{/if}
-	</div>
-	{#if localPreferences.spatialEnvironment !== ""}
-		<SpatialEnvironment />
 	{/if}
 
 	<header>

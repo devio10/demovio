@@ -6,4 +6,5 @@ export const init: ClientInit = () => {
 	localPreferences.backstageCitizenship =
 		localStorage.getItem("backstage-list-residence") === "true";
 	localPreferences.backstagePages = localStorage.getItem("backstage-additional-pages") === "true";
+	localPreferences.showEnvironment = localStorage.getItem("show-environment") !== "false";
 };

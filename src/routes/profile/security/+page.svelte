@@ -12,7 +12,6 @@
 </svelte:head>
 <SettingsHeader title="Безопасность аккаунта"></SettingsHeader>
 <SettingsContent>
-	<div class="settings-buttons-space"></div>
 	<div class="settings-buttons">
 		<OptionButton tag="a">
 			Изменить пароль для входа на сайт <div class="option-button-icon">

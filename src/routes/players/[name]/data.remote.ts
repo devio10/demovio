@@ -51,44 +51,46 @@ export const invitePlayer = command(accountDataSchemas.name, async (name) => {
 		return error(403, `Игрок запретил приглашать себя в игру.`);
 	}
 
-	const invokerSentInvites = await db.query.rateLimitsTable.findMany({
-		where: and(
-			eq(rateLimitsTable.actionType, "invitation"),
-			eq(rateLimitsTable.invokerId, locals.playerData.id),
-			gt(rateLimitsTable.time, subDays(new Date(), 1)),
-		),
-	});
-	if (invokerSentInvites.length > 2) {
-		return error(403, "Вы можете приглашать максимум трёх игроков в сутки.");
-	}
-
-	const invokerSentInvitesToPlayer = await db
-		.select()
-		.from(rateLimitsTable)
-		.where(
-			and(
+	if (locals.playerData.administrator !== true) {
+		const invokerSentInvites = await db.query.rateLimitsTable.findMany({
+			where: and(
 				eq(rateLimitsTable.actionType, "invitation"),
 				eq(rateLimitsTable.invokerId, locals.playerData.id),
 				gt(rateLimitsTable.time, subDays(new Date(), 1)),
-				sql`${rateLimitsTable.data}->>'receiver' = ${name}`,
 			),
-		);
-	if (invokerSentInvitesToPlayer.length > 0) {
-		return error(403, "Вы уже пригласили этого игрока.");
-	}
+		});
+		if (invokerSentInvites.length > 2) {
+			return error(403, "Вы можете приглашать максимум трёх игроков в сутки.");
+		}
 
-	const inviteeReceivedInvites = await db
-		.select()
-		.from(rateLimitsTable)
-		.where(
-			and(
-				eq(rateLimitsTable.actionType, "invitation"),
-				gt(rateLimitsTable.time, subDays(new Date(), 1)),
-				sql`${rateLimitsTable.data}->>'receiver' = ${name}`,
-			),
-		);
-	if (inviteeReceivedInvites.length > 1) {
-		return error(403, "Игрок уже получил слишком много приглашений за сутки.");
+		const invokerSentInvitesToPlayer = await db
+			.select()
+			.from(rateLimitsTable)
+			.where(
+				and(
+					eq(rateLimitsTable.actionType, "invitation"),
+					eq(rateLimitsTable.invokerId, locals.playerData.id),
+					gt(rateLimitsTable.time, subDays(new Date(), 1)),
+					sql`${rateLimitsTable.data}->>'receiver' = ${name}`,
+				),
+			);
+		if (invokerSentInvitesToPlayer.length > 0) {
+			return error(403, "Вы уже пригласили этого игрока.");
+		}
+
+		const inviteeReceivedInvites = await db
+			.select()
+			.from(rateLimitsTable)
+			.where(
+				and(
+					eq(rateLimitsTable.actionType, "invitation"),
+					gt(rateLimitsTable.time, subDays(new Date(), 1)),
+					sql`${rateLimitsTable.data}->>'receiver' = ${name}`,
+				),
+			);
+		if (inviteeReceivedInvites.length > 1) {
+			return error(403, "Игрок уже получил слишком много приглашений за сутки.");
+		}
 	}
 
 	const inviteePushSubscriptions = await db

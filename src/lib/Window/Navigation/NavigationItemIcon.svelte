@@ -8,7 +8,7 @@
 
 <style lang="scss">
 	.navigation-item-icon {
-		// --color: rgb(142, 84, 248);
+		// --color: rgb(98, 84, 248);
 		width: 32px;
 		height: 32px;
 		border-radius: 100%;

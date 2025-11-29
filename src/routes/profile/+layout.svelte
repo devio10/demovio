@@ -15,6 +15,7 @@
 	import IconBackstage from "$lib/components/icons/IconBackstage.svelte";
 	import { page } from "$app/state";
 	import IconSecurity from "$lib/components/icons/IconSecurity.svelte";
+	import IconEnvironment from "$lib/components/icons/IconEnvironment.svelte";
 	let { children, data } = $props();
 </script>
 
@@ -69,6 +70,12 @@
 							<IconBell />
 						</NavigationItemIcon>
 						Уведомления
+					</WindowNavigationItem>
+					<WindowNavigationItem href="/profile/environment">
+						<NavigationItemIcon color="rgb(98, 84, 248)">
+							<IconEnvironment />
+						</NavigationItemIcon>
+						Окружение
 					</WindowNavigationItem>
 					{#if data.profile && data.profile.administrator}
 						<WindowNavigationItem href="/profile/backstage">
