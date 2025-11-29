@@ -8,6 +8,7 @@
 	let renderer: THREE.WebGLRenderer | undefined = $state();
 	let scene: THREE.Scene | undefined = $state();
 	let container: HTMLDivElement = $state();
+	let time = $state(new Date().getTime());
 
 	onMount(() => {
 		renderer = new THREE.WebGLRenderer();
@@ -94,8 +95,10 @@
 
 	function animate() {
 		// controls.update();
+		let difference = new Date().getTime() - time;
+		time = new Date().getTime();
 		renderer.render(scene, camera);
-		camera.rotation.y -= 0.00035;
+		camera.rotation.y -= 0.00005 * difference;
 		// camera.rotation.y -= 0.005;
 		// camera.rotation.x -= 0.0005;
 		// camera.rotation.z -= 0.005;
