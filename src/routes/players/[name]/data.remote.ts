@@ -1,6 +1,11 @@
 import { command, getRequestEvent, query } from "$app/server";
 import { db } from "$lib/server/db";
-import { notifySubscriptionsTable, playersTable, rateLimitsTable } from "$lib/server/db/schema";
+import {
+	notifySubscriptionsTable,
+	playersTable,
+	pushSubscriptionsTable,
+	rateLimitsTable,
+} from "$lib/server/db/schema";
 import { error, fail } from "@sveltejs/kit";
 import { and, eq, gt, sql } from "drizzle-orm";
 import { getPlayers } from "../data.remote";
@@ -53,9 +58,23 @@ export const invitePlayer = command(accountDataSchemas.name, async (name) => {
 			gt(rateLimitsTable.time, subDays(new Date(), 1)),
 		),
 	});
-
 	if (invokerSentInvites.length > 2) {
 		return error(403, "Вы можете приглашать максимум трёх игроков в сутки.");
+	}
+
+	const invokerSentInvitesToPlayer = await db
+		.select()
+		.from(rateLimitsTable)
+		.where(
+			and(
+				eq(rateLimitsTable.actionType, "invitation"),
+				eq(rateLimitsTable.invokerId, locals.playerData.id),
+				gt(rateLimitsTable.time, subDays(new Date(), 1)),
+				sql`${rateLimitsTable.data}->>'receiver' = ${name}`,
+			),
+		);
+	if (invokerSentInvitesToPlayer.length > 0) {
+		return error(403, "Вы уже пригласили этого игрока.");
 	}
 
 	const inviteeReceivedInvites = await db
@@ -64,14 +83,20 @@ export const invitePlayer = command(accountDataSchemas.name, async (name) => {
 		.where(
 			and(
 				eq(rateLimitsTable.actionType, "invitation"),
-				// eq(rateLimitsTable.invokerId, locals.playerData.id),
 				gt(rateLimitsTable.time, subDays(new Date(), 1)),
 				sql`${rateLimitsTable.data}->>'receiver' = ${name}`,
 			),
 		);
-	console.log(inviteeReceivedInvites);
 	if (inviteeReceivedInvites.length > 1) {
 		return error(403, "Игрок уже получил слишком много приглашений за сутки.");
+	}
+
+	const inviteePushSubscriptions = await db
+		.select()
+		.from(pushSubscriptionsTable)
+		.where(eq(pushSubscriptionsTable.receiverName, name));
+	if (inviteePushSubscriptions.length === 0) {
+		return error(403, "Игрок в данный момент не подписан на уведомления от Demovio.");
 	}
 
 	sendPushNotification({

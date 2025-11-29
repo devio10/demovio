@@ -22,6 +22,7 @@
 </script>
 
 <SettingsButton
+	disabled={submitting || success}
 	onclick={async () => {
 		if (!page.data.profile) {
 			dialogOpened = true;
