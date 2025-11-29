@@ -5,7 +5,9 @@
 	import IconHome from "./icons/IconHome.svelte";
 	import IconEnvironment from "./icons/IconEnvironment.svelte";
 	import IconBell from "./icons/IconBell.svelte";
+	import IconKey from "./icons/IconKey.svelte";
 	let isMobile = new MediaQuery("screen and (max-width: 768px)");
+	let { loggedIn } = $props();
 </script>
 
 <div class="mobile-shadow"></div>
@@ -13,9 +15,16 @@
 	<SideNavigationButton alt="Главная" href="/" test={/^\/$/}>
 		<IconHome />
 	</SideNavigationButton>
-	<SideNavigationButton alt="Профиль" href="/profile">
-		<div style="padding: 4px"><IconProfile /></div>
-	</SideNavigationButton>
+	{#if loggedIn}
+		<SideNavigationButton alt="Профиль" href="/profile">
+			<div style="padding: 4px"><IconProfile /></div>
+		</SideNavigationButton>
+	{:else}
+		<SideNavigationButton alt="Авторизация" href="/login">
+			<div style="padding: 2px"><IconKey /></div>
+		</SideNavigationButton>
+	{/if}
+
 	<SideNavigationButton alt="Окружение" href="/environment">
 		<IconEnvironment />
 	</SideNavigationButton>

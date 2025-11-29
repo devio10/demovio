@@ -42,7 +42,7 @@
 	<header>
 		<HeaderLogo />
 	</header>
-	<SideNavigation />
+	<SideNavigation loggedIn={data.profile} />
 	<main>
 		{@render children?.()}
 	</main>

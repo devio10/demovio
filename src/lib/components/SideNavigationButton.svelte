@@ -71,6 +71,7 @@
 		.icon {
 			height: 100%;
 			aspect-ratio: 1/1;
+			display: flex;
 		}
 	}
 	@media screen and (max-width: 768px) {
