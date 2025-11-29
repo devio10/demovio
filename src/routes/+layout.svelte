@@ -65,7 +65,6 @@
 		height: 100%;
 		filter: brightness(0.85);
 		overflow: clip;
-		picture,
 		img {
 			display: block;
 			width: 100%;
