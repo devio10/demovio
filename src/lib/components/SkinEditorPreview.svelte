@@ -73,6 +73,8 @@
 <style>
 	.canvas-block {
 		width: 120px;
+		height: 180px;
 		display: block;
+		overflow: clip;
 	}
 </style>

@@ -23,14 +23,14 @@
 
 <RegisterPage>
 	{#if haveLicense}
-		<div class="settings-buttons">
+		<div class="settings-buttons" style="margin-bottom: 16px">
 			<OptionButton
 				onclick={() => {
 					chooseCustomSkin = false;
 					skinName = playername;
 				}}
 			>
-				Использовать свой лицензионный скин
+				Использовать свой скин
 				<OptionButtonCheckmark value={!chooseCustomSkin} />
 			</OptionButton>
 			<OptionButton
@@ -108,7 +108,7 @@
 
 <style lang="scss">
 	.skin-editor-container {
-		margin: 16px 0;
+		margin: 0 0 16px 0;
 		.skin-editor {
 			height: 140px;
 		}

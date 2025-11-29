@@ -36,7 +36,7 @@
 	}
 	@media screen and (max-width: 768px) {
 		.register-page {
-			padding-bottom: 92px;
+			padding-bottom: 102px;
 		}
 	}
 </style>

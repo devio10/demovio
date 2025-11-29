@@ -19,7 +19,7 @@
 	import { finishRegistration } from "./register.remote";
 	import RegisterFormError from "./RegisterFormError.svelte";
 	let { form } = $props();
-	let page = $state(RegisterStage.checkName);
+	let page = $state(RegisterStage.chooseSkin);
 	let formError: any = $derived(form?.error);
 	$inspect(formError);
 	let submitting = $state(false);

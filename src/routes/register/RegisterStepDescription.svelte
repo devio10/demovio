@@ -122,8 +122,13 @@
 		display: flex;
 		justify-content: space-between;
 		// align-items: flex-start;
-		padding-right: 24px;
 		align-items: center;
+	}
+	.skin-preview {
+		height: 190px;
+		width: 120px;
+		margin-right: 12px;
+		// overflow: clip;
 	}
 	.back-button {
 		background: none;
