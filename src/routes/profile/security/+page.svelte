@@ -1,4 +1,5 @@
 <script>
+	import IconRight from "$lib/components/icons/IconRight.svelte";
 	import OptionButton from "$lib/components/OptionButton.svelte";
 	import OptionDescription from "$lib/components/OptionDescription.svelte";
 	import SettingsSwitch from "$lib/components/SettingsSwitch.svelte";
@@ -13,7 +14,11 @@
 <SettingsContent>
 	<div class="settings-buttons-space"></div>
 	<div class="settings-buttons">
-		<OptionButton tag="a">Изменить пароль для входа на сайт</OptionButton>
+		<OptionButton tag="a">
+			Изменить пароль для входа на сайт <div class="option-button-icon">
+				<IconRight />
+			</div>
+		</OptionButton>
 	</div>
 	<OptionDescription>
 		Если вы забыли пароль от своего аккаунта на сайте Demovio, то можете поменять его. Потребуется

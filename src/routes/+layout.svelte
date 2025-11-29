@@ -4,7 +4,7 @@
 	import HeaderLogo from "$lib/components/HeaderLogo.svelte";
 	import SideNavigation from "$lib/components/SideNavigation.svelte";
 	import "../app.scss";
-	import "@fontsource-variable/montserrat";
+	import "@fontsource-variable/noto-sans";
 	import { localPreferences } from "$lib/local-settings.svelte";
 	import { onMount } from "svelte";
 	import { scale } from "svelte/transition";
@@ -78,6 +78,16 @@
 		}
 		.settings-buttons-space {
 			margin: 24px 0;
+		}
+		.option-button-icon {
+			width: 12px;
+			height: 12px;
+			color: rgba(230, 230, 230, 0.5);
+			display: flex;
+			svg {
+				width: 100%;
+				height: 100%;
+			}
 		}
 	}
 	@media screen and (max-width: 768px) {

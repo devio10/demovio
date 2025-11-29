@@ -10,6 +10,7 @@
 	import DeactivateAccountButton from "./DeactivateAccountButton.svelte";
 	import ReapplySkinButton from "./ReapplySkinButton.svelte";
 	import SettingsContent from "./SettingsContent.svelte";
+	import IconRight from "$lib/components/icons/IconRight.svelte";
 	let { data } = $props();
 	const scale = new Spring(0.5, { damping: 0.2, stiffness: 0.1 });
 </script>
@@ -42,8 +43,16 @@
 		<span class="name">{data.profile.name}</span>
 		<div class="settings-buttons-space"></div>
 		<div class="settings-buttons">
-			<OptionButton tag="a" href="/profile/edit">Изменить данные</OptionButton>
-			<OptionButton tag="a" href="/profile/overview/invite">Пригласить друга</OptionButton>
+			<OptionButton tag="a" href="/profile/edit">
+				Изменить данные <div class="option-button-icon">
+					<IconRight />
+				</div>
+			</OptionButton>
+			<OptionButton tag="a" href="/profile/overview/invite">
+				Пригласить друга <div class="option-button-icon">
+					<IconRight />
+				</div>
+			</OptionButton>
 		</div>
 		<OptionDescription>
 			Вы можете пригласить друзей и знакомых с помощью своей реферальной ссылки. Вы получите бонус

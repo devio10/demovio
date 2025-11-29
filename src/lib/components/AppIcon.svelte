@@ -81,11 +81,11 @@
 	}
 	@media screen and (max-width: 768px) {
 		a {
-			padding: 8px 18px;
+			padding: 8px 14px;
 			gap: 6px;
 			img {
-				width: 64px;
-				height: 64px;
+				width: 70px;
+				height: 70px;
 			}
 			span.label {
 				font-size: 13px;

@@ -94,7 +94,7 @@
 	title="Не Удалось Отправить Приглашение"
 	description={error}
 	color="var(--red)"
-	opened={error}
+	opened={error !== undefined}
 >
 	{#snippet icon()}
 		<NoInvitation />

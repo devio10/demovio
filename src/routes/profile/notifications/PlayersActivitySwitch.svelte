@@ -9,7 +9,7 @@
 </script>
 
 <OptionButton tag="div">
-	Активность выбранных игроков <SettingsSwitch
+	Активность игроков <SettingsSwitch
 		value={value === true}
 		disabled={updating}
 		onChange={async () => {

@@ -14,7 +14,7 @@
 		opened = $bindable(),
 	}: {
 		title: string;
-		description?: string;
+		description?: unknown;
 		children?: Snippet;
 		color?: string;
 		icon?: Snippet;
