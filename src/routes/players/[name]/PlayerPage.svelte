@@ -13,6 +13,8 @@
 	import { getCurrentDemovioStatus } from "../../status.remote";
 	import * as Window from "$lib/Window/index.svelte";
 	import { onMount } from "svelte";
+	import { localPreferences } from "$lib/local-settings.svelte";
+	import IconRight from "$lib/components/icons/IconRight.svelte";
 
 	let {
 		name,
@@ -101,29 +103,50 @@
 			<!-- <div class="player-map"><div></div></div> -->
 			<div class="action-buttons">
 				{#if !isSelf}
+					{#if localPreferences.backstageStatus && page.data.profile?.administrator}
+						<SettingsButton tag="a" href={`${name}/passport`}>
+							Открыть паспорт <div class="option-button-icon">
+								<IconRight />
+							</div>
+						</SettingsButton>
+						<SettingsButton>
+							Изменить личные данные <div class="option-button-icon">
+								<IconRight />
+							</div>
+						</SettingsButton>
+					{/if}
 					{#if isOnline}
 						<SettingsButton tag="a" href="https://map.demovio.love/">
-							Показать на карте
+							Показать на карте <div class="option-button-icon">
+								<IconRight />
+							</div>
 						</SettingsButton>
 					{:else}
 						<InvitePlayerButton {name} contact={player.contact} />
 					{/if}
 					{#if player.contact}
 						<SettingsButton tag="a" href="https://t.me/{player.contact}">
-							Написать в Telegram
+							Написать в Telegram...
 						</SettingsButton>
 					{/if}
-					<SettingsButton style="color: rgb(235, 52, 79)">Пожаловаться</SettingsButton>
+
+					{#if localPreferences.backstageStatus && page.data.profile?.administrator}
+						<SettingsButton style="color: rgb(235, 52, 79)">Заблокировать аккаунт</SettingsButton>
+					{:else}<SettingsButton style="color: rgb(235, 52, 79)">Пожаловаться</SettingsButton>{/if}
 				{:else}
-					<SettingsButton tag="a" href="/profile">Открыть свой профиль</SettingsButton>
+					<SettingsButton tag="a" href="/profile">
+						Открыть свой профиль <div class="option-button-icon">
+							<IconRight />
+						</div>
+					</SettingsButton>
 				{/if}
 			</div>
-		{:else}
-			<WindowPlaceholder>
-				<WindowPlaceholderWarning>Нет игрока с таким именем</WindowPlaceholderWarning>
-			</WindowPlaceholder>
 		{/if}
 	{/if}
+{:else}
+	<WindowPlaceholder>
+		<WindowPlaceholderWarning>Нет игрока с таким именем</WindowPlaceholderWarning>
+	</WindowPlaceholder>
 {/if}
 
 <style lang="less">

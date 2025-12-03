@@ -7,10 +7,16 @@
 	let controls: OrbitControls | undefined = $state();
 	let renderer: THREE.WebGLRenderer | undefined = $state();
 	let scene: THREE.Scene | undefined = $state();
-	let container: HTMLDivElement = $state();
+	let container: HTMLDivElement | undefined = $state();
 	let time = $state(performance.now());
+	let { environment } = $props();
+	$inspect(environment);
 
 	onMount(() => {
+		if (!container) {
+			return;
+		}
+		console.log("hawooo");
 		renderer = new THREE.WebGLRenderer();
 		renderer.setPixelRatio(window.devicePixelRatio);
 		renderer.setSize(window.innerWidth, window.innerHeight);
@@ -28,7 +34,7 @@
 		controls.enableDamping = true;
 		controls.rotateSpeed = -0.25;
 
-		const textures = getTexturesFromAtlasFile("/SpatialEnvironments/shanghai", 6);
+		const textures = getTexturesFromAtlasFile(`/SpatialEnvironments/${environment}`, 6);
 		// const textures = [];
 		// for (let i = 0; i < 6; i++) {
 		// 	textures[i] = `/SpatialEnvironments/shanghai/${i}.png`;

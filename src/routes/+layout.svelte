@@ -30,14 +30,16 @@
 		<div class="page-background">
 			{#if localPreferences.environment !== ""}
 				<img
-					src="/EnvironmentPreview/{localPreferences.environment}"
+					src="/Environments/{localPreferences.environment}{localPreferences.environmentDarkAvailable
+						? '-light'
+						: ''}.webp"
 					alt="Website Background"
 					in:scale={{ duration: 3000, start: 1.5 }}
 				/>
 			{/if}
 		</div>
 		{#if localPreferences.spatialEnvironment !== ""}
-			<SpatialEnvironment />
+			<SpatialEnvironment environment={localPreferences.spatialEnvironment} />
 		{/if}
 	{/if}
 

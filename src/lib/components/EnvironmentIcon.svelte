@@ -7,11 +7,13 @@
 		src,
 		spatial,
 		disabled,
+		darkAvailable = true,
 	}: {
 		name: string;
 		src?: string;
 		spatial?: string;
 		disabled?: boolean;
+		darkAvailable?: boolean;
 	} = $props();
 </script>
 
@@ -31,16 +33,21 @@
 		} else if (src) {
 			localStorage.setItem("environment", src);
 			localPreferences.environment = src;
+			localPreferences.environmentDarkAvailable = darkAvailable;
 		}
 	}}
 	class={{ disabled: disabled }}
 >
 	<div class="flex">
 		<div class="image">
-			{#if disabled}
+			{#if disabled || !src}
 				<div class="grayed-out"></div>
 			{:else}
-				<img draggable="false" src="/EnvironmentPreview/{src}" alt={name} />
+				<img
+					draggable="false"
+					src="/EnvironmentPreview/{src}{darkAvailable ? '-light' : ''}.webp"
+					alt={name}
+				/>
 			{/if}
 		</div>
 		<span class="label">{name}</span>

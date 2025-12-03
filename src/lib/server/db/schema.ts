@@ -160,3 +160,9 @@ export const playerRelations = relations(playersTable, ({ many }) => ({
 }));
 
 export type PlayerData = typeof playersTable.$inferSelect;
+export type PlayerCitizenship = {
+	code: DemovioStateCode;
+	date: Date | number;
+	protocol: string;
+	address: string;
+};

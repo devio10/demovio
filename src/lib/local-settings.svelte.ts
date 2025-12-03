@@ -1,5 +1,6 @@
 export const localPreferences: {
 	environment: string;
+	environmentDarkAvailable: boolean;
 	showEnvironment: boolean;
 	spatialEnvironment: string;
 	backstageStatus: boolean;
@@ -7,6 +8,7 @@ export const localPreferences: {
 	backstagePages: boolean;
 } = $state({
 	environment: "",
+	environmentDarkAvailable: true,
 	spatialEnvironment: "",
 	showEnvironment: true,
 	backstageStatus: false,

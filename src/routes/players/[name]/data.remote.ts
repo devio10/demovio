@@ -5,6 +5,7 @@ import {
 	playersTable,
 	pushSubscriptionsTable,
 	rateLimitsTable,
+	type PlayerCitizenship,
 } from "$lib/server/db/schema";
 import { error, fail } from "@sveltejs/kit";
 import { and, eq, gt, sql } from "drizzle-orm";
@@ -162,6 +163,7 @@ export const getPlayer = query(accountDataSchemas.name, async (name) => {
 			description: true,
 			pronouns: true,
 			lastOnline: true,
+			citizenship: locals.loggedIn && locals.playerData?.administrator ? true : false,
 		},
 		where: and(
 			eq(playersTable.isActivated, true),
@@ -175,6 +177,7 @@ export const getPlayer = query(accountDataSchemas.name, async (name) => {
 		pronouns: string;
 		description: string | null;
 		contact: string | undefined;
+		citizenship: PlayerCitizenship | undefined;
 	};
 	if (!player) {
 		return undefined;

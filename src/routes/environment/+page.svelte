@@ -58,18 +58,18 @@
 			in:fly={{ x: 300 * flyDirection, duration: 450 }}
 			out:fly={{ x: -300 * flyDirection, duration: 450 }}
 		>
-			<EnvironmentIcon src="states-1.webp" name="Центральный Вокзал" />
-			<EnvironmentIcon src="states-2.webp" name="Киото" />
-			<EnvironmentIcon src="states-5.webp" name="Огайо" />
+			<EnvironmentIcon src="centralstation" name="Центральный Вокзал" />
+			<EnvironmentIcon src="kyoto" name="Киото" />
+			<EnvironmentIcon src="ohio" name="Огайо" />
 			<br />
-			<EnvironmentIcon src="states-4.webp" name="Улицы Шанхая" />
+			<EnvironmentIcon src="shanghai" name="Улицы Шанхая" />
 			<EnvironmentIcon disabled name="Скоро выйдет" />
 			<EnvironmentIcon disabled name="Скоро выйдет" />
-			<EnvironmentIcon src="states-7.webp" name="Башня Нью Йорка" />
+			<EnvironmentIcon src="newyork" name="Башня Нью Йорка" />
 			<br />
-			<EnvironmentIcon src="states-8.webp" name="Горы Джорджии" />
-			<EnvironmentIcon src="states-6.webp" name="Шанхайская мэрия" />
-			<EnvironmentIcon src="states-10.webp" name="Банк Калифорния" />
+			<EnvironmentIcon src="georgia" name="Горы Джорджии" />
+			<EnvironmentIcon src="shanghai-center" name="Шанхайская мэрия" />
+			<EnvironmentIcon src="bank" name="Банк Калифорния" />
 		</div>
 	{:else if page === 1}
 		<div
@@ -77,18 +77,18 @@
 			in:fly={{ x: 300 * flyDirection, duration: 450 }}
 			out:fly={{ x: -300 * flyDirection, duration: 450 }}
 		>
-			<EnvironmentIcon spatial="shanghai" src="states-4.webp" name="Шанхай" />
-			<EnvironmentIcon disabled name="Скоро выйдет" />
-			<EnvironmentIcon disabled name="Скоро выйдет" />
+			<EnvironmentIcon spatial="shanghai" name="Шанхай" />
+			<EnvironmentIcon spatial="california" name="Калифорния" />
+			<EnvironmentIcon spatial="central_station" name="Центральный вокзал" />
 			<br />
-			<EnvironmentIcon disabled name="Скоро выйдет" />
-			<EnvironmentIcon disabled name="Скоро выйдет" />
-			<EnvironmentIcon disabled name="Скоро выйдет" />
-			<EnvironmentIcon disabled name="Скоро выйдет" />
+			<EnvironmentIcon spatial="kyoto" name="Киото" />
+			<EnvironmentIcon spatial="newyork" name="Нью Йорк" />
+			<EnvironmentIcon spatial="georgia" name="Джорджия" />
+			<EnvironmentIcon spatial="ohio" name="Огайо" />
 			<br />
-			<EnvironmentIcon disabled name="Скоро выйдет" />
-			<EnvironmentIcon disabled name="Скоро выйдет" />
-			<EnvironmentIcon disabled name="Скоро выйдет" />
+			<EnvironmentIcon spatial="miami" name="Майами" />
+			<EnvironmentIcon spatial="daisy" name="Тёплое море" />
+			<EnvironmentIcon spatial="dick" name="Город Похоти" />
 		</div>
 	{:else}
 		<div
@@ -96,8 +96,8 @@
 			in:fly={{ x: 300 * flyDirection, duration: 450 }}
 			out:fly={{ x: -300 * flyDirection, duration: 450 }}
 		>
-			<EnvironmentIcon src="states-3.webp" name="Хэллоуин" />
-			<EnvironmentIcon src="states-9.webp" name="Осенний Лес" />
+			<EnvironmentIcon src="halloween" darkAvailable={false} name="Хэллоуин" />
+			<EnvironmentIcon src="autumn" name="Осенний Лес" />
 			<EnvironmentIcon disabled name="Скоро выйдет" />
 			<br />
 			<EnvironmentIcon disabled name="Скоро выйдет" />
