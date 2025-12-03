@@ -42,12 +42,14 @@
 	<div class="flex">
 		<div class="image-block flex">
 			<div class="image">
-				{#if disabled || !src}
+				{#if disabled || (!src && !spatial)}
 					<div class="grayed-out"></div>
 				{:else}
 					<img
 						draggable="false"
-						src="/EnvironmentPreview/{src}{darkAvailable ? '-light' : ''}.webp"
+						src="/EnvironmentPreview/{spatial ? `spatial-${spatial}` : src}{darkAvailable
+							? '-light'
+							: ''}.webp"
 						alt={name}
 					/>
 				{/if}

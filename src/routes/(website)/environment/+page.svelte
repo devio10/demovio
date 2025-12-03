@@ -63,8 +63,8 @@
 			<EnvironmentIcon src="ohio" name="Огайо" />
 			<br />
 			<EnvironmentIcon src="shanghai" name="Улицы Шанхая" />
-			<EnvironmentIcon disabled name="Скоро выйдет" />
-			<EnvironmentIcon disabled name="Скоро выйдет" />
+			<EnvironmentIcon src="lighthouse" name="Маяк" />
+			<EnvironmentIcon src="enchantment" name="Зачарования" />
 			<EnvironmentIcon src="newyork" name="Башня Нью Йорка" />
 			<br />
 			<EnvironmentIcon src="georgia" name="Горы Джорджии" />
@@ -88,7 +88,7 @@
 			<br />
 			<EnvironmentIcon spatial="miami" name="Майами" />
 			<EnvironmentIcon spatial="daisy" name="Тёплое море" />
-			<EnvironmentIcon spatial="dick" name="Город Похоти" />
+			<EnvironmentIcon spatial="lust" name="Город Похоти" />
 		</div>
 	{:else}
 		<div
