@@ -143,11 +143,31 @@
 			top: 16px;
 			bottom: auto;
 		}
+		.content {
+			align-items: flex-start;
+		}
 		.environment-list {
-			display: flex;
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr 1fr;
 			width: 100%;
 			justify-content: center;
 			align-items: baseline;
+			max-height: 100%;
+			overflow-y: auto;
+			padding: 72px 16px 96px 16px;
+			br {
+				display: none;
+			}
+		}
+	}
+	@media screen and (max-width: 500px) {
+		.environment-list {
+			grid-template-columns: 1fr 1fr 1fr;
+		}
+	}
+	@media screen and (max-width: 360px) {
+		.environment-list {
+			grid-template-columns: 1fr 1fr;
 		}
 	}
 </style>
