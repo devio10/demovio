@@ -1,9 +1,9 @@
 <script>
-	import "../tailwind.css";
+	import "../../tailwind.css";
 	import favicon from "$lib/assets/favicon.svg";
 	import HeaderLogo from "$lib/components/HeaderLogo.svelte";
 	import SideNavigation from "$lib/components/SideNavigation.svelte";
-	import "../app.scss";
+	import "../../app.scss";
 	import "@fontsource-variable/noto-sans";
 	import { localPreferences } from "$lib/local-settings.svelte";
 	import { onMount } from "svelte";

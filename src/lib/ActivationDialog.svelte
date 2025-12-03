@@ -4,11 +4,11 @@
 	import EnvelopeWait from "./components/icons/IconEnvelopeWait.svelte";
 	import IconExclamationMark from "./components/icons/IconExclamationMark.svelte";
 	import { isActionFailure } from "@sveltejs/kit";
-	import { pushNotificationsOn } from "../routes/profile/notifications/data.remote";
 	import { onMount } from "svelte";
 	import { PUBLIC_PUSH_KEY } from "$env/static/public";
-	import { notificationSchema } from "../routes/profile/notifications/notification-schema";
 	import { browser } from "$app/environment";
+	import { pushNotificationsOn } from "../routes/(website)/profile/notifications/data.remote";
+	import { notificationSchema } from "../routes/(website)/profile/notifications/notification-schema";
 
 	let { profile } = $props();
 

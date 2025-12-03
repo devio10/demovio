@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { reactivateAccount } from "../routes/reactivate.remote";
+	import { reactivateAccount } from "../routes/(website)/reactivate.remote";
 	import Dialog from "./components/Dialog.svelte";
 	import DialogButton from "./components/DialogButton.svelte";
 	import IconHandWaving from "./components/icons/IconHandWaving.svelte";
