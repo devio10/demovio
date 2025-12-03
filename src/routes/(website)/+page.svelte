@@ -4,13 +4,15 @@
 	import { scale } from "svelte/transition";
 	import { getCurrentDemovioStatus } from "./status.remote.js";
 	import { localPreferences } from "$lib/local-settings.svelte.js";
-	import { MediaQuery } from "svelte/reactivity";
+	import { afterNavigate, beforeNavigate, onNavigate } from "$app/navigation";
 
 	let { data } = $props();
 
 	let additionalPages = $state(false);
 
 	const demovioStatus = getCurrentDemovioStatus();
+
+	let animations = $state(1);
 
 	function getPlayerCountText(players_online: string[]) {
 		let players_text = "Сейчас никто не играет";
@@ -52,6 +54,12 @@
 		}, 5000);
 		return () => clearInterval(interval);
 	});
+
+	beforeNavigate((navigation) => {
+		if (navigation.to?.route.id === "/about") {
+			animations = 0;
+		}
+	});
 </script>
 
 <svelte:head>
@@ -60,7 +68,7 @@
 	</title>
 </svelte:head>
 
-<div class="container" transition:scale|global={{ duration: 500, start: 0.5 }}>
+<div class="container" transition:scale|global={{ duration: 500 * animations, start: 0.5 }}>
 	<div>
 		<h2>
 			{#if demovioStatus.current !== undefined}
@@ -100,7 +108,7 @@
 		>
 			Загрузки
 		</AppIcon>
-		<AppIcon icon="About" href="https://demovio.love/?no-redirect">О Сервере</AppIcon>
+		<AppIcon icon="About" href="about">О Сервере</AppIcon>
 		{#if additionalPages}
 			<br />
 			<AppIcon icon="Applications" href="https://wiki.demovio.love/">Заявки</AppIcon>
