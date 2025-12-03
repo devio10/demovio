@@ -6,7 +6,7 @@
 	let { children } = $props();
 </script>
 
-<Window.Root sectionOpened={page.route.id === "/players/[name]"}>
+<Window.Root sectionOpened={page.route.id === "/(website)/players/[name]"}>
 	{#snippet navigation()}
 		<Navigation />
 	{/snippet}

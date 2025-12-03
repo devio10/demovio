@@ -47,7 +47,7 @@
 	);
 </script>
 
-<Window.Root sectionOpened={page.route.id?.startsWith("/help/")}>
+<Window.Root sectionOpened={page.route.id?.startsWith("/(website)/help/")}>
 	{#snippet navigation()}
 		<WindowNavigation --width="35%">
 			<WindowNavigationHeader title="Помощь"></WindowNavigationHeader>

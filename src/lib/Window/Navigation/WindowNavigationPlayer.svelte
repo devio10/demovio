@@ -188,4 +188,24 @@
 			margin-left: auto;
 		}
 	}
+	@media screen and (max-width: 768px) {
+		a {
+			&.active {
+				background-color: rgba(179, 179, 179, 0.25);
+				&:hover {
+					background-color: rgba(179, 179, 179, 0.25);
+				}
+				&:active {
+					background-color: rgba(179, 179, 179, 0.4);
+				}
+			}
+			&:hover {
+				background-color: rgba(0, 0, 0, 0);
+			}
+			&:active {
+				transition-duration: 0ms;
+				background-color: rgba(179, 179, 179, 0.2);
+			}
+		}
+	}
 </style>

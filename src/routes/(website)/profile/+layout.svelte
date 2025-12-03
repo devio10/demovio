@@ -20,7 +20,7 @@
 </script>
 
 <main>
-	<Window sectionOpened={page.route.id?.startsWith("/profile/")}>
+	<Window sectionOpened={page.route.id?.startsWith("/(website)/profile/")}>
 		{#snippet navigation()}
 			<WindowNavigation --width="30%">
 				<WindowNavigationHeader title="Профиль"></WindowNavigationHeader>

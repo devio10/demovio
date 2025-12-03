@@ -49,9 +49,18 @@
 	}
 	@media screen and (max-width: 768px) {
 		a {
+			&:hover {
+				background-color: rgba(0, 0, 0, 0);
+			}
+			&:active {
+				background-color: rgba(179, 179, 179, 0.2);
+			}
 			&.active {
 				background-color: rgba(0, 0, 0, 0);
 				&:hover {
+					background-color: rgba(0, 0, 0, 0);
+				}
+				&:active {
 					background-color: rgba(179, 179, 179, 0.2);
 				}
 			}
