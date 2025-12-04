@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { localPreferences } from "$lib/local-settings.svelte";
 	import { onMount } from "svelte";
 	import * as THREE from "three";
 	import { OrbitControls } from "three/addons/controls/OrbitControls.js";
@@ -10,7 +11,29 @@
 	let container: HTMLDivElement | undefined = $state();
 	let time = $state(performance.now());
 	let { environment } = $props();
-	$inspect(environment);
+
+	$effect(() => {
+		if (localPreferences.spatialEnvironment) {
+			reloadSpatialEnvironment();
+		}
+	});
+
+	export const reloadSpatialEnvironment = () => {
+		if (!scene) {
+			return false;
+		}
+		const textures = getTexturesFromAtlasFile(`/SpatialEnvironments/${environment}`, 6);
+
+		const materials = [];
+
+		for (let i = 0; i < 6; i++) {
+			materials.push(new THREE.MeshBasicMaterial({ map: textures[i] }));
+		}
+
+		const skyBox = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), materials);
+		skyBox.geometry.scale(1, 1, -1);
+		scene.add(skyBox);
+	};
 
 	onMount(() => {
 		if (!container) {
@@ -35,10 +58,6 @@
 		controls.rotateSpeed = -0.25;
 
 		const textures = getTexturesFromAtlasFile(`/SpatialEnvironments/${environment}`, 6);
-		// const textures = [];
-		// for (let i = 0; i < 6; i++) {
-		// 	textures[i] = `/SpatialEnvironments/shanghai/${i}.png`;
-		// }
 
 		const materials = [];
 

@@ -2,6 +2,7 @@
 	import { localPreferences } from "$lib/local-settings.svelte";
 	import { scale } from "svelte/transition";
 	import IconCheckmark from "./icons/IconCheckmark.svelte";
+	import SpatialEnvironment from "./SpatialEnvironment.svelte";
 
 	let {
 		name,
@@ -31,6 +32,7 @@
 		if (spatial) {
 			localStorage.setItem("spatialEnvironment", spatial);
 			localPreferences.spatialEnvironment = spatial;
+
 		} else if (src) {
 			localStorage.setItem("environment", src);
 			localPreferences.environment = src;

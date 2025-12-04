@@ -18,7 +18,7 @@
 		const storageEnvironment = localStorage.getItem("environment");
 		const storageSpatialEnvironment = localStorage.getItem("spatialEnvironment");
 		localPreferences.spatialEnvironment = storageSpatialEnvironment ?? "";
-		localPreferences.environment = storageEnvironment ?? "states-10.webp";
+		localPreferences.environment = storageEnvironment ?? "kyoto";
 	});
 </script>
 
