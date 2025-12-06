@@ -129,6 +129,7 @@
 		.icon {
 			--red: rgb(253, 58, 58);
 			--yellow: rgb(252, 189, 28);
+			--purple: rgb(145, 49, 242);
 			--green: rgb(123, 242, 49);
 
 			width: 52px;

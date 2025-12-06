@@ -10,10 +10,46 @@ export const applyPlayerSkin = async (
 		return await new Promise<boolean>((resolve, reject) => {
 			const client = new RCONClient("demovio.love", RCON_PASSWORD, 10511);
 			client.connect();
-			console.log("tap tap tap");
 			client.on("authenticated", async () => {
 				console.log("beaam");
 				client.executeCommand(`execute as ${playerName} run skin set ${skinType} ${skin}`);
+				resolve(true);
+			});
+			client.on("error", () => {
+				reject(new Error("Ошибка при подключении к серверу"));
+			});
+		});
+	} catch (e) {
+		console.log(e);
+		return false;
+	}
+};
+
+export const rconBanPlayer = async (playerName: string, unban: boolean | undefined) => {
+	try {
+		return await new Promise<boolean>((resolve, reject) => {
+			const client = new RCONClient("demovio.love", RCON_PASSWORD, 10511);
+			client.connect();
+			client.on("authenticated", async () => {
+				client.executeCommand(`easy${unban === true ? "pardon" : "ban"} ${playerName}`);
+				resolve(true);
+			});
+			client.on("error", () => {
+				reject(new Error("Ошибка при подключении к серверу"));
+			});
+		});
+	} catch (e) {
+		console.log(e);
+		return false;
+	}
+};
+export const rconWhitelistPlayer = async (playerName: string) => {
+	try {
+		return await new Promise<boolean>((resolve, reject) => {
+			const client = new RCONClient("demovio.love", RCON_PASSWORD, 10511);
+			client.connect();
+			client.on("authenticated", async () => {
+				client.executeCommand(`easywhitelist add ${playerName}`);
 				resolve(true);
 			});
 			client.on("error", () => {

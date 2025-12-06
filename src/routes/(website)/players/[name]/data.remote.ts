@@ -15,6 +15,8 @@ import { sendPushNotification } from "$lib/server/notifications";
 import { NotificationType } from "$lib/scripts";
 import { setTimeout } from "timers/promises";
 import { subDays } from "date-fns";
+import { rconBanPlayer } from "$lib/server/rcon";
+import z from "zod";
 
 export const favoritePlayer = command(accountDataSchemas.name, async (name) => {
 	const { locals } = getRequestEvent();
@@ -34,6 +36,35 @@ export const favoritePlayer = command(accountDataSchemas.name, async (name) => {
 		.where(eq(playersTable.name, locals.playerData.name));
 	getPlayers().refresh();
 	return { featured: !featured };
+});
+
+const banSchemas = z.object({ name: accountDataSchemas.name, value: z.boolean() });
+
+export const backstageBanPlayer = command(banSchemas, async ({ name, value }) => {
+	const { locals } = getRequestEvent();
+	await setTimeout(750);
+	if (!locals.loggedIn || !locals.playerData || !locals.playerData.administrator) {
+		return fail(401);
+	}
+	await db.update(playersTable).set({ isBanned: value }).where(eq(playersTable.name, name));
+
+	sendPushNotification({
+		name: name,
+		content: JSON.stringify({
+			type: NotificationType.accountBanned,
+			url: "https://t.me/devio101",
+		}),
+	});
+
+	const rconBan = await rconBanPlayer(name, value);
+	if (rconBan) {
+		return { success: true };
+	} else {
+		return error(
+			405,
+			"Не удалось применить бан. Пожалуйста, выполните вручную команду бана на сервере.",
+		);
+	}
 });
 
 export const invitePlayer = command(accountDataSchemas.name, async (name) => {
@@ -155,6 +186,7 @@ export type GetPlayerResponse = Awaited<ReturnType<typeof getPlayer>>;
 
 export const getPlayer = query(accountDataSchemas.name, async (name) => {
 	const { locals } = getRequestEvent();
+	const backstage = locals.playerData?.administrator === true;
 	const player = (await db.query.playersTable.findFirst({
 		columns: {
 			name: true,
@@ -163,11 +195,12 @@ export const getPlayer = query(accountDataSchemas.name, async (name) => {
 			description: true,
 			pronouns: true,
 			lastOnline: true,
+			isBanned: true,
 			citizenship: locals.loggedIn && locals.playerData?.administrator ? true : false,
 		},
 		where: and(
 			eq(playersTable.isActivated, true),
-			eq(playersTable.isBanned, false),
+			backstage ? undefined : eq(playersTable.isBanned, false),
 			eq(playersTable.name, name),
 		),
 	})) as {
@@ -178,6 +211,7 @@ export const getPlayer = query(accountDataSchemas.name, async (name) => {
 		description: string | null;
 		contact: string | undefined;
 		citizenship: PlayerCitizenship | undefined;
+		isBanned: boolean;
 	};
 	if (!player) {
 		return null;

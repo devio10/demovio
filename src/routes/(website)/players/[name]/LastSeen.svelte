@@ -10,6 +10,10 @@
 					online: true;
 			  }
 			| {
+					isBanned: true;
+					pronouns?: string;
+			  }
+			| {
 					lastSeen: Date | null;
 					pronouns?: string;
 			  }
@@ -26,6 +30,15 @@
 	{:then value}
 		{#if "online" in value}
 			Сейчас играет
+		{:else if "isBanned" in value}
+			{@const { pronouns } = value}
+			{#if pronouns === "он/его"}
+				Заблокирован
+			{:else if pronouns === "она/её"}
+				Заблокирована
+			{:else}
+				Заблокированы
+			{/if}
 		{:else if "isSelf" in value}
 			Это вы!
 		{:else}

@@ -16,6 +16,7 @@
 	import { localPreferences } from "$lib/local-settings.svelte";
 	import IconRight from "$lib/components/icons/IconRight.svelte";
 	import LoadingWheel from "$lib/components/LoadingWheel.svelte";
+	import BanPlayer from "./BanPlayer.svelte";
 
 	let {
 		name,
@@ -75,7 +76,9 @@
 								? { isSelf: true }
 								: isOnline
 									? { online: true }
-									: { lastSeen: player.lastOnline, pronouns: player.pronouns },
+									: player.isBanned
+										? { isBanned: true, pronouns: player.pronouns }
+										: { lastSeen: player.lastOnline, pronouns: player.pronouns },
 						)}
 					/>
 				{/if}
@@ -135,7 +138,7 @@
 					{/if}
 
 					{#if localPreferences.backstageStatus && page.data.profile?.administrator}
-						<SettingsButton style="color: rgb(235, 52, 79)">Заблокировать аккаунт</SettingsButton>
+						<BanPlayer {name} isBanned={player.isBanned} />
 					{:else}<SettingsButton style="color: rgb(235, 52, 79)">Пожаловаться</SettingsButton>{/if}
 				{:else}
 					<SettingsButton tag="a" href="/profile">
