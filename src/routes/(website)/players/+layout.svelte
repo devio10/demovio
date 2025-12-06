@@ -11,5 +11,4 @@
 		<Navigation />
 	{/snippet}
 	{@render children?.()}
-	<!-- <SkinViewer3D --url="url(https://demovio.love/skins/anastasiz2009.png)" /> -->
 </Window.Root>

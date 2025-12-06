@@ -111,9 +111,9 @@
 		<AppIcon icon="About" href="about">О Сервере</AppIcon>
 		{#if additionalPages}
 			<br />
-			<AppIcon icon="Applications" href="https://wiki.demovio.love/">Заявки</AppIcon>
-			<AppIcon icon="Console" href="https://map.demovio.love/">Консоль</AppIcon>
-			<AppIcon icon="Statistics" href="downloads">Статистика</AppIcon>
+			<AppIcon icon="Applications" href="applications">Заявки</AppIcon>
+			<AppIcon icon="Console" href="console">Консоль</AppIcon>
+			<AppIcon icon="Statistics" href="statistics">Статистика</AppIcon>
 		{/if}
 	</nav>
 	<div>

@@ -8,4 +8,5 @@
 	export { default as NavigationHeader } from "./Navigation/WindowNavigationHeader.svelte";
 	export { default as NavigationList } from "./Navigation/WindowNavigationList.svelte";
 	export { default as Error } from "./WindowError.svelte";
+	export { default as Header } from "./WindowHeader.svelte";
 </script>
