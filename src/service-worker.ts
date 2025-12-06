@@ -26,12 +26,20 @@ self.addEventListener("push", function (event) {
 		verb = "зашла";
 	}
 	let bodyText = `Тестовое уведомление.`;
+	let isSilent = false;
 	switch (data.type) {
 		case NotificationType.playerJoinedTheGame:
 			bodyText = `${data.name} только что ${verb} на сервер Demovio.`;
+			isSilent = true;
 			break;
 		case NotificationType.invitationFromPlayer:
 			bodyText = `${data.name} приглашает вас на сервер Demovio.`;
+			break;
+		case NotificationType.accountBanned:
+			bodyText = `Ваш аккаунт Demovio был забанен. Cвяжитесь с администратором, если хотите подать апелляцию.`;
+			break;
+		case NotificationType.accountActivated:
+			bodyText = `Ваш аккаунт Demovio активирован! Узнайте, как начать играть на сервере.`;
 			break;
 		default:
 			if (data.text) {
@@ -43,8 +51,9 @@ self.addEventListener("push", function (event) {
 			body: bodyText,
 			dir: "ltr",
 			lang: "ru",
-			icon: "https://blog.hloth.dev/notifications-icon.png",
-			badge: "https://blog.hloth.dev/notifications-badge.svg",
+			icon: "https://demovio.love/web-app-manifest-192x192.png",
+			badge: "https://demovio.love/favicon.svg",
+			silent: isSilent,
 			// data: {  },
 			// image: data.image,
 		}),

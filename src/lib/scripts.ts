@@ -13,6 +13,8 @@ export enum NotificationType {
 	playerJoinedTheGame,
 	invitationFromPlayer,
 	serverUpdate,
+	accountBanned,
+	accountActivated,
 	other,
 }
 export const hide = (
