@@ -15,6 +15,7 @@
 	import { onMount } from "svelte";
 	import { localPreferences } from "$lib/local-settings.svelte";
 	import IconRight from "$lib/components/icons/IconRight.svelte";
+	import LoadingWheel from "$lib/components/LoadingWheel.svelte";
 
 	let {
 		name,
@@ -24,12 +25,12 @@
 
 	const serverState = getCurrentDemovioStatus();
 
-	let player: GetPlayerResponse | undefined = $state();
+	let player: GetPlayerResponse | undefined | null = $state();
 	let playerError = $state();
 	$effect(() => {
 		async function fetchPlayer() {
 			try {
-				player = await getPlayer(name);
+				player = (await getPlayer(name)) ?? null;
 			} catch (e) {
 				playerError = e;
 			}
@@ -43,9 +44,12 @@
 
 	const ourProfile = $derived(page.data.profile);
 	const ourName = $derived(ourProfile?.name);
-	const isSelf = $derived(player !== undefined && ourName !== undefined && player.name === ourName);
+	const isSelf = $derived(
+		player !== undefined && player !== null && ourName !== undefined && player.name === ourName,
+	);
 	const isOnline = $derived(
 		player !== undefined &&
+			player !== null &&
 			serverState.current &&
 			serverState.current.players.includes(player.name),
 	);
@@ -86,7 +90,7 @@
 	{#if name}
 		{#if !player}
 			{@render header(true)}
-		{:else if player !== undefined}
+		{:else if player !== null && player !== undefined}
 			{@render header(false)}
 			<div class="top_flex">
 				<p class="description">
@@ -143,6 +147,10 @@
 			</div>
 		{/if}
 	{/if}
+{:else if player === undefined}
+	<Window.Placeholder>
+		<LoadingWheel --wheel-size="128px" --wheel-color="rgba(255,255,255,0.75)" />
+	</Window.Placeholder>
 {:else}
 	<WindowPlaceholder>
 		<WindowPlaceholderWarning>Нет игрока с таким именем</WindowPlaceholderWarning>

@@ -180,7 +180,7 @@ export const getPlayer = query(accountDataSchemas.name, async (name) => {
 		citizenship: PlayerCitizenship | undefined;
 	};
 	if (!player) {
-		return undefined;
+		return null;
 	}
 
 	let featured = false;
