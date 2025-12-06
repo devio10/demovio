@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { ru } from "date-fns/locale/ru";
-	import type { Profile } from "../../routes/+layout.server";
 	import PassportStamp from "../PassportStamps/PassportStamp.svelte";
 	import StampCalifornia from "../PassportStamps/StampCalifornia.svelte";
 	import StampConcord from "../PassportStamps/StampConcord.svelte";
@@ -11,6 +10,7 @@
 	import PlayerHead from "./PlayerHead.svelte";
 	import { getSkinURL } from "../scripts";
 	import { format } from "date-fns";
+	import type { Profile } from "../../app";
 
 	function nameCode(length: number, symbol: string, input: string) {
 		return input.length >= length ? input.slice(0, length) : input.padEnd(length, symbol);
@@ -20,6 +20,7 @@
 	type Language = "chinese" | "russian";
 
 	let { profile }: { profile: Profile } = $props();
+	$inspect(profile);
 	const languages = {
 		chinese: {
 			citizenshipPage: {

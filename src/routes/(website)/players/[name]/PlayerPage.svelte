@@ -128,7 +128,7 @@
 								<IconRight />
 							</div>
 						</SettingsButton>
-					{:else}
+					{:else if !player.isBanned}
 						<InvitePlayerButton {name} contact={player.contact} />
 					{/if}
 					{#if player.contact}
@@ -139,7 +139,9 @@
 
 					{#if localPreferences.backstageStatus && page.data.profile?.administrator}
 						<BanPlayer {name} isBanned={player.isBanned} />
-					{:else}<SettingsButton style="color: rgb(235, 52, 79)">Пожаловаться</SettingsButton>{/if}
+					{:else}<SettingsButton disabled style="color: rgb(235, 52, 79)">
+							Пожаловаться
+						</SettingsButton>{/if}
 				{:else}
 					<SettingsButton tag="a" href="/profile">
 						Открыть свой профиль <div class="option-button-icon">

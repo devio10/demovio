@@ -187,6 +187,7 @@ export type GetPlayerResponse = Awaited<ReturnType<typeof getPlayer>>;
 export const getPlayer = query(accountDataSchemas.name, async (name) => {
 	const { locals } = getRequestEvent();
 	const backstage = locals.playerData?.administrator === true;
+	const showForBackstage = locals.loggedIn && locals.playerData?.administrator ? true : false;
 	const player = (await db.query.playersTable.findFirst({
 		columns: {
 			name: true,
@@ -196,7 +197,10 @@ export const getPlayer = query(accountDataSchemas.name, async (name) => {
 			pronouns: true,
 			lastOnline: true,
 			isBanned: true,
-			citizenship: locals.loggedIn && locals.playerData?.administrator ? true : false,
+			issueDate: showForBackstage,
+			citizenship: showForBackstage,
+			id: showForBackstage,
+			uuid: showForBackstage,
 		},
 		where: and(
 			eq(playersTable.isActivated, true),
@@ -208,10 +212,13 @@ export const getPlayer = query(accountDataSchemas.name, async (name) => {
 		skin: string | null;
 		lastOnline: Date | null;
 		pronouns: string;
+		issueDate: Date | number;
 		description: string | null;
 		contact: string | undefined;
 		citizenship: PlayerCitizenship | undefined;
 		isBanned: boolean;
+		id: number;
+		uuid: string;
 	};
 	if (!player) {
 		return null;

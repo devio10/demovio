@@ -9,9 +9,11 @@
 		children,
 		title,
 		subtitle,
+		doFade = true,
 		...props
 	}: {
 		children?: Snippet;
+		doFade: boolean;
 		title: string;
 		subtitle?: Snippet;
 	} & SvelteHTMLElements["div"] = $props();
@@ -22,7 +24,7 @@
 	});
 </script>
 
-<div class="content" {...props} transition:fade|global={{ duration: 100 }}>
+<div class="content" {...props} transition:fade|global={{ duration: doFade ? 100 : 0 }}>
 	<div><WindowBackButton /></div>
 	<div class="text">
 		<h2 style="scale: {1 - titleHideProgress}; opacity: {1 - titleHideProgress}">{title}</h2>

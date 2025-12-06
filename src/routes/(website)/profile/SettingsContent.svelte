@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { scale } from "svelte/transition";
 
-	let { children, ...props } = $props();
+	let { children, doFade = true, ...props } = $props();
 </script>
 
 <div
 	class="settings-content"
-	transition:scale|global={{ duration: 250, start: 0.95, opacity: 0 }}
+	transition:scale|global={{ duration: doFade ? 250 : 0, start: 0.95, opacity: 0 }}
 	{...props}
 >
 	{@render children?.()}
