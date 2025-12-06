@@ -342,10 +342,6 @@
 				transition-timing-function: ease-out;
 			}
 		}
-		canvas {
-			margin: 0;
-			padding: 0;
-		}
 		&:hover {
 			.skin-edit-button {
 				height: 72px;

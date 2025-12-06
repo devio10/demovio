@@ -1,12 +1,12 @@
 <script lang="ts">
 	import "../../app.scss";
 	import "@fontsource-variable/montserrat";
-	import favicon from "$lib/assets/favicon.svg";
 	import HeaderLogo from "$lib/components/HeaderLogo.svelte";
 	import AboutStates from "./AboutStates.svelte";
 	import { scrollY } from "svelte/reactivity/window";
 	import { fade, fly, scale } from "svelte/transition";
 	import { onMount } from "svelte";
+	let { data } = $props();
 	let heroHeight = $state(100);
 	let ready = $state(false);
 	onMount(() => (ready = true));
@@ -14,7 +14,6 @@
 
 <svelte:head>
 	<title>Demovio: Minecraft сервер</title>
-	<link rel="icon" href={favicon} />
 </svelte:head>
 
 <div class="top_announcement" style="display: none">
@@ -176,16 +175,25 @@
 	</span>
 </footer>
 
-<div class="welcome_player hidden">
-	<a href="/">
-		Перейти к статусу сервера
-		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
-			<path
-				d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"
-			></path>
-		</svg>
-	</a>
-</div>
+{#if data.profile}
+	<div
+		class={[
+			"welcome_player",
+			{
+				shown: ready && ((scrollY.current && scrollY.current < heroHeight / 2) || !scrollY.current),
+			},
+		]}
+	>
+		<a href="/">
+			Перейти к статусу сервера
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+				<path
+					d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"
+				></path>
+			</svg>
+		</a>
+	</div>
+{/if}
 
 <style lang="scss">
 	* {
@@ -514,7 +522,7 @@
 		width: 100%;
 		bottom: 48px;
 		left: 0;
-
+		z-index: 5;
 		display: flex;
 		justify-content: center;
 		pointer-events: none;
@@ -537,9 +545,11 @@
 			padding: 8px 8px 8px 24px;
 			border-radius: 100px;
 
-			background-color: rgba(30, 30, 30, 0.85);
-			border: 1px solid rgba(0, 0, 0, 0.35);
-			backdrop-filter: blur(5px);
+			background-color: rgba(30, 30, 30, 0.65);
+			border: 1px solid rgba(230, 230, 230, 0.15);
+			border-left: none;
+			border-bottom: none;
+			backdrop-filter: blur(4px);
 			display: flex;
 			align-items: center;
 			gap: 12px;

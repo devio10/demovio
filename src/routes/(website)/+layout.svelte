@@ -1,6 +1,5 @@
 <script>
 	import "../../tailwind.css";
-	import favicon from "$lib/assets/favicon.svg";
 	import HeaderLogo from "$lib/components/HeaderLogo.svelte";
 	import SideNavigation from "$lib/components/SideNavigation.svelte";
 	import "../../app.scss";
@@ -23,7 +22,7 @@
 </script>
 
 <svelte:head>
-	<link rel="icon" href={favicon} />
+	<title>Demovio</title>
 </svelte:head>
 <div class="page">
 	{#if localPreferences.showEnvironment}
