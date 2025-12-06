@@ -52,7 +52,7 @@ self.addEventListener("push", function (event) {
 			dir: "ltr",
 			lang: "ru",
 			icon: "https://demovio.love/web-app-manifest-192x192.png",
-			badge: "https://demovio.love/favicon.svg",
+			badge: "https://demovio.love/demovio-push_badge.svg",
 			silent: isSilent,
 			// data: {  },
 			// image: data.image,
