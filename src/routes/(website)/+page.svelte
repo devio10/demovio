@@ -5,6 +5,7 @@
 	import { getCurrentDemovioStatus } from "./status.remote.js";
 	import { localPreferences } from "$lib/local-settings.svelte.js";
 	import { afterNavigate, beforeNavigate, onNavigate } from "$app/navigation";
+	import { MediaQuery } from "svelte/reactivity";
 
 	let { data } = $props();
 
@@ -13,6 +14,7 @@
 	const demovioStatus = getCurrentDemovioStatus();
 
 	let animations = $state(1);
+	let isMobile = new MediaQuery("screen and (max-width: 768px)");
 
 	function getPlayerCountText(players_online: string[]) {
 		let players_text = "Сейчас никто не играет";
@@ -176,7 +178,15 @@
 			display: none;
 		}
 		nav {
+			width: 100%;
 			max-width: 500px;
+			display: grid;
+			grid-template-columns: auto auto auto auto;
+			flex-wrap: wrap;
+			gap: 8px 14px;
+			// justify-content: center;
+			margin: 0 auto;
+			justify-content: space-between;
 		}
 		.players-number {
 			margin-top: 6px;

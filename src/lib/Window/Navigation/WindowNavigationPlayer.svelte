@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from "$app/state";
 	import type { DemovioStateCode } from "$lib/components/demovio-states";
+	import IconLock from "$lib/components/icons/IconLock.svelte";
 	import PlayerHead from "$lib/components/PlayerHead.svelte";
 	import { hide } from "$lib/scripts";
 	import type { Snippet } from "svelte";
@@ -15,6 +16,7 @@
 		online,
 		featured,
 		backstageCitizenship,
+		backstageIsBanned,
 	}: {
 		name: string;
 		skin: string;
@@ -23,6 +25,7 @@
 		children?: Snippet;
 		online?: boolean;
 		featured?: boolean;
+		backstageIsBanned: boolean | undefined;
 		backstageCitizenship:
 			| undefined
 			| {
@@ -36,7 +39,7 @@
 
 <a
 	href="/players/{name}"
-	class={{ active: page.params.name === name }}
+	class={{ active: page.params.name === name, banned: backstageIsBanned === true }}
 	in:fly|global={{ duration: 150, delay: 10 * i, y: 10 }}
 	out:hide={{ duration: 250, easing: expoOut }}
 	data-sveltekit-preload-data={false}
@@ -53,6 +56,11 @@
 		<div>
 			<div style="display: flex;">
 				<span class="name">{name}</span>
+				{#if backstageIsBanned}
+					<span class="backstage-banned">
+						<IconLock />
+					</span>
+				{/if}
 				{#if backstageCitizenship}
 					<span class={["backstage-state", backstageCitizenship.code]}>
 						{backstageCitizenship.code}
@@ -110,6 +118,11 @@
 				background-color: rgba(179, 179, 179, 0.4);
 			}
 		}
+		&.banned {
+			.skin {
+				opacity: 0.5;
+			}
+		}
 		&:hover {
 			transition-duration: 0ms;
 			background-color: rgba(179, 179, 179, 0.2);
@@ -138,6 +151,13 @@
 			color: white;
 			display: block;
 			text-align: left;
+		}
+		.backstage-banned {
+			width: 16px;
+			height: 16px;
+			margin-left: 4px;
+			display: flex;
+			color: rgba(230, 230, 230, 0.75);
 		}
 		.backstage-state {
 			--color: rgba(230, 230, 230, 0.5);

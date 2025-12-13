@@ -9,4 +9,6 @@
 	export { default as NavigationList } from "./Navigation/WindowNavigationList.svelte";
 	export { default as Error } from "./WindowError.svelte";
 	export { default as Header } from "./WindowHeader.svelte";
+	export { default as NavigationTab } from "./Navigation/Tabs/NavigationTabButton.svelte";
+	export { default as NavigationTabsList } from "./Navigation/Tabs/NavigationTabs.svelte";
 </script>

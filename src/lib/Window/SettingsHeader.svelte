@@ -13,7 +13,7 @@
 		...props
 	}: {
 		children?: Snippet;
-		doFade: boolean;
+		doFade?: boolean;
 		title: string;
 		subtitle?: Snippet;
 	} & SvelteHTMLElements["div"] = $props();

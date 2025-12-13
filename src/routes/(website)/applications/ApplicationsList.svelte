@@ -3,26 +3,18 @@
 	import * as Window from "$lib/Window/index.svelte";
 	import { getCurrentDemovioStatus } from "../status.remote";
 	import LoadingWheel from "$lib/components/LoadingWheel.svelte";
-	import { onMount } from "svelte";
-	import { localPreferences } from "$lib/local-settings.svelte";
 	import { getApplications } from "./data.remote";
 
 	let {
 		searchQuery,
+		applicationsType,
 	}: {
 		searchQuery: string;
+		applicationsType: number;
 	} = $props();
 
 	const demovioStatus = getCurrentDemovioStatus();
-	let players = getApplications();
-
-	onMount(() => {
-		const interval = setInterval(() => {
-			getApplications().refresh();
-			getCurrentDemovioStatus().refresh();
-		}, 5000);
-		return () => clearInterval(interval);
-	});
+	let players = getApplications({ type: applicationsType });
 </script>
 
 {#if players.error}

@@ -259,6 +259,9 @@
 			font-size: 28px;
 			margin: 0;
 		}
+		.title-block {
+			padding-top: env(safe-area-inset-top, 0);
+		}
 		.mobile-description {
 			display: block;
 		}

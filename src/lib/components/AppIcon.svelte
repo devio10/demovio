@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from "svelte";
+	import { MediaQuery } from "svelte/reactivity";
 
 	let {
 		children,
@@ -12,11 +13,16 @@
 		href: string;
 		badge?: string | number | Promise<string | number>;
 	} = $props();
+	let isMobile = new MediaQuery("screen and (max-width: 768px)");
 </script>
 
 <div>
 	<a {href} draggable="false">
-		<img draggable="false" src="/AppIcons/{icon}.png" alt={icon} />
+		{#if isMobile.current}
+			<img draggable="false" src="/AppIcons/{icon}-mobile-light.png" alt={icon} />
+		{:else}
+			<img draggable="false" src="/AppIcons/{icon}.png" alt={icon} />
+		{/if}
 		<span class="label">{@render children?.()}</span>
 		{#if badge}
 			<span class="badge">{badge}</span>
@@ -33,6 +39,8 @@
 		display: flex;
 		flex-direction: column;
 		gap: 10px;
+		justify-content: center;
+		align-items: center;
 		padding: 16px 32px;
 		text-decoration: none;
 		position: relative;
@@ -81,14 +89,17 @@
 	}
 	@media screen and (max-width: 768px) {
 		a {
-			padding: 8px 14px;
+			padding: 6px;
 			gap: 6px;
 			img {
-				width: 70px;
-				height: 70px;
+				width: 68px;
+				height: 68px;
+				border-radius: 0;
+				box-shadow: none;
+				filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.25));
 			}
 			span.label {
-				font-size: 13px;
+				font-size: 12px;
 				font-weight: 500;
 				text-shadow: 0 0px 5px rgba(0, 0, 0, 0.45);
 			}
@@ -96,6 +107,21 @@
 				right: 8px;
 				top: 8px;
 				font-size: 14px;
+			}
+			&:hover {
+				scale: 0.95;
+			}
+		}
+	}
+	@media screen and (max-width: 370px) {
+		a {
+			padding: 4px;
+			img {
+				width: 60px;
+				height: 60px;
+			}
+			span.label {
+				font-size: 11px;
 			}
 		}
 	}

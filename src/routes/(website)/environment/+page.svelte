@@ -140,7 +140,7 @@
 	}
 	@media screen and (max-width: 768px) {
 		.navigation {
-			top: 16px;
+			top: calc(max(env(safe-area-inset-top, 0), 8px) + 8px);
 			bottom: auto;
 		}
 		.content {
@@ -155,6 +155,7 @@
 			max-height: 100%;
 			overflow-y: auto;
 			padding: 72px 16px 96px 16px;
+			padding-top: calc(max(env(safe-area-inset-top, 0), 16px) + 56px);
 			br {
 				display: none;
 			}

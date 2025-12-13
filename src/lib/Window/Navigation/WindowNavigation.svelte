@@ -47,6 +47,7 @@
 		nav {
 			width: 100%;
 			border-radius: 0;
+			// padding-top: 56px;
 			// backdrop-filter: blur(30px);
 			background: none;
 			box-shadow: none;

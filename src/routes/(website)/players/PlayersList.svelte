@@ -37,6 +37,10 @@
 				.sort((a, b) => {
 					const scoreFavoriteA = a.featured ? 10 : 0;
 					const scoreFavoriteB = b.featured ? 10 : 0;
+
+					const scoreBannedA = a.isBanned ? -10 : 0;
+					const scoreBannedB = b.isBanned ? -10 : 0;
+
 					let scoreOnlineA = 0;
 					let scoreOnlineB = 0;
 					if (demovioStatus.current) {
@@ -45,18 +49,19 @@
 						scoreOnlineB = onlinePlayers.includes(b.name) ? 1 : 0;
 					}
 
-					const finalScoreA = scoreFavoriteA + scoreOnlineA;
-					const finalScoreB = scoreFavoriteB + scoreOnlineB;
+					const finalScoreA = scoreFavoriteA + scoreOnlineA + scoreBannedA;
+					const finalScoreB = scoreFavoriteB + scoreOnlineB + scoreBannedB;
 
 					return finalScoreB - finalScoreA;
 				})}
-			{#each list as { name, skin, pronouns, featured, citizenship }, i (name)}
+			{#each list as { name, skin, pronouns, featured, citizenship, isBanned }, i (name)}
 				<Window.NavigationPlayer
 					online={demovioStatus.current && demovioStatus.current.players.includes(name)}
 					{name}
 					pronouns={pronouns ?? undefined}
 					{i}
 					{featured}
+					backstageIsBanned={isBanned === true}
 					backstageCitizenship={localPreferences.backstageStatus &&
 					localPreferences.backstageCitizenship
 						? citizenship

@@ -261,7 +261,7 @@
 		transition: 0.3s width ease-out;
 		:global {
 			svg {
-				width: 72px;
+				height: 20px;
 			}
 		}
 		span {

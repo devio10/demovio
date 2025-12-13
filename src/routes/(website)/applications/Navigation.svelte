@@ -5,13 +5,14 @@
 	import { getApplications } from "./data.remote";
 	import ApplicationsList from "./ApplicationsList.svelte";
 
+	let { applicationsType } = $props();
 	let searchQuery = $state("");
 	let updating = $state(false);
 
 	onMount(() => {
 		const reloadInterval = setInterval(() => {
 			updating = true;
-			getApplications()
+			getApplications({ type: applicationsType })
 				.refresh()
 				.finally(() => (updating = false));
 		}, 10000);
@@ -27,6 +28,17 @@
 			{/if}
 		{/snippet}
 		<Window.PlaceholderSearch bind:value={searchQuery} placeholder="Поиск по заявкам" />
+		<Window.NavigationTabsList>
+			{#if applicationsType === 0}
+				<Window.NavigationTab>Новые игроки</Window.NavigationTab>
+				<Window.NavigationTab>Гражданство</Window.NavigationTab>
+				<Window.NavigationTab>Жалобы</Window.NavigationTab>
+				<Window.NavigationTab>Ещё что-нибудь</Window.NavigationTab>
+			{:else if applicationsType === 1}
+				<Window.NavigationTab>Новые</Window.NavigationTab>
+				<Window.NavigationTab>Рассмотренные</Window.NavigationTab>
+			{/if}
+		</Window.NavigationTabsList>
 	</Window.NavigationHeader>
-	<ApplicationsList {searchQuery} />
+	<ApplicationsList {searchQuery} {applicationsType} />
 </Window.Navigation>

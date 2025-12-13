@@ -7,10 +7,10 @@
       "blur-material" : null,
       "layers" : [
         {
-          "image-name" : "Demovio Liquid Icon.svg",
-          "name" : "Demovio Liquid Icon",
+          "image-name" : "Demovio Liquid Glass.svg",
+          "name" : "Demovio Liquid Glass",
           "position" : {
-            "scale" : 4.5,
+            "scale" : 4,
             "translation-in-points" : [
               0,
               0

@@ -102,6 +102,7 @@
 
 			.content {
 				// backdrop-filter: blur(30px);
+				padding-top: env(safe-area-inset-top, 0);
 				width: 100%;
 				border-radius: 0;
 				position: absolute;

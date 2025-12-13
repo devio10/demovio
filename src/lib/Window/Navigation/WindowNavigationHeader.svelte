@@ -51,6 +51,7 @@
 	@media screen and (max-width: 768px) {
 		.header {
 			padding: 20px 24px;
+			padding-top: calc(env(safe-area-inset-top, 20px) + 20px);
 		}
 	}
 </style>
