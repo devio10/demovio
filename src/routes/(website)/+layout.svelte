@@ -19,7 +19,7 @@
 		localPreferences.environmentTheme === EnvironmentThemes.auto
 			? deviceTheme
 				? "-dark"
-				: ""
+				: "-light"
 			: localPreferences.environmentTheme === EnvironmentThemes.dark
 				? "-dark"
 				: "-light",
