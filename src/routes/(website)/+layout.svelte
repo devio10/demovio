@@ -13,8 +13,16 @@
 
 	let { children, data } = $props();
 
+	let deviceTheme = false;
+
 	let environmentTheme: string | undefined = $derived(
-		localPreferences.environmentTheme === EnvironmentThemes.dark ? "-dark" : "-light",
+		localPreferences.environmentTheme === EnvironmentThemes.auto
+			? deviceTheme
+				? "-dark"
+				: ""
+			: localPreferences.environmentTheme === EnvironmentThemes.dark
+				? "-dark"
+				: "-light",
 	);
 
 	onMount(() => {
@@ -22,6 +30,7 @@
 		const storageSpatialEnvironment = localStorage.getItem("spatialEnvironment");
 		localPreferences.spatialEnvironment = storageSpatialEnvironment ?? "";
 		localPreferences.environment = storageEnvironment ?? "kyoto";
+		deviceTheme = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
 	});
 </script>
 

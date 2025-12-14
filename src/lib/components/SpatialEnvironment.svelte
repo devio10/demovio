@@ -12,6 +12,7 @@
 	let time = $state(performance.now());
 	let { environment } = $props();
 	let environmentTheme = $derived(localPreferences.environmentTheme);
+	let deviceTheme = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
 
 	$effect(() => {
 		if (localPreferences.spatialEnvironment || environmentTheme) {
@@ -19,11 +20,18 @@
 		}
 	});
 
-	export const reloadSpatialEnvironment = () => {
+	export const reloadSpatialEnvironment = async () => {
 		if (!scene) {
 			return false;
 		}
-		let theme = environmentTheme === EnvironmentThemes.dark ? "-dark" : "";
+		let theme =
+			environmentTheme === EnvironmentThemes.auto
+				? deviceTheme
+					? "-dark"
+					: ""
+				: environmentTheme === EnvironmentThemes.dark
+					? "-dark"
+					: "-light";
 		const textures = getTexturesFromAtlasFile(`/SpatialEnvironments/${environment}${theme}`, 6);
 
 		const materials = [];
@@ -37,11 +45,10 @@
 		scene.add(skyBox);
 	};
 
-	onMount(() => {
+	onMount(async () => {
 		if (!container) {
 			return;
 		}
-		console.log("hawooo");
 		renderer = new THREE.WebGLRenderer();
 		renderer.setPixelRatio(window.devicePixelRatio);
 		renderer.setSize(window.innerWidth, window.innerHeight);
@@ -82,7 +89,7 @@
 			textures[i] = new THREE.Texture();
 		}
 		for (let i = 0; i < 6; i++) {
-			new THREE.ImageLoader().load(`${atlasImgUrl}/${order[i]}.png`, (image) => {
+			new THREE.ImageLoader().load(`${atlasImgUrl}/${order[i]}.webp`, (image) => {
 				let canvas, context;
 				const tileWidth = image.height;
 
@@ -93,17 +100,6 @@
 				if (context) {
 					context.drawImage(image, 0, 0, tileWidth, tileWidth, 0, 0, tileWidth, tileWidth);
 					context.rotate(90);
-					// context.drawImage(
-					// 	`${image}/${i}.png`,
-					// 	0,
-					// 	0,
-					// 	tileWidth,
-					// 	tileWidth,
-					// 	0,
-					// 	0,
-					// 	tileWidth,
-					// 	tileWidth,
-					// );
 				}
 				textures[i].colorSpace = THREE.SRGBColorSpace;
 				textures[i].image = canvas;
