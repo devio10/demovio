@@ -25,6 +25,7 @@
 	@media screen and (max-width: 768px) {
 		.settings-content {
 			padding-bottom: 64px;
+			padding-top: calc(env(safe-area-inset-top, 0) + 72px);
 		}
 	}
 </style>

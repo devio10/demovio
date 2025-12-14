@@ -52,6 +52,7 @@
 		nav {
 			height: 48px;
 			padding: 0 8px;
+			backdrop-filter: blur(8px);
 		}
 		.selection {
 			height: calc(100% - 16px);

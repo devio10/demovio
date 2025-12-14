@@ -97,12 +97,11 @@
 			height: 100%;
 			border-radius: 0;
 			max-height: none;
-			// backdrop-filter: none;
-			background: linear-gradient(35deg, rgba(57, 57, 57, 0.6) 0%, rgba(97, 97, 97, 0.6) 100%);
+			backdrop-filter: blur(30px);
+			background: linear-gradient(35deg, rgba(40, 40, 40, 0.6) 0%, rgba(97, 97, 97, 0.6) 100%);
+			// background: black;
 
 			.content {
-				// backdrop-filter: blur(30px);
-				padding-top: env(safe-area-inset-top, 0);
 				width: 100%;
 				border-radius: 0;
 				position: absolute;

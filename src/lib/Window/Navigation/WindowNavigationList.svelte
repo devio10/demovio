@@ -37,7 +37,7 @@
 	}
 	@media screen and (max-width: 768px) {
 		ul {
-			padding: var(--padding) 16px 86px 16px;
+			padding: var(--padding) 16px 92px 16px;
 		}
 	}
 </style>

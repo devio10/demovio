@@ -64,6 +64,7 @@
 	@media screen and (max-width: 768px) {
 		.content {
 			padding: 16px 26px;
+			padding-top: calc(env(safe-area-inset-top, 0) + 16px);
 			h2 {
 				font-size: 18px;
 				height: 100%;

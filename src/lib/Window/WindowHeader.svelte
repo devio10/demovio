@@ -55,7 +55,7 @@
 	@media screen and (max-width: 768px) {
 		.content {
 			padding: 20px 24px;
-
+			padding-top: calc(env(safe-area-inset-top, 0) + 20px);
 			.text {
 				gap: 8px;
 				justify-content: center;
