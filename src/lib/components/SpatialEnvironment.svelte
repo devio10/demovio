@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { localPreferences } from "$lib/local-settings.svelte";
+	import { EnvironmentThemes, localPreferences } from "$lib/local-settings.svelte";
 	import { onMount } from "svelte";
 	import * as THREE from "three";
 	import { OrbitControls } from "three/addons/controls/OrbitControls.js";
@@ -11,9 +11,10 @@
 	let container: HTMLDivElement | undefined = $state();
 	let time = $state(performance.now());
 	let { environment } = $props();
+	let environmentTheme = $derived(localPreferences.environmentTheme);
 
 	$effect(() => {
-		if (localPreferences.spatialEnvironment) {
+		if (localPreferences.spatialEnvironment || environmentTheme) {
 			reloadSpatialEnvironment();
 		}
 	});
@@ -22,7 +23,8 @@
 		if (!scene) {
 			return false;
 		}
-		const textures = getTexturesFromAtlasFile(`/SpatialEnvironments/${environment}`, 6);
+		let theme = environmentTheme === EnvironmentThemes.dark ? "-dark" : "";
+		const textures = getTexturesFromAtlasFile(`/SpatialEnvironments/${environment}${theme}`, 6);
 
 		const materials = [];
 

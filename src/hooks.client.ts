@@ -1,4 +1,4 @@
-import { localPreferences } from "$lib/local-settings.svelte";
+import { EnvironmentThemes, localPreferences } from "$lib/local-settings.svelte";
 import type { ClientInit } from "@sveltejs/kit";
 
 export const init: ClientInit = () => {
@@ -7,4 +7,7 @@ export const init: ClientInit = () => {
 		localStorage.getItem("backstage-list-residence") === "true";
 	localPreferences.backstagePages = localStorage.getItem("backstage-additional-pages") === "true";
 	localPreferences.showEnvironment = localStorage.getItem("show-environment") !== "false";
+	localPreferences.environmentTheme = Number(
+		localStorage.getItem("environment-theme") ?? EnvironmentThemes.auto,
+	);
 };

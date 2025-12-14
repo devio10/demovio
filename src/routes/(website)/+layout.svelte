@@ -1,10 +1,10 @@
-<script>
+<script lang="ts">
 	import "../../tailwind.css";
 	import HeaderLogo from "$lib/components/HeaderLogo.svelte";
 	import SideNavigation from "$lib/components/SideNavigation.svelte";
 	import "../../app.scss";
 	import "@fontsource-variable/noto-sans";
-	import { localPreferences } from "$lib/local-settings.svelte";
+	import { EnvironmentThemes, localPreferences } from "$lib/local-settings.svelte";
 	import { onMount } from "svelte";
 	import { scale } from "svelte/transition";
 	import SpatialEnvironment from "$lib/components/SpatialEnvironment.svelte";
@@ -12,6 +12,10 @@
 	import ReactivationDialog from "$lib/ReactivationDialog.svelte";
 
 	let { children, data } = $props();
+
+	let environmentTheme: string | undefined = $derived(
+		localPreferences.environmentTheme === EnvironmentThemes.dark ? "-dark" : "-light",
+	);
 
 	onMount(() => {
 		const storageEnvironment = localStorage.getItem("environment");
@@ -30,7 +34,7 @@
 			{#if localPreferences.environment !== ""}
 				<img
 					src="/Environments/{localPreferences.environment}{localPreferences.environmentDarkAvailable
-						? '-light'
+						? environmentTheme
 						: ''}.webp"
 					alt="Website Background"
 					in:scale={{ duration: 3000, start: 1.5 }}

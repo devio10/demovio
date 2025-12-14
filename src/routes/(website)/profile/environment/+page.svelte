@@ -7,6 +7,7 @@
 	import SettingsContent from "../SettingsContent.svelte";
 
 	let showEnvironment = $state(localPreferences.showEnvironment);
+	let environmentThemeNames = ["", "Светлая", "Тёмная", "Автоматически"];
 </script>
 
 <svelte:head>
@@ -36,8 +37,16 @@
 	</OptionDescription>
 	<div class="settings-buttons-space"></div>
 	<div class="settings-buttons">
-		<OptionButton tag="div">
-			Освещение окружения <span>Светлое</span>
+		<OptionButton
+			onclick={() => {
+				localPreferences.environmentTheme++;
+				if (localPreferences.environmentTheme > 3) {
+					localPreferences.environmentTheme = 1;
+				}
+				localStorage.setItem("environment-theme", localPreferences.environmentTheme.toString());
+			}}
+		>
+			Освещение окружения <span>{environmentThemeNames[localPreferences.environmentTheme]}</span>
 		</OptionButton>
 	</div>
 	<div class="settings-buttons-space"></div>
