@@ -79,6 +79,13 @@ export const invitePlayer = command(accountDataSchemas.name, async (name) => {
 	if (!playerToInvite) {
 		return fail(400);
 	}
+	if (
+		!locals.playerData.isActivated ||
+		locals.playerData.isDeactivated ||
+		locals.playerData.isBanned
+	) {
+		return error(403, `Некоторые возможности для вашего аккаунта Demovio ограничены.`);
+	}
 	if (!playerToInvite.notificationsInvites) {
 		return error(403, `Игрок запретил приглашать себя в игру.`);
 	}
