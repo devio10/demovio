@@ -41,6 +41,7 @@
 
 	let featured = $derived(player ? player.featured : false);
 	let subscribed = $derived(player?.subscribed);
+	let banned = $derived(player && "isBanned" in player ? player.isBanned : false);
 	let submitting = $state(false);
 
 	const ourProfile = $derived(page.data.profile);
@@ -76,7 +77,7 @@
 								? { isSelf: true }
 								: isOnline
 									? { online: true }
-									: player.isBanned
+									: banned
 										? { isBanned: true, pronouns: player.pronouns }
 										: { lastSeen: player.lastOnline, pronouns: player.pronouns },
 						)}
@@ -128,7 +129,7 @@
 								<IconRight />
 							</div>
 						</SettingsButton>
-					{:else if !player.isBanned}
+					{:else if !banned}
 						<InvitePlayerButton {name} contact={player.contact} />
 					{/if}
 					{#if player.contact}
@@ -138,7 +139,7 @@
 					{/if}
 
 					{#if localPreferences.backstageStatus && page.data.profile?.administrator}
-						<BanPlayer {name} isBanned={player.isBanned} />
+						<BanPlayer {name} bind:banned />
 					{:else}<SettingsButton disabled style="color: rgb(235, 52, 79)">
 							Пожаловаться
 						</SettingsButton>{/if}

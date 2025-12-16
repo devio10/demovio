@@ -4,15 +4,13 @@
 	import DialogButton from "$lib/components/DialogButton.svelte";
 	import SettingsButton from "$lib/components/OptionButton.svelte";
 	import { isActionFailure, isHttpError } from "@sveltejs/kit";
-	import { backstageBanPlayer, getPlayer } from "./data.remote";
-	import { scale } from "svelte/transition";
-	import IconCheckmark from "$lib/components/icons/IconCheckmark.svelte";
+	import { backstageBanPlayer } from "./data.remote";
 	import LoadingWheel from "$lib/components/LoadingWheel.svelte";
 	import IconBackstage from "$lib/components/icons/IconBackstage.svelte";
 	import IconExclamationMark from "$lib/components/icons/IconExclamationMark.svelte";
 	import { getPlayers } from "../data.remote";
 	let dialogOpened = $state(false);
-	let { name, isBanned }: { name: string | undefined; isBanned: boolean } = $props();
+	let { name, banned = $bindable() }: { name: string | undefined; banned: boolean } = $props();
 	let submitting = $state(false);
 	let success = $state(false);
 	let error = $state();
@@ -37,12 +35,13 @@
 		submitting = true;
 		success = false;
 		try {
-			const req = await backstageBanPlayer({ name: name, value: !isBanned }).updates(getPlayers());
+			const req = await backstageBanPlayer({ name: name, value: !banned }).updates(getPlayers());
 			submitting = false;
 			if (isActionFailure(req)) {
 				throw new Error(req.data);
 			}
 			success = true;
+			banned = !banned;
 			dialogOpened = true;
 		} catch (e) {
 			if (isHttpError(e)) {
@@ -54,21 +53,19 @@
 		}
 	}}
 >
-	{isBanned ? "Разблокировать" : "Заблокировать"} аккаунт
+	{banned ? "Разблокировать" : "Заблокировать"} аккаунт
 	<div class="icon-container">
 		{#if submitting}
 			<div class="block">
 				<LoadingWheel --wheel-size="36px" />
 			</div>
-		{:else if success}
-			<div class="icon block" transition:scale={{ duration: 300 }}><IconCheckmark /></div>
 		{/if}
 	</div>
 </SettingsButton>
 
 <Dialog
-	title={!isBanned ? "Игрок Заблокирован" : "Игрок Разблокирован"}
-	description={!isBanned
+	title={!banned ? "Игрок Заблокирован" : "Игрок Разблокирован"}
+	description={!banned
 		? "Он больше не сможет заходить на сервер и пользоваться некоторыми функциями сайта Demovio."
 		: "Возобновлён доступ к серверу и всем функциям сайта Demovio."}
 	color="var(--purple)"

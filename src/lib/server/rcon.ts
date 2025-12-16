@@ -25,13 +25,13 @@ export const applyPlayerSkin = async (
 	}
 };
 
-export const rconBanPlayer = async (playerName: string, unban: boolean | undefined) => {
+export const rconBanPlayer = async (playerName: string, value: boolean | undefined) => {
 	try {
 		return await new Promise<boolean>((resolve, reject) => {
 			const client = new RCONClient("demovio.love", RCON_PASSWORD, 10511);
 			client.connect();
 			client.on("authenticated", async () => {
-				client.executeCommand(`easy${unban === true ? "pardon" : "ban"} ${playerName}`);
+				client.executeCommand(`easy${value === true ? "ban" : "pardon"} ${playerName}`);
 				resolve(true);
 			});
 			client.on("error", () => {
