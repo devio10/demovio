@@ -36,7 +36,7 @@
 		background-color: rgba(255, 255, 255, 0);
 		cursor: pointer;
 		padding: 12px;
-		color: white;
+		color: rgba(240, 240, 240, 0.65);
 		display: flex;
 		// justify-content: center;
 		overflow: clip;
@@ -59,8 +59,9 @@
 
 		&.active {
 			background-color: rgba(255, 255, 255, 0.4);
+			color: white;
 			.button-name {
-				font-weight: 500;
+				font-weight: 600;
 			}
 			&:hover {
 				background-color: rgba(255, 255, 255, 0.5);
@@ -72,6 +73,18 @@
 			height: 100%;
 			aspect-ratio: 1/1;
 			display: flex;
+		}
+	}
+	:global([data-prefers-contrast]) {
+		a {
+			color: var(--general-light-text);
+			.button-name {
+				color: var(--general-text);
+			}
+			&.active {
+				background-color: var(--general-option-button);
+				color: var(--general-text);
+			}
 		}
 	}
 	@media screen and (max-width: 768px) {
@@ -89,6 +102,7 @@
 			transition-duration: 300ms;
 			transition-timing-function: ease-in-out;
 			cursor: default;
+			color: white;
 			box-shadow:
 				inset 2.8px 2.8px 1.87px 0 rgba(255, 255, 255, 0),
 				inset -1.87px 0 1.87px 0 rgba(255, 255, 255, 0);

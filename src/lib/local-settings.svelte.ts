@@ -7,6 +7,7 @@ export const localPreferences: {
 	backstageCitizenship: boolean;
 	backstagePages: boolean;
 	environmentTheme: number;
+	contrastTheme: boolean;
 } = $state({
 	environment: "",
 	environmentDarkAvailable: true,
@@ -16,6 +17,7 @@ export const localPreferences: {
 	backstageStatus: false,
 	backstageCitizenship: false,
 	backstagePages: false,
+	contrastTheme: false,
 });
 
 export enum EnvironmentThemes {

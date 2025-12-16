@@ -40,7 +40,7 @@
 	.text {
 		display: flex;
 		justify-content: space-between;
-		margin-bottom: 16px;
+		/* margin-bottom: 16px; */
 		align-items: center;
 		h2 {
 			margin: 0;

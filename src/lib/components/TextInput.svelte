@@ -1,22 +1,16 @@
 <script lang="ts">
 	import type { HTMLInputAttributes } from "svelte/elements";
 
-	let {
-		children,
-		style,
-		class: className,
-		value = $bindable(),
-		...props
-	}: HTMLInputAttributes = $props();
+	let { children, style, value = $bindable(), ...props }: HTMLInputAttributes = $props();
 </script>
 
-<div class={className} {style}>
+<div class="text-input" {style}>
 	{@render children?.()}
 	<input {...props} bind:value />
 </div>
 
 <style lang="scss">
-	div {
+	.text-input {
 		height: 46px;
 		background-color: rgba(0, 0, 0, 0.25);
 		border-bottom: 0.5px solid rgba(230, 230, 230, 0.4);
@@ -45,6 +39,20 @@
 				height: 26px;
 				color: #c8c4c1;
 				flex-shrink: 0;
+			}
+		}
+	}
+	:global([data-prefers-contrast]) {
+		.text-input {
+			background-color: var(--general-text-input);
+			box-shadow: none;
+			input {
+				color: black;
+			}
+			:global {
+				svg {
+					color: black;
+				}
 			}
 		}
 	}

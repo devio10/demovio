@@ -80,6 +80,22 @@
 			}
 		}
 	}
+	:global([data-prefers-contrast]) {
+		.button {
+			background-color: var(--general-option-button);
+			color: var(--general-text);
+			&:not(:disabled) {
+				&:hover {
+					color: var(--general-text);
+					background-color: var(--general-option-button);
+				}
+				&:active {
+					color: var(--general-text);
+					background-color: var(--general-option-button);
+				}
+			}
+		}
+	}
 	@media screen and (max-width: 768px) {
 		.button {
 			display: flex;

@@ -43,4 +43,13 @@
 			}
 		}
 	}
+	:global([data-prefers-contrast]) {
+		div {
+			background-color: var(--general-text-input);
+			box-shadow: none;
+			textarea {
+				color: var(--general-text);
+			}
+		}
+	}
 </style>

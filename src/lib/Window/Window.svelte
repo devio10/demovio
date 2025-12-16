@@ -56,16 +56,31 @@
 
 <style lang="scss">
 	.window {
+		--blur: 42px;
 		position: absolute;
 		width: 80%;
 		max-width: 1000px;
 		height: 80%;
 		max-height: 850px;
 		display: flex;
-		backdrop-filter: blur(42px);
+		backdrop-filter: blur(var(--blur));
 		border-radius: 52px;
 		overflow: clip;
 		box-shadow: 0 6px 30px 5px rgba(0, 0, 0, 0.4);
+	}
+	:global([data-prefers-contrast]) {
+		.window {
+			--blur: 0px;
+			background-color: var(--general-background);
+		}
+		.content {
+			background: none;
+			background-color: var(--general-background);
+			&:first-child {
+				background: none;
+				background-color: var(--general-background);
+			}
+		}
 	}
 
 	.content {
@@ -97,7 +112,7 @@
 			height: 100%;
 			border-radius: 0;
 			max-height: none;
-			backdrop-filter: blur(30px);
+			--blur: 30px;
 			background: linear-gradient(35deg, rgba(40, 40, 40, 0.6) 0%, rgba(97, 97, 97, 0.6) 100%);
 			// background: black;
 
@@ -110,6 +125,12 @@
 				background: none;
 				box-shadow: none;
 				padding-bottom: 52px;
+			}
+		}
+		:global([data-prefers-contrast]) {
+			.window {
+				background: none;
+				background-color: var(--general-background);
 			}
 		}
 	}

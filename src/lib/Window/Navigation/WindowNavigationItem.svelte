@@ -47,6 +47,11 @@
 			background-color: rgba(179, 179, 179, 0.2);
 		}
 	}
+	:global([data-prefers-contrast]) {
+		a {
+			color: var(--general-text);
+		}
+	}
 	@media screen and (max-width: 768px) {
 		a {
 			&:hover {

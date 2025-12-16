@@ -1,3 +1,14 @@
+:root {
+	--general-background: white;
+	--general-text: black;
+	--general-option-button: rgba(0, 0, 0, 0.1);
+	--general-light-text: rgba(0, 0, 0, 0.5);
+	--general-text-input: rgba(0, 0, 0, 0.1);
+}
+[data-prefers-dark-theme] {
+	--general-background: black;
+	--general-text: white;
+}
 * {
 	box-sizing: border-box;
 	font-family: -apple-system, BlinkMacSystemFont, "Noto Sans Variable", sans-serif;
@@ -13,6 +24,9 @@ body {
 	background-color: #181419;
 	color: white;
 	min-height: 100vh;
+	&[data-prefers-contrast] {
+		color: var(--general-text);
+	}
 }
 header {
 	height: 72px;

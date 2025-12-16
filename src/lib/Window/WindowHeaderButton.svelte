@@ -50,6 +50,12 @@
 			}
 		}
 	}
+	:global([data-prefers-contrast]) {
+		.button {
+			background-color: var(--general-option-button);
+			color: var(--general-text);
+		}
+	}
 	@media screen and (max-width: 768px) {
 		.button {
 			&:hover {

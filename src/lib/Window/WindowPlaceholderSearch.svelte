@@ -30,6 +30,7 @@
 		border: 1px solid rgba(30, 30, 30, 0.4);
 		flex-shrink: 0;
 		overflow: hidden;
+		margin-top: 16px;
 		svg {
 			width: 18px;
 			height: 18px;
@@ -45,6 +46,17 @@
 			height: 100%;
 			min-width: 0;
 			outline: none;
+		}
+	}
+	:global([data-prefers-contrast]) {
+		div {
+			background-color: var(--general-text-input);
+			box-shadow: none;
+			border-color: var(--general-option-button);
+			input,
+			svg {
+				color: var(--general-text);
+			}
 		}
 	}
 </style>

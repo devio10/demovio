@@ -34,4 +34,14 @@
 			}
 		}
 	}
+	:global([data-prefers-contrast]) {
+		div {
+			background-color: var(--general-option-button);
+			border: none;
+			&.active {
+				background-color: #0a84ff;
+				color: white;
+			}
+		}
+	}
 </style>

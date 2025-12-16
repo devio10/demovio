@@ -60,6 +60,13 @@
 			}
 		}
 	}
+	:global([data-prefers-contrast]) {
+		.button {
+			background-color: var(--general-option-button);
+			color: var(--general-text) !important;
+			border-color: var(--general-option-button);
+		}
+	}
 	@media screen and (max-width: 768px) {
 		.button {
 			font-size: 16px;

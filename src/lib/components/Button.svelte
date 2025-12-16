@@ -66,6 +66,21 @@
 			font-size: 16px;
 		}
 	}
+	:global([data-prefers-contrast]) {
+		.button {
+			color: var(--general-text);
+			background-color: var(--general-option-button);
+			border: none;
+			&:not(:disabled) {
+				&:hover {
+					color: var(--general-text);
+				}
+				&:active {
+					color: var(--general-text);
+				}
+			}
+		}
+	}
 	@media screen and (max-width: 768px) {
 		.button {
 			height: 42px;
@@ -89,6 +104,17 @@
 					background-color: rgba(215, 215, 215, 0.5);
 					&.hollow {
 						background-color: rgba(215, 215, 215, 0.3);
+					}
+				}
+			}
+		}
+		:global([data-prefers-contrast]) {
+			.button {
+				&:not(:disabled) {
+					&:hover,
+					&:active {
+						background-color: var(--general-option-button);
+						color: var(--general-text);
 					}
 				}
 			}

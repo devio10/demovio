@@ -88,6 +88,13 @@
 			color: white;
 		}
 	}
+	:global([data-prefers-contrast]) {
+		:global {
+			a {
+				color: var(--general-text);
+			}
+		}
+	}
 	@media screen and (max-width: 768px) {
 		article {
 			padding: 0 16px 56px 16px;

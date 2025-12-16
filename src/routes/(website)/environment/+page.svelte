@@ -36,7 +36,7 @@
 				tabNavigationSelectionWidth = target.clientWidth;
 			}}
 		>
-			Панорама
+			Панорамы
 		</TabNavigationButton>
 		<TabNavigationButton
 			onclick={({ target }) => {

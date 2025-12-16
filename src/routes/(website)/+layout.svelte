@@ -25,6 +25,10 @@
 				: "-light",
 	);
 
+	$effect(() => {
+		// document.body.setAttribute("data-prefers-contrast", "true");
+	});
+
 	onMount(() => {
 		const storageEnvironment = localStorage.getItem("environment");
 		const storageSpatialEnvironment = localStorage.getItem("spatialEnvironment");
@@ -102,6 +106,13 @@
 			svg {
 				width: 100%;
 				height: 100%;
+			}
+		}
+	}
+	:global([data-prefers-contrast]) {
+		:global {
+			.option-button-icon {
+				color: var(--general-light-text);
 			}
 		}
 	}

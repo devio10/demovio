@@ -39,7 +39,10 @@
 
 <a
 	href="/players/{name}"
-	class={{ active: page.params.name === name, banned: backstageIsBanned === true }}
+	class={[
+		{ active: page.params.name === name, banned: backstageIsBanned === true },
+		"navigation-player",
+	]}
 	in:fly|global={{ duration: 150, delay: 10 * i, y: 10 }}
 	out:hide={{ duration: 250, easing: expoOut }}
 	data-sveltekit-preload-data={false}
@@ -90,7 +93,7 @@
 </a>
 
 <style lang="scss">
-	a {
+	.navigation-player {
 		width: 100%;
 		border-radius: 16px;
 		border: none;
@@ -208,8 +211,20 @@
 			margin-left: auto;
 		}
 	}
+	:global([data-prefers-contrast]) {
+		.navigation-player {
+			.name {
+				color: var(--general-text);
+			}
+			.pronouns,
+			.backstage-banned,
+			.star-icon {
+				color: var(--general-light-text);
+			}
+		}
+	}
 	@media screen and (max-width: 768px) {
-		a {
+		.navigation-player {
 			&.active {
 				background-color: rgba(179, 179, 179, 0.25);
 				&:hover {

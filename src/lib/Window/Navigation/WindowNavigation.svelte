@@ -9,12 +9,16 @@
 	let isMobile = new MediaQuery("screen and (max-width: 768px)");
 </script>
 
-<nav {...props} transition:fly|global={{ duration: isMobile.current ? 500 : 0, x: -300 }}>
+<nav
+	class="window-navigation"
+	{...props}
+	transition:fly|global={{ duration: isMobile.current ? 500 : 0, x: -300 }}
+>
 	{@render children?.()}
 </nav>
 
 <style lang="scss">
-	nav {
+	.window-navigation {
 		background-color: rgba(57, 57, 57, 0.6);
 		background: linear-gradient(-35deg, rgba(50, 50, 50, 0.6) 0%, rgba(100, 100, 100, 0.6) 100%);
 		width: var(--width, 30%);
@@ -43,14 +47,24 @@
 			}
 		}
 	}
+
+	:global([data-prefers-contrast]) {
+		.window-navigation {
+			background: none;
+			background-color: rgba(0, 0, 0, 0.15);
+		}
+	}
 	@media screen and (max-width: 768px) {
-		nav {
+		.window-navigation {
 			width: 100%;
 			border-radius: 0;
-			// padding-top: 56px;
-			// backdrop-filter: blur(30px);
 			background: none;
 			box-shadow: none;
+		}
+		:global([data-prefers-contrast]) {
+			.window-navigation {
+				background-color: rgba(0, 0, 0, 0);
+			}
 		}
 	}
 </style>
