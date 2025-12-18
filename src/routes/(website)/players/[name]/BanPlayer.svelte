@@ -109,15 +109,5 @@
 	.block {
 		position: absolute;
 		right: 0;
-		&.icon {
-			width: 16px;
-			height: 16px;
-			:global {
-				svg {
-					width: 100%;
-					height: 100%;
-				}
-			}
-		}
 	}
 </style>

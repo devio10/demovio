@@ -8,6 +8,8 @@
 	import { notificationSchema } from "./notification-schema";
 	import { browser } from "$app/environment";
 	import OptionButtonLabel from "$lib/components/OptionButtonLabel.svelte";
+	import OptionDescription from "$lib/components/OptionDescription.svelte";
+	import IconExclamationMark from "$lib/components/icons/IconExclamationMark.svelte";
 
 	let subscribed = $state(false);
 	let subscription: PushSubscription | null = $state(null);
@@ -50,6 +52,7 @@
 			subscribed = true;
 		} catch (e) {
 			console.error(e);
+			subscribed = false;
 			if (e instanceof Error && e.name === "NotAllowedError") {
 				error = "not_allowed";
 			} else {
@@ -69,7 +72,6 @@
 
 			await pushNotificationsOff(subscription.endpoint);
 			subscription = null;
-			subscribed = false;
 		} catch (e) {
 			console.error(e);
 			error = "unknown_subscribe";
@@ -79,28 +81,33 @@
 	};
 </script>
 
-{#if error}
-	<div>
-		{#if error === "not_allowed"}
-			Your browser does not allow push-notifications. Try enabling them in the browser or site
-			settings.
-		{:else if error === "unknown_subscribe"}
-			An error occurred while subscribing to push-notifications.
-		{:else if error === "unknown_unsubscribe"}
-			An error occurred while unsubscribing from push-notifications.
+<div class="settings-buttons">
+	<OptionButton tag="div">
+		Уведомления от браузера
+		{#if browser && registration}
+			<SettingsSwitch
+				disabled={loading}
+				value={subscribed}
+				onChange={subscribed ? handleUnsubscribe : handleSubscribe}
+			/>
+		{:else}
+			<OptionButtonLabel>Ошибка</OptionButtonLabel>
 		{/if}
-	</div>
-{/if}
-
-<OptionButton tag="div">
-	Уведомления от браузера
-	{#if browser && registration}
-		<SettingsSwitch
-			disabled={loading}
-			value={subscribed}
-			onChange={subscribed ? handleUnsubscribe : handleSubscribe}
-		/>
+	</OptionButton>
+</div>
+<OptionDescription>
+	{#if error}
+		<div class="option-description-icon"><IconExclamationMark /></div>
+		{#if error === "not_allowed"}
+			Ваш браузер не поддерживает получение уведомлений от веб-сайтов, попробуйте включить их в
+			настройках.
+		{:else if error === "unknown_subscribe"}
+			Произошла неизвестная ошибка при включении уведомлений от браузера.
+		{:else if error === "unknown_unsubscribe"}
+			Произошла неизвестная ошибка при отключении уведомлений от браузера.
+		{/if}
 	{:else}
-		<OptionButtonLabel>Ошибка</OptionButtonLabel>
+		Demovio {subscribed ? "будет" : "может"} присылать вам уведомления о выбранных вами событиях через
+		этот браузер.
 	{/if}
-</OptionButton>
+</OptionDescription>

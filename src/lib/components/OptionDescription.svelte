@@ -14,6 +14,16 @@
 		font-size: 14px;
 		margin: 0;
 		color: rgba(230, 230, 230, 0.75);
+		display: flex;
+		align-items: center;
+	}
+	:global {
+		.option-description-icon {
+			display: flex;
+			width: 16px;
+			height: 16px;
+			margin-right: 8px;
+		}
 	}
 	:global([data-prefers-contrast]) {
 		p {

@@ -1,6 +1,5 @@
 <script>
 	import OptionButton from "$lib/components/OptionButton.svelte";
-	import SettingsSwitch from "$lib/components/SettingsSwitch.svelte";
 	import SettingsHeader from "$lib/Window/SettingsHeader.svelte";
 	let subscribedToPush = $state(false);
 	let { data } = $props();
@@ -21,18 +20,8 @@
 
 <SettingsHeader title="Уведомления"></SettingsHeader>
 <SettingsContent>
-	<div class="settings-buttons">
-		<PushNotificationsSwitch />
-		<OptionButton tag="div">Уведомления в Telegram <SettingsSwitch disabled /></OptionButton>
-	</div>
-	<OptionDescription>
-		{#if subscribedToPush}
-			Demovio будет присылать вам уведомления о выбранных вами событиях через этот браузер.
-		{:else}
-			Demovio может присылать вам уведомления о выбранных вами событиях через этот браузер.
-		{/if}
-		Уведомления в Telegram будут доступны в будущем.
-	</OptionDescription>
+	<PushNotificationsSwitch />
+
 	<div class="settings-buttons-space"></div>
 	<div class="settings-buttons">
 		<PlayerInvitesSwitch />
