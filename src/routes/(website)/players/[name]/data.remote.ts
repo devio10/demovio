@@ -165,6 +165,10 @@ export const subscribeToPlayer = command(accountDataSchemas.name, async (targetN
 	if (!locals.loggedIn || !locals.playerData) {
 		return fail(401);
 	}
+	const subscribedToPushNotifications = await db.query.pushSubscriptionsTable.findFirst({
+		where: eq(pushSubscriptionsTable.receiverName, locals.playerData.name),
+	});
+
 	const subscribed = await db.query.notifySubscriptionsTable.findFirst({
 		where: and(
 			eq(notifySubscriptionsTable.receiverName, locals.playerData.name),
@@ -172,6 +176,9 @@ export const subscribeToPlayer = command(accountDataSchemas.name, async (targetN
 		),
 	});
 	if (!subscribed) {
+		if (!subscribedToPushNotifications) {
+			return error(403, "Вы не подписаны на уведомления от браузера.");
+		}
 		await db.insert(notifySubscriptionsTable).values({
 			receiverName: locals.playerData.name,
 			targetName: targetName,
