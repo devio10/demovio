@@ -6,6 +6,18 @@ import { and, eq } from "drizzle-orm";
 import { notificationSchema } from "./notification-schema";
 import z from "zod";
 import { noNullCharacter } from "$lib/utils";
+import { setTimeout } from "timers/promises";
+
+export const disableAllPushNotifications = command(async () => {
+	await setTimeout(750);
+	const { locals } = getRequestEvent();
+	if (!locals.loggedIn || !locals.playerData) {
+		return fail(401);
+	}
+	await db
+		.delete(pushSubscriptionsTable)
+		.where(eq(pushSubscriptionsTable.receiverName, locals.playerData.name));
+});
 
 export const pushNotificationsOn = command(notificationSchema, async (subdata) => {
 	const { locals } = getRequestEvent();

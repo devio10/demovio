@@ -39,13 +39,13 @@
 	disabled={loading === true}
 >
 	Принудительно применить скин
-	<div class="icon-container">
+	<div class="option-button-icon-container">
 		{#if loading}
-			<div class="block">
+			<div class="option-button-wheel">
 				<LoadingWheel --wheel-size="36px" />
 			</div>
 		{:else if success}
-			<div class="icon block" transition:scale={{ duration: 300 }}><IconCheckmark /></div>
+			<div class="option-button-icon" transition:scale={{ duration: 300 }}><IconCheckmark /></div>
 		{/if}
 	</div>
 </OptionButton>
@@ -55,26 +55,3 @@
 	{/snippet}
 	<DialogButton onclick={() => (error = undefined)}>Закрыть</DialogButton>
 </Dialog>
-
-<style lang="scss">
-	.icon-container {
-		position: relative;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-	}
-	.block {
-		position: absolute;
-		right: 0;
-		&.icon {
-			width: 16px;
-			height: 16px;
-			:global {
-				svg {
-					width: 100%;
-					height: 100%;
-				}
-			}
-		}
-	}
-</style>

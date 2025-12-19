@@ -98,7 +98,7 @@
 		.settings-buttons-space {
 			margin: 24px 0;
 		}
-		.option-button-icon {
+		.option-button-arrow-icon {
 			width: 12px;
 			height: 12px;
 			color: rgba(230, 230, 230, 0.5);
@@ -111,7 +111,7 @@
 	}
 	:global([data-prefers-contrast]) {
 		:global {
-			.option-button-icon {
+			.option-button-arrow-icon {
 				color: var(--general-light-text);
 			}
 		}

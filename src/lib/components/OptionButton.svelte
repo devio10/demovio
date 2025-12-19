@@ -7,7 +7,7 @@
 	{@render children?.()}
 </svelte:element>
 
-<style>
+<style lang="scss">
 	.button {
 		padding: 0 20px;
 		height: 64px;
@@ -57,6 +57,23 @@
 			}
 			&:disabled {
 				cursor: default;
+			}
+		}
+	}
+	:global {
+		.option-button-icon-container {
+			position: relative;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		.option-button-icon,
+		.option-button-wheel {
+			position: absolute;
+			right: 0;
+			&.option-button-icon {
+				width: 16px;
+				height: 16px;
 			}
 		}
 	}

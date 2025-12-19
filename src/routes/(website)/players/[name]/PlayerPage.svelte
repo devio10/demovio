@@ -117,19 +117,19 @@
 				{#if !isSelf}
 					{#if localPreferences.backstageStatus && page.data.profile?.administrator}
 						<SettingsButton tag="a" href={`${name}/passport`}>
-							Открыть паспорт <div class="option-button-icon">
+							Открыть паспорт <div class="option-button-arrow-icon">
 								<IconRight />
 							</div>
 						</SettingsButton>
 						<SettingsButton>
-							Изменить личные данные <div class="option-button-icon">
+							Изменить личные данные <div class="option-button-arrow-icon">
 								<IconRight />
 							</div>
 						</SettingsButton>
 					{/if}
 					{#if isOnline}
 						<SettingsButton tag="a" href="https://map.demovio.love/">
-							Показать на карте <div class="option-button-icon">
+							Показать на карте <div class="option-button-arrow-icon">
 								<IconRight />
 							</div>
 						</SettingsButton>
@@ -149,7 +149,7 @@
 						</SettingsButton>{/if}
 				{:else}
 					<SettingsButton tag="a" href="/profile">
-						Открыть свой профиль <div class="option-button-icon">
+						Открыть свой профиль <div class="option-button-arrow-icon">
 							<IconRight />
 						</div>
 					</SettingsButton>

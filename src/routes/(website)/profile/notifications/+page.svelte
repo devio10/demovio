@@ -12,6 +12,7 @@
 	import ServerUpdatesSwitch from "./ServerUpdatesSwitch.svelte";
 	import PlayersActivitySwitch from "./PlayersActivitySwitch.svelte";
 	import SettingsContent from "../SettingsContent.svelte";
+	import DisableNotifications from "./DisableNotifications.svelte";
 </script>
 
 <svelte:head>
@@ -54,9 +55,7 @@
 	</OptionDescription>
 	<div class="settings-buttons-space"></div>
 	<div class="settings-buttons">
-		<OptionButton disabled={true} style="color: rgb(235, 52, 79)">
-			Отключить все уведомления
-		</OptionButton>
+		<DisableNotifications />
 	</div>
 	<div class="settings-buttons-space"></div>
 </SettingsContent>

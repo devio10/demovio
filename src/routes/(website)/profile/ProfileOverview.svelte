@@ -44,12 +44,12 @@
 		<div class="settings-buttons-space"></div>
 		<div class="settings-buttons">
 			<OptionButton tag="a" href="/profile/edit">
-				Изменить данные <div class="option-button-icon">
+				Изменить данные <div class="option-button-arrow-icon">
 					<IconRight />
 				</div>
 			</OptionButton>
 			<OptionButton tag="a" href="/profile/overview/invite">
-				Пригласить друга <div class="option-button-icon">
+				Пригласить друга <div class="option-button-arrow-icon">
 					<IconRight />
 				</div>
 			</OptionButton>

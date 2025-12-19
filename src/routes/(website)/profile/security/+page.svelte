@@ -14,7 +14,7 @@
 <SettingsContent>
 	<div class="settings-buttons">
 		<OptionButton tag="a">
-			Изменить пароль для входа на сайт <div class="option-button-icon">
+			Изменить пароль для входа на сайт <div class="option-button-arrow-icon">
 				<IconRight />
 			</div>
 		</OptionButton>

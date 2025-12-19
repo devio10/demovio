@@ -204,18 +204,18 @@
 		<div class="settings-buttons">
 			<OptionButton tag="a" href="/profile/edit/name">
 				Изменить игровой ник
-				<div class="option-button-icon">
+				<div class="option-button-arrow-icon">
 					<IconRight />
 				</div>
 			</OptionButton>
 			<OptionButton tag="a" href="/profile/edit/contact">
 				Изменить контактную информацию
-				<div class="option-button-icon">
+				<div class="option-button-arrow-icon">
 					<IconRight />
 				</div>
 			</OptionButton>
 			<OptionButton tag="a" href="/profile/notifications">
-				Предпочтения уведомлений <div class="option-button-icon">
+				Предпочтения уведомлений <div class="option-button-arrow-icon">
 					<IconRight />
 				</div>
 			</OptionButton>
