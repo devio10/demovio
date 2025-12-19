@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { getSkinURL } from "$lib/scripts";
 	import * as Window from "$lib/Window/index.svelte";
-	import { getCurrentDemovioStatus } from "../status.remote";
 	import LoadingWheel from "$lib/components/LoadingWheel.svelte";
 	import { getApplications } from "./data.remote";
 
@@ -13,7 +12,6 @@
 		applicationsType: number;
 	} = $props();
 
-	const demovioStatus = getCurrentDemovioStatus();
 	let players = getApplications({ type: applicationsType });
 </script>
 

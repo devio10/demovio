@@ -13,13 +13,19 @@
 		searchQuery: string;
 	} = $props();
 
-	const demovioStatus = getCurrentDemovioStatus();
+	let demovioStatus = $state(null);
 	let players = getPlayers();
+	async function fetchDemovioStatus() {
+		demovioStatus = (await getCurrentDemovioStatus()) ?? null;
+	}
+	$effect(() => {
+		fetchDemovioStatus();
+	});
 
 	onMount(() => {
 		const interval = setInterval(() => {
 			getPlayers().refresh();
-			getCurrentDemovioStatus().refresh();
+			fetchDemovioStatus();
 		}, 5000);
 		return () => clearInterval(interval);
 	});
@@ -43,8 +49,8 @@
 
 					let scoreOnlineA = 0;
 					let scoreOnlineB = 0;
-					if (demovioStatus.current) {
-						const onlinePlayers = demovioStatus.current.players;
+					if (demovioStatus) {
+						const onlinePlayers = demovioStatus.players;
 						scoreOnlineA = onlinePlayers.includes(a.name) ? 1 : 0;
 						scoreOnlineB = onlinePlayers.includes(b.name) ? 1 : 0;
 					}
@@ -56,7 +62,7 @@
 				})}
 			{#each list as { name, skin, pronouns, featured, citizenship, isBanned }, i (name)}
 				<Window.NavigationPlayer
-					online={demovioStatus.current && demovioStatus.current.players.includes(name)}
+					online={demovioStatus && demovioStatus.players.includes(name)}
 					{name}
 					pronouns={pronouns ?? undefined}
 					{i}

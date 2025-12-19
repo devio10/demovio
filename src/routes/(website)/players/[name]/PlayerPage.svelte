@@ -24,7 +24,10 @@
 		name: string;
 	} = $props();
 
-	const serverState = getCurrentDemovioStatus();
+	let serverState = $state(null);
+	async function fetchDemovioStatus() {
+		serverState = (await getCurrentDemovioStatus()) ?? null;
+	}
 
 	let player: GetPlayerResponse | undefined | null = $state();
 	let playerError = $state();
@@ -37,6 +40,7 @@
 			}
 		}
 		fetchPlayer();
+		fetchDemovioStatus();
 	});
 
 	let featured = $derived(player ? player.featured : false);
@@ -52,13 +56,13 @@
 	const isOnline = $derived(
 		player !== undefined &&
 			player !== null &&
-			serverState.current &&
-			serverState.current.players.includes(player.name),
+			serverState &&
+			serverState.players.includes(player.name),
 	);
 
 	onMount(() => {
 		const interval = setInterval(() => {
-			getCurrentDemovioStatus().refresh();
+			fetchDemovioStatus();
 		}, 5000);
 		return () => clearInterval(interval);
 	});

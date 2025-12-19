@@ -8,8 +8,7 @@ import { eq } from "drizzle-orm";
 import z from "zod";
 
 export const getCurrentDemovioStatus = query(async () => {
-	// return { players: ["devio10"] };
-	return await getDemovioStatus();
+	return getDemovioStatus();
 });
 export const applySkin = command(
 	z.object({ playerName: accountDataSchemas.name }),

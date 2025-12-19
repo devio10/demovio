@@ -36,9 +36,8 @@
 		background-color: rgba(255, 255, 255, 0);
 		cursor: pointer;
 		padding: 12px;
-		color: rgba(240, 240, 240, 0.65);
+		color: rgba(240, 240, 240, 0.8);
 		display: flex;
-		// justify-content: center;
 		overflow: clip;
 		align-items: center;
 		transition: 300ms background-color ease-out;

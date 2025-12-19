@@ -12,16 +12,22 @@
 	let success = $state(false);
 	let error = $state();
 	let { name } = $props();
-	const demovioStatus = getCurrentDemovioStatus();
+	let demovioStatus = $state(null);
+	async function fetchDemovioStatus() {
+		demovioStatus = (await getCurrentDemovioStatus()) ?? null;
+	}
+	$effect(() => {
+		fetchDemovioStatus();
+	});
 </script>
 
 <OptionButton
 	onclick={async () => {
-		if (!demovioStatus.current) {
+		if (!demovioStatus) {
 			error = "Сервер Demovio сейчас выключен. Попробуйте позже.";
 			return;
 		}
-		if (!demovioStatus.current.players.includes(name)) {
+		if (!demovioStatus.players.includes(name)) {
 			error = "Зайдите на сервер Demovio, чтобы вручную применить скин.";
 			return;
 		}

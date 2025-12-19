@@ -4,14 +4,20 @@
 	import { scale } from "svelte/transition";
 	import { getCurrentDemovioStatus } from "./status.remote.js";
 	import { localPreferences } from "$lib/local-settings.svelte.js";
-	import { afterNavigate, beforeNavigate, onNavigate } from "$app/navigation";
+	import { beforeNavigate } from "$app/navigation";
 	import { MediaQuery } from "svelte/reactivity";
+	import type { FullResponse } from "@hloth/minecraft-query";
 
 	let { data } = $props();
 
 	let additionalPages = $state(false);
-
-	const demovioStatus = getCurrentDemovioStatus();
+	let demovioStatus: null | FullResponse | false = $state(null);
+	async function fetchDemovioStatus() {
+		demovioStatus = (await getCurrentDemovioStatus()) ?? null;
+	}
+	$effect(() => {
+		fetchDemovioStatus();
+	});
 
 	let animations = $state(1);
 	let isMobile = new MediaQuery("screen and (max-width: 768px)");
@@ -52,7 +58,7 @@
 
 	onMount(() => {
 		const interval = setInterval(() => {
-			getCurrentDemovioStatus().refresh();
+			fetchDemovioStatus();
 		}, 5000);
 		return () => clearInterval(interval);
 	});
@@ -66,23 +72,25 @@
 
 <svelte:head>
 	<title>
-		{demovioStatus.current ? "Сервер онлайн – Demovio" : "Статус сервера – Demovio"}
+		{demovioStatus !== null ? "Сервер онлайн – Demovio" : "Статус сервера – Demovio"}
 	</title>
 </svelte:head>
 
 <div class="container" transition:scale|global={{ duration: 500 * animations, start: 0.5 }}>
 	<div>
 		<h2>
-			{#if demovioStatus.current !== undefined}
-				{demovioStatus.current ? "Сервер онлайн" : "Сервер оффлайн"}
+			{#if demovioStatus !== null}
+				{demovioStatus ? "Сервер онлайн" : "Сервер оффлайн"}
 			{:else}
 				Загрузка...
 			{/if}
 		</h2>
 		{#if !additionalPages}
 			<span class="players-number">
-				{#if demovioStatus.current}
-					{demovioStatus.current ? getPlayerCountText(demovioStatus.current.players) : ""}
+				{#if demovioStatus !== null}
+					{demovioStatus && "players" in demovioStatus
+						? getPlayerCountText(demovioStatus.players)
+						: ""}
 				{/if}
 			</span>
 		{/if}
@@ -92,7 +100,7 @@
 		<AppIcon
 			icon="Players"
 			href="players"
-			badge={demovioStatus.current ? demovioStatus.current.players.length : 0}
+			badge={demovioStatus !== null && demovioStatus ? demovioStatus.players.length : 0}
 		>
 			Игроки
 		</AppIcon>
