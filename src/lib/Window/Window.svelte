@@ -23,19 +23,27 @@
 	let isMobile = new MediaQuery("screen and (max-width: 768px)", false);
 </script>
 
-{#if !isMobile.current}
-	<div class="window" transition:scale|global={{ duration: 500, start: 0.5 }}>
+<div
+	class="window"
+	transition:scale|global={{ duration: 500, start: isMobile.current ? 0.1 : 0.5, opacity: 0 }}
+>
+	{#if !isMobile.current || (!sectionOpened && navigation !== undefined)}
 		{@render navigation?.()}
+	{/if}
+	{#if !isMobile.current || sectionOpened || navigation === undefined}
 		<div
-			class="content"
+			class={["content", { opened: sectionOpened }]}
+			transition:fly|global={{ duration: isMobile.current ? 500 : 0 }}
 			onscroll={({ target }) => {
 				scroll = (target as HTMLDivElement).scrollTop;
 			}}
 		>
 			{@render children?.()}
 		</div>
-	</div>
-{:else}
+	{/if}
+</div>
+
+<!-- {:else}
 	<div class="window" transition:fade|global={{ duration: 500 }}>
 		{#if !sectionOpened && navigation !== undefined}
 			{@render navigation?.()}
@@ -52,7 +60,7 @@
 			</div>
 		{/if}
 	</div>
-{/if}
+{/if} -->
 
 <style lang="scss">
 	.window {
@@ -114,7 +122,8 @@
 			max-height: none;
 			--blur: 30px;
 			background: linear-gradient(35deg, rgba(40, 40, 40, 0.6) 0%, rgba(97, 97, 97, 0.6) 100%);
-			// background: black;
+			animation: border-radius-shrinking 0.75s;
+			box-shadow: none;
 
 			.content {
 				width: 100%;
@@ -132,6 +141,14 @@
 				background: none;
 				background-color: var(--general-background);
 			}
+		}
+	}
+	@keyframes border-radius-shrinking {
+		from {
+			border-radius: 200px;
+		}
+		to {
+			border-radius: 0px;
 		}
 	}
 </style>
