@@ -2,7 +2,11 @@
 	import OptionButton from "$lib/components/OptionButton.svelte";
 	import SettingsSwitch from "$lib/components/SettingsSwitch.svelte";
 	import { isActionFailure } from "@sveltejs/kit";
-	import { pushNotificationsOff, pushNotificationsOn } from "./data.remote";
+	import {
+		pushNotificationsOff,
+		pushNotificationsOn,
+		validatePushSubscription,
+	} from "./data.remote";
 	import { onMount } from "svelte";
 	import { PUBLIC_PUSH_KEY } from "$env/static/public";
 	import { notificationSchema } from "./notification-schema";
@@ -10,6 +14,7 @@
 	import OptionButtonLabel from "$lib/components/OptionButtonLabel.svelte";
 	import OptionDescription from "$lib/components/OptionDescription.svelte";
 	import IconExclamationMark from "$lib/components/icons/IconExclamationMark.svelte";
+	import LoadingWheel from "$lib/components/LoadingWheel.svelte";
 
 	let subscribed = $state(false);
 	let subscription: PushSubscription | null = $state(null);
@@ -23,8 +28,12 @@
 				if ("getSubscription" in reg.pushManager) {
 					reg.pushManager.getSubscription().then((sub) => {
 						if (sub && !(sub.expirationTime && Date.now() > sub.expirationTime - 5 * 60 * 1000)) {
-							subscription = sub;
-							subscribed = true;
+							validatePushSubscription({ endpoint: sub.endpoint }).then((res) => {
+								if (!isActionFailure(res)) {
+									subscription = sub;
+									subscribed = true;
+								}
+							});
 						}
 					});
 					registration = reg;
@@ -85,11 +94,16 @@
 	<OptionButton tag="div">
 		Уведомления от браузера
 		{#if browser && registration}
-			<SettingsSwitch
-				disabled={loading}
-				value={subscribed}
-				onChange={subscribed ? handleUnsubscribe : handleSubscribe}
-			/>
+			<div style="display: flex; gap: 6px;">
+				{#if loading}
+					<LoadingWheel duration={0} --wheel-size="36px" />
+				{/if}
+				<SettingsSwitch
+					disabled={loading}
+					value={subscribed}
+					onChange={subscribed ? handleUnsubscribe : handleSubscribe}
+				/>
+			</div>
 		{:else}
 			<OptionButtonLabel>Ошибка</OptionButtonLabel>
 		{/if}

@@ -19,6 +19,26 @@ export const disableAllPushNotifications = command(async () => {
 		.where(eq(pushSubscriptionsTable.receiverName, locals.playerData.name));
 });
 
+export const validatePushSubscription = command(
+	z.object({ endpoint: z.url().refine(noNullCharacter) }),
+	async ({ endpoint }) => {
+		const { locals } = getRequestEvent();
+		if (!locals.loggedIn || !locals.playerData) {
+			return fail(401);
+		}
+		const result = await db.query.pushSubscriptionsTable.findFirst({
+			where: and(
+				eq(pushSubscriptionsTable.endpoint, endpoint),
+				eq(pushSubscriptionsTable.receiverName, locals.playerData.name),
+			),
+		});
+		if (result) {
+			return { success: true };
+		}
+		throw new Error("Not Subscribed");
+	},
+);
+
 export const pushNotificationsOn = command(notificationSchema, async (subdata) => {
 	const { locals } = getRequestEvent();
 	if (!locals.loggedIn || !locals.playerData) {
