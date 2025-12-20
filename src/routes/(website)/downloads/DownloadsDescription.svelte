@@ -41,6 +41,9 @@
 						</a>
 					</li>
 					<li>
+						Create Escalated 1.2.0: <a href="https://modrinth.com/mod/escalated">Modrinth</a>
+					</li>
+					<li>
 						Amendments 1.20-2.2.3: <a href="https://modrinth.com/mod/amendments">Modrinth</a>
 					</li>
 					<li>
@@ -71,6 +74,17 @@
 					<li>
 						Mod Menu 7.2.2: <a href="https://modrinth.com/mod/modmenu">Modrinth</a>
 					</li>
+					<li>
+						[Let's Do] Vinery 1.4.41: <a href="https://modrinth.com/mod/lets-do-vinery">Modrinth</a>
+					</li>
+					<li>
+						Architectury API <i>(для [Let's Do] Vinery)</i>
+						9.2.14:
+						<a href="https://modrinth.com/mod/architectury-api">Modrinth</a>
+					</li>
+					<li>
+						Carry On 2.1.2.7: <a href="https://modrinth.com/mod/carry-on">Modrinth</a>
+					</li>
 				</ul>
 				<span>+ Оптимизация:</span>
 				<ul>
@@ -81,35 +95,69 @@
 						Sodium Extra 0.5.9: <a href="https://modrinth.com/mod/sodium-extra">Modrinth</a>
 					</li>
 					<li>
-						Indium 1.0.36: <a href="https://modrinth.com/mod/sodium-extra">Modrinth</a>
+						Apple Skin 2.5.1: <a href="https://modrinth.com/mod/appleskin">Modrinth</a>
 					</li>
 					<li>
-						Lithium 0.11.3: <a href="https://modrinth.com/mod/sodium-extra">Modrinth</a>
+						Indium 1.0.36: <a href="https://modrinth.com/mod/indium">Modrinth</a>
 					</li>
 					<li>
-						Iris Shaders 1.7.6: <a href="https://modrinth.com/mod/sodium-extra">Modrinth</a>
+						Lithium 0.11.3: <a href="https://modrinth.com/mod/lithium">Modrinth</a>
 					</li>
 					<li>
-						More Culling 0.24.0: <a href="https://modrinth.com/mod/sodium-extra">Modrinth</a>
+						Iris Shaders 1.7.6: <a href="https://modrinth.com/mod/iris">Modrinth</a>
 					</li>
 					<li>
-						c2me 0.2.0: <a href="https://modrinth.com/mod/sodium-extra">Modrinth</a>
+						More Culling 0.24.0: <a href="https://modrinth.com/mod/moreculling">Modrinth</a>
 					</li>
 					<li>
-						Entity Culling 1.9.3: <a href="https://modrinth.com/mod/sodium-extra">Modrinth</a>
+						c2me 0.2.0: <a href="https://modrinth.com/mod/c2me-fabric">Modrinth</a>
 					</li>
 					<li>
-						Entity Model Features 3.0.1: <a href="https://modrinth.com/mod/sodium-extra">
+						Entity Culling 1.9.3: <a href="https://modrinth.com/mod/entityculling">Modrinth</a>
+					</li>
+					<li>
+						Entity Model Features 3.0.1: <a href="https://modrinth.com/mod/entity-model-features">
 							Modrinth
 						</a>
 					</li>
 					<li>
-						Entity Texture Features 7.0.2: <a href="https://modrinth.com/mod/sodium-extra">
+						Entity Texture Features 7.0.2: <a href="https://modrinth.com/mod/entitytexturefeatures">
 							Modrinth
 						</a>
 					</li>
 					<li>
-						Model Gap Fix 1.15: <a href="https://modrinth.com/mod/sodium-extra">Modrinth</a>
+						Model Gap Fix 1.15: <a href="https://modrinth.com/mod/modelfix">Modrinth</a>
+					</li>
+					<li>
+						Better Ping Display 1.1.1: <a
+							href="https://modrinth.com/mod/better-ping-display-fabric"
+						>
+							Modrinth
+						</a>
+					</li>
+					<li>
+						Chat Heads 0.14.2: <a href="https://modrinth.com/mod/chat-heads">Modrinth</a>
+					</li>
+					<li>
+						Chat Animation 1.0.5: <a href="https://modrinth.com/mod/chatanimation">Modrinth</a>
+					</li>
+					<li>
+						Dynamic FPS 3.9.5: <a href="https://modrinth.com/mod/dynamic-fps">Modrinth</a>
+					</li>
+					<li>
+						Immediately Fast 1.5.2: <a href="https://modrinth.com/mod/immediatelyfast">Modrinth</a>
+					</li>
+					<li>
+						OpenSauceToastKiller 1.0: <a
+							href="https://modrinth.com/mod/the-open-sauce-toast-killer"
+						>
+							Modrinth
+						</a>
+					</li>
+					<li>
+						Visual Snowy Leaves 0.4.1: <a href="https://modrinth.com/mod/visual-snowy-leaves">
+							Modrinth
+						</a>
 					</li>
 				</ul>
 				<span>+ Мини-карта:</span>
