@@ -129,6 +129,30 @@
 			}
 		}
 	}
+	:global([data-prefers-contrast]) {
+		.picker {
+			.list {
+				box-shadow: none;
+				background: none;
+				background-color: var(--general-option-button);
+				border: none;
+				.state {
+					span {
+						color: var(--general-light-text);
+					}
+				}
+			}
+			.dots {
+				div {
+					background-color: var(--general-text-input);
+					border: none;
+					&.active {
+						background-color: var(--general-text);
+					}
+				}
+			}
+		}
+	}
 	@media screen and (max-width: 768px) {
 		.picker {
 			.list {

@@ -152,6 +152,7 @@
 		text-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
 		text-align: center;
 		font-weight: 500;
+		color: white;
 	}
 	.welcome {
 		color: rgba(255, 255, 255, 0.85);

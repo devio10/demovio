@@ -75,7 +75,7 @@
 						<NavigationItemIcon color="rgb(98, 84, 248)">
 							<IconEnvironment />
 						</NavigationItemIcon>
-						Окружение
+						Оформление
 					</WindowNavigationItem>
 					{#if data.profile && data.profile.administrator}
 						<WindowNavigationItem href="/profile/backstage">

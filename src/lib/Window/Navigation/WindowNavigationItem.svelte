@@ -50,6 +50,9 @@
 	:global([data-prefers-contrast]) {
 		a {
 			color: var(--general-text);
+			&.active {
+				color: var(--general-link);
+			}
 		}
 	}
 	@media screen and (max-width: 768px) {
@@ -62,6 +65,7 @@
 			}
 			&.active {
 				background-color: rgba(0, 0, 0, 0);
+				color: var(--general-text) !important;
 				&:hover {
 					background-color: rgba(0, 0, 0, 0);
 				}

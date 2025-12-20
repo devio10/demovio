@@ -81,7 +81,16 @@
 		.button {
 			background-color: var(--general-option-button);
 			color: var(--general-text) !important;
-			border-color: var(--general-option-button);
+			border-color: var(--general-text-input);
+			border-width: 1px;
+			&:is(button, a) {
+				&:not(:disabled) {
+					&:hover,
+					&:active {
+						background-color: var(--general-option-button-hover);
+					}
+				}
+			}
 		}
 	}
 	@media screen and (max-width: 768px) {
@@ -101,6 +110,20 @@
 						transition-duration: 125ms;
 						color: white;
 						background-color: rgba(60, 60, 60, 0.4);
+					}
+				}
+			}
+		}
+		:global([data-prefers-contrast]) {
+			.button {
+				&:is(button, a) {
+					&:not(:disabled) {
+						&:hover {
+							background-color: var(--general-option-button);
+						}
+						&:active {
+							background-color: var(--general-option-button-hover);
+						}
 					}
 				}
 			}

@@ -127,6 +127,9 @@
 			}
 		}
 		:global([data-prefers-contrast]) {
+			.mobile-shadow {
+				background: linear-gradient(to bottom, transparent 10%, rgba(0, 0, 0, 0.35) 100%);
+			}
 			.side-navigation {
 				&:hover {
 					background: none;

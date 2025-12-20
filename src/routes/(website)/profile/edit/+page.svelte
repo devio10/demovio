@@ -363,6 +363,16 @@
 			display: contents;
 		}
 	}
+	:global([data-prefers-contrast]) {
+		.skin-container {
+			background-color: var(--general-text-input);
+			box-shadow: none;
+			.skin-edit-button {
+				background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.25) 100%);
+				color: var(--general-text);
+			}
+		}
+	}
 	@media screen and (max-width: 768px) {
 		.skin-and-description {
 			flex-direction: column;

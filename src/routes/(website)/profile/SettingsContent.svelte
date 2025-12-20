@@ -1,12 +1,18 @@
 <script lang="ts">
+	import { MediaQuery } from "svelte/reactivity";
 	import { scale } from "svelte/transition";
 
 	let { children, doFade = true, ...props } = $props();
+	let isMobile = new MediaQuery("screen and (max-width: 768px)");
 </script>
 
 <div
 	class="settings-content"
-	transition:scale|global={{ duration: doFade ? 150 : 0, start: 0.97, opacity: 0 }}
+	transition:scale|global={{
+		duration: doFade && !isMobile.current ? 150 : 0,
+		start: 0.97,
+		opacity: 0,
+	}}
 	{...props}
 >
 	{@render children?.()}

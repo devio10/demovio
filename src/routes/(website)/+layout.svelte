@@ -26,7 +26,11 @@
 	);
 
 	$effect(() => {
-		// document.body.setAttribute("data-prefers-contrast", "true");
+		if (localPreferences.contrastTheme) {
+			document.body.setAttribute("data-prefers-contrast", "true");
+		} else {
+			document.body.removeAttribute("data-prefers-contrast");
+		}
 	});
 
 	onMount(() => {

@@ -1,7 +1,11 @@
 :root {
-	--general-background: white;
+	--general-background: rgb(236, 238, 241);
+	--general-navigation: rgb(242, 243, 245);
+	--general-navigation-border: white;
 	--general-text: black;
-	--general-option-button: rgba(0, 0, 0, 0.1);
+	--general-link: rgb(103, 95, 245);
+	--general-option-button: white;
+	--general-option-button-hover: rgba(60, 60, 60, 0.05);
 	--general-light-text: rgba(0, 0, 0, 0.5);
 	--general-text-input: rgba(0, 0, 0, 0.1);
 }

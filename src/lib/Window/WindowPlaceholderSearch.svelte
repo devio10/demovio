@@ -52,7 +52,8 @@
 		div {
 			background-color: var(--general-text-input);
 			box-shadow: none;
-			border-color: var(--general-option-button);
+			border-color: var(--general-text-input);
+			border-radius: 100px;
 			input,
 			svg {
 				color: var(--general-text);

@@ -35,6 +35,11 @@
 			color: white;
 		}
 	}
+	:global([data-prefers-contrast]) {
+		.button {
+			color: var(--general-light-text);
+		}
+	}
 	@media screen and (max-width: 768px) {
 		.button {
 			.highlight {

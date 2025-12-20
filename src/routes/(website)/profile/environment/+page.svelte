@@ -11,9 +11,9 @@
 </script>
 
 <svelte:head>
-	<title>Профиль Demovio – Уведомления</title>
+	<title>Профиль Demovio – Оформление</title>
 </svelte:head>
-<SettingsHeader title="Окружение"></SettingsHeader>
+<SettingsHeader title="Оформление"></SettingsHeader>
 <SettingsContent>
 	<div class="settings-buttons">
 		<OptionButton tag="div">
@@ -31,12 +31,6 @@
 				}}
 			/>
 		</OptionButton>
-	</div>
-	<OptionDescription>
-		Отображать статическое или панорамное окружение на фоне страницы вместо сплошного фона.
-	</OptionDescription>
-	<div class="settings-buttons-space"></div>
-	<div class="settings-buttons">
 		<OptionButton
 			onclick={() => {
 				localPreferences.environmentTheme++;
@@ -46,9 +40,12 @@
 				localStorage.setItem("environment-theme", localPreferences.environmentTheme.toString());
 			}}
 		>
-			Освещение окружения <span>{environmentThemeNames[localPreferences.environmentTheme]}</span>
+			Тема окружения <span>{environmentThemeNames[localPreferences.environmentTheme]}</span>
 		</OptionButton>
 	</div>
+	<OptionDescription>
+		Отображать статическое или панорамное окружение на фоне страницы вместо сплошного фона.
+	</OptionDescription>
 	<div class="settings-buttons-space"></div>
 	<div class="settings-buttons">
 		<OptionButton tag="div">
@@ -58,7 +55,18 @@
 	<div class="settings-buttons-space"></div>
 	<div class="settings-buttons">
 		<OptionButton tag="div">
-			Контрастный режим <SettingsSwitch />
+			Контрастный режим <SettingsSwitch
+				onChange={() => {
+					const value = localStorage.getItem("contrast-theme");
+					if (value === "true") {
+						localStorage.setItem("contrast-theme", "false");
+						localPreferences.contrastTheme = false;
+					} else {
+						localStorage.setItem("contrast-theme", "true");
+						localPreferences.contrastTheme = true;
+					}
+				}}
+			/>
 		</OptionButton>
 	</div>
 	<OptionDescription>

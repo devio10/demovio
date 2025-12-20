@@ -15,7 +15,7 @@
 	{@render children?.()}
 </nav>
 
-<style>
+<style lang="scss">
 	nav {
 		height: 64px;
 		border-radius: 100px;
@@ -47,6 +47,17 @@
 		/* transition-property: left, width;
 		transition-duration: 300ms;
 		transition-timing-function: eas; */
+	}
+	:global([data-prefers-contrast]) {
+		nav {
+			backdrop-filter: none;
+			background: none;
+			border: none;
+			background-color: var(--general-background);
+		}
+		.selection {
+			background-color: var(--general-text-input);
+		}
 	}
 	@media screen and (max-width: 768px) {
 		nav {

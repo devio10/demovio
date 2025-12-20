@@ -67,6 +67,17 @@
 			font-weight: bold;
 		}
 	}
+	:global([data-prefers-contrast]) {
+		.button {
+			color: var(--general-text);
+			&:not(:disabled) {
+				&:hover {
+					color: var(--general-text);
+					background-color: var(--general-text-input);
+				}
+			}
+		}
+	}
 	@media screen and (max-width: 768px) {
 		.button {
 			height: 44px;

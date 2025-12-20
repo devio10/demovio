@@ -10,7 +10,7 @@
 </svelte:head>
 
 <SettingsHeader title="Паспорт"></SettingsHeader>
-<SettingsContent style="padding-top: 32px;">
+<SettingsContent>
 	<div>
 		{#if data.profile && data.profile.isActivated}
 			<Passport profile={data.profile}></Passport>

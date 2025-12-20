@@ -51,7 +51,8 @@
 	:global([data-prefers-contrast]) {
 		.window-navigation {
 			background: none;
-			background-color: rgba(0, 0, 0, 0.15);
+			background-color: var(--general-navigation);
+			box-shadow: none;
 		}
 	}
 	@media screen and (max-width: 768px) {

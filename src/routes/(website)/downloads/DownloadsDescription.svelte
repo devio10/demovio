@@ -194,6 +194,21 @@
 			}
 		}
 	}
+	:global([data-prefers-contrast]) {
+		.about {
+			h2 {
+				color: var(--general-text);
+			}
+		}
+		.list-button {
+			color: var(--general-text);
+		}
+		.mods-list {
+			li a {
+				color: var(--general-link);
+			}
+		}
+	}
 	@media screen and (max-width: 768px) {
 		.about {
 			overflow: unset;

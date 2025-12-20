@@ -43,25 +43,6 @@
 	{/if}
 </div>
 
-<!-- {:else}
-	<div class="window" transition:fade|global={{ duration: 500 }}>
-		{#if !sectionOpened && navigation !== undefined}
-			{@render navigation?.()}
-		{/if}
-		{#if sectionOpened || navigation === undefined}
-			<div
-				class={["content", { opened: sectionOpened }]}
-				transition:fly|global={{ duration: 500, x: 300 }}
-				onscroll={({ target }) => {
-					scroll = (target as HTMLDivElement).scrollTop;
-				}}
-			>
-				{@render children?.()}
-			</div>
-		{/if}
-	</div>
-{/if} -->
-
 <style lang="scss">
 	.window {
 		--blur: 42px;
@@ -84,6 +65,8 @@
 		.content {
 			background: none;
 			background-color: var(--general-background);
+			box-shadow: none;
+			border-left: 1px solid var(--general-navigation-border);
 			&:first-child {
 				background: none;
 				background-color: var(--general-background);
@@ -134,6 +117,7 @@
 				background: none;
 				box-shadow: none;
 				padding-bottom: 52px;
+				border-left: none;
 			}
 		}
 		:global([data-prefers-contrast]) {

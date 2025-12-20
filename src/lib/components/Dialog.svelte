@@ -158,6 +158,18 @@
 			border-top: 0.5px solid rgba(230, 230, 230, 0.5);
 		}
 	}
+	:global([data-prefers-contrast]) {
+		.dialog {
+			background-color: var(--general-background);
+			p {
+				color: var(--general-light-text);
+			}
+			.buttons {
+				border-width: 1px;
+				border-color: var(--general-text-input);
+			}
+		}
+	}
 	@media screen and (max-width: 768px) {
 		.dialog {
 			width: calc(100% - 24px);

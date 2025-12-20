@@ -46,6 +46,6 @@
 	{/if}
 {:else}
 	<Window.Placeholder>
-		<LoadingWheel --wheel-size="128px" --wheel-color="rgba(255,255,255,0.75)" />
+		<LoadingWheel --wheel-size="128px" />
 	</Window.Placeholder>
 {/if}

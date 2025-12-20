@@ -71,11 +71,16 @@
 		&:hover {
 			background-color: rgba(0, 0, 0, 0.4);
 		}
-		&.file-above {
-			background-color: rgba(0, 0, 0, 0.35);
-		}
 	}
 	.file-input {
 		display: none;
+	}
+	:global([data-prefers-contrast]) {
+		.file-picker {
+			background-color: var(--general-option-button);
+			box-shadow: none;
+			color: var(--general-text);
+			border-color: var(--general-text-input);
+		}
 	}
 </style>

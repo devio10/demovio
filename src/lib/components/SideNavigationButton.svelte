@@ -80,6 +80,9 @@
 			.button-name {
 				color: var(--general-text);
 			}
+			&:hover {
+				background-color: var(--general-option-button-hover);
+			}
 			&.active {
 				background-color: var(--general-option-button);
 				color: var(--general-text);

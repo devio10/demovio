@@ -36,7 +36,7 @@
 	}
 	:global([data-prefers-contrast]) {
 		div {
-			background-color: var(--general-option-button);
+			background-color: var(--general-background);
 			border: none;
 			&.active {
 				background-color: #0a84ff;

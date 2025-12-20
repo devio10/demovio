@@ -11,7 +11,7 @@
 	</div>
 </div>
 
-<style>
+<style lang="scss">
 	div.container {
 		width: var(--wheel-size, 64px);
 		height: var(--wheel-size, 64px);
@@ -22,6 +22,11 @@
 		aspect-ratio: 1 / 1;
 		display: inline-block;
 		color: var(--wheel-color, white);
+	}
+	:global([data-prefers-contrast]) {
+		div.spinner {
+			color: var(--wheel-color, var(--general-text));
+		}
 	}
 
 	div.spinner div {

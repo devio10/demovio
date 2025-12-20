@@ -103,7 +103,7 @@
 			<div class="top_flex">
 				<p class="description">
 					{#if player.description?.length === 0 || !player.description}
-						<i style="color: rgba(200,200,200,0.5)">Описание отсутствует...</i>
+						<i>Описание отсутствует...</i>
 					{:else}
 						{player.description}
 					{/if}
@@ -159,7 +159,7 @@
 	{/if}
 {:else if player === undefined}
 	<Window.Placeholder>
-		<LoadingWheel --wheel-size="128px" --wheel-color="rgba(255,255,255,0.75)" />
+		<LoadingWheel --wheel-size="128px" />
 	</Window.Placeholder>
 {:else}
 	<WindowPlaceholder>
@@ -178,11 +178,19 @@
 		line-height: 1.4;
 		overflow-wrap: break-word;
 		white-space: pre-wrap;
+		i {
+			color: rgba(215, 215, 215, 0.5);
+		}
 	}
 	.action-buttons {
 		margin-top: auto;
 		width: 100%;
 		padding: 36px;
+	}
+	:global([data-prefers-contrast]) {
+		.description i {
+			color: var(--general-light-text);
+		}
 	}
 	@media screen and (max-width: 768px) {
 		.description {

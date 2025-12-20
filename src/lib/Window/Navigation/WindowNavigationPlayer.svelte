@@ -221,6 +221,14 @@
 			.star-icon {
 				color: var(--general-light-text);
 			}
+			&.active {
+				.name {
+					color: rgb(103, 95, 245);
+				}
+			}
+			.skin .skin-object {
+				border: 0.5px solid rgba(0, 0, 0, 0.35);
+			}
 		}
 	}
 	@media screen and (max-width: 768px) {
