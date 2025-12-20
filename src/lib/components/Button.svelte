@@ -58,7 +58,7 @@
 		}
 		&:disabled {
 			cursor: not-allowed;
-			background-color: rgba(130, 130, 130, 0.3);
+			background-color: rgba(180, 180, 180, 0.4);
 		}
 		&.hollow {
 			background: none;

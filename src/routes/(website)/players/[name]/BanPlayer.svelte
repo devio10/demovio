@@ -80,7 +80,7 @@
 
 <Dialog
 	title="Произошла Ошибка"
-	description="Произошла неожиданная ошибка. Повторите запрос позже."
+	description={error}
 	color="var(--red)"
 	opened={error !== undefined}
 >

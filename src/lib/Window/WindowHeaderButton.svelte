@@ -1,6 +1,7 @@
 <script lang="ts" generics="T extends keyof SvelteHTMLElements">
 	import type { Snippet } from "svelte";
 	import type { SvelteHTMLElements } from "svelte/elements";
+	import { scale } from "svelte/transition";
 
 	let {
 		children,
@@ -14,7 +15,13 @@
 	} & SvelteHTMLElements[T] = $props();
 </script>
 
-<svelte:element this={tag ?? "button"} aria-label={name} {...props} class="button">
+<svelte:element
+	this={tag ?? "button"}
+	aria-label={name}
+	{...props}
+	class="button"
+	transition:scale|global={{ duration: 250, start: 0.5, opacity: 0 }}
+>
 	{@render children?.()}
 </svelte:element>
 

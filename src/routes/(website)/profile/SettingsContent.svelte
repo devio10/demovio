@@ -6,7 +6,7 @@
 
 <div
 	class="settings-content"
-	transition:scale|global={{ duration: doFade ? 250 : 0, start: 0.95, opacity: 0 }}
+	transition:scale|global={{ duration: doFade ? 150 : 0, start: 0.97, opacity: 0 }}
 	{...props}
 >
 	{@render children?.()}
