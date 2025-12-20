@@ -80,13 +80,14 @@
 	:global([data-prefers-contrast]) {
 		.button {
 			background-color: var(--general-option-button);
-			color: var(--general-text) !important;
+			color: var(--general-text);
 			border-color: var(--general-text-input);
 			border-width: 1px;
 			&:is(button, a) {
 				&:not(:disabled) {
 					&:hover,
 					&:active {
+						color: var(--general-text);
 						background-color: var(--general-option-button-hover);
 					}
 				}

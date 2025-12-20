@@ -60,4 +60,12 @@
 			}
 		}
 	}
+	:global([data-prefers-contrast]) {
+		button {
+			&:hover:not(:disabled),
+			&:active:not(:disabled) {
+				background-color: #0a84ff;
+			}
+		}
+	}
 </style>

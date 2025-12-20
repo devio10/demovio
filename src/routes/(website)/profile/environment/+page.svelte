@@ -56,6 +56,7 @@
 	<div class="settings-buttons">
 		<OptionButton tag="div">
 			Контрастный режим <SettingsSwitch
+				value={localPreferences.contrastTheme}
 				onChange={() => {
 					const value = localStorage.getItem("contrast-theme");
 					if (value === "true") {

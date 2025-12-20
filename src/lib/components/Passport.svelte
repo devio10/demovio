@@ -153,7 +153,7 @@
 		<div class="cover">
 			<div class="cover-content">
 				<h2>PASSPORT</h2>
-				<img src="/de_passport.svg" />
+				<img src="/de_passport.svg" alt="United States of Demovio" />
 				<span>
 					United States
 					<br />
@@ -229,10 +229,6 @@
 		padding: 0;
 
 		--radius: 24px;
-		hr {
-			border: 1px solid rgba(0, 0, 0, 0.2);
-			margin: 0 16px;
-		}
 		&:not(:hover) {
 			transform: translateY(-25%);
 		}

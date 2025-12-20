@@ -65,13 +65,17 @@
 			}
 			&.active {
 				background-color: rgba(0, 0, 0, 0);
-				color: var(--general-text) !important;
 				&:hover {
 					background-color: rgba(0, 0, 0, 0);
 				}
 				&:active {
 					background-color: rgba(179, 179, 179, 0.2);
 				}
+			}
+		}
+		:global([data-prefers-contrast]) {
+			a.active {
+				color: var(--general-text) !important;
 			}
 		}
 	}

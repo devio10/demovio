@@ -37,17 +37,3 @@
 		</svg>
 	{/if}
 </div>
-
-<style lang="scss">
-	.page_logo {
-		font-weight: 800;
-		div {
-			background-color: white;
-			width: 6px;
-			aspect-ratio: 1/1;
-			display: inline-block;
-			margin-bottom: 8px;
-			margin-left: -4px;
-		}
-	}
-</style>

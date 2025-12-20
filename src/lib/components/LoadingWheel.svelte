@@ -40,12 +40,6 @@
 		border-radius: 50px;
 		animation: fade 1s linear infinite;
 	}
-	#nav_bar-loading > div {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		width: 36px;
-	}
 
 	@keyframes fade {
 		from {

@@ -25,4 +25,13 @@
 			}
 		}
 	}
+	:global([data-prefers-contrast]) {
+		div {
+			:global {
+				svg {
+					color: var(--general-text-input);
+				}
+			}
+		}
+	}
 </style>

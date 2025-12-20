@@ -29,4 +29,9 @@
 			width: 40%;
 		}
 	}
+	:global([data-prefers-contrast]) {
+		div svg {
+			color: var(--general-text-input);
+		}
+	}
 </style>

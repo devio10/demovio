@@ -538,9 +538,6 @@
 				}
 			}
 		}
-		&.hidden {
-			display: none;
-		}
 		a {
 			padding: 8px 8px 8px 24px;
 			border-radius: 100px;
@@ -611,11 +608,6 @@
 		}
 	}
 	@media screen and (max-width: 1280px) {
-		.about-section.states .content {
-			grid-template-columns: 8fr 5fr;
-			grid-template-rows: 3fr auto;
-		}
-
 		header {
 			position: fixed;
 			height: 72px;
