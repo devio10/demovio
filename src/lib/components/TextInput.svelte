@@ -47,11 +47,11 @@
 			background-color: var(--general-text-input);
 			box-shadow: none;
 			input {
-				color: black;
+				color: var(--general-text);
 			}
 			:global {
 				svg {
-					color: black;
+					color: var(--general-text);
 				}
 			}
 		}

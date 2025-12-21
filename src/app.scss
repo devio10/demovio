@@ -7,11 +7,18 @@
 	--general-option-button: white;
 	--general-option-button-hover: rgba(60, 60, 60, 0.05);
 	--general-light-text: rgba(0, 0, 0, 0.5);
-	--general-text-input: rgba(0, 0, 0, 0.1);
+	--general-text-input: rgba(0, 0, 0, 0.085);
 }
 [data-prefers-dark-theme] {
 	--general-background: black;
 	--general-text: white;
+	--general-navigation: rgb(18, 18, 18);
+	--general-navigation-border: rgb(50, 50, 50);
+	--general-link: rgb(144, 140, 221);
+	--general-option-button: rgb(30, 30, 30);
+	--general-option-button-hover: rgb(50, 50, 50);
+	--general-light-text: rgba(255, 255, 255, 0.5);
+	--general-text-input: rgba(255, 255, 255, 0.1);
 }
 * {
 	box-sizing: border-box;

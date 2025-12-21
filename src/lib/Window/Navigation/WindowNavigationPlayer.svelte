@@ -223,7 +223,7 @@
 			}
 			&.active {
 				.name {
-					color: rgb(103, 95, 245);
+					color: var(--general-link);
 				}
 			}
 			.skin .skin-object {

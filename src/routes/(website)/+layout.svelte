@@ -27,7 +27,14 @@
 
 	$effect(() => {
 		if (localPreferences.contrastTheme) {
+			deviceTheme = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
 			document.body.setAttribute("data-prefers-contrast", "true");
+			if (
+				(localPreferences.environmentTheme === EnvironmentThemes.auto && deviceTheme) ||
+				localPreferences.environmentTheme === EnvironmentThemes.dark
+			) {
+				document.body.setAttribute("data-prefers-dark-theme", "true");
+			}
 		} else {
 			document.body.removeAttribute("data-prefers-contrast");
 		}
