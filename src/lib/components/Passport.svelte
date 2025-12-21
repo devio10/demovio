@@ -163,49 +163,51 @@
 		</div>
 	</div>
 	<div class="personal">
-		<div class="avatars">
-			<div class="avatar">
-				<PlayerHead
-					class="avatar"
-					style="--width: 72px"
-					url={getSkinURL(profile.skin, profile.name)}
-				/>
+		<div class="state-background">
+			<div class="avatars">
+				<div class="avatar">
+					<PlayerHead
+						class="avatar"
+						style="--width: 72px"
+						url={getSkinURL(profile.skin, profile.name)}
+					/>
+				</div>
+				<div class="avatar holo">
+					<PlayerHead
+						class="avatar holo"
+						style="--width: 28px; filter: sepia(1);"
+						url={getSkinURL(profile.skin, profile.name)}
+					/>
+				</div>
 			</div>
-			<div class="avatar holo">
-				<PlayerHead
-					class="avatar holo"
-					style="--width: 28px; filter: sepia(1);"
-					url={getSkinURL(profile.skin, profile.name)}
-				/>
+			<div class="information-block">
+				{#each Object.entries(state?.language.personalDetails) as [key, value]}
+					<section>
+						<span>{value}</span>
+						<p>
+							{#if key === "issueDate"}
+								{format(profile[key as keyof Profile], "dd MMMM yyyy", {
+									locale: ru,
+								})}
+							{:else}
+								{profile[key as keyof Profile]}
+							{/if}
+						</p>
+					</section>
+				{/each}
+				<span class="watermark third">DE:</span>
 			</div>
-		</div>
-		<div class="information-block">
-			{#each Object.entries(state?.language.personalDetails) as [key, value]}
-				<section>
-					<span>{value}</span>
-					<p>
-						{#if key === "issueDate"}
-							{format(profile[key as keyof Profile], "dd MMMM yyyy", {
-								locale: ru,
-							})}
-						{:else}
-							{profile[key as keyof Profile]}
-						{/if}
-					</p>
-				</section>
-			{/each}
-			<span class="watermark third">DE:</span>
-		</div>
-		<div class="technical-information">
-			<span>
-				DE**{state.altName}**3**{nameCode(7, "*", profile.name.toUpperCase())}*********{nameCode(
-					3,
-					"*",
-					profile.id.toString(),
-				)}*
-				<br />
-				*{profile.uuid}*{nameCode(3, "*", profile.name.toUpperCase())}
-			</span>
+			<div class="technical-information">
+				<span>
+					DE**{state.altName}**3**{nameCode(7, "*", profile.name.toUpperCase())}*********{nameCode(
+						3,
+						"*",
+						profile.id.toString(),
+					)}*
+					<br />
+					*{profile.uuid}*{nameCode(3, "*", profile.name.toUpperCase())}
+				</span>
+			</div>
 		</div>
 	</div>
 </div>
@@ -216,19 +218,19 @@
 		margin: 0;
 	}
 	.passport {
-		width: 410px;
+		width: 380px;
 		aspect-ratio: 1.5 / 2.05;
 
 		display: grid;
 		grid-template-rows: 1fr 1fr;
-		margin-top: 48px;
+		// margin-top: 48px;
 		color: rgba(0, 0, 0, 0.9);
 		transition: 0.75s ease-in-out transform;
 
 		perspective: 1000px;
 		padding: 0;
 
-		--radius: 24px;
+		--radius: 16px;
 		&:not(:hover) {
 			transform: translateY(-25%);
 		}
@@ -253,12 +255,12 @@
 			}
 			section {
 				color: rgba(0, 0, 0, 0.9);
-				padding: 6px 0;
+				padding: 4px 0;
 			}
 			.logo {
 				img {
-					width: 96px;
-					height: 96px;
+					width: 72px;
+					height: 72px;
 					aspect-ratio: 1/1;
 					padding: 0 12px;
 					opacity: 0.75;
@@ -267,59 +269,68 @@
 					fill: var(--color);
 					background-color: var(--bg);
 					border: 2px solid var(--bg);
-					border-radius: 4px;
+					border-radius: 16px;
 					&.OH {
 						--color: #1a2e05;
-						--bg: #36531409;
+						--bg: #3653141f;
 					}
 					&.SH {
 						--color: #450a0a;
-						--bg: #450a0a09;
+						--bg: #450a0a1f;
 						fill: none;
 						stroke: var(--color);
 					}
 					&.NY {
 						--color: #172554;
-						--bg: #17255409;
+						--bg: #1725541f;
 					}
 					&.CA {
 						--color: rgb(145, 70, 33);
-						--bg: #42200609;
+						--bg: #4220061f;
 					}
 					&.GE {
 						--color: #431407;
-						--bg: #43140709;
+						--bg: #4314071f;
 					}
 					&.CD {
 						--color: #390866;
-						--bg: #1d074309;
+						--bg: #1d07431f;
 					}
 				}
 			}
 		}
 		.personal {
-			display: grid;
-			grid-template-columns: auto 1fr;
 			background: linear-gradient(to bottom, #ffeed78b, #e4d1b72f), $noise, #d2b690;
 			z-index: 0;
 			border-radius: 0 0 var(--radius) var(--radius);
 			overflow: clip;
 			border-top: 2px solid rgba(0, 0, 0, 0.1);
 			box-shadow: 0px 0 30px 0px rgba(0, 0, 0, 0.6);
-			section {
-				color: black;
+			position: relative;
+			.state-background {
+				display: grid;
+				grid-template-columns: auto 1fr;
+
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				// background-image: url(/EnvironmentPreview/shanghai-light.webp);
+				// background-size: cover;
+				// background-position: center;
 			}
 		}
 		section {
 			span {
 				color: inherit;
-				font-size: 12px;
-				opacity: 0.5;
+				font-size: 11px;
+				font-weight: 300;
+				// opacity: 0.5;
+				color: rgba(0, 0, 0, 0.5);
 				display: block;
 			}
 			p {
 				color: black;
-				font-size: 18px;
+				font-size: 16px;
 				line-height: 1;
 				font-weight: 500;
 				font-family: monospace;
@@ -347,6 +358,7 @@
 		}
 		&.SH {
 			--color: #e11d48;
+			opacity: 0.85;
 		}
 		&.NY {
 			--color: #1f6cf2;
@@ -376,6 +388,7 @@
 	}
 
 	.actual_content {
+		z-index: 3;
 		.clip {
 			overflow: clip;
 			width: 100%;
@@ -384,10 +397,10 @@
 		}
 	}
 	.cover {
-		background: linear-gradient(to bottom, #082f49cc, #05283f90), $noise, #082f49;
+		background: linear-gradient(to bottom, #100849cc, #09053f90), $noise, #082f49;
 		transform: rotateY(180deg);
 		border: 2px solid rgba(0, 0, 0, 0.2);
-		z-index: 3;
+		z-index: 5;
 		.cover-content {
 			display: flex;
 			flex-direction: column;
@@ -408,7 +421,7 @@
 				rotate: -90deg;
 				transform-origin: center;
 				/* color: #fddf47c2; */
-				background: linear-gradient(to bottom, #cfc09f 27%, #ffecb3 40%, #e5d092b0 78%);
+				background: linear-gradient(to bottom, #d3b799 27%, #fffbb3 40%, #eacc87b0 78%);
 				background-clip: text;
 				-webkit-background-clip: text;
 				-webkit-text-fill-color: transparent;
@@ -447,12 +460,12 @@
 	}
 
 	.technical-information {
-		background: linear-gradient(to bottom, #ffffffa1, #fdf3e583), $noise, #eedcc3;
+		background: linear-gradient(to bottom, #ffffffa1, #fdf3e583), $noise;
 		width: 100%;
 		height: 100%;
 		grid-column: 1 / 3;
 		margin: 0;
-		padding: 0 16px;
+		padding: 0 12px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -461,7 +474,7 @@
 			color: rgba(0, 0, 0, 0.4);
 			margin: 0;
 			font-family: monospace;
-			font-size: 16px;
+			font-size: 14px;
 			line-height: 1;
 		}
 	}
@@ -470,13 +483,15 @@
 		bottom: 8px;
 		right: 2px;
 		line-height: 0.8;
-		font-size: 48px;
+		z-index: 1;
+		user-select: none;
+		font-size: 42px;
 		-webkit-text-stroke-width: 1px;
 		-webkit-text-stroke-color: #4f46e5;
 		color: rgba(0, 0, 0, 0.1);
 		font-family: Georgia, "Times New Roman", Times, serif;
 		font-style: italic;
-		opacity: 0.1;
+		opacity: 0.15;
 		&.first {
 			left: 2px;
 			-webkit-text-stroke-color: #c026d3;

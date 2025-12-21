@@ -28,7 +28,7 @@
 		outline-offset: 2px;
 		flex-direction: column;
 		height: auto;
-		opacity: 0.55;
+		opacity: 0.75;
 		span {
 			color: var(--color);
 		}

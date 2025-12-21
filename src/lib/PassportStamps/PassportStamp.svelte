@@ -5,6 +5,10 @@
 <div class="passport-stamp">{@render children?.()}</div>
 
 <style lang="scss">
+	.passport-stamp {
+		z-index: 2;
+		user-select: none;
+	}
 	:global {
 		.stamp {
 			--color: #4c1d95;
@@ -20,7 +24,7 @@
 			scale: 0.9;
 			pointer-events: none;
 			user-select: none;
-			z-index: 2;
+
 			&.effect {
 				--grunge: url("$lib/assets/grunge.png");
 				mask-image: var(--grunge);
