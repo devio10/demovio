@@ -214,6 +214,12 @@
 					<IconRight />
 				</div>
 			</OptionButton>
+			<OptionButton tag="a" href="/profile/edit/game-license">
+				Указать наличие лицензионной игры
+				<div class="option-button-arrow-icon">
+					<IconRight />
+				</div>
+			</OptionButton>
 			<OptionButton tag="a" href="/profile/notifications">
 				Предпочтения уведомлений <div class="option-button-arrow-icon">
 					<IconRight />

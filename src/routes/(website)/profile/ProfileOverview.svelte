@@ -41,6 +41,7 @@
 			></canvas>
 		</div>
 		<span class="name">{data.profile.name}</span>
+		<span class="player-contact">@{data.profile.contact}</span>
 		<div class="settings-buttons-space"></div>
 		<div class="settings-buttons">
 			<OptionButton tag="a" href="/profile/edit">
@@ -99,8 +100,12 @@
 		mask-repeat: no-repeat;
 	}
 	.name {
-		font-size: 24px;
+		font-size: 20px;
 		font-weight: bold;
 		margin-top: 16px;
+	}
+	.player-contact {
+		font-size: 16px;
+		margin: 4px 0 0 0;
 	}
 </style>
