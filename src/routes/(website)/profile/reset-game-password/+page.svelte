@@ -3,8 +3,28 @@
 	import LoadingWheel from "$lib/components/LoadingWheel.svelte";
 	import TextInput from "$lib/components/TextInput.svelte";
 	import SettingsHeader from "$lib/Window/SettingsHeader.svelte";
+	import { isActionFailure, isHttpError } from "@sveltejs/kit";
 	import SettingsContent from "../SettingsContent.svelte";
+	import { resetGamePassword } from "./resetpassword.remote";
+	import Dialog from "$lib/components/Dialog.svelte";
+	import IconExclamationMark from "$lib/components/icons/IconExclamationMark.svelte";
+	import DialogButton from "$lib/components/DialogButton.svelte";
+	import IconKey from "$lib/components/icons/IconKey.svelte";
+	import { getCurrentDemovioStatus } from "../../status.remote";
+	let { data } = $props();
 	let submitting = $state(false);
+	let password = $state();
+	let repeatPassword = $state();
+	let error = $state();
+	let success = $state(false);
+
+	let demovioStatus = $state(null);
+	async function fetchDemovioStatus() {
+		demovioStatus = (await getCurrentDemovioStatus()) ?? null;
+	}
+	$effect(() => {
+		fetchDemovioStatus();
+	});
 </script>
 
 <svelte:head>
@@ -24,6 +44,7 @@
 			name="password"
 			type="password"
 			disabled={submitting}
+			bind:value={password}
 		>
 			<svg
 				version="1.1"
@@ -43,6 +64,7 @@
 			name="password"
 			type="password"
 			disabled={submitting}
+			bind:value={repeatPassword}
 		>
 			<svg
 				version="1.1"
@@ -58,15 +80,92 @@
 		</TextInput>
 	</div>
 	<div class="settings-buttons button">
-		<Button disabled={submitting || true}>
+		<Button
+			disabled={submitting}
+			onclick={async () => {
+				if (data.profile?.haveLicense) {
+					error = "Вам не нужен пароль для входа в игру, так как вы обладаете лицензией.";
+					return;
+				}
+				if (!demovioStatus) {
+					error = "Сервер Demovio сейчас выключен. Попробуйте позже.";
+					return;
+				}
+				if (!password) {
+					error = "Введите новый пароль.";
+					return;
+				}
+				if (password !== repeatPassword) {
+					error = "Пароли не совпадают.";
+					return;
+				}
+				submitting = true;
+				try {
+					const req = await resetGamePassword({ password: password });
+					if (isActionFailure(req)) {
+						throw new Error(req.data);
+					}
+					submitting = false;
+					success = true;
+				} catch (e) {
+					if (isHttpError(e)) {
+						error = e.body.message;
+					} else {
+						error = e;
+					}
+					submitting = false;
+				}
+			}}
+		>
 			{#if !submitting}
-				Изменить пароль
+				Сбросить пароль
 			{:else}
 				<LoadingWheel duration={0} --wheel-size="36px" />
 			{/if}
 		</Button>
 	</div>
 </SettingsContent>
+
+<Dialog
+	title="Ошибка При Сбросе Пароля"
+	description={error}
+	color="var(--red)"
+	opened={error !== undefined}
+>
+	{#snippet icon()}
+		<div style="padding: 4px">
+			<IconExclamationMark />
+		</div>
+	{/snippet}
+	<DialogButton
+		accent
+		onclick={() => {
+			error = undefined;
+		}}
+	>
+		Закрыть
+	</DialogButton>
+</Dialog>
+<Dialog
+	title="Сброс Пароля"
+	description="Ваш пароль для входа в игру успешно сброшен."
+	color="var(--green)"
+	opened={success}
+>
+	{#snippet icon()}
+		<div style="padding: 4px">
+			<IconKey />
+		</div>
+	{/snippet}
+	<DialogButton
+		accent
+		onclick={() => {
+			success = false;
+		}}
+	>
+		Закрыть
+	</DialogButton>
+</Dialog>
 
 <style>
 	.button {

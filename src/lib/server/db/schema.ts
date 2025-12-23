@@ -112,8 +112,8 @@ export const rateLimitsTable = pgTable("rate_limits", {
 	invokerId: integer()
 		.notNull()
 		.references(() => playersTable.id),
-	actionType: text({ enum: ["invitation"] }).notNull(),
-	data: jsonb().notNull(),
+	actionType: text({ enum: ["invitation", "reset_game_password"] }).notNull(),
+	data: jsonb(),
 	time: timestamp({
 		mode: "date",
 		withTimezone: true,
