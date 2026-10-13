@@ -13,7 +13,7 @@
 </script>
 
 <svelte:head>
-	<title>Demovio: Minecraft сервер</title>
+	<title>Demovio: Minecraft Server</title>
 </svelte:head>
 
 <div class="top_announcement" style="display: none">
@@ -39,7 +39,7 @@
 	<div class="whole-content">
 		{#if ready}
 			<img
-				src="/about/world_of_your_ideas.svg"
+				src="/about/world_of_your_ideas_en.svg"
 				alt="Мир твоих идей"
 				class="hero_title"
 				in:fly|global={{ duration: 1500, y: -150 }}
@@ -49,7 +49,8 @@
 			{#if ready}
 				<div class="he-row-description">
 					<p class="short_description" in:scale={{ duration: 1500, opacity: 0, start: 0.75 }}>
-						Частный сервер Minecraft c уютной атмосферой, несколькими городами и заводами Create
+						A private Minecraft server with a cozy atmosphere, several cities, and Create-based
+						factories
 					</p>
 				</div>
 				<a href="/register" class="mobile-signup">Подайте Заявку</a>
@@ -70,7 +71,7 @@
 						</div>
 						<img src="/about/ball1.png" alt="Инопланетный шар" />
 					</a>
-					<span>Подайте заявку</span>
+					<span>Apply Now</span>
 				</div>
 			{/if}
 		</div>
@@ -90,35 +91,35 @@
 <section class="about-section why-us">
 	<div class="whole-content grid">
 		<div class="menu">
-			<span class="title-pill">О Нас</span>
+			<span class="title-pill">About Us</span>
 		</div>
 		<div class="content">
-			<h2 class="section-header">Почему Мы?</h2>
+			<h2 class="section-header">Why This Server?</h2>
 			<p class="section-paragraph">
-				Demovio – единственный в своём роде сервер Minecraft.
-				<span>Расскажем почему</span>
+				Demovio is a one-of-a-kind Minecraft server.
+				<span>Here’s why</span>
 			</p>
 			<ol>
 				<li>
-					Несколько городов и штатов. <span>Точно найдётся место по душе</span>
+					Multiple cities and states. <span>You’re sure to find a place you love</span>
 				</li>
 				<li>
-					Безопасность на высшем уровне. <span>Посторонние люди не смогут зайти на сервер</span>
+					High-level security. <span>Unauthorized players cannot access the server</span>
 				</li>
 				<li>
-					Транспортная инфраструктура. <span>Регулярные поезда между городами</span>
+					Transport infrastructure. <span>Regular trains between cities</span>
 				</li>
 				<li>
-					Полностью бесплатно. <span>Никаких донатов и платных транзакций</span>
+					Completely free. <span>No donations or paid transactions</span>
 				</li>
 				<li>
-					Встроенный голосовой чат. <span>Нет необходимости использовать сторонние приложения</span>
+					Built-in voice chat. <span>No need for third-party apps</span>
 				</li>
 				<li>
-					Механизмы Create. <span>Заводы обеспечат ресурсами всех</span>
+					Create mechanics. <span>Factories provide resources for everyone</span>
 				</li>
 				<li>
-					Мощный сервер. <span>Комфортно играть даже при нагрузке</span>
+					Powerful server. <span>Smooth gameplay even under load</span>
 				</li>
 			</ol>
 		</div>
@@ -128,7 +129,7 @@
 <section class="about-section we-have-states">
 	<div class="whole-content grid">
 		<div class="menu">
-			<span class="title-pill">Штаты</span>
+			<span class="title-pill">States</span>
 		</div>
 		<div class="content">
 			<img
@@ -137,12 +138,11 @@
 				class="usd_glow_map"
 			/>
 			<div style="position: relative;">
-				<h2 class="section-header">Стойте, штаты?</h2>
+				<h2 class="section-header">Wait, states?</h2>
 				<p class="section-paragraph">
-					У нас действительно несколько штатов! <span>
-						Мы создали их для того, чтобы разбавить ваш геймплей.
-					</span>
-					Вы можете создать свой собственный штат, если есть такое желание
+					We really do have several states!
+					<span>We created them to add variety to your gameplay.</span>
+					You can create your own state if you wish.
 				</p>
 			</div>
 		</div>
@@ -165,13 +165,13 @@
 		<HeaderLogo />
 	</span>
 	<div class="links">
-		<a href="/about">О сервере</a>
-		<a href="/register">Подать заявку</a>
-		<a href="/login">Войти</a>
-		<a href="/">Статус сервера</a>
+		<a href="/about">About Us</a>
+		<a href="/register">Apply Now</a>
+		<a href="/login">Log In</a>
+		<a href="/">Server Status</a>
 	</div>
 	<span class="ip-address">
-		IP адрес: <span>demovio.love</span>
+		IP address: <span>demovio.love</span>
 	</span>
 </footer>
 
@@ -185,7 +185,7 @@
 		]}
 	>
 		<a href="/">
-			Перейти к статусу сервера
+			Go to Server Status
 			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
 				<path
 					d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"

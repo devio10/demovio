@@ -6,16 +6,16 @@
 </script>
 
 <svelte:head>
-	<title>Профиль Demovio – Паспорт</title>
+	<title>Профиль Demovio – Passport</title>
 </svelte:head>
 
-<SettingsHeader title="Паспорт"></SettingsHeader>
+<SettingsHeader title="Passport"></SettingsHeader>
 <SettingsContent>
 	<div>
 		{#if data.profile && data.profile.isActivated}
 			<Passport profile={data.profile}></Passport>
 		{:else}
-			<p>Нет полученных паспортов.</p>
+			<p>You don't have any passports.</p>
 		{/if}
 	</div>
 </SettingsContent>

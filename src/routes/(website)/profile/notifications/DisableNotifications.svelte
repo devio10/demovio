@@ -19,7 +19,7 @@
 	}}
 	style="color: rgb(235, 52, 79)"
 >
-	Отключить все уведомления
+	Disable all notifications
 	{#if success}
 		<div class="option-button-icon-container">
 			<div class="option-button-icon" transition:scale={{ duration: 300 }}><IconCheckmark /></div>

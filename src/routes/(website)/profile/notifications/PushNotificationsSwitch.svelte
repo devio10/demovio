@@ -92,7 +92,7 @@
 
 <div class="settings-buttons">
 	<OptionButton tag="div">
-		Уведомления от браузера
+		Notifications from this browser
 		{#if browser && registration}
 			<div style="display: flex; gap: 6px;">
 				{#if loading}
@@ -105,7 +105,7 @@
 				/>
 			</div>
 		{:else}
-			<OptionButtonLabel>Ошибка</OptionButtonLabel>
+			<OptionButtonLabel>Error</OptionButtonLabel>
 		{/if}
 	</OptionButton>
 </div>
@@ -113,15 +113,15 @@
 	{#if error}
 		<div class="option-description-icon"><IconExclamationMark /></div>
 		{#if error === "not_allowed"}
-			Ваш браузер не поддерживает получение уведомлений от веб-сайтов, попробуйте включить их в
-			настройках.
+			Your browser does not support receiving notifications from websites. Please try enabling them
+			in your settings.
 		{:else if error === "unknown_subscribe"}
-			Произошла неизвестная ошибка при включении уведомлений от браузера.
+			An unknown error occurred while enabling browser notifications.
 		{:else if error === "unknown_unsubscribe"}
-			Произошла неизвестная ошибка при отключении уведомлений от браузера.
+			An unknown error occurred while disabling browser notifications.
 		{/if}
 	{:else}
-		Demovio {subscribed ? "будет" : "может"} присылать вам уведомления о выбранных вами событиях через
-		этот браузер.
+		Demovio {subscribed ? "will" : "may"} send you notifications about the events you have selected through
+		this browser.
 	{/if}
 </OptionDescription>

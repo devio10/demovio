@@ -50,7 +50,7 @@
 		}
 	}}
 >
-	Пригласить на сервер
+	Invite to the game
 	<div class="icon-container">
 		{#if submitting}
 			<div class="block">
@@ -63,8 +63,8 @@
 </SettingsButton>
 
 <Dialog
-	title="Не Удалось Отправить Приглашение"
-	description="Войдите в аккаунт, чтобы пригласить игрока на сервер."
+	title="Couldn't Invite to the Game"
+	description="Login to invite this player to the game."
 	color="var(--yellow)"
 	opened={dialogOpened}
 >
@@ -91,7 +91,7 @@
 </Dialog>
 
 <Dialog
-	title="Не Удалось Отправить Приглашение"
+	title="Couldn't Invite to the Game"
 	description={error}
 	color="var(--red)"
 	opened={error !== undefined}
@@ -107,7 +107,7 @@
 			}}
 			href="https://t.me/{contact}"
 		>
-			Написать в Telegram
+			Text on Telegram
 		</DialogButton>
 	{/if}
 	<DialogButton
@@ -116,7 +116,7 @@
 			error = undefined;
 		}}
 	>
-		Закрыть
+		Close
 	</DialogButton>
 </Dialog>
 

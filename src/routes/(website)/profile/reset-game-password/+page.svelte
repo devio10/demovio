@@ -30,17 +30,17 @@
 <svelte:head>
 	<title>Профиль Demovio – Сброс игрового пароля</title>
 </svelte:head>
-<SettingsHeader title="Сброс игрового пароля"></SettingsHeader>
+<SettingsHeader title="Reset Game Passowrd"></SettingsHeader>
 <SettingsContent style="min-height: 100%;">
 	<div class="settings-buttons">
 		<p style="line-height: 1.4; margin: 12px 0 0 0; font-size: 16px">
-			Если вы забыли пароль для входа на сервер Demovio, то можете сбросить его. Учтите, что для
-			входа на сайт используется отдельный пароль.
+			If you have forgotten your password for logging into the Demovio server, you can reset it.
+			Please note that the website uses a separate password for signing in.
 		</p>
 		<div class="settings-buttons-space"></div>
 		<TextInput
 			style="margin-bottom: 16px"
-			placeholder="Новый пароль"
+			placeholder="New password"
 			name="password"
 			type="password"
 			disabled={submitting}
@@ -60,7 +60,7 @@
 		</TextInput>
 		<TextInput
 			style="margin-bottom: 16px"
-			placeholder="Повторите пароль"
+			placeholder="Repeat the password"
 			name="password"
 			type="password"
 			disabled={submitting}
@@ -118,7 +118,7 @@
 			}}
 		>
 			{#if !submitting}
-				Сбросить пароль
+				Reset
 			{:else}
 				<LoadingWheel duration={0} --wheel-size="36px" />
 			{/if}

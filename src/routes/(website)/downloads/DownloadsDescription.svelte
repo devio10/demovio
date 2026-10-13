@@ -10,9 +10,9 @@
 		<h2>Demovio {currentBuild}</h2>
 		{#if lastDownloadedBuild}
 			<p>
-				{#if currentBuild === lastDownloadedBuild.version}У вас актуальная версия.
+				{#if currentBuild === lastDownloadedBuild.version}You have the latest version.
 				{:else}
-					Ваша версия: {lastDownloadedBuild.version}{/if}
+					Your version: {lastDownloadedBuild.version}{/if}
 			</p>
 		{/if}
 		<button
@@ -21,7 +21,8 @@
 			}}
 			class={[{ active: openedModsList }, "list-button"]}
 		>
-			Полный список модов <div class="icon">
+			Full mods list
+			<div class="icon">
 				<IconRight />
 			</div>
 		</button>

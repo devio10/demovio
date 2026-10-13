@@ -8,5 +8,5 @@
 </script>
 
 <form class="settings-buttons" method="POST" action="/profile?/logout" use:enhance>
-	<OptionButton style="color: rgb(235, 52, 79)">Выйти из аккаунта</OptionButton>
+	<OptionButton style="color: rgb(235, 52, 79)">Log out</OptionButton>
 </form>

@@ -87,7 +87,7 @@ export const invitePlayer = command(accountDataSchemas.name, async (name) => {
 		return error(403, `Некоторые возможности для вашего аккаунта Demovio ограничены.`);
 	}
 	if (!playerToInvite.notificationsInvites) {
-		return error(403, `Игрок запретил приглашать себя в игру.`);
+		return error(403, `Player doesn't accept invites.`);
 	}
 
 	if (locals.playerData.administrator !== true) {
@@ -99,7 +99,7 @@ export const invitePlayer = command(accountDataSchemas.name, async (name) => {
 			),
 		});
 		if (invokerSentInvites.length > 2) {
-			return error(403, "Вы можете приглашать максимум трёх игроков в сутки.");
+			return error(403, "You can only invite up to 3 players a day.");
 		}
 
 		const invokerSentInvitesToPlayer = await db
@@ -114,7 +114,7 @@ export const invitePlayer = command(accountDataSchemas.name, async (name) => {
 				),
 			);
 		if (invokerSentInvitesToPlayer.length > 0) {
-			return error(403, "Вы уже пригласили этого игрока.");
+			return error(403, "You've already invited this player.");
 		}
 
 		const inviteeReceivedInvites = await db
@@ -128,7 +128,7 @@ export const invitePlayer = command(accountDataSchemas.name, async (name) => {
 				),
 			);
 		if (inviteeReceivedInvites.length > 1) {
-			return error(403, "Игрок уже получил слишком много приглашений за сутки.");
+			return error(403, "Player received too many invitations today.");
 		}
 	}
 
@@ -137,7 +137,7 @@ export const invitePlayer = command(accountDataSchemas.name, async (name) => {
 		.from(pushSubscriptionsTable)
 		.where(eq(pushSubscriptionsTable.receiverName, name));
 	if (inviteePushSubscriptions.length === 0) {
-		return error(403, "Игрок в данный момент не подписан на уведомления от Demovio.");
+		return error(403, "Player isn't subscribed to push notifications.");
 	}
 
 	sendPushNotification({

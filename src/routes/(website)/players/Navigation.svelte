@@ -20,13 +20,13 @@
 </script>
 
 <Window.Navigation --width="45%">
-	<Window.NavigationHeader title="Игроки">
+	<Window.NavigationHeader title="Players">
 		{#snippet subtitle()}
 			{#if updating}
 				<LoadingWheel --wheel-size="33px" --wheel-color="rgba(255,255,255,0.75)" />
 			{/if}
 		{/snippet}
-		<Window.PlaceholderSearch bind:value={searchQuery} placeholder="Поиск по игрокам" />
+		<Window.PlaceholderSearch bind:value={searchQuery} placeholder="Search" />
 	</Window.NavigationHeader>
 	<PlayersList {searchQuery} />
 </Window.Navigation>

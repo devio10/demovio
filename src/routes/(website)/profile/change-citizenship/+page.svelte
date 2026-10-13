@@ -20,14 +20,14 @@
 </script>
 
 <svelte:head>
-	<title>Профиль Demovio – Смена гражданства</title>
+	<title>Профиль Demovio – Change Citizenship</title>
 </svelte:head>
-<SettingsHeader title="Смена гражданства"></SettingsHeader>
+<SettingsHeader title="Change Citizenship"></SettingsHeader>
 <SettingsContent style="min-height: 100%;">
 	<div class="settings-buttons">
 		<p style="line-height: 1.4; margin: 12px 0 0 0; font-size: 16px">
-			У вас есть возможность сменить своё гражданство, если вы больше не планируете жить в своём
-			штате. Учтите, что гражданство можно менять не чаще, чем раз в 30 дней.
+			You can change your citizenship if you no longer plan to live in your current state. Please
+			note that citizenship can be changed no more than once every 30 days.
 		</p>
 	</div>
 	<div class="settings-buttons-space"></div>
@@ -37,7 +37,7 @@
 		<OptionDescription>{citizenship.autoAcceptSwitch}</OptionDescription>
 	{/if}
 	{#if citizenship.acceptOldPlayers === false}
-		<OptionDescription>Этот штат на данный момент не принимает новых игроков.</OptionDescription>
+		<OptionDescription>This state doesn't accept new players at this moment.</OptionDescription>
 	{/if}
 	<form
 		action="/profile/change-citizenship?/applyForCitizenship"
@@ -60,11 +60,11 @@
 				submitting}
 		>
 			{#if citizenship.code === undefined}
-				Выберите штат
+				Choose a new state
 			{:else if data.profile?.citizenship.code === citizenship.shortCode}
-				Ваш текущий штат
+				Your current state
 			{:else if !submitting}
-				Подать заявку ({citizenship.name})
+				Submit ({citizenship.name})
 			{:else}
 				<LoadingWheel duration={0} --wheel-size="36px" />
 			{/if}

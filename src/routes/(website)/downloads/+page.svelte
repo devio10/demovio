@@ -32,10 +32,10 @@
 	{#snippet navigation()}
 		<WindowNavigation --width="50%">
 			<WindowNavigationHeader
-				title="Загрузка модов"
+				title="Downloads"
 				style="flex-direction: row; justify-content: space-between;"
 			>
-				<WindowHeaderButton name="Помощь" tag="a" href="/help/choose-modpack">
+				<WindowHeaderButton name="Help" tag="a" href="/help/choose-modpack">
 					<IconHelpCircle />
 				</WindowHeaderButton>
 			</WindowNavigationHeader>
@@ -50,7 +50,7 @@
 					<OptionButton>
 						<div class="option-leftside">
 							<img src="/mod_icons/barebones.png" class="mod-icon" alt="Иконка Barebones" />
-							Основные моды (Barebones)
+							Required mods (Barebones)
 						</div>
 						<OptionButtonCheckmark value={true} />
 					</OptionButton>
@@ -62,7 +62,7 @@
 					>
 						<div class="option-leftside">
 							<img src="/mod_icons/sodium.webp" class="mod-icon" alt="Иконка Sodium" />
-							Улучшение производительности
+							Performance
 						</div>
 
 						<OptionButtonCheckmark value={performance} />
@@ -75,7 +75,7 @@
 					>
 						<div class="option-leftside">
 							<img src="/mod_icons/journeymap.webp" class="mod-icon" alt="Иконка JourneyMap" />
-							Мини-карта (JourneyMap)
+							Mini-map (JourneyMap)
 						</div>
 
 						<OptionButtonCheckmark value={minimap} />
@@ -107,7 +107,7 @@
 					{#if loading}
 						<LoadingWheel duration={0} --wheel-size="36px" />
 					{:else}
-						Скачать архив
+						Download
 					{/if}
 				</Button>
 			</div>

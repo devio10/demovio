@@ -80,7 +80,7 @@
 	<div>
 		<h2>
 			{#if demovioStatus !== null}
-				{demovioStatus ? "Сервер онлайн" : "Сервер оффлайн"}
+				{demovioStatus ? "Server's online" : "Server's offline"}
 			{:else}
 				Загрузка...
 			{/if}
@@ -102,13 +102,13 @@
 			href="players"
 			badge={demovioStatus !== null && demovioStatus ? demovioStatus.players.length : 0}
 		>
-			Игроки
+			Players
 		</AppIcon>
-		<AppIcon icon="Passport" href="profile/passport">Паспорт</AppIcon>
-		<AppIcon icon="Help" href="help">Помощь</AppIcon>
+		<AppIcon icon="Passport" href="profile/passport">Passport</AppIcon>
+		<AppIcon icon="Help" href="help">Help</AppIcon>
 		<br />
-		<AppIcon icon="Wiki" href="https://wiki.demovio.love/">Википедия</AppIcon>
-		<AppIcon icon="Maps" href="https://map.demovio.love/">Карта</AppIcon>
+		<AppIcon icon="Wiki" href="https://wiki.demovio.love/">Wiki</AppIcon>
+		<AppIcon icon="Maps" href="https://map.demovio.love/">Maps</AppIcon>
 		<AppIcon
 			icon="Downloads"
 			href="downloads"
@@ -116,9 +116,9 @@
 				? 1
 				: 0}
 		>
-			Загрузки
+			Downloads
 		</AppIcon>
-		<AppIcon icon="About" href="about">О Сервере</AppIcon>
+		<AppIcon icon="About" href="about">About</AppIcon>
 		{#if additionalPages}
 			<br />
 			<AppIcon icon="Applications" href="applications">Заявки</AppIcon>
@@ -128,7 +128,7 @@
 	</nav>
 	<div>
 		<span class="welcome">
-			{data.profile ? `Добро пожаловать, ${data.profile.name}.` : "Войдите в аккаунт"}
+			{data.profile ? `Welcome, ${data.profile.name}.` : "Войдите в аккаунт"}
 		</span>
 	</div>
 </div>

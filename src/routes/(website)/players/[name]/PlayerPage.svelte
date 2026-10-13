@@ -129,7 +129,7 @@
 					{/if}
 					{#if isOnline}
 						<SettingsButton tag="a" href="https://map.demovio.love/">
-							Показать на карте <div class="option-button-arrow-icon">
+							Show on map <div class="option-button-arrow-icon">
 								<IconRight />
 							</div>
 						</SettingsButton>
@@ -138,18 +138,18 @@
 					{/if}
 					{#if player.contact}
 						<SettingsButton tag="a" href="https://t.me/{player.contact}">
-							Написать в Telegram...
+							Text on Telegram...
 						</SettingsButton>
 					{/if}
 
 					{#if localPreferences.backstageStatus && page.data.profile?.administrator}
 						<BanPlayer {name} bind:banned />
 					{:else}<SettingsButton disabled style="color: rgb(235, 52, 79)">
-							Пожаловаться
+							Report
 						</SettingsButton>{/if}
 				{:else}
 					<SettingsButton tag="a" href="/profile">
-						Открыть свой профиль <div class="option-button-arrow-icon">
+						Open my profile <div class="option-button-arrow-icon">
 							<IconRight />
 						</div>
 					</SettingsButton>

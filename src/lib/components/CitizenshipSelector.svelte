@@ -7,7 +7,7 @@
 	let { citizenship = $bindable() } = $props();
 	const states = [
 		{
-			name: "Листайте вниз",
+			name: "Scroll down",
 			icon: "initial.svg",
 		},
 		...demovioStates,

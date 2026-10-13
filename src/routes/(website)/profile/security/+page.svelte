@@ -10,28 +10,28 @@
 <svelte:head>
 	<title>Профиль Demovio – Безопасность аккаунта</title>
 </svelte:head>
-<SettingsHeader title="Безопасность аккаунта"></SettingsHeader>
+<SettingsHeader title="Privacy & Security"></SettingsHeader>
 <SettingsContent>
 	<div class="settings-buttons">
 		<OptionButton tag="a">
-			Изменить пароль для входа на сайт <div class="option-button-arrow-icon">
+			Change website password <div class="option-button-arrow-icon">
 				<IconRight />
 			</div>
 		</OptionButton>
 	</div>
 	<OptionDescription>
-		Если вы забыли пароль от своего аккаунта на сайте Demovio, то можете поменять его. Потребуется
-		код из бота в Telegram.
+		If you have forgotten the password for your Demovio website account, you can reset it. You will
+		need a verification code from the Telegram bot.
 	</OptionDescription>
 	<div class="settings-buttons-space"></div>
 	<div class="settings-buttons">
 		<OptionButton tag="div">
-			Вход без пароля (Passkey)
+			Set up a new passkey
 			<SettingsSwitch disabled />
 		</OptionButton>
 	</div>
 	<OptionDescription>
-		Добавление ключа на устройство или в браузер позволит входить вам в аккаунт Demovio безопасно,
-		не вводя пароль.
+		Adding a passkey to your device or browser allows you to sign in to your Demovio account
+		securely without entering a password.
 	</OptionDescription>
 </SettingsContent>

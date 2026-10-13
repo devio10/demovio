@@ -78,7 +78,7 @@
 		</Window.NavigationList>
 	{:else if searchQuery}
 		<Window.Placeholder>
-			<Window.PlaceholderWarning>Нет игроков по вашему запросу</Window.PlaceholderWarning>
+			<Window.PlaceholderWarning>No players found</Window.PlaceholderWarning>
 		</Window.Placeholder>
 	{:else}
 		<Window.Placeholder>

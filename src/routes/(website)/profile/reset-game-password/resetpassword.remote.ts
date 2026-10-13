@@ -1,4 +1,4 @@
-import { command, form, getRequestEvent } from "$app/server";
+import { command, getRequestEvent } from "$app/server";
 import { accountDataSchemas } from "$lib/server/data-schemas";
 import { db } from "$lib/server/db";
 import { rateLimitsTable } from "$lib/server/db/schema";

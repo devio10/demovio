@@ -10,7 +10,7 @@
 </script>
 
 <OptionButton tag="div">
-	Обновления Demovio <SettingsSwitch
+	Demovio updates <SettingsSwitch
 		value={value === true}
 		disabled={updating}
 		onChange={async () => {

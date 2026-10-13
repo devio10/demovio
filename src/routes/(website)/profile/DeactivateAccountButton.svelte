@@ -9,7 +9,7 @@
 
 <div class="settings-buttons">
 	<OptionButton onclick={() => (openedDialog = true)} style="color: rgb(235, 52, 79)">
-		Деактивировать аккаунт
+		Deactivate Account
 	</OptionButton>
 </div>
 

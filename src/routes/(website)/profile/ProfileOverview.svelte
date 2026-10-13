@@ -15,7 +15,7 @@
 	const scale = new Spring(0.5, { damping: 0.2, stiffness: 0.1 });
 </script>
 
-<SettingsHeader title="Обзор"></SettingsHeader>
+<SettingsHeader title="Overview"></SettingsHeader>
 <SettingsContent>
 	{#if data.profile}
 		<div class="canvas-block" style="scale: {scale.current}">
@@ -45,20 +45,20 @@
 		<div class="settings-buttons-space"></div>
 		<div class="settings-buttons">
 			<OptionButton tag="a" href="/profile/edit">
-				Изменить данные <div class="option-button-arrow-icon">
+				Change information <div class="option-button-arrow-icon">
 					<IconRight />
 				</div>
 			</OptionButton>
 			<OptionButton tag="a" href="/profile/overview/invite">
-				Пригласить друга <div class="option-button-arrow-icon">
+				Invite a friend <div class="option-button-arrow-icon">
 					<IconRight />
 				</div>
 			</OptionButton>
 		</div>
 		<OptionDescription>
-			Вы можете пригласить друзей и знакомых с помощью своей реферальной ссылки. Вы получите бонус
-			20 фасок / изумрудов за каждого приглашённого друга, а они получат дополнительный
-			вступительный бонус в размере 10 фасок / изумрудов.
+			You can invite your friends and acquaintances using your referral link. You will receive a
+			bonus of 20 facets / emeralds for each friend you invite, and they will receive an additional
+			welcome bonus of 10 facets / emeralds upon joining.
 		</OptionDescription>
 
 		<div class="settings-buttons-space"></div>
@@ -66,16 +66,16 @@
 			<ReapplySkinButton name={data.profile?.name} />
 		</div>
 		<OptionDescription>
-			Если ваш скин не показывается во время игры на сервере, вы можете попробовать принудительно
-			его применить.
+			If your skin is not appearing while playing on the server, you can try forcing it to be
+			applied.
 		</OptionDescription>
 		<div class="settings-buttons-space"></div>
 		<LogoutButton />
 		<div class="settings-buttons-space"></div>
 		<DeactivateAccountButton />
 		<OptionDescription>
-			Вы можете деактивировать аккаунт, если больше не планируете играть на сервере Demovio. Он
-			перестанет показываться в списке игроков и со временем будет полностью удалён.
+			You can deactivate your account if you no longer plan to play on the Demovio server. It will
+			no longer appear in the player list and will eventually be permanently deleted.
 		</OptionDescription>
 		<div class="settings-buttons-space"></div>
 	{/if}

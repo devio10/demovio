@@ -6,30 +6,31 @@
 	import IconEnvironment from "./icons/IconEnvironment.svelte";
 	import IconBell from "./icons/IconBell.svelte";
 	import IconKey from "./icons/IconKey.svelte";
+	import IconHandWaving from "./icons/IconHandWaving.svelte";
 	let isMobile = new MediaQuery("screen and (max-width: 768px)");
 	let { loggedIn } = $props();
 </script>
 
 <div class="mobile-shadow"></div>
 <div class="side-navigation">
-	<SideNavigationButton alt="Главная" href="/" test={/^\/$/}>
+	<SideNavigationButton alt="Home" href="/" test={/^\/$/}>
 		<IconHome />
 	</SideNavigationButton>
 	{#if loggedIn}
-		<SideNavigationButton alt="Профиль" href="/profile">
+		<SideNavigationButton alt="Profile" href="/profile">
 			<div style="padding: 4px"><IconProfile /></div>
 		</SideNavigationButton>
 	{:else}
-		<SideNavigationButton alt="Авторизация" href="/login">
+		<SideNavigationButton alt="Login" href="/login">
 			<div style="padding: 2px"><IconKey /></div>
 		</SideNavigationButton>
 	{/if}
 
-	<SideNavigationButton alt="Окружение" href="/environment">
+	<SideNavigationButton alt="Environment" href="/environment">
 		<IconEnvironment />
 	</SideNavigationButton>
 	{#if !isMobile.current}
-		<SideNavigationButton alt="Уведомления" href="/notifications">
+		<SideNavigationButton alt="Notifications" href="/notifications">
 			<div style="padding: 4px"><IconBell /></div>
 		</SideNavigationButton>
 	{/if}
@@ -64,7 +65,7 @@
 
 		&:hover {
 			// transform: translateY(-50%) scale(1.05);
-			width: 212px;
+			width: 230px;
 			background-color: rgba(230, 230, 230, 0.2);
 			left: 16px;
 

@@ -25,7 +25,7 @@
 				tabNavigationSelectionWidth = target.clientWidth;
 			}}
 		>
-			Штаты
+			States
 		</TabNavigationButton>
 		<TabNavigationButton
 			onclick={({ target }) => {
@@ -36,7 +36,7 @@
 				tabNavigationSelectionWidth = target.clientWidth;
 			}}
 		>
-			Панорамы
+			Panoramas
 		</TabNavigationButton>
 		<TabNavigationButton
 			onclick={({ target }) => {
@@ -47,7 +47,7 @@
 				tabNavigationSelectionWidth = target.clientWidth;
 			}}
 		>
-			Сезоны
+			Seasons
 		</TabNavigationButton>
 	</TabNavigation>
 </div>
@@ -58,18 +58,18 @@
 			in:fly={{ x: 300 * flyDirection, duration: 450 }}
 			out:fly={{ x: -300 * flyDirection, duration: 450 }}
 		>
-			<EnvironmentIcon src="centralstation" name="Центральный Вокзал" />
-			<EnvironmentIcon src="kyoto" name="Киото" />
-			<EnvironmentIcon src="ohio" name="Огайо" />
+			<EnvironmentIcon src="centralstation" name="Central Station" />
+			<EnvironmentIcon src="kyoto" name="Kyoto" />
+			<EnvironmentIcon src="ohio" name="Ohio" />
 			<br />
-			<EnvironmentIcon src="shanghai" name="Улицы Шанхая" />
-			<EnvironmentIcon src="lighthouse" name="Маяк" />
-			<EnvironmentIcon src="enchantment" name="Зачарования" />
-			<EnvironmentIcon src="newyork" name="Башня Нью Йорка" />
+			<EnvironmentIcon src="shanghai" name="Streets of Shanghai" />
+			<EnvironmentIcon src="lighthouse" name="Lighthouse" />
+			<EnvironmentIcon src="enchantment" name="Enchantment" />
+			<EnvironmentIcon src="newyork" name="Skyscraper" />
 			<br />
-			<EnvironmentIcon src="georgia" name="Горы Джорджии" />
-			<EnvironmentIcon src="shanghai-center" name="Шанхайская мэрия" />
-			<EnvironmentIcon src="bank" name="Банк Калифорния" />
+			<EnvironmentIcon src="georgia" name="Georgia Mountains" />
+			<EnvironmentIcon src="shanghai-center" name="Shanghai Center" />
+			<EnvironmentIcon src="bank" name="California Bank" />
 		</div>
 	{:else if page === 1}
 		<div
@@ -77,18 +77,18 @@
 			in:fly={{ x: 300 * flyDirection, duration: 450 }}
 			out:fly={{ x: -300 * flyDirection, duration: 450 }}
 		>
-			<EnvironmentIcon spatial="shanghai" name="Шанхай" />
-			<EnvironmentIcon spatial="california" name="Калифорния" />
-			<EnvironmentIcon spatial="central_station" name="Центральный вокзал" />
+			<EnvironmentIcon spatial="shanghai" name="Shanghai" />
+			<EnvironmentIcon spatial="california" name="California" />
+			<EnvironmentIcon spatial="central_station" name="Central Station" />
 			<br />
-			<EnvironmentIcon spatial="kyoto" name="Киото" />
-			<EnvironmentIcon spatial="newyork" name="Нью Йорк" />
-			<EnvironmentIcon spatial="georgia" name="Джорджия" />
-			<EnvironmentIcon spatial="ohio" name="Огайо" />
+			<EnvironmentIcon spatial="kyoto" name="Kyoto" />
+			<EnvironmentIcon spatial="newyork" name="New York" />
+			<EnvironmentIcon spatial="georgia" name="Georgia" />
+			<EnvironmentIcon spatial="ohio" name="Ohio" />
 			<br />
-			<EnvironmentIcon spatial="miami" name="Майами" />
-			<EnvironmentIcon spatial="daisy" name="Тёплое море" />
-			<EnvironmentIcon spatial="lust" name="Город Похоти" />
+			<EnvironmentIcon spatial="miami" name="Miami" />
+			<EnvironmentIcon spatial="daisy" name="Warm Sea" />
+			<EnvironmentIcon spatial="lust" name="Town of Lust" />
 		</div>
 	{:else}
 		<div
@@ -96,18 +96,18 @@
 			in:fly={{ x: 300 * flyDirection, duration: 450 }}
 			out:fly={{ x: -300 * flyDirection, duration: 450 }}
 		>
-			<EnvironmentIcon src="halloween" darkAvailable={false} name="Хэллоуин" />
-			<EnvironmentIcon src="autumn" name="Осенний Лес" />
-			<EnvironmentIcon disabled name="Скоро выйдет" />
+			<EnvironmentIcon src="halloween" darkAvailable={false} name="Halloween" />
+			<EnvironmentIcon src="autumn" name="Autumn Forest" />
+			<EnvironmentIcon disabled name="Available Soon" />
 			<br />
-			<EnvironmentIcon disabled name="Скоро выйдет" />
-			<EnvironmentIcon disabled name="Скоро выйдет" />
-			<EnvironmentIcon disabled name="Скоро выйдет" />
-			<EnvironmentIcon disabled name="Скоро выйдет" />
+			<EnvironmentIcon disabled name="Available Soon" />
+			<EnvironmentIcon disabled name="Available Soon" />
+			<EnvironmentIcon disabled name="Available Soon" />
+			<EnvironmentIcon disabled name="Available Soon" />
 			<br />
-			<EnvironmentIcon disabled name="Скоро выйдет" />
-			<EnvironmentIcon disabled name="Скоро выйдет" />
-			<EnvironmentIcon disabled name="Скоро выйдет" />
+			<EnvironmentIcon disabled name="Available Soon" />
+			<EnvironmentIcon disabled name="Available Soon" />
+			<EnvironmentIcon disabled name="Available Soon" />
 		</div>
 	{/if}
 </div>

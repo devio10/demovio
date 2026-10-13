@@ -26,34 +26,34 @@
 
 <span class="last-seen-online">
 	{#await value}
-		Загрузка...
+		Loading...
 	{:then value}
 		{#if "online" in value}
 			Сейчас играет
 		{:else if "isBanned" in value}
 			{@const { pronouns } = value}
 			{#if pronouns === "он/его"}
-				Заблокирован
+				Blocked
 			{:else if pronouns === "она/её"}
-				Заблокирована
+				Blocked
 			{:else}
-				Заблокированы
+				Blocked
 			{/if}
 		{:else if "isSelf" in value}
-			Это вы!
+			That's you!
 		{:else}
 			{@const { pronouns, lastSeen } = value}
 			{#if pronouns === "он/его"}
-				Играл
+				Last played
 			{:else if pronouns === "она/её"}
-				Играла
+				Last played
 			{:else}
-				Играли
+				Last played
 			{/if}
 			{#if lastSeen !== null}
-				{formatDistanceToNowStrict(lastSeen, { locale: ru, addSuffix: true })}
+				{formatDistanceToNowStrict(lastSeen, { addSuffix: true })}
 			{:else}
-				давно
+				a long time ago
 			{/if}
 		{/if}
 	{/await}

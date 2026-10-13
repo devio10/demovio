@@ -3,7 +3,7 @@
 </script>
 
 <div class="main-content" transition:scale|global={{ duration: 500, start: 0.5 }}>
-	<span>Нет уведомлений</span>
+	<span>No notifications</span>
 </div>
 
 <style lang="scss">

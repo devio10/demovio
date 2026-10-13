@@ -4,7 +4,7 @@
 </script>
 
 <svelte:head>
-	<title>Профиль Demovio</title>
+	<title>Demovio profile</title>
 </svelte:head>
 
 <ProfileOverview {data} />

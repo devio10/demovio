@@ -7,17 +7,17 @@
 	import SettingsContent from "../SettingsContent.svelte";
 
 	let showEnvironment = $state(localPreferences.showEnvironment);
-	let environmentThemeNames = ["", "Светлая", "Тёмная", "Автоматически"];
+	let environmentThemeNames = ["", "Light", "Dark", "Auto"];
 </script>
 
 <svelte:head>
-	<title>Профиль Demovio – Оформление</title>
+	<title>Профиль Demovio – Appearance</title>
 </svelte:head>
-<SettingsHeader title="Оформление"></SettingsHeader>
+<SettingsHeader title="Appearance"></SettingsHeader>
 <SettingsContent>
 	<div class="settings-buttons">
 		<OptionButton tag="div">
-			Показывать окружение <SettingsSwitch
+			Show the environment <SettingsSwitch
 				value={showEnvironment}
 				onChange={() => {
 					const value = localStorage.getItem("show-environment");
@@ -40,22 +40,23 @@
 				localStorage.setItem("environment-theme", localPreferences.environmentTheme.toString());
 			}}
 		>
-			Тема окружения <span>{environmentThemeNames[localPreferences.environmentTheme]}</span>
+			Environment theme <span>{environmentThemeNames[localPreferences.environmentTheme]}</span>
 		</OptionButton>
 	</div>
 	<OptionDescription>
-		Отображать статическое или панорамное окружение на фоне страницы вместо сплошного фона.
+		Display a static or panoramic environment as the page background instead of a solid color
+		background.
 	</OptionDescription>
 	<div class="settings-buttons-space"></div>
 	<div class="settings-buttons">
 		<OptionButton tag="div">
-			Скорость прокрутки панорамы <span>1x</span>
+			Panorama speed <span>1x</span>
 		</OptionButton>
 	</div>
 	<div class="settings-buttons-space"></div>
 	<div class="settings-buttons">
 		<OptionButton tag="div">
-			Контрастный режим <SettingsSwitch
+			Contrast theme <SettingsSwitch
 				value={localPreferences.contrastTheme}
 				onChange={() => {
 					const value = localStorage.getItem("contrast-theme");
@@ -71,6 +72,6 @@
 		</OptionButton>
 	</div>
 	<OptionDescription>
-		Интерфейс будет иметь непрозрачный белый или чёрный фон, в зависимости от темы устройства.
+		The interface will have an opaque white or black background, depending on the device theme.
 	</OptionDescription>
 </SettingsContent>

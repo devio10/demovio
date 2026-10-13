@@ -38,7 +38,7 @@
 	}}
 	disabled={loading === true}
 >
-	Принудительно применить скин
+	Force reapply skin
 	<div class="option-button-icon-container">
 		{#if loading}
 			<div class="option-button-wheel">
@@ -49,9 +49,9 @@
 		{/if}
 	</div>
 </OptionButton>
-<Dialog title="Не Удалось Применить Скин" description={error} opened={error} color="var(--yellow)">
+<Dialog title="Couldn't Reapply Skin" description={error} opened={error} color="var(--yellow)">
 	{#snippet icon()}
 		<div style="padding: 6px;"><IconExclamationMark /></div>
 	{/snippet}
-	<DialogButton onclick={() => (error = undefined)}>Закрыть</DialogButton>
+	<DialogButton onclick={() => (error = undefined)}>Close</DialogButton>
 </Dialog>

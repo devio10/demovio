@@ -16,10 +16,10 @@
 </script>
 
 <svelte:head>
-	<title>Профиль Demovio – Уведомления</title>
+	<title>Профиль Demovio – Notifications</title>
 </svelte:head>
 
-<SettingsHeader title="Уведомления"></SettingsHeader>
+<SettingsHeader title="Notifications"></SettingsHeader>
 <SettingsContent>
 	<PushNotificationsSwitch />
 
@@ -31,27 +31,28 @@
 	</div>
 	<OptionDescription>
 		{#if playerActivitySubscription && demovioUpdatesSubscription}
-			Вы будете получать уведомления об активности выбранных игроков и обновлениях сервера Demovio.
+			You will receive notifications about the activity of selected players and updates from the
+			Demovio server.
 		{:else if playerActivitySubscription}
-			Вы будете получать уведомления об активности выбранных игроков.
+			You will receive notifications about the activity of selected players.
 		{:else if demovioUpdatesSubscription}
-			Вы будете получать уведомления об обновлениях сервера Demovio.
+			You will receive notifications about updates from the Demovio server.
 		{:else if !invitesSubscription}
-			Вы выключили все уведомления от Demovio.
+			You have disabled all notifications from Demovio.
 		{/if}
 		{#if invitesSubscription}
-			Другие игроки могут приглашать вас в игру.
+			Other players can invite you to play.
 		{/if}
 	</OptionDescription>
 	<div class="settings-buttons-space"></div>
 	<div class="settings-buttons">
 		<OptionButton tag="div">
-			Частота уведомлений <span>12 часов</span>
+			Frequency of notifications <span>12 hours</span>
 		</OptionButton>
 	</div>
 	<OptionDescription>
-		Частота уведомлений о каждом игроке ограничена: вы получите сообщение не чаще одного раза в 12
-		часов для конкретного игрока.
+		The frequency of notifications for each player is limited: you will receive a message no more
+		than once every 12 hours for a specific player.
 	</OptionDescription>
 	<div class="settings-buttons-space"></div>
 	<div class="settings-buttons">

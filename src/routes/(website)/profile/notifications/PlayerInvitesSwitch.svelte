@@ -9,7 +9,7 @@
 </script>
 
 <OptionButton tag="div">
-	Приглашения от игроков <SettingsSwitch
+	Invites from players <SettingsSwitch
 		value={value === true}
 		disabled={updating}
 		onChange={async () => {

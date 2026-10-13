@@ -37,7 +37,7 @@
 		fileInput.click();
 	}}
 >
-	Перетащите сюда скин или нажмите, чтобы открыть выбор файла
+	Drag n' Drop or click here to select your skin file.
 </button>
 <input
 	type="file"

@@ -23,23 +23,23 @@
 	<Window sectionOpened={page.route.id?.startsWith("/(website)/profile/")}>
 		{#snippet navigation()}
 			<WindowNavigation --width="30%">
-				<WindowNavigationHeader title="Профиль"></WindowNavigationHeader>
+				<WindowNavigationHeader title="Profile"></WindowNavigationHeader>
 				<WindowNavigationList style="padding-left: 12px; padding-right: 12px">
 					<WindowNavigationItem href="/profile/overview" altHref="/profile">
 						<NavigationItemIcon color="#8E8E91">
 							<IconHome />
 						</NavigationItemIcon>
-						Обзор
+						Overview
 					</WindowNavigationItem>
 					<WindowNavigationItem href="/profile/edit">
 						<NavigationItemIcon color="#8E8E91">
 							<div style="padding: 2px"><IconPencil /></div>
-						</NavigationItemIcon>Изменение данных
+						</NavigationItemIcon>Change information
 					</WindowNavigationItem>
 					<WindowNavigationItem href="/profile/security">
 						<NavigationItemIcon color="#8E8E91">
 							<div><IconSecurity /></div>
-						</NavigationItemIcon>Безопасность аккаунта
+						</NavigationItemIcon>Privacy & Security
 					</WindowNavigationItem>
 
 					<div class="navigation-space"></div>
@@ -48,19 +48,19 @@
 						<NavigationItemIcon>
 							<IconIDCard />
 						</NavigationItemIcon>
-						Паспорт
+						Passport
 					</WindowNavigationItem>
 					<WindowNavigationItem href="/profile/change-citizenship">
 						<NavigationItemIcon>
 							<IconMove />
 						</NavigationItemIcon>
-						Смена гражданства
+						Change Citizenship
 					</WindowNavigationItem>
 					<WindowNavigationItem href="/profile/reset-game-password">
 						<NavigationItemIcon>
 							<IconKey />
 						</NavigationItemIcon>
-						Сброс игрового пароля
+						Reset Game Password
 					</WindowNavigationItem>
 
 					<div class="navigation-space"></div>
@@ -69,13 +69,13 @@
 						<NavigationItemIcon color="rgb(246, 59, 90)">
 							<IconBell />
 						</NavigationItemIcon>
-						Уведомления
+						Notifications
 					</WindowNavigationItem>
 					<WindowNavigationItem href="/profile/environment">
 						<NavigationItemIcon color="rgb(98, 84, 248)">
 							<IconEnvironment />
 						</NavigationItemIcon>
-						Оформление
+						Appearance
 					</WindowNavigationItem>
 					{#if data.profile && data.profile.administrator}
 						<WindowNavigationItem href="/profile/backstage">

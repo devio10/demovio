@@ -19,7 +19,7 @@
 	import SettingsContent from "../SettingsContent.svelte";
 	import IconRight from "$lib/components/icons/IconRight.svelte";
 
-	const allPronouns = ["он/его", "она/её", "они/их"];
+	const allPronouns = ["he/him", "she/her", "they/them"];
 
 	let { data } = $props();
 
@@ -46,7 +46,7 @@
 </svelte:head>
 
 <div class="header">
-	<SettingsHeader title="Изменение данных"></SettingsHeader>
+	<SettingsHeader title="Change information"></SettingsHeader>
 	{#if unsavedChanges}
 		<div class="button" transition:scale={{ duration: 300, start: 0.75 }}>
 			<form
@@ -79,7 +79,7 @@
 					{#if saveData.pending}
 						<LoadingWheel --wheel-size="32px" duration={0} />
 					{:else}
-						Готово
+						Save
 					{/if}
 				</WindowHeaderAccentButton>
 			</form>
@@ -89,7 +89,7 @@
 
 {#if data.profile}
 	<SettingsContent>
-		<h3>Основное</h3>
+		<h3>Skin & Description</h3>
 		<div class="settings-buttons skin-and-description">
 			<div class="skin-container">
 				{#if data.profile}
@@ -112,9 +112,9 @@
 					</div>
 					<span>
 						{#if editingSkin}
-							Отменить
+							Cancel
 						{:else}
-							Изменить
+							Change
 						{/if}
 					</span>
 				</button>
@@ -123,7 +123,7 @@
 				{#if !editingSkin || useLicenseSkin}
 					<TextArea
 						bind:value={description}
-						placeholder="Описание..."
+						placeholder="Description..."
 						oninput={() => (unsavedChanges = true)}
 					/>
 				{:else}
@@ -141,7 +141,7 @@
 						unsavedChanges = true;
 					}}
 				>
-					Загрузить файл скина
+					Upload skin file
 					<OptionButtonCheckmark value={!useLicenseSkin} />
 				</OptionButton>
 				<OptionButton
@@ -150,12 +150,12 @@
 						unsavedChanges = true;
 					}}
 				>
-					Использовать свой лицензионный скин
+					Use my license skin
 					<OptionButtonCheckmark value={useLicenseSkin} />
 				</OptionButton>
 			</div>{/if}
 		<div class="settings-buttons-space"></div>
-		<h3>Местоимения</h3>
+		<h3>Pronouns</h3>
 		<div class="settings-buttons pronouns-grid">
 			{#each allPronouns as prn}
 				<OptionButton
@@ -176,7 +176,7 @@
 					unsavedChanges = true;
 				}}
 			>
-				Не указывать
+				Don't specify
 				<OptionButtonCheckmark value={pronouns === null} />
 			</OptionButton>
 			<OptionButton
@@ -186,42 +186,42 @@
 					unsavedChanges = true;
 				}}
 			>
-				Другое
+				Other
 				<OptionButtonCheckmark value={customPronouns} />
 			</OptionButton>
 		</div>
 		{#if customPronouns}
 			<div class="settings-buttons" style="padding-top: 16px" transition:slide={{ duration: 300 }}>
 				<TextInput
-					placeholder="Укажите ваши местоимения"
+					placeholder="Enter your pronouns"
 					bind:value={pronouns}
 					oninput={() => (unsavedChanges = true)}
 				/>
 			</div>
 		{/if}
 		<div class="settings-buttons-space"></div>
-		<h3>Прочее</h3>
+		<h3>Other</h3>
 		<div class="settings-buttons">
 			<OptionButton tag="a" href="/profile/edit/name">
-				Изменить игровой ник
+				Change player name
 				<div class="option-button-arrow-icon">
 					<IconRight />
 				</div>
 			</OptionButton>
 			<OptionButton tag="a" href="/profile/edit/contact">
-				Изменить контактную информацию
+				Change contact method
 				<div class="option-button-arrow-icon">
 					<IconRight />
 				</div>
 			</OptionButton>
 			<OptionButton tag="a" href="/profile/edit/game-license">
-				Указать наличие лицензионной игры
+				Change the availability of Minecraft license
 				<div class="option-button-arrow-icon">
 					<IconRight />
 				</div>
 			</OptionButton>
 			<OptionButton tag="a" href="/profile/notifications">
-				Предпочтения уведомлений <div class="option-button-arrow-icon">
+				Notifications preferences <div class="option-button-arrow-icon">
 					<IconRight />
 				</div>
 			</OptionButton>

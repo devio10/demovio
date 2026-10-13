@@ -35,7 +35,7 @@
 		border-radius: 100px;
 		background-color: rgba(255, 255, 255, 0);
 		cursor: pointer;
-		padding: 12px;
+		padding: 14px;
 		color: rgba(240, 240, 240, 0.8);
 		display: flex;
 		overflow: clip;
@@ -49,6 +49,7 @@
 			transition-duration: 200ms;
 			transition-property: opacity, font-weight;
 			transition-timing-function: ease-out;
+			text-wrap: nowrap;
 		}
 
 		&:hover {
@@ -57,7 +58,7 @@
 		}
 
 		&.active {
-			background-color: rgba(255, 255, 255, 0.4);
+			background-color: rgba(255, 255, 255, 0.2);
 			color: white;
 			.button-name {
 				font-weight: 600;

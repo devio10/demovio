@@ -8,42 +8,42 @@ export const demovioStates: {
 	acceptNewPlayers?: boolean;
 }[] = [
 	{
-		name: "Конкорд",
+		name: "Concord",
 		icon: "concord.svg",
 		code: "concord",
 		shortCode: "CD",
 		autoAcceptSwitch: true,
 	},
 	{
-		name: "Нью Йорк",
+		name: "New York",
 		icon: "newyork.svg",
 		code: "newyork",
 		shortCode: "NY",
 		autoAcceptSwitch: "Штат Нью Йорк рассматривает заявки вручную. Это может занять до двух суток.",
 	},
 	{
-		name: "Огайо",
+		name: "Ohio",
 		icon: "ohio.svg",
 		code: "ohio",
 		shortCode: "OH",
 		autoAcceptSwitch: true,
 	},
 	{
-		name: "Калифорния",
+		name: "California",
 		icon: "california.svg",
 		code: "california",
 		shortCode: "CA",
 		autoAcceptSwitch: true,
 	},
 	{
-		name: "Джорджия",
+		name: "Georgia",
 		icon: "georgia.svg",
 		code: "georgia",
 		shortCode: "GE",
 		autoAcceptSwitch: true,
 	},
 	{
-		name: "Шанхай",
+		name: "Shanghai",
 		icon: "shanghai.svg",
 		code: "shanghai",
 		shortCode: "SH",
